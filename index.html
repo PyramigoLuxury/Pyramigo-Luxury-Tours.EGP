@@ -1,82 +1,140 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
   <title>Let's Discover Egypt</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
-    body {
+    * {
+      box-sizing: border-box;
+    }
+
+    body, html {
       margin: 0;
-      background-color: #0d0d0d;
-      color: #f5f5f5;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      text-align: center;
-      padding: 40px 20px;
-    }
-
-    h1 {
-      color: #caa64c;
-      font-size: 2.8em;
-      margin-bottom: 10px;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-    }
-
-    p {
-      font-size: 1.2em;
-      margin-bottom: 30px;
-      color: #dcdcdc;
-    }
-
-    img {
-      width: 90%;
-      max-width: 500px;
-      border-radius: 20px;
-      box-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
-    }
-
-    /* WhatsApp button */
-    .whatsapp-float {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      background-color: #25d366;
+      padding: 0;
+      font-family: 'Segoe UI', sans-serif;
       color: white;
-      border-radius: 50%;
-      width: 60px;
-      height: 60px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-decoration: none;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-      font-size: 28px;
-      z-index: 100;
     }
 
-    .whatsapp-float:hover {
-      background-color: #1ebe5b;
+    .hero {
+      background-image: url('https://upload.wikimedia.org/wikipedia/commons/e/e3/Kheops-Pyramid.jpg');
+      background-size: cover;
+      background-position: center;
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .overlay {
+      background: rgba(0, 0, 0, 0.65);
+      padding: 3rem;
+      border-radius: 20px;
+      max-width: 800px;
+      text-align: center;
+      position: relative;
+      z-index: 2;
+    }
+
+    .overlay h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+
+    .overlay p {
+      font-size: 1.2rem;
+      line-height: 1.6;
+    }
+
+    .overlay ul {
+      text-align: left;
+      margin: 2rem auto;
+      max-width: 500px;
+      font-size: 1rem;
+      line-height: 1.6;
+    }
+
+    .btn {
+      display: inline-block;
+      background: #25D366;
+      color: white;
+      padding: 0.8rem 1.5rem;
+      border-radius: 8px;
+      font-size: 1.2rem;
+      text-decoration: none;
+      margin-top: 1.5rem;
+      transition: background 0.3s ease;
+    }
+
+    .btn:hover {
+      background: #1da851;
+    }
+
+    .hieroglyph {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      max-height: 300px;
+      opacity: 0.3;
+      z-index: 1;
+    }
+
+    .hieroglyph.left {
+      left: 20px;
+    }
+
+    .hieroglyph.right {
+      right: 20px;
+      transform: translateY(-50%) scaleX(-1);
     }
 
     @media (max-width: 600px) {
-      h1 {
-        font-size: 2em;
+      .overlay {
+        padding: 1.5rem;
       }
 
-      p {
-        font-size: 1em;
+      .overlay h1 {
+        font-size: 2rem;
+      }
+
+      .overlay p, .overlay ul {
+        font-size: 1rem;
       }
     }
   </style>
 </head>
 <body>
-  <h1>Let's Discover Egypt 🇪🇬</h1>
-  <p>Explore the Pyramids, ride camels, and feel history come alive!</p>
-  <img src="https://upload.wikimedia.org/wikipedia/commons/e/e3/Kheops-Pyramid.jpg" alt="Pyramids of Giza">
 
-  <!-- WhatsApp Floating Button -->
-  <a href="https://wa.me/2001283915289" class="whatsapp-float" target="_blank" title="Book via WhatsApp">
-    🟢
-  </a>
+  <section class="hero">
+    <!-- زخارف فرعونية -->
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Egyptian_Hieroglyphs_%28hieratic%29.svg/200px-Egyptian_Hieroglyphs_%28hieratic%29.svg.png"
+         class="hieroglyph left" alt="Hieroglyphs">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Egyptian_Hieroglyphs_%28hieratic%29.svg/200px-Egyptian_Hieroglyphs_%28hieratic%29.svg.png"
+         class="hieroglyph right" alt="Hieroglyphs">
+
+    <!-- المحتوى النصي -->
+    <div class="overlay">
+      <h1>Let's Discover Egypt</h1>
+      <p>
+        Experience the magic of the Pyramids of Giza like never before!<br>
+        Join our guided tour to explore the ancient wonders of Egypt and enjoy a unique camel ride in the heart of the desert.
+      </p>
+
+      <ul>
+        <li>✔ Pickup & drop-off from your location in Cairo or Giza</li>
+        <li>✔ Professional tour guide</li>
+        <li>✔ Visit the Great Pyramids & Sphinx</li>
+        <li>✔ Camel ride experience</li>
+        <li>✔ Bottled water and snacks</li>
+      </ul>
+
+      <p><strong>🕓 Duration:</strong> Approx. 4 hours</p>
+      <p><strong>💰 Price:</strong> Starting from $40 per person</p>
+
+      <a href="https://wa.me/2001283915289" class="btn">📲 Book Now on WhatsApp</a>
+    </div>
+  </section>
+
 </body>
 </html>
