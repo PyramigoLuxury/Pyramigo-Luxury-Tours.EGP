@@ -1,110 +1,89 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Let's Discover Egypt</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
   <style>
-    * { box-sizing: border-box; }
-    body, html {
+    body {
       margin: 0;
-      padding: 0;
-      font-family: 'Trebuchet MS', sans-serif;
-      height: 100%;
-      background-color: #111;
-      color: white;
-    }
-
-    .hero {
-      background: linear-gradient(to bottom, rgba(0,0,0,0.6), rgba(0,0,0,0.9)),
-                  url('https://upload.wikimedia.org/wikipedia/commons/e/e3/Kheops-Pyramid.jpg') no-repeat center center;
+      font-family: 'Cairo', sans-serif;
+      background: url('https://letsexploreegypt.net/wp-content/uploads/2024/06/pyramids-camel.jpg') no-repeat center center fixed;
       background-size: cover;
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 3rem;
     }
 
-    .content {
-      background-color: rgba(0, 0, 0, 0.7);
-      padding: 3rem;
-      border-radius: 20px;
-      max-width: 800px;
+    .contact-section {
+      padding: 80px 20px;
+      background-color: rgba(255, 255, 255, 0.92);
+      max-width: 650px;
+      margin: 60px auto;
+      border-radius: 16px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+    }
+
+    .form-title {
       text-align: center;
-      box-shadow: 0 0 30px rgba(255, 215, 0, 0.4);
+      font-size: 28px;
+      font-weight: bold;
+      color: #222;
+      margin-bottom: 30px;
     }
 
-    h1 {
-      font-size: 3rem;
-      background: linear-gradient(to right, #FFD700, #FFB800);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      margin-bottom: 1rem;
+    .form-title span {
+      color: #00b0ff;
     }
 
-    p, li {
-      font-size: 1.2rem;
-      line-height: 1.6;
-      color: #eee;
+    form input,
+    form textarea {
+      width: 100%;
+      padding: 14px;
+      margin-bottom: 18px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      font-size: 1rem;
     }
 
-    ul {
-      text-align: left;
-      max-width: 500px;
-      margin: 1.5rem auto;
-    }
-
-    .cta-button {
-      display: inline-block;
-      background-color: #25D366;
+    form button {
+      width: 100%;
+      background-color: #00b0ff;
       color: white;
-      padding: 0.8rem 2rem;
-      font-size: 1.2rem;
-      border-radius: 50px;
-      text-decoration: none;
-      transition: background 0.3s ease;
-      margin-top: 1.5rem;
+      border: none;
+      padding: 14px;
+      font-size: 1.1rem;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
     }
 
-    .cta-button:hover {
-      background-color: #1da851;
+    form button:hover {
+      background-color: #0091cc;
     }
 
-    @media (max-width: 600px) {
-      .content {
-        padding: 1.5rem;
-      }
-      h1 {
-        font-size: 2rem;
-      }
-      p, li {
-        font-size: 1rem;
-      }
+    .captcha {
+      margin: 20px 0;
     }
   </style>
 </head>
 <body>
-
-  <section class="hero">
-    <div class="content">
-      <h1>Let's Discover Egypt</h1>
-      <p>
-        Experience the magic of the Pyramids of Giza like never before.<br>
-        Join our guided tour to explore the ancient wonders of Egypt and enjoy a unique camel ride in the heart of the desert.
-      </p>
-      <ul>
-        <li>✔ Pickup & drop-off from your location in Cairo or Giza</li>
-        <li>✔ Professional tour guide</li>
-        <li>✔ Visit the Great Pyramids & Sphinx</li>
-        <li>✔ Camel ride experience</li>
-        <li>✔ Bottled water and snacks</li>
-      </ul>
-      <p><strong>🕓 Duration:</strong> Approx. 4 hours</p>
-      <p><strong>💰 Price:</strong> Starting from $40 per person</p>
-      <a href="https://wa.me/201234567890" class="cta-button">📲 Book Now on WhatsApp</a>
-    </div>
+  <section class="contact-section">
+    <h2 class="form-title">
+      Let’s Discover Egypt 🇪🇬
+    </h2>
+    <form action="/send-message" method="post">
+      <input type="text" name="name" placeholder="Name" required />
+      <input type="email" name="email" placeholder="Email" required />
+      <input type="text" name="subject" placeholder="Subject" />
+      <textarea name="message" rows="5" placeholder="Message"></textarea>
+      
+      <div class="captcha">
+        <div class="g-recaptcha" data-sitekey="YOUR_RECAPTCHA_SITE_KEY"></div>
+      </div>
+      
+      <button type="submit">SEND</button>
+    </form>
   </section>
 
+  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </body>
 </html>
