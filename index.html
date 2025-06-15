@@ -1,187 +1,31 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Let's Discover Egypt</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <style>
-    * {
-      box-sizing: border-box;
-    }
+<section style="background: #fff; color: #222; font-family: 'Segoe UI', sans-serif; padding: 3rem 1rem; text-align: center; max-width: 900px; margin: auto;">
 
-    body, html {
-      margin: 0;
-      padding: 0;
-      font-family: 'Segoe UI', sans-serif;
-      color: white;
-    }
+  <h2 style="font-size: 2rem; margin-bottom: 1rem; color: #000;"><strong>Let's Discover Egypt</strong> – More Than Just Tours</h2>
+  
+  <p style="font-size: 1.1rem; line-height: 1.7;">
+    Founded by passionate local experts, Let's Discover Egypt is your gateway to the soul of ancient civilization.<br>
+    We specialize in unforgettable, immersive experiences across Egypt’s most iconic sites.
+  </p>
 
-    .hero {
-      background-image: url('https://upload.wikimedia.org/wikipedia/commons/e/e3/Kheops-Pyramid.jpg');
-      background-size: cover;
-      background-position: center;
-      position: relative;
-      min-height: 100vh;
-    }
+  <p style="font-size: 1.1rem; line-height: 1.7; margin-top: 1rem;">
+    Our success lies in building trust with travelers worldwide, providing high-quality service, and working with the best local partners to ensure every trip is unique and seamless.
+  </p>
 
-    .navbar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background: rgba(0, 0, 0, 0.7);
-      padding: 1rem 2rem;
-      position: relative;
-      z-index: 3;
-    }
+  <p style="font-size: 1.1rem; line-height: 1.7; margin-top: 1rem;">
+    Whether it's a classic pyramid tour or a hidden gem in the desert, our mission is to craft experiences that go beyond sightseeing – we take you on a journey through time.
+  </p>
 
-    .navbar .logo {
-      font-size: 1.5rem;
-      font-weight: bold;
-      color: gold;
-      letter-spacing: 1px;
-    }
+  <h3 style="margin-top: 3rem; font-size: 1.3rem; color: goldenrod; letter-spacing: 1px;">
+    A GLIMPSE OF WHAT WE OFFER
+  </h3>
 
-    .navbar a {
-      color: white;
-      margin-left: 1rem;
-      text-decoration: none;
-      font-weight: 500;
-    }
+  <ul style="list-style: none; padding: 0; margin-top: 1.5rem; font-size: 1.1rem; line-height: 2;">
+    <li>🏨 Handpicked hotel partnerships across Egypt</li>
+    <li>🗺️ Private guided tours to all major sites</li>
+    <li>🐪 Authentic desert & camel experiences</li>
+    <li>🍽️ Local food tastings and cultural stops</li>
+    <li>🚐 Airport pickups, full transport arrangements</li>
+    <li>📱 Easy WhatsApp booking with instant replies</li>
+  </ul>
 
-    .navbar a:hover {
-      text-decoration: underline;
-    }
-
-    .overlay {
-      background: rgba(0, 0, 0, 0.65);
-      padding: 3rem;
-      border-radius: 20px;
-      max-width: 800px;
-      text-align: center;
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      z-index: 2;
-    }
-
-    .overlay h2 {
-      font-size: 2.5rem;
-      margin-bottom: 1rem;
-      color: gold;
-    }
-
-    .overlay p {
-      font-size: 1.1rem;
-      line-height: 1.6;
-    }
-
-    .overlay ul {
-      text-align: left;
-      margin: 2rem auto;
-      max-width: 500px;
-      font-size: 1rem;
-      line-height: 1.6;
-    }
-
-    .btn {
-      display: inline-block;
-      background: #25D366;
-      color: white;
-      padding: 0.8rem 1.5rem;
-      border-radius: 8px;
-      font-size: 1.2rem;
-      text-decoration: none;
-      margin-top: 1.5rem;
-      transition: background 0.3s ease;
-    }
-
-    .btn:hover {
-      background: #1da851;
-    }
-
-    .hieroglyph {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      max-height: 300px;
-      opacity: 0.3;
-      z-index: 1;
-    }
-
-    .hieroglyph.left {
-      left: 20px;
-    }
-
-    .hieroglyph.right {
-      right: 20px;
-      transform: translateY(-50%) scaleX(-1);
-    }
-
-    @media (max-width: 600px) {
-      .overlay {
-        padding: 1.5rem;
-      }
-
-      .overlay h2 {
-        font-size: 2rem;
-      }
-
-      .overlay p, .overlay ul {
-        font-size: 1rem;
-      }
-
-      .navbar {
-        flex-direction: column;
-      }
-
-      .navbar a {
-        margin: 0.5rem 0;
-      }
-    }
-  </style>
-</head>
-<body>
-
-  <section class="hero">
-    <!-- Navigation -->
-    <nav class="navbar">
-      <div class="logo">Let's Discover Egypt</div>
-      <div>
-        <a href="#">Home</a>
-        <a href="#">Tours</a>
-        <a href="#">Contact</a>
-      </div>
-    </nav>
-
-    <!-- زخارف فرعونية -->
-    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Egyptian_Hieroglyphs_%28hieratic%29.svg/200px-Egyptian_Hieroglyphs_%28hieratic%29.svg.png"
-         class="hieroglyph left" alt="Hieroglyphs">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Egyptian_Hieroglyphs_%28hieratic%29.svg/200px-Egyptian_Hieroglyphs_%28hieratic%29.svg.png"
-         class="hieroglyph right" alt="Hieroglyphs">
-
-    <!-- المحتوى داخل البوكس -->
-    <div class="overlay">
-      <h2>Pyramids & Sphinx Tour</h2>
-      <p>
-        Experience the magic of the Pyramids of Giza like never before!<br>
-        Join our guided tour to explore the ancient wonders of Egypt and enjoy a unique camel ride in the heart of the desert.
-      </p>
-
-      <ul>
-        <li>✔ Pickup & drop-off from your location in Cairo or Giza</li>
-        <li>✔ Professional tour guide</li>
-        <li>✔ Visit the Great Pyramids & Sphinx</li>
-        <li>✔ Camel ride experience</li>
-        <li>✔ Bottled water and snacks</li>
-      </ul>
-
-      <p><strong>🕓 Duration:</strong> Approx. 4 hours</p>
-      <p><strong>💰 Price:</strong> Starting from $40 per person</p>
-
-      <a href="https://wa.me/2001283915289" class="btn">📲 Book Now on WhatsApp</a>
-    </div>
-  </section>
-
-</body>
-</html>
+</section>
