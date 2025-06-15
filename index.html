@@ -2,91 +2,253 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Let's Discover Egypt</title>
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
     body {
-      font-family: Arial, sans-serif;
-      background-color: #f7f7f7;
-      color: #333;
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      background-color: #ffffff;
+      color: #0d0d0d;
     }
-
     header {
-      background-color: #111;
-      color: white;
-      padding: 15px 30px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+      background-color: #000;
+      color: gold;
+      padding: 20px;
+      text-align: center;
+      font-size: 28px;
+      font-weight: bold;
     }
-
-    header h1 {
-      font-size: 24px;
+    .container {
+      padding: 40px 20px;
+      max-width: 1000px;
+      margin: auto;
     }
-
-    .sidebar {
-      width: 200px;
-      background-color: #222;
-      color: white;
-      position: fixed;
-      top: 0;
-      left: 0;
-      height: 100vh;
-      padding-top: 60px;
+    h1 {
+      color: #003366;
+      text-align: center;
     }
-
-    .sidebar a {
-      display: block;
-      color: white;
-      padding: 15px;
-      text-decoration: none;
-    }
-
-    .sidebar a:hover {
-      background-color: #444;
-    }
-
-    .main {
-      margin-left: 200px;
-      padding: 30px;
-    }
-
     .tour-card {
-      background-color: white;
+      background-color: #f0f0f0;
+      border-left: 6px solid gold;
       padding: 20px;
       margin-bottom: 20px;
-      border-radius: 8px;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     }
-
-    .tour-card h2 {
-      margin-bottom: 10px;
-    }
-
-    .tour-card p {
-      margin-bottom: 10px;
-    }
-
     .tour-card a {
       display: inline-block;
-      padding: 10px 15px;
-      background-color: #25d366;
+      margin-top: 10px;
       color: white;
+      background-color: #003366;
+      padding: 10px 20px;
+      border-radius: 6px;
       text-decoration: none;
-      border-radius: 5px;
     }
-
-    footer {
-      text-align: center;
-      padding: 20px;
-      background-color: #111;
-      color: white;
-      margin-top: 40px;
+    .floating-buttons {
+      position: fixed;
+      bottom: 15px;
+      right: 15px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .floating-buttons img {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background-color: white;
+      padding: 3px;
     }
   </style>
+</head>
+<body>
+  <header>Let's Discover Egypt</header>
+  <div class="container">
+    <h1>Explore Our Tours</h1>
+    <div class="tour-card">
+      <h2>Pyramids & Sphinx Tour</h2>
+      <p>Visit the Giza Pyramids, the Sphinx, and enjoy a 5-star lunch.</p>
+      <a href="tour1.html">View Tour</a>
+    </div>
+  </div>
+  <div class="floating-buttons">
+    <a href="https://wa.me/201234567890" target="_blank">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" />
+    </a>
+    <a href="mailto:youremail@example.com">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/4/4e/Gmail_Icon.svg" alt="Gmail" />
+    </a>
+  </div>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Pyramids Tour Booking</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      background-color: #ffffff;
+      color: #0d0d0d;
+    }
+    header {
+      background-color: #000;
+      color: gold;
+      padding: 20px;
+      text-align: center;
+      font-size: 28px;
+    }
+    .container {
+      padding: 30px 20px;
+      max-width: 800px;
+      margin: auto;
+    }
+    h2 {
+      color: #003366;
+    }
+    ul {
+      padding-left: 20px;
+    }
+    form {
+      background: #f9f9f9;
+      padding: 20px;
+      border-left: 6px solid gold;
+      border-radius: 6px;
+      margin-top: 20px;
+    }
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: bold;
+    }
+    input, textarea, select {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+    button {
+      margin-top: 20px;
+      background-color: #003366;
+      color: white;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    .back-btn {
+      display: inline-block;
+      margin-top: 20px;
+      text-decoration: none;
+      color: #003366;
+    }
+    .floating-buttons {
+      position: fixed;
+      bottom: 15px;
+      right: 15px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .floating-buttons img {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background-color: white;
+      padding: 3px;
+    }
+  </style>
+</head>
+<body>
+  <header>Let's Discover Egypt</header>
+  <div class="container">
+    <h2>Pyramids & Sphinx Tour</h2>
+    <p>Enjoy a full-day tour visiting the Great Pyramid of Giza, the majestic Sphinx, and enter the Small Pyramid. After the tour, relax and enjoy a premium lunch at a 5-star restaurant or with a scenic view.</p>
+    <ul>
+      <li>🚌 Pickup & Drop-off</li>
+      <li>🎟 Entry to the small pyramid</li>
+      <li>🍽 5-star lunch included</li>
+      <li>📅 Duration: 6 hours</li>
+      <li>💰 Price: $70 per person</li>
+    </ul>
+
+    <form action="thankyou.html" method="get">
+      <label for="name">Full Name</label>
+      <input type="text" id="name" name="name" required />
+      <label for="email">Email Address</label>
+      <input type="email" id="email" name="email" required />
+      <label for="phone">Phone Number</label>
+      <input type="tel" id="phone" name="phone" required />
+      <label for="date">Preferred Date</label>
+      <input type="date" id="date" name="date" required />
+      <label for="guests">Number of Guests</label>
+      <select id="guests" name="guests">
+        <option value="1">1 Person</option>
+        <option value="2">2 People</option>
+        <option value="3">3 People</option>
+        <option value="4">4 People</option>
+        <option value="5+">5+ People</option>
+      </select>
+      <label for="notes">Additional Notes</label>
+      <textarea id="notes" name="notes" rows="4"></textarea>
+      <button type="submit">Send Booking Request</button>
+    </form>
+
+    <a href="index.html" class="back-btn">← Back to Home</a>
+  </div>
+  <div class="floating-buttons">
+    <a href="https://wa.me/201234567890" target="_blank">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" />
+    </a>
+    <a href="mailto:youremail@example.com">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/4/4e/Gmail_Icon.svg" alt="Gmail" />
+    </a>
+  </div>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Thank You</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      background-color: #ffffff;
+      color: #0d0d0d;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      text-align: center;
+    }
+    h1 {
+      color: gold;
+      font-size: 36px;
+      margin-bottom: 20px;
+    }
+    p {
+      font-size: 18px;
+      margin-bottom: 30px;
+    }
+    a {
+      text-decoration: none;
+      background-color: #003366;
+      color: white;
+      padding: 12px 24px;
+      border-radius: 6px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Thank You!</h1>
+  <p>Your booking request has been received. We will contact you shortly.</p>
+  <a href="index.html">Back to Home</a>
+</body>
+</html>
