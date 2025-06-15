@@ -13,28 +13,72 @@
 
     body {
       font-family: 'Segoe UI', sans-serif;
-      color: white;
       background: url('background-egypt.jpg') no-repeat center center/cover;
-      height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
+      background-attachment: fixed;
+      color: white;
     }
 
     header {
-      background-color: rgba(0, 0, 0, 0.5);
-      padding: 30px 20px;
+      background-color: rgba(0, 0, 0, 0.6);
+      padding: 40px 20px;
       text-align: center;
     }
 
     header h1 {
-      font-size: 2.8rem;
+      font-size: 2.5rem;
       color: #f7c948;
     }
 
     header p {
       font-size: 1.2rem;
       margin-top: 10px;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 15px;
+      padding: 30px;
+    }
+
+    .gallery img {
+      width: 100%;
+      border-radius: 15px;
+      height: 200px;
+      object-fit: cover;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.4);
+    }
+
+    .form-section {
+      background-color: rgba(0, 0, 0, 0.6);
+      padding: 30px 20px;
+      text-align: center;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      max-width: 400px;
+      margin: auto;
+    }
+
+    input, select {
+      padding: 12px;
+      border: none;
+      border-radius: 10px;
+      font-size: 16px;
+    }
+
+    button {
+      background-color: #f7c948;
+      color: black;
+      padding: 12px;
+      border: none;
+      border-radius: 10px;
+      font-weight: bold;
+      font-size: 16px;
+      cursor: pointer;
     }
 
     .buttons {
@@ -71,14 +115,185 @@
   </style>
 </head>
 <body>
+
   <header>
     <h1>Let's Discover Egypt 🇪🇬</h1>
-    <p>Explore the Pyramids, ride camels, and feel history come alive!</p>
+    <p>Explore the pyramids, ride camels, and experience ancient history like never before!</p>
   </header>
 
+  <!-- 📸 Photo Gallery -->
+  <section class="gallery">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/e/e3/Kheops-Pyramid.jpg" alt="Pyramid">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/3/3e/Camel_riding_in_Giza.jpg" alt="Camel Ride">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/f/f4/Khephren.jpg" alt="Egypt Tour">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/a/a8/Pyramids_of_Giza.jpg" alt="Giza Landscape">
+  </section>
+
+  <!-- 📝 Booking Form -->
+  <section class="form-section">
+    <h2>Book Your Tour</h2>
+    <form action="mailto:mohamedallam10allam@gmail.com" method="POST" enctype="text/plain">
+      <input type="text" name="Name" placeholder="Your Name" required>
+      <input type="tel" name="Phone" placeholder="Phone Number" required>
+      <input type="date" name="Date" required>
+      <button type="submit">Send Booking Request</button>
+    </form>
+  </section>
+
+  <!-- 📞 WhatsApp & Gmail -->
   <div class="buttons">
-    <a class="button" href="https://wa.me/2001283915289" target="_blank">📞 Book on WhatsApp</a>
-    <a class="button gmail" href="mailto:yourname mohamedallam10allam@gmail.com@gmail.com" target="_blank">📧 Book via Gmail</a>
+    <a class="button" href="https://wa.me/2001283915289" target="_blank">📞 WhatsApp</a>
+    <a class="button gmail" href="mailto:mohamedallam10allam@gmail.com" target="_blank">📧 Gmail</a>
   </div>
+
 </body>
-</html>
+</html><!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Let's Discover Egypt</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: url('background-egypt.jpg') no-repeat center center/cover;
+      background-attachment: fixed;
+      color: white;
+    }
+
+    header {
+      background-color: rgba(0, 0, 0, 0.6);
+      padding: 40px 20px;
+      text-align: center;
+    }
+
+    header h1 {
+      font-size: 2.5rem;
+      color: #f7c948;
+    }
+
+    header p {
+      font-size: 1.2rem;
+      margin-top: 10px;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 15px;
+      padding: 30px;
+    }
+
+    .gallery img {
+      width: 100%;
+      border-radius: 15px;
+      height: 200px;
+      object-fit: cover;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.4);
+    }
+
+    .form-section {
+      background-color: rgba(0, 0, 0, 0.6);
+      padding: 30px 20px;
+      text-align: center;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      max-width: 400px;
+      margin: auto;
+    }
+
+    input, select {
+      padding: 12px;
+      border: none;
+      border-radius: 10px;
+      font-size: 16px;
+    }
+
+    button {
+      background-color: #f7c948;
+      color: black;
+      padding: 12px;
+      border: none;
+      border-radius: 10px;
+      font-weight: bold;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .buttons {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .button {
+      background-color: #25D366;
+      color: white;
+      padding: 12px 20px;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 15px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+      transition: background 0.3s ease;
+    }
+
+    .button.gmail {
+      background-color: #ea4335;
+    }
+
+    .button:hover {
+      opacity: 0.9;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Let's Discover Egypt 🇪🇬</h1>
+    <p>Explore the pyramids, ride camels, and experience ancient history like never before!</p>
+  </header>
+
+  <!-- 📸 Photo Gallery -->
+  <section class="gallery">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/e/e3/Kheops-Pyramid.jpg" alt="Pyramid">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/3/3e/Camel_riding_in_Giza.jpg" alt="Camel Ride">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/f/f4/Khephren.jpg" alt="Egypt Tour">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/a/a8/Pyramids_of_Giza.jpg" alt="Giza Landscape">
+  </section>
+
+  <!-- 📝 Booking Form -->
+  <section class="form-section">
+    <h2>Book Your Tour</h2>
+    <form action="mailto:mohamedallam10allam@gmail.com" method="POST" enctype="text/plain">
+      <input type="text" name="Name" placeholder="Your Name" required>
+      <input type="tel" name="Phone" placeholder="Phone Number" required>
+      <input type="date" name="Date" required>
+      <button type="submit">Send Booking Request</button>
+    </form>
+  </section>
+
+  <!-- 📞 WhatsApp & Gmail -->
+  <div class="buttons">
+    <a class="button" href="https://wa.me/2001283915289" target="_blank">📞 WhatsApp</a>
+    <a class="button gmail" href="mailto:mohamedallam10allam@gmail.com" target="_blank">📧 Gmail</a>
+  </div>
+
+</body>
+  </html>
