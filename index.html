@@ -1,84 +1,47 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Let's Discover Egypt</title>
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+<section style="
+  background-image: url('https://upload.wikimedia.org/wikipedia/commons/e/e3/Kheops-Pyramid.jpg');
+  background-size: cover;
+  background-position: center;
+  padding: 4rem 2rem;
+  color: white;
+  position: relative;
+  text-align: center;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+">
 
-    body {
-      font-family: 'Cairo', sans-serif;
-      color: #333;
-      background-color: #fff;
-    }
+  <!-- زخارف فرعونية يمين -->
+  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Egyptian_Hieroglyphs_%28hieratic%29.svg/200px-Egyptian_Hieroglyphs_%28hieratic%29.svg.png"
+    alt="hieroglyphs" style="position: absolute; left: 10px; top: 50%; transform: translateY(-50%); max-height: 300px; opacity: 0.5;">
 
-    header {
-      background: url('images/pyramids-tour.jpg') no-repeat center center / cover;
-      height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      color: white;
-      padding: 20px;
-    }
+  <!-- زخارف فرعونية يسار -->
+  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Egyptian_Hieroglyphs_%28hieratic%29.svg/200px-Egyptian_Hieroglyphs_%28hieratic%29.svg.png"
+    alt="hieroglyphs" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%) scaleX(-1); max-height: 300px; opacity: 0.5;">
 
-    header h1 {
-      font-size: 3rem;
-      margin-bottom: 15px;
-      color: #ffe082;
-    }
+  <!-- المحتوى النصي -->
+  <div style="background: rgba(0, 0, 0, 0.6); padding: 2rem; border-radius: 15px; max-width: 800px; margin: auto;">
+    <h1 style="font-size: 3rem; margin-bottom: 1rem;">Let's Discover Egypt</h1>
+    <p style="font-size: 1.2rem; line-height: 1.6;">
+      Experience the magic of the Pyramids of Giza like never before!<br>
+      Join our guided tour to explore the ancient wonders of Egypt and enjoy a unique camel ride in the heart of the desert.
+    </p>
 
-    header p {
-      font-size: 1.5rem;
-      margin-bottom: 25px;
-    }
+    <ul style="text-align: left; display: inline-block; margin-top: 1.5rem; font-size: 1rem; line-height: 1.6;">
+      <li>✔ Pickup & drop-off from your location in Cairo or Giza</li>
+      <li>✔ Professional tour guide</li>
+      <li>✔ Visit the Great Pyramids & Sphinx</li>
+      <li>✔ Camel ride experience</li>
+      <li>✔ Bottled water and snacks</li>
+    </ul>
 
-    .whatsapp-btn {
-      background-color: #25D366;
-      color: white;
-      padding: 15px 25px;
-      border-radius: 8px;
-      font-size: 1.2rem;
-      text-decoration: none;
-      display: inline-block;
-      transition: background-color 0.3s;
-    }
+    <p style="margin-top: 1rem;"><strong>🕓 Duration:</strong> Approx. 4 hours</p>
+    <p><strong>💰 Price:</strong> Starting from $40 per person</p>
 
-    .whatsapp-btn:hover {
-      background-color: #1ebc59;
-    }
-
-    @media (max-width: 600px) {
-      header h1 {
-        font-size: 2rem;
-      }
-
-      header p {
-        font-size: 1.2rem;
-      }
-
-      .whatsapp-btn {
-        font-size: 1rem;
-        padding: 12px 20px;
-      }
-    }
-  </style>
-</head>
-<body>
-  <header>
-    <h1>Let's Discover Egypt 🇪🇬</h1>
-    <p>Explore the Pyramids, ride camels,</p>
-    <a href="https://wa.me/2001283915289" class="whatsapp-btn" target="_blank">
-      📲 Book Now on WhatsApp
+    <a href="https://wa.me/2001283915289"
+       style="display: inline-block; margin-top: 1.5rem; padding: 0.8rem 1.5rem; background: #25D366; color: white; border-radius: 8px; text-decoration: none; font-size: 1.2rem;">
+       📲 Book Now on WhatsApp
     </a>
-  </header>
-</body>
-</html>
+  </div>
+</section>
