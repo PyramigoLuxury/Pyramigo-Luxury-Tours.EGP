@@ -22,9 +22,34 @@
       background-position: center;
       position: relative;
       min-height: 100vh;
+    }
+
+    .navbar {
       display: flex;
-      justify-content: center;
+      justify-content: space-between;
       align-items: center;
+      background: rgba(0, 0, 0, 0.7);
+      padding: 1rem 2rem;
+      position: relative;
+      z-index: 3;
+    }
+
+    .navbar .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: gold;
+      letter-spacing: 1px;
+    }
+
+    .navbar a {
+      color: white;
+      margin-left: 1rem;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .navbar a:hover {
+      text-decoration: underline;
     }
 
     .overlay {
@@ -33,17 +58,21 @@
       border-radius: 20px;
       max-width: 800px;
       text-align: center;
-      position: relative;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
       z-index: 2;
     }
 
-    .overlay h1 {
-      font-size: 3rem;
+    .overlay h2 {
+      font-size: 2.5rem;
       margin-bottom: 1rem;
+      color: gold;
     }
 
     .overlay p {
-      font-size: 1.2rem;
+      font-size: 1.1rem;
       line-height: 1.6;
     }
 
@@ -94,12 +123,20 @@
         padding: 1.5rem;
       }
 
-      .overlay h1 {
+      .overlay h2 {
         font-size: 2rem;
       }
 
       .overlay p, .overlay ul {
         font-size: 1rem;
+      }
+
+      .navbar {
+        flex-direction: column;
+      }
+
+      .navbar a {
+        margin: 0.5rem 0;
       }
     }
   </style>
@@ -107,15 +144,25 @@
 <body>
 
   <section class="hero">
+    <!-- Navigation -->
+    <nav class="navbar">
+      <div class="logo">Let's Discover Egypt</div>
+      <div>
+        <a href="#">Home</a>
+        <a href="#">Tours</a>
+        <a href="#">Contact</a>
+      </div>
+    </nav>
+
     <!-- زخارف فرعونية -->
     <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Egyptian_Hieroglyphs_%28hieratic%29.svg/200px-Egyptian_Hieroglyphs_%28hieratic%29.svg.png"
          class="hieroglyph left" alt="Hieroglyphs">
     <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Egyptian_Hieroglyphs_%28hieratic%29.svg/200px-Egyptian_Hieroglyphs_%28hieratic%29.svg.png"
          class="hieroglyph right" alt="Hieroglyphs">
 
-    <!-- المحتوى النصي -->
+    <!-- المحتوى داخل البوكس -->
     <div class="overlay">
-      <h1>Let's Discover Egypt</h1>
+      <h2>Pyramids & Sphinx Tour</h2>
       <p>
         Experience the magic of the Pyramids of Giza like never before!<br>
         Join our guided tour to explore the ancient wonders of Egypt and enjoy a unique camel ride in the heart of the desert.
