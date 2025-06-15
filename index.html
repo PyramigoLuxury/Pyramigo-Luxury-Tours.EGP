@@ -1,47 +1,140 @@
-<section style="
-  background-image: url('https://upload.wikimedia.org/wikipedia/commons/e/e3/Kheops-Pyramid.jpg');
-  background-size: cover;
-  background-position: center;
-  padding: 4rem 2rem;
-  color: white;
-  position: relative;
-  text-align: center;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Let's Discover Egypt</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    * {
+      box-sizing: border-box;
+    }
 
-  <!-- زخارف فرعونية يمين -->
-  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Egyptian_Hieroglyphs_%28hieratic%29.svg/200px-Egyptian_Hieroglyphs_%28hieratic%29.svg.png"
-    alt="hieroglyphs" style="position: absolute; left: 10px; top: 50%; transform: translateY(-50%); max-height: 300px; opacity: 0.5;">
+    body, html {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', sans-serif;
+      color: white;
+    }
 
-  <!-- زخارف فرعونية يسار -->
-  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Egyptian_Hieroglyphs_%28hieratic%29.svg/200px-Egyptian_Hieroglyphs_%28hieratic%29.svg.png"
-    alt="hieroglyphs" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%) scaleX(-1); max-height: 300px; opacity: 0.5;">
+    .hero {
+      background-image: url('https://upload.wikimedia.org/wikipedia/commons/e/e3/Kheops-Pyramid.jpg');
+      background-size: cover;
+      background-position: center;
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
 
-  <!-- المحتوى النصي -->
-  <div style="background: rgba(0, 0, 0, 0.6); padding: 2rem; border-radius: 15px; max-width: 800px; margin: auto;">
-    <h1 style="font-size: 3rem; margin-bottom: 1rem;">Let's Discover Egypt</h1>
-    <p style="font-size: 1.2rem; line-height: 1.6;">
-      Experience the magic of the Pyramids of Giza like never before!<br>
-      Join our guided tour to explore the ancient wonders of Egypt and enjoy a unique camel ride in the heart of the desert.
-    </p>
+    .overlay {
+      background: rgba(0, 0, 0, 0.65);
+      padding: 3rem;
+      border-radius: 20px;
+      max-width: 800px;
+      text-align: center;
+      position: relative;
+      z-index: 2;
+    }
 
-    <ul style="text-align: left; display: inline-block; margin-top: 1.5rem; font-size: 1rem; line-height: 1.6;">
-      <li>✔ Pickup & drop-off from your location in Cairo or Giza</li>
-      <li>✔ Professional tour guide</li>
-      <li>✔ Visit the Great Pyramids & Sphinx</li>
-      <li>✔ Camel ride experience</li>
-      <li>✔ Bottled water and snacks</li>
-    </ul>
+    .overlay h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
 
-    <p style="margin-top: 1rem;"><strong>🕓 Duration:</strong> Approx. 4 hours</p>
-    <p><strong>💰 Price:</strong> Starting from $40 per person</p>
+    .overlay p {
+      font-size: 1.2rem;
+      line-height: 1.6;
+    }
 
-    <a href="https://wa.me/2001283915289"
-       style="display: inline-block; margin-top: 1.5rem; padding: 0.8rem 1.5rem; background: #25D366; color: white; border-radius: 8px; text-decoration: none; font-size: 1.2rem;">
-       📲 Book Now on WhatsApp
-    </a>
-  </div>
-</section>
+    .overlay ul {
+      text-align: left;
+      margin: 2rem auto;
+      max-width: 500px;
+      font-size: 1rem;
+      line-height: 1.6;
+    }
+
+    .btn {
+      display: inline-block;
+      background: #25D366;
+      color: white;
+      padding: 0.8rem 1.5rem;
+      border-radius: 8px;
+      font-size: 1.2rem;
+      text-decoration: none;
+      margin-top: 1.5rem;
+      transition: background 0.3s ease;
+    }
+
+    .btn:hover {
+      background: #1da851;
+    }
+
+    .hieroglyph {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      max-height: 300px;
+      opacity: 0.3;
+      z-index: 1;
+    }
+
+    .hieroglyph.left {
+      left: 20px;
+    }
+
+    .hieroglyph.right {
+      right: 20px;
+      transform: translateY(-50%) scaleX(-1);
+    }
+
+    @media (max-width: 600px) {
+      .overlay {
+        padding: 1.5rem;
+      }
+
+      .overlay h1 {
+        font-size: 2rem;
+      }
+
+      .overlay p, .overlay ul {
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <section class="hero">
+    <!-- زخارف فرعونية -->
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Egyptian_Hieroglyphs_%28hieratic%29.svg/200px-Egyptian_Hieroglyphs_%28hieratic%29.svg.png"
+         class="hieroglyph left" alt="Hieroglyphs">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Egyptian_Hieroglyphs_%28hieratic%29.svg/200px-Egyptian_Hieroglyphs_%28hieratic%29.svg.png"
+         class="hieroglyph right" alt="Hieroglyphs">
+
+    <!-- المحتوى النصي -->
+    <div class="overlay">
+      <h1>Let's Discover Egypt</h1>
+      <p>
+        Experience the magic of the Pyramids of Giza like never before!<br>
+        Join our guided tour to explore the ancient wonders of Egypt and enjoy a unique camel ride in the heart of the desert.
+      </p>
+
+      <ul>
+        <li>✔ Pickup & drop-off from your location in Cairo or Giza</li>
+        <li>✔ Professional tour guide</li>
+        <li>✔ Visit the Great Pyramids & Sphinx</li>
+        <li>✔ Camel ride experience</li>
+        <li>✔ Bottled water and snacks</li>
+      </ul>
+
+      <p><strong>🕓 Duration:</strong> Approx. 4 hours</p>
+      <p><strong>💰 Price:</strong> Starting from $40 per person</p>
+
+      <a href="https://wa.me/2001283915289" class="btn">📲 Book Now on WhatsApp</a>
+    </div>
+  </section>
+
+</body>
+</html>
