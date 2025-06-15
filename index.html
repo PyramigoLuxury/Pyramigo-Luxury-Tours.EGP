@@ -1,61 +1,261 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Let's Discover Egypt</title>
-  <style>
-    body, html {
-      margin: 0;
-      padding: 0;
-      font-family: 'Segoe UI', sans-serif;
-      height: 100%;
-    }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-    .hero {
-      background-image: url('background-egypt.jpg'); /* اتأكد إن اسم الصورة نفس اللي رفعته */
-      background-size: cover;
-      background-position: center;
-      height: 100vh;
-      color: white;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-shadow: 2px 2px 6px rgba(0,0,0,0.6);
-    }
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #fdfcf8;
+  color: #333;
+}
 
-    .hero h1 {
-      font-size: 48px;
-      margin: 0;
-    }
+.hero {
+  background: url('background-egypt.jpg') no-repeat center center/cover;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  text-align: center;
+}
 
-    .hero p {
-      font-size: 24px;
-      margin-top: 10px;
-    }
+.overlay {
+  background-color: rgba(0, 0, 0, 0.6);
+  padding: 40px;
+  border-radius: 15px;
+  color: white;
+}
 
-    .whatsapp-btn {
-      margin-top: 30px;
-      padding: 12px 24px;
-      background-color: #25D366;
-      color: white;
-      border: none;
-      border-radius: 30px;
-      font-size: 18px;
-      text-decoration: none;
-    }
+.overlay h1 {
+  font-size: 3rem;
+  color: #f7c948;
+}
 
-    .whatsapp-btn:hover {
-      background-color: #20b358;
-    }
-  </style>
-</head>
-<body>
-  <div class="hero">
-    <h1>Let's Discover Egypt</h1>
-    <p>Explore the Pyramids and Ride Camels</p>
-    <a class="whatsapp-btn" href="https://wa.me/201234567890" target="_blank">Book via WhatsApp</a>
-  </div>
-</body>
-</html>
+.overlay p {
+  margin-top: 10px;
+  font-size: 1.2rem;
+}
+
+.main-btn {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 12px 25px;
+  background: #25D366;
+  color: white;
+  font-weight: bold;
+  border-radius: 30px;
+  text-decoration: none;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+}
+
+.gallery {
+  padding: 60px 20px;
+  text-align: center;
+  background: #fff;
+}
+
+.gallery h2 {
+  font-size: 2rem;
+  margin-bottom: 30px;
+}
+
+.images {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.images img {
+  width: 300px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.booking {
+  padding: 50px 20px;
+  background: #f4f4f4;
+  text-align: center;
+}
+
+.booking h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+form {
+  max-width: 400px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+form input, form textarea {
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+}
+
+form button {
+  padding: 12px;
+  background-color: #c28f2c;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.footer-buttons {
+  padding: 20px;
+  background: #222;
+  text-align: center;
+}
+
+.button {
+  background-color: #25D366;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 25px;
+  margin: 10px;
+  display: inline-block;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.button.gmail {
+  background-color: #ea4335;
+}* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #fdfcf8;
+  color: #333;
+}
+
+.hero {
+  background: url('background-egypt.jpg') no-repeat center center/cover;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  text-align: center;
+}
+
+.overlay {
+  background-color: rgba(0, 0, 0, 0.6);
+  padding: 40px;
+  border-radius: 15px;
+  color: white;
+}
+
+.overlay h1 {
+  font-size: 3rem;
+  color: #f7c948;
+}
+
+.overlay p {
+  margin-top: 10px;
+  font-size: 1.2rem;
+}
+
+.main-btn {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 12px 25px;
+  background: #25D366;
+  color: white;
+  font-weight: bold;
+  border-radius: 30px;
+  text-decoration: none;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+}
+
+.gallery {
+  padding: 60px 20px;
+  text-align: center;
+  background: #fff;
+}
+
+.gallery h2 {
+  font-size: 2rem;
+  margin-bottom: 30px;
+}
+
+.images {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.images img {
+  width: 300px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.booking {
+  padding: 50px 20px;
+  background: #f4f4f4;
+  text-align: center;
+}
+
+.booking h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+form {
+  max-width: 400px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+form input, form textarea {
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+}
+
+form button {
+  padding: 12px;
+  background-color: #c28f2c;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.footer-buttons {
+  padding: 20px;
+  background: #222;
+  text-align: center;
+}
+
+.button {
+  background-color: #25D366;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 25px;
+  margin: 10px;
+  display: inline-block;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.button.gmail {
+  background-color: #ea4335;
+}
