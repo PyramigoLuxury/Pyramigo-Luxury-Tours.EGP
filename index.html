@@ -4,35 +4,84 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Let's Discover Egypt</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo&display=swap" rel="stylesheet">
   <style>
     body {
-      background: #f9f6f1;
-      font-family: sans-serif;
+      font-family: 'Cairo', sans-serif;
+      margin: 0;
+      padding: 0;
+      line-height: 1.6;
+      background-color: #fff;
+      color: #333;
+    }
+    header {
+      background: url('cover-image.jpg') center/cover no-repeat;
+      height: 80vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: white;
       text-align: center;
-      padding: 50px;
     }
-    h1 {
-      color: #c28f2c;
+    header h1 {
+      font-size: 3em;
+      margin: 0;
     }
-    img {
-      width: 300px;
-      border-radius: 20px;
+    header p {
+      font-size: 1.2em;
+    }
+    .btn {
+      background-color: #007bff;
+      color: white;
+      padding: 0.75em 1.5em;
+      border: none;
+      border-radius: 5px;
       margin-top: 20px;
+      font-size: 1em;
+      cursor: pointer;
     }
-  </style>
-</head>
-<body>
-  <h1>Let's Discover Egypt 🇪🇬</h1>
-  <p>Explore the Pyramids, ride camels.</p>
-
-  <img src="https://upload.wikimedia.org/wikipedia/commons/e/e3/Kheops-Pyramid.jpg" alt="Pyramids of Egypt" />
-
-  <div style="margin-top:30px;">
-    <a href="https://wa.me/201283915289" target="_blank" 
-       style="display:inline-block;padding:12px 24px;background-color:#25D366;
-       color:#fff;border-radius:8px;text-decoration:none;font-weight:bold;font-size:18px;">
-      Book Now on WhatsApp 📲
-    </a>
-  </div>
-</body>
-</html>
+    .section {
+      padding: 4em 2em;
+      max-width: 1100px;
+      margin: auto;
+    }
+    .tours {
+      display: flex;
+      gap: 2em;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .tour-card {
+      flex: 1 1 300px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      overflow: hidden;
+      text-align: center;
+    }
+    .tour-card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+    .contact, .about {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 2em;
+    }
+    .contact form {
+      flex: 1 1 300px;
+      display: flex;
+      flex-direction: column;
+    }
+    .contact input, .contact textarea {
+      padding: 0.5em;
+      margin-bottom: 1em;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    .footer {
+      background-color: #f4f4f4;
+      text-align: center;
+      padding: 1em;
