@@ -1,31 +1,146 @@
-<section style="background: #fff; color: #222; font-family: 'Segoe UI', sans-serif; padding: 3rem 1rem; text-align: center; max-width: 900px; margin: auto;">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Let's Discover Egypt</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-  <h2 style="font-size: 2rem; margin-bottom: 1rem; color: #000;"><strong>Let's Discover Egypt</strong> – More Than Just Tours</h2>
-  
-  <p style="font-size: 1.1rem; line-height: 1.7;">
-    Founded by passionate local experts, Let's Discover Egypt is your gateway to the soul of ancient civilization.<br>
-    We specialize in unforgettable, immersive experiences across Egypt’s most iconic sites.
-  </p>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #fdfaf5;
+      color: #222;
+    }
 
-  <p style="font-size: 1.1rem; line-height: 1.7; margin-top: 1rem;">
-    Our success lies in building trust with travelers worldwide, providing high-quality service, and working with the best local partners to ensure every trip is unique and seamless.
-  </p>
+    header {
+      background: url('https://upload.wikimedia.org/wikipedia/commons/e/e3/Kheops-Pyramid.jpg') no-repeat center center/cover;
+      min-height: 100vh;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
 
-  <p style="font-size: 1.1rem; line-height: 1.7; margin-top: 1rem;">
-    Whether it's a classic pyramid tour or a hidden gem in the desert, our mission is to craft experiences that go beyond sightseeing – we take you on a journey through time.
-  </p>
+    header::after {
+      content: "";
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.6);
+    }
 
-  <h3 style="margin-top: 3rem; font-size: 1.3rem; color: goldenrod; letter-spacing: 1px;">
-    A GLIMPSE OF WHAT WE OFFER
-  </h3>
+    .hero-content {
+      position: relative;
+      color: #fff;
+      max-width: 800px;
+      padding: 2rem;
+      z-index: 1;
+    }
 
-  <ul style="list-style: none; padding: 0; margin-top: 1.5rem; font-size: 1.1rem; line-height: 2;">
-    <li>🏨 Handpicked hotel partnerships across Egypt</li>
-    <li>🗺️ Private guided tours to all major sites</li>
-    <li>🐪 Authentic desert & camel experiences</li>
-    <li>🍽️ Local food tastings and cultural stops</li>
-    <li>🚐 Airport pickups, full transport arrangements</li>
-    <li>📱 Easy WhatsApp booking with instant replies</li>
-  </ul>
+    .hero-content h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
 
-</section>
+    .hero-content p {
+      font-size: 1.2rem;
+      line-height: 1.6;
+    }
+
+    .section {
+      padding: 3rem 1rem;
+      text-align: center;
+    }
+
+    .section h2 {
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+      color: #333;
+    }
+
+    .features {
+      max-width: 900px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .feature-box {
+      background: #fff;
+      padding: 1.5rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    .feature-box h3 {
+      color: #d4af37;
+      margin-bottom: 0.8rem;
+    }
+
+    .cta {
+      margin-top: 2rem;
+    }
+
+    .btn {
+      display: inline-block;
+      background-color: #25D366;
+      color: #fff;
+      padding: 1rem 2rem;
+      border-radius: 8px;
+      font-size: 1.1rem;
+      text-decoration: none;
+      transition: background 0.3s ease;
+    }
+
+    .btn:hover {
+      background-color: #1da851;
+    }
+
+    footer {
+      background: #222;
+      color: #ccc;
+      text-align: center;
+      padding: 1.5rem 1rem;
+      font-size: 0.9rem;
+    }
+
+    .hieroglyph {
+      position: absolute;
+      max-height: 150px;
+      opacity: 0.2;
+    }
+
+    .left-mark {
+      left: 20px;
+      top: 30%;
+    }
+
+    .right-mark {
+      right: 20px;
+      top: 30%;
+      transform: scaleX(-1);
+    }
+
+    @media (max-width: 600px) {
+      .hero-content h1 {
+        font-size: 2rem;
+      }
+
+      .hero-content p {
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Egyptian_Hieroglyphs_%28hier
