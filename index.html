@@ -1,7 +1,82 @@
-Let's Discover Egypt body { background-color: #0a0a0a; color: #fff; font-family: 'Segoe UI', sans-serif; } header { background-color: #111; border-bottom: 2px solid gold; } .logo { font-family: 'Papyrus', fantasy; font-size: 26px; color: gold; } .btn-gold { background-color: gold; color: #000; } .nav-link { color: #00bfff !important; } .contact-form label { color: gold; } .contact-form input, .contact-form textarea { background: #222; color: #fff; border: 1px solid #555; } footer { background-color: #111; color: #888; } .icon-link i { font-size: 1.3rem; color: #00ffcc; } 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Let's Discover Egypt</title>
+  <style>
+    body {
+      margin: 0;
+      background-color: #0d0d0d;
+      color: #f5f5f5;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      text-align: center;
+      padding: 40px 20px;
+    }
 
-Let's Discover Egypt
+    h1 {
+      color: #caa64c;
+      font-size: 2.8em;
+      margin-bottom: 10px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
 
-Home Tours About Contact 
+    p {
+      font-size: 1.2em;
+      margin-bottom: 30px;
+      color: #dcdcdc;
+    }
 
-Book Your Trip to the Pyramids 
+    img {
+      width: 90%;
+      max-width: 500px;
+      border-radius: 20px;
+      box-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
+    }
+
+    /* WhatsApp button */
+    .whatsapp-float {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #25d366;
+      color: white;
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+      font-size: 28px;
+      z-index: 100;
+    }
+
+    .whatsapp-float:hover {
+      background-color: #1ebe5b;
+    }
+
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 2em;
+      }
+
+      p {
+        font-size: 1em;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>Let's Discover Egypt 🇪🇬</h1>
+  <p>Explore the Pyramids, ride camels, and feel history come alive!</p>
+  <img src="https://upload.wikimedia.org/wikipedia/commons/e/e3/Kheops-Pyramid.jpg" alt="Pyramids of Giza">
+
+  <!-- WhatsApp Floating Button -->
+  <a href="https://wa.me/2001283915289" class="whatsapp-float" target="_blank" title="Book via WhatsApp">
+    🟢
+  </a>
+</body>
+</html>
