@@ -4,84 +4,81 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Let's Discover Egypt</title>
-  <link href="https://fonts.googleapis.com/css2?family=Cairo&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
   <style>
-    body {
-      font-family: 'Cairo', sans-serif;
+    * {
       margin: 0;
       padding: 0;
-      line-height: 1.6;
-      background-color: #fff;
-      color: #333;
+      box-sizing: border-box;
     }
+
+    body {
+      font-family: 'Cairo', sans-serif;
+      color: #333;
+      background-color: #fff;
+    }
+
     header {
-      background: url('cover-image.jpg') center/cover no-repeat;
-      height: 80vh;
+      background: url('images/pyramids-tour.jpg') no-repeat center center / cover;
+      height: 100vh;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      color: white;
       text-align: center;
+      color: white;
+      padding: 20px;
     }
+
     header h1 {
-      font-size: 3em;
-      margin: 0;
+      font-size: 3rem;
+      margin-bottom: 15px;
+      color: #ffe082;
     }
+
     header p {
-      font-size: 1.2em;
+      font-size: 1.5rem;
+      margin-bottom: 25px;
     }
-    .btn {
-      background-color: #007bff;
+
+    .whatsapp-btn {
+      background-color: #25D366;
       color: white;
-      padding: 0.75em 1.5em;
-      border: none;
-      border-radius: 5px;
-      margin-top: 20px;
-      font-size: 1em;
-      cursor: pointer;
+      padding: 15px 25px;
+      border-radius: 8px;
+      font-size: 1.2rem;
+      text-decoration: none;
+      display: inline-block;
+      transition: background-color 0.3s;
     }
-    .section {
-      padding: 4em 2em;
-      max-width: 1100px;
-      margin: auto;
+
+    .whatsapp-btn:hover {
+      background-color: #1ebc59;
     }
-    .tours {
-      display: flex;
-      gap: 2em;
-      justify-content: center;
-      flex-wrap: wrap;
+
+    @media (max-width: 600px) {
+      header h1 {
+        font-size: 2rem;
+      }
+
+      header p {
+        font-size: 1.2rem;
+      }
+
+      .whatsapp-btn {
+        font-size: 1rem;
+        padding: 12px 20px;
+      }
     }
-    .tour-card {
-      flex: 1 1 300px;
-      border: 1px solid #ccc;
-      border-radius: 10px;
-      overflow: hidden;
-      text-align: center;
-    }
-    .tour-card img {
-      width: 100%;
-      height: 200px;
-      object-fit: cover;
-    }
-    .contact, .about {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      gap: 2em;
-    }
-    .contact form {
-      flex: 1 1 300px;
-      display: flex;
-      flex-direction: column;
-    }
-    .contact input, .contact textarea {
-      padding: 0.5em;
-      margin-bottom: 1em;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-    }
-    .footer {
-      background-color: #f4f4f4;
-      text-align: center;
-      padding: 1em;
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Let's Discover Egypt 🇪🇬</h1>
+    <p>Explore the Pyramids, ride camels,</p>
+    <a href="https://wa.me/2001283915289" class="whatsapp-btn" target="_blank">
+      📲 Book Now on WhatsApp
+    </a>
+  </header>
+</body>
+</html>
