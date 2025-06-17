@@ -1,96 +1,110 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Let's Discover Egypt</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <style>
     body {
-      margin: 0;
       font-family: 'Segoe UI', sans-serif;
-      background-color: #f0f0f0;
+      margin: 0;
+      background: #fdfdfd;
       color: #333;
     }
 
-    /* الهيدر الثابت */
     header {
-      background-color: #222;
-      color: white;
-      padding: 20px;
-      text-align: center;
       position: fixed;
       top: 0;
       width: 100%;
-      z-index: 1000;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+      background: #fff;
+      border-bottom: 1px solid #eee;
+      padding: 15px;
+      text-align: center;
+      font-size: 1.5em;
+      font-weight: bold;
+      z-index: 999;
     }
 
-    /* المحتوى */
-    .container {
-      padding: 120px 20px 40px;
+    .hero {
+      margin-top: 80px;
+      background: url('https://i.imgur.com/U0a4zZP.jpeg') center/cover no-repeat;
+      height: 90vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      text-shadow: 1px 1px 6px black;
+      flex-direction: column;
+    }
+
+    .hero h1 {
+      font-size: 3em;
+      margin-bottom: 10px;
+    }
+
+    .section {
+      padding: 40px 20px;
       max-width: 800px;
       margin: auto;
       text-align: center;
     }
 
-    h2 {
-      color: #000;
-      margin-bottom: 20px;
-    }
-
-    p {
-      font-size: 1.2rem;
-      line-height: 1.6;
-      margin-bottom: 30px;
-    }
-
-    /* الأزرار */
-    .icons {
-      margin-top: 30px;
-    }
-
-    .icon-btn {
-      display: inline-block;
-      margin: 10px;
-      font-size: 1.5rem;
+    .btn {
+      background: #25D366;
       color: white;
-      background-color: #25d366; /* واتساب */
-      padding: 15px;
-      border-radius: 50%;
+      padding: 12px 24px;
+      border: none;
+      border-radius: 25px;
       text-decoration: none;
-      transition: background 0.3s;
+      font-size: 1em;
+      margin-top: 20px;
+      display: inline-block;
     }
 
-    .icon-btn.gmail {
-      background-color: #d44638;
+    .contact-icons {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
     }
 
-    .icon-btn:hover {
-      opacity: 0.8;
+    .contact-icons a img {
+      width: 40px;
+      height: 40px;
+    }
+
+    @media (max-width: 600px) {
+      .hero h1 {
+        font-size: 2em;
+      }
     }
   </style>
 </head>
 <body>
 
-  <header>
-    <h1>Let's Discover Egypt</h1>
-  </header>
+<header>
+  Let's Discover Egypt
+</header>
 
-  <div class="container">
-    <h2>Pyramids Tour + Camel Ride + 5★ Lunch</h2>
-    <p>
-      Explore the ancient wonders of the Pyramids with a camel ride adventure and enjoy a delicious lunch at a 5-star restaurant or one with a stunning view.
-    </p>
+<section class="hero">
+  <h1>Pyramids & Camel Ride Tour</h1>
+  <p>Experience Egypt like never before</p>
+  <a href="#book" class="btn">Book Now</a>
+</section>
 
-    <div class="icons">
-      <a class="icon-btn" href="https://wa.me/201234567890" target="_blank" title="Chat on WhatsApp">
-        <i class="fab fa-whatsapp"></i>
-      </a>
-      <a class="icon-btn gmail" href="mailto:info@letsdiscoveregypt.com" title="Send Email">
-        <i class="fas fa-envelope"></i>
-      </a>
-    </div>
-  </div>
+<section class="section" id="book">
+  <h2>Tour Details</h2>
+  <p>Enjoy a private tour to the Great Pyramids and Sphinx, camel ride, and lunch at a top-rated restaurant.</p>
+  <p>Starting from $50/person</p>
+  <a href="https://wa.me/201234567890" class="btn">Book via WhatsApp</a>
+</section>
+
+<div class="contact-icons">
+  <a href="https://wa.me/201234567890" target="_blank"><img src="https://img.icons8.com/ios-filled/50/25D366/whatsapp.png" alt="WhatsApp"></a>
+  <a href="mailto:info@letsdiscoveregypt.com"><img src="https://img.icons8.com/ios-filled/50/000000/gmail.png" alt="Email"></a>
+</div>
 
 </body>
 </html>
