@@ -1,4 +1,3 @@
-<!-- pyramids.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,9 +7,38 @@
   <style>
     body { font-family: 'Segoe UI', sans-serif; margin: 0; background: #f9f9f9; color: #333; }
     header { background: #fff; padding: 20px; border-bottom: 1px solid #ccc; text-align: center; font-weight: bold; font-size: 1.4em; }
-    .content { padding: 40px 20px; max-width: 800px; margin: auto; }
-    .btn { display: inline-block; margin-top: 20px; background-color: #25D366; color: white; padding: 12px 24px; border-radius: 30px; text-decoration: none; font-size: 1em; }
-    img { max-width: 100%; border-radius: 10px; margin: 20px 0; }
+    .content { padding: 40px 20px; max-width: 900px; margin: auto; }
+    .btn {
+      display: inline-block;
+      margin-top: 20px;
+      background-color: #25D366;
+      color: white;
+      padding: 12px 24px;
+      border-radius: 30px;
+      text-decoration: none;
+      font-size: 1em;
+    }
+    .main-image {
+      max-width: 100%;
+      border-radius: 10px;
+      margin: 20px 0;
+    }
+    .gallery {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin-top: 30px;
+    }
+    .gallery img {
+      flex: 1 1 calc(33.333% - 10px);
+      max-width: 100%;
+      border-radius: 10px;
+    }
+    @media (max-width: 768px) {
+      .gallery img {
+        flex: 1 1 100%;
+      }
+    }
   </style>
 </head>
 <body>
@@ -18,7 +46,7 @@
 <header>Pyramids & Camel Ride Tour</header>
 
 <div class="content">
-  <img src="https://i.imgur.com/U0a4zZP.jpeg" alt="Pyramids Tour">
+  <img src="https://i.imgur.com/U0a4zZP.jpeg" alt="Pyramids Tour" class="main-image">
 
   <p><strong>Duration:</strong> 4-5 hours</p>
   <p><strong>Includes:</strong> Private air-conditioned car, English-speaking guide, tickets to the site, camel ride, and lunch at a panoramic restaurant.</p>
@@ -26,7 +54,13 @@
 
   <p>Enjoy a guided visit to the Great Pyramids of Giza, discover the secrets of the Sphinx, and ride a camel with stunning views of the desert. Perfect for history lovers and adventure seekers!</p>
 
-  <a href="https://wa.me/201234567890" class="btn">Book via WhatsApp</a>
+  <a href="https://wa.me/201234567890" class="btn">📲 Book via WhatsApp</a>
+
+  <div class="gallery">
+    <img src="https://i.imgur.com/Yw3A6fq.jpeg" alt="Camel near pyramids">
+    <img src="https://i.imgur.com/Vy1hSjs.jpeg" alt="Tourist on camel">
+    <img src="https://i.imgur.com/jRgrcK7.jpeg" alt="Great Pyramid view">
+  </div>
 </div>
 
 </body>
