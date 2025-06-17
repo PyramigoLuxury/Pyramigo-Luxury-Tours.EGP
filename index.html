@@ -1,20 +1,96 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <title>Rimo Tours - Egypt Airport Transfer & Chauffeur Service</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link rel="icon" href="/favicon.ico" />
-  <meta name="description" content="Rimo Tours is Egypt's leading provider of airport transfers, chauffeur service, meet and assist. Trusted since 1999.">
-  <link rel="stylesheet" href="/_next/static/css/df152222cce20a67.css" />
-  <script src="/_next/static/chunks/polyfills-c67a75d1b6f99dc8.js" defer></script>
-  <script src="/_next/static/chunks/webpack-1a9f30355fcb3f4d.js" defer></script>
-  <!-- ... Next.js Runtime Scripts ... -->
+  <meta charset="UTF-8">
+  <title>Let's Discover Egypt</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f0f0f0;
+      color: #333;
+    }
+
+    /* الهيدر الثابت */
+    header {
+      background-color: #222;
+      color: white;
+      padding: 20px;
+      text-align: center;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+    }
+
+    /* المحتوى */
+    .container {
+      padding: 120px 20px 40px;
+      max-width: 800px;
+      margin: auto;
+      text-align: center;
+    }
+
+    h2 {
+      color: #000;
+      margin-bottom: 20px;
+    }
+
+    p {
+      font-size: 1.2rem;
+      line-height: 1.6;
+      margin-bottom: 30px;
+    }
+
+    /* الأزرار */
+    .icons {
+      margin-top: 30px;
+    }
+
+    .icon-btn {
+      display: inline-block;
+      margin: 10px;
+      font-size: 1.5rem;
+      color: white;
+      background-color: #25d366; /* واتساب */
+      padding: 15px;
+      border-radius: 50%;
+      text-decoration: none;
+      transition: background 0.3s;
+    }
+
+    .icon-btn.gmail {
+      background-color: #d44638;
+    }
+
+    .icon-btn:hover {
+      opacity: 0.8;
+    }
+  </style>
 </head>
 <body>
-  <div id="__next">
-    <!-- محتوى الصفحة يتم توليده ديناميكيًا بواسطة React/Next.js -->
+
+  <header>
+    <h1>Let's Discover Egypt</h1>
+  </header>
+
+  <div class="container">
+    <h2>Pyramids Tour + Camel Ride + 5★ Lunch</h2>
+    <p>
+      Explore the ancient wonders of the Pyramids with a camel ride adventure and enjoy a delicious lunch at a 5-star restaurant or one with a stunning view.
+    </p>
+
+    <div class="icons">
+      <a class="icon-btn" href="https://wa.me/201234567890" target="_blank" title="Chat on WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+      </a>
+      <a class="icon-btn gmail" href="mailto:info@letsdiscoveregypt.com" title="Send Email">
+        <i class="fas fa-envelope"></i>
+      </a>
+    </div>
   </div>
-  <script src="/_next/static/chunks/main-app.js" defer></script>
+
 </body>
 </html>
