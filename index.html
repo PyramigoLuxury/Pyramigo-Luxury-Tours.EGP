@@ -1,3 +1,4 @@
+<!-- index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,99 +6,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Let's Discover Egypt</title>
   <style>
-    body {
-      font-family: 'Segoe UI', sans-serif;
-      margin: 0;
-      background-color: #f4f4f4;
-      color: #333;
-    }
-
-    header {
-      position: fixed;
-      top: 0;
-      width: 100%;
-      background: #ffffff;
-      padding: 10px 0;
-      border-bottom: 1px solid #ddd;
-      z-index: 1000;
-    }
-
-    .navbar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      max-width: 1000px;
-      margin: auto;
-      padding: 0 20px;
-    }
-
-    .logo {
-      font-size: 1.5em;
-      font-weight: bold;
-    }
-
-    nav a {
-      margin-left: 20px;
-      text-decoration: none;
-      color: #333;
-      font-size: 1em;
-    }
-
-    nav a:hover {
-      color: #25D366;
-    }
-
-    .section {
-      padding: 120px 20px 40px;
-      text-align: center;
-    }
-
-    h1 {
-      font-size: 2.5em;
-      margin-bottom: 10px;
-    }
-
-    p {
-      font-size: 1.1em;
-      max-width: 600px;
-      margin: auto;
-    }
-
-    .btn {
-      display: inline-block;
-      margin-top: 30px;
-      background-color: #25D366;
-      color: white;
-      padding: 12px 24px;
-      border-radius: 30px;
-      text-decoration: none;
-      font-size: 1em;
-    }
-
-    .contact-icons {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-
-    .contact-icons a img {
-      width: 40px;
-      height: 40px;
-    }
-
-    @media (max-width: 600px) {
-      nav a {
-        margin-left: 10px;
-        font-size: 0.9em;
-      }
-
-      .logo {
-        font-size: 1.2em;
-      }
-    }
+    /* نفس التنسيق السابق مع navbar */
+    body { font-family: 'Segoe UI', sans-serif; margin: 0; background-color: #f4f4f4; color: #333; }
+    header { position: fixed; top: 0; width: 100%; background: #fff; padding: 10px 0; border-bottom: 1px solid #ddd; z-index: 1000; }
+    .navbar { display: flex; justify-content: space-between; align-items: center; max-width: 1000px; margin: auto; padding: 0 20px; }
+    .logo { font-size: 1.5em; font-weight: bold; }
+    nav a { margin-left: 20px; text-decoration: none; color: #333; font-size: 1em; }
+    nav a:hover { color: #25D366; }
+    .section { padding: 120px 20px 40px; text-align: center; }
+    .btn { display: inline-block; margin-top: 30px; background-color: #25D366; color: white; padding: 12px 24px; border-radius: 30px; text-decoration: none; font-size: 1em; }
+    .contact-icons { position: fixed; bottom: 20px; right: 20px; display: flex; flex-direction: column; gap: 10px; }
+    .contact-icons a img { width: 40px; height: 40px; }
   </style>
 </head>
 <body>
@@ -115,58 +34,24 @@
 
 <div class="section" id="home">
   <h1>Welcome to Egypt</h1>
-  <p>Join us in an unforgettable journey to explore the wonders of the ancient world. Book your private tour today.</p>
+  <p>Explore the land of Pharaohs with private guided tours</p>
   <a href="#tours" class="btn">See Tours</a>
 </div>
 
 <div class="section" id="tours">
-  <h1>Pyramids & Camel Ride Tour</h1>
-  <p>Visit the Great Pyramid, ride a camel near the Sphinx, and enjoy lunch at a top Egyptian restaurant. Only $50 per person!</p>
-  <a href="https://wa.me/201234567890" class="btn">Book via WhatsApp</a>
+  <h1><a href="pyramids.html" style="text-decoration: none; color: inherit;">Pyramids & Camel Ride Tour</a></h1>
+  <p>Click above to view full tour details and booking</p>
 </div>
 
 <div class="section" id="contact">
   <h1>Contact Us</h1>
-  <p>Reach out via WhatsApp or Email and we’ll help you plan the perfect Egypt tour.</p>
+  <p>Email or WhatsApp us to plan your perfect experience.</p>
   <a href="mailto:info@letsdiscoveregypt.com" class="btn">Email Us</a>
 </div>
 
 <div class="contact-icons">
   <a href="https://wa.me/201234567890"><img src="https://img.icons8.com/ios-filled/50/25D366/whatsapp.png" alt="WhatsApp"></a>
   <a href="mailto:info@letsdiscoveregypt.com"><img src="https://img.icons8.com/ios-filled/50/000000/gmail.png" alt="Email"></a>
-</div>
-
-</body>
-</html>
-<!-- pyramids.html -->
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Pyramids & Camel Ride Tour</title>
-  <style>
-    body { font-family: 'Segoe UI', sans-serif; margin: 0; background: #f9f9f9; color: #333; }
-    header { background: #fff; padding: 20px; border-bottom: 1px solid #ccc; text-align: center; font-weight: bold; font-size: 1.4em; }
-    .content { padding: 40px 20px; max-width: 800px; margin: auto; }
-    .btn { display: inline-block; margin-top: 20px; background-color: #25D366; color: white; padding: 12px 24px; border-radius: 30px; text-decoration: none; font-size: 1em; }
-    img { max-width: 100%; border-radius: 10px; margin: 20px 0; }
-  </style>
-</head>
-<body>
-
-<header>Pyramids & Camel Ride Tour</header>
-
-<div class="content">
-  <img src="https://i.imgur.com/U0a4zZP.jpeg" alt="Pyramids Tour">
-
-  <p><strong>Duration:</strong> 4-5 hours</p>
-  <p><strong>Includes:</strong> Private air-conditioned car, English-speaking guide, tickets to the site, camel ride, and lunch at a panoramic restaurant.</p>
-  <p><strong>Price:</strong> From $50 per person</p>
-
-  <p>Enjoy a guided visit to the Great Pyramids of Giza, discover the secrets of the Sphinx, and ride a camel with stunning views of the desert. Perfect for history lovers and adventure seekers!</p>
-
-  <a href="https://wa.me/201234567890" class="btn">Book via WhatsApp</a>
 </div>
 
 </body>
