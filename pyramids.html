@@ -1,7 +1,96 @@
-<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Kheops-Pyramid.jpg/800px-Kheops-Pyramid.jpg" alt="Great Pyramid of Giza" class="main-image">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Pyramids & Camel Ride Tour</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      background: #f8f8f8;
+      color: #333;
+    }
+    header {
+      background: #fff;
+      padding: 20px;
+      text-align: center;
+      font-size: 1.8em;
+      font-weight: bold;
+      border-bottom: 1px solid #ddd;
+    }
+    .container {
+      max-width: 900px;
+      margin: auto;
+      padding: 30px 20px;
+    }
+    .main-image {
+      width: 100%;
+      border-radius: 12px;
+      margin-bottom: 20px;
+    }
+    .details p {
+      font-size: 1.1em;
+      line-height: 1.6;
+    }
+    .details p strong {
+      color: #222;
+    }
+    .gallery {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin-top: 25px;
+    }
+    .gallery img {
+      flex: 1 1 calc(33.333% - 10px);
+      max-width: 100%;
+      border-radius: 10px;
+    }
+    .btn {
+      display: inline-block;
+      background-color: #25D366;
+      color: white;
+      padding: 12px 24px;
+      margin-top: 30px;
+      text-decoration: none;
+      font-size: 1.1em;
+      border-radius: 30px;
+      transition: 0.3s;
+    }
+    .btn:hover {
+      background-color: #1ebd5a;
+    }
 
-<div class="gallery">
-  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/76/Camel_riders_in_Giza.jpg/640px-Camel_riders_in_Giza.jpg" alt="Camel Ride in Giza">
-  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/Giza_Plateau_-_panoramic_view.jpg/640px-Giza_Plateau_-_panoramic_view.jpg" alt="Giza Panorama">
-  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/Camels_at_Giza_Pyramids_2019.jpg/640px-Camels_at_Giza_Pyramids_2019.jpg" alt="Camels near pyramids">
+    @media (max-width: 768px) {
+      .gallery img {
+        flex: 1 1 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header>Pyramids & Camel Ride Tour</header>
+
+<div class="container">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/e/e3/Kheops-Pyramid.jpg" alt="Pyramids Main" class="main-image">
+
+  <div class="details">
+    <p><strong>Duration:</strong> 4-5 hours</p>
+    <p><strong>Includes:</strong> Private air-conditioned car, English-speaking guide, tickets to the site, camel ride, and lunch at a panoramic restaurant.</p>
+    <p><strong>Price:</strong> From $50 per person</p>
+    <p>Enjoy a guided visit to the Great Pyramids of Giza, discover the secrets of the Sphinx, and ride a camel with stunning views of the desert. Perfect for history lovers and adventure seekers!</p>
+  </div>
+
+  <a href="https://wa.me/201234567890" class="btn">📲 Book via WhatsApp</a>
+
+  <div class="gallery">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/7/76/Camel_riders_in_Giza.jpg" alt="Camel Ride in Giza">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/f/f2/Camels_at_Giza_Pyramids_2019.jpg" alt="Camels at Pyramids">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/1/1c/Giza_Plateau_-_panoramic_view.jpg" alt="Panoramic View of Giza">
+  </div>
 </div>
+
+</body>
+</html>
