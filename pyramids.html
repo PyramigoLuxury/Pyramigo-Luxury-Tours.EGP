@@ -6,66 +6,50 @@
   <title>Pyramids & Camel Ride Tour</title>
   <style>
     body {
-      font-family: 'Segoe UI', sans-serif;
       margin: 0;
-      background: #f8f8f8;
-      color: #333;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #fff;
+      color: #222;
     }
+
     header {
-      background: #fff;
-      padding: 20px;
       text-align: center;
+      padding: 20px;
       font-size: 1.8em;
       font-weight: bold;
-      border-bottom: 1px solid #ddd;
     }
+
     .container {
-      max-width: 900px;
+      max-width: 800px;
       margin: auto;
-      padding: 30px 20px;
+      padding: 20px;
     }
-    .main-image {
+
+    .hero {
       width: 100%;
-      border-radius: 12px;
+      border-radius: 10px;
       margin-bottom: 20px;
     }
-    .details p {
+
+    .info p {
       font-size: 1.1em;
       line-height: 1.6;
     }
-    .details p strong {
-      color: #222;
-    }
-    .gallery {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 15px;
-      margin-top: 25px;
-    }
-    .gallery img {
-      flex: 1 1 calc(33.333% - 10px);
-      max-width: 100%;
-      border-radius: 10px;
-    }
+
     .btn {
       display: inline-block;
+      margin-top: 20px;
       background-color: #25D366;
       color: white;
-      padding: 12px 24px;
-      margin-top: 30px;
+      padding: 12px 26px;
+      border-radius: 40px;
+      font-size: 1em;
       text-decoration: none;
-      font-size: 1.1em;
-      border-radius: 30px;
-      transition: 0.3s;
-    }
-    .btn:hover {
-      background-color: #1ebd5a;
+      transition: 0.2s ease;
     }
 
-    @media (max-width: 768px) {
-      .gallery img {
-        flex: 1 1 100%;
-      }
+    .btn:hover {
+      background-color: #1cac55;
     }
   </style>
 </head>
@@ -74,21 +58,15 @@
 <header>Pyramids & Camel Ride Tour</header>
 
 <div class="container">
-  <img src="https://upload.wikimedia.org/wikipedia/commons/e/e3/Kheops-Pyramid.jpg" alt="Pyramids Main" class="main-image">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/f/f2/Camels_at_Giza_Pyramids_2019.jpg" class="hero" alt="Pyramids and Camels">
 
-  <div class="details">
-    <p><strong>Duration:</strong> 4-5 hours</p>
-    <p><strong>Includes:</strong> Private air-conditioned car, English-speaking guide, tickets to the site, camel ride, and lunch at a panoramic restaurant.</p>
+  <div class="info">
+    <p><strong>Duration:</strong> 4–5 hours</p>
+    <p><strong>Includes:</strong> Private air-conditioned car, English-speaking guide, tickets, camel ride, and lunch with a view.</p>
     <p><strong>Price:</strong> From $50 per person</p>
-    <p>Enjoy a guided visit to the Great Pyramids of Giza, discover the secrets of the Sphinx, and ride a camel with stunning views of the desert. Perfect for history lovers and adventure seekers!</p>
-  </div>
+    <p>Visit the Great Pyramids of Giza, see the Sphinx up close, and ride camels through the desert. Ideal for explorers and adventure seekers!</p>
 
-  <a href="https://wa.me/201234567890" class="btn">📲 Book via WhatsApp</a>
-
-  <div class="gallery">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/7/76/Camel_riders_in_Giza.jpg" alt="Camel Ride in Giza">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/f/f2/Camels_at_Giza_Pyramids_2019.jpg" alt="Camels at Pyramids">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/1/1c/Giza_Plateau_-_panoramic_view.jpg" alt="Panoramic View of Giza">
+    <a href="https://wa.me/201234567890" class="btn" target="_blank">Book via WhatsApp</a>
   </div>
 </div>
 
