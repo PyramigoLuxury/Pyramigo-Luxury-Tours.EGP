@@ -4,8 +4,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Let's Discover Egypt</title>
-  <meta name="description" content="Discover Egypt with guided tours to the Pyramids, Camel rides, and more! Book your adventure now.">
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
   <style>
     * {
       box-sizing: border-box;
@@ -14,7 +12,7 @@
     }
 
     body {
-      font-family: 'Cairo', sans-serif;
+      font-family: Arial, sans-serif;
       background-color: #f9f9f9;
       color: #222;
       padding-bottom: 100px;
@@ -32,18 +30,8 @@
       z-index: 10;
     }
 
-    .logo {
-      display: flex;
-      align-items: center;
-    }
-
-    .logo img {
-      height: 40px;
-      margin-right: 10px;
-    }
-
     header h1 {
-      font-size: 22px;
+      font-size: 24px;
       line-height: 1.2;
     }
 
@@ -51,12 +39,12 @@
       margin-left: 20px;
       text-decoration: none;
       color: #333;
-      font-weight: 600;
+      font-weight: 500;
     }
 
     main {
       text-align: center;
-      padding: 40px 20px 20px;
+      padding: 40px 20px;
     }
 
     main h2 {
@@ -72,35 +60,25 @@
     .btn {
       background-color: #1ec94c;
       color: white;
-      padding: 14px 30px;
+      padding: 12px 25px;
       border: none;
-      border-radius: 30px;
+      border-radius: 25px;
       font-size: 16px;
       cursor: pointer;
       text-decoration: none;
       display: inline-block;
       margin-top: 15px;
-      transition: all 0.2s ease;
-    }
-
-    .btn:hover {
-      background-color: #18a63f;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-      transform: scale(1.05);
-    }
-
-    .tour-section {
-      margin-top: 35px;
     }
 
     .tour-title {
+      margin-top: 50px;
       font-size: 24px;
       font-weight: bold;
     }
 
     .tour-desc {
       margin-top: 10px;
-      font-size: 15px;
+      font-size: 14px;
     }
 
     .contact-icons {
@@ -110,7 +88,6 @@
       display: flex;
       flex-direction: column;
       gap: 10px;
-      z-index: 50;
     }
 
     .contact-icons a {
@@ -122,31 +99,6 @@
       justify-content: center;
       align-items: center;
       box-shadow: 0 2px 6px rgba(0,0,0,0.2);
-      transition: transform 0.2s;
-      position: relative;
-    }
-
-    .contact-icons a:hover {
-      transform: scale(1.1);
-    }
-
-    .contact-icons a::after {
-      content: attr(data-tooltip);
-      position: absolute;
-      right: 60px;
-      background-color: #333;
-      color: white;
-      padding: 5px 10px;
-      border-radius: 5px;
-      font-size: 12px;
-      white-space: nowrap;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.2s;
-    }
-
-    .contact-icons a:hover::after {
-      opacity: 1;
     }
 
     .contact-icons img {
@@ -167,21 +119,13 @@
       main h2 {
         font-size: 24px;
       }
-
-      .btn {
-        font-size: 14px;
-      }
     }
   </style>
 </head>
 <body>
 
   <header>
-    <div class="logo">
-      <!-- لو عندك شعار ضيفه هنا -->
-      <!-- <img src="logo.png" alt="Logo"> -->
-      <h1>Let's Discover Egypt</h1>
-    </div>
+    <h1>Let's Discover<br>Egypt</h1>
     <nav>
       <a href="#">Home</a>
       <a href="#">Tours</a>
@@ -193,18 +137,51 @@
     <h2>Welcome to Egypt</h2>
     <p>Explore the land of Pharaohs with private guided tours</p>
 
-    <section class="tour-section">
-      <div class="tour-title">Pyramids & Camel Ride Tour</div>
-      <div class="tour-desc">Click below to view full tour details and booking</div>
-      <a href="pyramids.html" class="btn">See Tours</a>
+    <div class="tour-title">Pyramids & Camel Ride Tour</div>
+    <div class="tour-desc">Click below to view full tour details and booking</div>
+
+    <a href="pyramids.html" class="btn">See Tours</a>
+
+    <!-- مميزات الرحلة -->
+    <section style="margin-top: 50px;">
+      <h3 style="font-size: 22px; margin-bottom: 20px;">Trip Highlights</h3>
+      <ul style="list-style: none; padding: 0; max-width: 400px; margin: 0 auto; text-align: left;">
+        <li>✅ Private guided tour of the pyramids</li>
+        <li>✅ Camel ride experience included</li>
+        <li>✅ Pick-up and drop-off at your hotel</li>
+        <li>✅ Lunch at a local Egyptian restaurant</li>
+        <li>✅ Professional Egyptologist guide</li>
+      </ul>
     </section>
+
+    <!-- تقييمات العملاء -->
+    <section style="margin-top: 50px;">
+      <h3 style="font-size: 22px; margin-bottom: 20px;">What Our Customers Say</h3>
+      <div style="max-width: 500px; margin: 0 auto; text-align: left;">
+        <blockquote style="background: #f2f2f2; padding: 15px; border-left: 5px solid #1ec94c; margin-bottom: 15px;">
+          ⭐⭐⭐⭐⭐<br>
+          "Unforgettable tour! The guide was super friendly and the camel ride was a blast." – Sarah M.
+        </blockquote>
+        <blockquote style="background: #f2f2f2; padding: 15px; border-left: 5px solid #1ec94c;">
+          ⭐⭐⭐⭐⭐<br>
+          "Best part of my trip to Egypt! Everything was organized perfectly." – John D.
+        </blockquote>
+      </div>
+    </section>
+
+    <!-- زر تواصل مباشر -->
+    <div style="margin-top: 40px;">
+      <a href="https://wa.me/201234567890" target="_blank" class="btn" style="background-color: #25D366;">
+        📞 Contact us on WhatsApp
+      </a>
+    </div>
   </main>
 
   <div class="contact-icons">
-    <a href="https://wa.me/201234567890" target="_blank" data-tooltip="Chat on WhatsApp">
+    <a href="https://wa.me/201234567890" target="_blank">
       <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="WhatsApp">
     </a>
-    <a href="mailto:info@example.com" data-tooltip="Send an Email">
+    <a href="mailto:info@example.com">
       <img src="https://cdn-icons-png.flaticon.com/512/561/561127.png" alt="Email">
     </a>
   </div>
