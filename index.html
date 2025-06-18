@@ -12,155 +12,125 @@
     }
 
     body {
-      font-family: Arial, sans-serif;
-      background-color: #f9f9f9;
-      color: #222;
-      padding-bottom: 100px;
+      font-family: 'Segoe UI', sans-serif;
+      background: #f8f8f8;
     }
 
     header {
-      background-color: #fff;
-      padding: 20px 30px;
-      display: flex;
-      justify-content: center; /* علشان نخلي العنوان في النص */
-      align-items: center;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-      position: sticky;
+      position: fixed;
       top: 0;
+      left: 0;
+      width: 100%;
+      background: white;
+      padding: 15px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
       z-index: 10;
-      position: relative;
     }
 
-    header h1 {
-      position: absolute;
-      left: 50%;
-      transform: translateX(-50%);
+    .menu-icon {
       font-size: 24px;
-      text-align: center;
-      margin: 0;
+      cursor: pointer;
     }
 
-    nav {
-      position: absolute;
-      right: 30px;
+    .sidebar {
+      position: fixed;
+      top: 0;
+      left: -250px;
+      width: 250px;
+      height: 100%;
+      background: #333;
+      color: white;
+      padding: 60px 20px;
+      transition: left 0.3s ease;
+      z-index: 11;
     }
 
-    nav a {
-      margin-left: 20px;
+    .sidebar.active {
+      left: 0;
+    }
+
+    .sidebar a {
+      display: block;
+      color: white;
       text-decoration: none;
-      color: #333;
-      font-weight: 500;
+      padding: 15px 0;
+      border-bottom: 1px solid #444;
     }
 
-    main {
+    .main {
+      padding: 120px 20px 40px;
       text-align: center;
-      padding: 40px 20px;
     }
 
-    main h2 {
-      font-size: 28px;
+    h1 {
+      font-size: 26px;
       margin-bottom: 10px;
     }
 
-    main p {
-      font-size: 16px;
-      margin-bottom: 20px;
-    }
-
     .btn {
-      background-color: #1ec94c;
+      margin-top: 20px;
+      padding: 15px 30px;
+      background: #1cd760;
       color: white;
-      padding: 12px 25px;
       border: none;
-      border-radius: 25px;
+      border-radius: 30px;
       font-size: 16px;
       cursor: pointer;
-      text-decoration: none;
-      display: inline-block;
-      margin-top: 15px;
     }
 
-    .tour-title {
-      margin-top: 50px;
-      font-size: 24px;
-      font-weight: bold;
-    }
-
-    .tour-desc {
-      margin-top: 10px;
-      font-size: 14px;
-    }
-
-    .contact-icons {
+    /* Overlay background when menu is open */
+    .overlay {
+      display: none;
       position: fixed;
-      bottom: 15px;
-      right: 15px;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.3);
+      z-index: 10;
     }
 
-    .contact-icons a {
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-      background-color: white;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
-    }
-
-    .contact-icons img {
-      width: 28px;
-      height: 28px;
-    }
-
-    @media (max-width: 600px) {
-      header h1 {
-        font-size: 20px;
-      }
-
-      nav a {
-        margin-left: 10px;
-        font-size: 14px;
-      }
-
-      main h2 {
-        font-size: 24px;
-      }
+    .overlay.active {
+      display: block;
     }
   </style>
 </head>
 <body>
 
-  <header>
-    <h1>Let's Discover<br>Egypt</h1>
-    <nav>
-      <a href="#">Home</a>
-      <a href="#">Tours</a>
-      <a href="#">Contact</a>
-    </nav>
-  </header>
+  <div class="overlay" id="overlay" onclick="closeMenu()"></div>
 
-  <main>
-    <h2>Welcome to Egypt</h2>
-    <p>Explore the land of Pharaohs with private guided tours</p>
-
-    <div class="tour-title">Pyramids & Camel Ride Tour</div>
-    <div class="tour-desc">Click below to view full tour details and booking</div>
-
-    <a href="pyramids.html" class="btn">See Tours</a>
-  </main>
-
-  <div class="contact-icons">
-    <a href="https://wa.me/201234567890" target="_blank">
-      <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="WhatsApp">
-    </a>
-    <a href="mailto:info@example.com">
-      <img src="https://cdn-icons-png.flaticon.com/512/561/561127.png" alt="Email">
-    </a>
+  <div class="sidebar" id="sidebar">
+    <a href="#">Home</a>
+    <a href="#">Tours</a>
+    <a href="#">Contact</a>
   </div>
 
+  <header>
+    <div class="menu-icon" onclick="toggleMenu()">☰</div>
+    <h2>Let's Discover Egypt</h2>
+  </header>
+
+  <div class="main">
+    <h1>Welcome to Egypt</h1>
+    <p>Explore the land of Pharaohs with private guided tours</p>
+    <br />
+    <h2>Pyramids & Camel Ride Tour</h2>
+    <p>Click below to view full tour details and booking</p>
+    <button class="btn">See Tours</button>
+  </div>
+
+  <script>
+    function toggleMenu() {
+      document.getElementById("sidebar").classList.toggle("active");
+      document.getElementById("overlay").classList.toggle("active");
+    }
+
+    function closeMenu() {
+      document.getElementById("sidebar").classList.remove("active");
+      document.getElementById("overlay").classList.remove("active");
+    }
+  </script>
 </body>
 </html>
