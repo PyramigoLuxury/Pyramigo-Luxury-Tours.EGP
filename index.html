@@ -15,7 +15,7 @@
       font-family: Arial, sans-serif;
       background-color: #f9f9f9;
       color: #222;
-      padding-bottom: 100px;
+      padding-bottom: 120px;
     }
 
     header {
@@ -32,7 +32,6 @@
 
     header h1 {
       font-size: 24px;
-      line-height: 1.2;
     }
 
     nav a {
@@ -79,6 +78,50 @@
     .tour-desc {
       margin-top: 10px;
       font-size: 14px;
+    }
+
+    .reviews-section {
+      max-width: 600px;
+      margin: 50px auto;
+      background: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+
+    .reviews-section h3 {
+      margin-bottom: 15px;
+    }
+
+    .reviews-section input,
+    .reviews-section textarea {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      font-size: 14px;
+    }
+
+    .reviews-section button {
+      background-color: #1ec94c;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 20px;
+      cursor: pointer;
+    }
+
+    .review-display {
+      margin-top: 20px;
+      text-align: left;
+    }
+
+    .review-display p {
+      background-color: #f1f1f1;
+      padding: 10px;
+      border-radius: 8px;
+      margin-bottom: 10px;
     }
 
     .contact-icons {
@@ -141,41 +184,16 @@
     <div class="tour-desc">Click below to view full tour details and booking</div>
 
     <a href="pyramids.html" class="btn">See Tours</a>
-
-    <!-- مميزات الرحلة -->
-    <section style="margin-top: 50px;">
-      <h3 style="font-size: 22px; margin-bottom: 20px;">Trip Highlights</h3>
-      <ul style="list-style: none; padding: 0; max-width: 400px; margin: 0 auto; text-align: left;">
-        <li>✅ Private guided tour of the pyramids</li>
-        <li>✅ Camel ride experience included</li>
-        <li>✅ Pick-up and drop-off at your hotel</li>
-        <li>✅ Lunch at a local Egyptian restaurant</li>
-        <li>✅ Professional Egyptologist guide</li>
-      </ul>
-    </section>
-
-    <!-- تقييمات العملاء -->
-    <section style="margin-top: 50px;">
-      <h3 style="font-size: 22px; margin-bottom: 20px;">What Our Customers Say</h3>
-      <div style="max-width: 500px; margin: 0 auto; text-align: left;">
-        <blockquote style="background: #f2f2f2; padding: 15px; border-left: 5px solid #1ec94c; margin-bottom: 15px;">
-          ⭐⭐⭐⭐⭐<br>
-          "Unforgettable tour! The guide was super friendly and the camel ride was a blast." – Sarah M.
-        </blockquote>
-        <blockquote style="background: #f2f2f2; padding: 15px; border-left: 5px solid #1ec94c;">
-          ⭐⭐⭐⭐⭐<br>
-          "Best part of my trip to Egypt! Everything was organized perfectly." – John D.
-        </blockquote>
-      </div>
-    </section>
-
-    <!-- زر تواصل مباشر -->
-    <div style="margin-top: 40px;">
-      <a href="https://wa.me/201234567890" target="_blank" class="btn" style="background-color: #25D366;">
-        📞 Contact us on WhatsApp
-      </a>
-    </div>
   </main>
+
+  <div class="reviews-section">
+    <h3>Leave a Review</h3>
+    <input type="text" id="name" placeholder="Your name" />
+    <textarea id="review" rows="4" placeholder="Write your review here..."></textarea>
+    <button onclick="addReview()">Submit Review</button>
+
+    <div class="review-display" id="reviewDisplay"></div>
+  </div>
 
   <div class="contact-icons">
     <a href="https://wa.me/201234567890" target="_blank">
@@ -185,6 +203,24 @@
       <img src="https://cdn-icons-png.flaticon.com/512/561/561127.png" alt="Email">
     </a>
   </div>
+
+  <script>
+    function addReview() {
+      const name = document.getElementById("name").value;
+      const review = document.getElementById("review").value;
+
+      if (name && review) {
+        const reviewDiv = document.getElementById("reviewDisplay");
+        const newReview = document.createElement("p");
+        newReview.innerHTML = `<strong>${name}</strong>: ${review}`;
+        reviewDiv.prepend(newReview);
+        document.getElementById("name").value = "";
+        document.getElementById("review").value = "";
+      } else {
+        alert("Please fill out both fields.");
+      }
+    }
+  </script>
 
 </body>
 </html>
