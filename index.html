@@ -14,6 +14,7 @@
     body {
       font-family: 'Segoe UI', sans-serif;
       background: #f8f8f8;
+      overflow-x: hidden;
     }
 
     header {
@@ -28,7 +29,6 @@
       justify-content: flex-start;
       box-shadow: 0 2px 5px rgba(0,0,0,0.1);
       z-index: 10;
-      position: relative;
     }
 
     .menu-icon {
@@ -68,29 +68,13 @@
       text-decoration: none;
       padding: 15px 0;
       border-bottom: 1px solid #444;
-    }
-
-    .main {
-      padding: 120px 20px 40px;
-      text-align: center;
-    }
-
-    h1 {
-      font-size: 26px;
-      margin-bottom: 10px;
-    }
-
-    .btn {
-      margin-top: 20px;
-      padding: 15px 30px;
-      background: #1cd760;
-      color: white;
-      border: none;
-      border-radius: 30px;
       font-size: 16px;
-      cursor: pointer;
-      text-decoration: none;
-      display: inline-block;
+    }
+
+    .sidebar a:hover {
+      background: #444;
+      padding-left: 10px;
+      transition: all 0.3s ease;
     }
 
     .overlay {
@@ -106,6 +90,41 @@
     .overlay.active {
       display: block;
     }
+
+    .main {
+      padding: 120px 20px 40px;
+      text-align: center;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    h1 {
+      font-size: 26px;
+      margin-bottom: 10px;
+    }
+
+    h2 {
+      margin-top: 20px;
+      font-size: 22px;
+    }
+
+    .btn {
+      margin-top: 20px;
+      padding: 15px 30px;
+      background: #1cd760;
+      color: white;
+      border: none;
+      border-radius: 30px;
+      font-size: 16px;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      transition: background 0.3s ease;
+    }
+
+    .btn:hover {
+      background: #14b150;
+    }
   </style>
 </head>
 <body>
@@ -113,9 +132,9 @@
   <div class="overlay" id="overlay" onclick="closeMenu()"></div>
 
   <div class="sidebar" id="sidebar">
-    <a href="#">Home</a>
-    <a href="#">Tours</a>
-    <a href="#">Contact</a>
+    <a href="#">🏠 Home</a>
+    <a href="#">🗺️ Tours</a>
+    <a href="#">📞 Contact</a>
   </div>
 
   <header>
@@ -130,19 +149,25 @@
     <h2>Pyramids & Camel Ride Tour</h2>
     <p>Click below to view full tour details and booking</p>
 
-    <!-- الزر اللي يوديك على صفحة الرحلة -->
     <a href="pyramids.html" class="btn">Book Now</a>
   </div>
 
   <script>
     function toggleMenu() {
-      document.getElementById("sidebar").classList.toggle("active");
-      document.getElementById("overlay").classList.toggle("active");
+      const body = document.body;
+      const sidebar = document.getElementById("sidebar");
+      const overlay = document.getElementById("overlay");
+
+      sidebar.classList.toggle("active");
+      overlay.classList.toggle("active");
+
+      body.style.overflow = sidebar.classList.contains("active") ? "hidden" : "auto";
     }
 
     function closeMenu() {
       document.getElementById("sidebar").classList.remove("active");
       document.getElementById("overlay").classList.remove("active");
+      document.body.style.overflow = "auto";
     }
   </script>
 </body>
