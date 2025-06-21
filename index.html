@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Let's Discover Egypt</title>
+  <title>Private Egypt Tours | Let's Discover Egypt</title>
+  <meta name="description" content="Explore Egypt with private guided tours. Visit the Pyramids, enjoy camel rides, and discover ancient wonders. Book now!">
   <style>
     * {
       box-sizing: border-box;
@@ -43,6 +44,11 @@
       transform: translateX(-50%);
       font-size: 20px;
       font-weight: bold;
+    }
+
+    header h2 a {
+      text-decoration: none;
+      color: #333;
     }
 
     .sidebar {
@@ -91,26 +97,42 @@
       display: block;
     }
 
+    .hero {
+      background: url('https://i.imgur.com/CYJ1jRj.jpg') no-repeat center/cover;
+      height: 300px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: white;
+      text-shadow: 1px 1px 4px rgba(0,0,0,0.7);
+      margin-top: 70px;
+    }
+
+    .hero h1 {
+      font-size: 36px;
+    }
+
     .main {
-      padding: 120px 20px 40px;
+      padding: 40px 20px;
       text-align: center;
       max-width: 600px;
       margin: 0 auto;
     }
 
-    h1 {
-      font-size: 26px;
+    h2 {
+      font-size: 24px;
       margin-bottom: 10px;
     }
 
-    h2 {
-      margin-top: 20px;
-      font-size: 22px;
+    p {
+      font-size: 16px;
+      line-height: 1.6;
     }
 
     .btn {
-      margin-top: 20px;
-      padding: 15px 30px;
+      margin: 15px 10px 0;
+      padding: 12px 25px;
       background: #1cd760;
       color: white;
       border: none;
@@ -125,6 +147,14 @@
     .btn:hover {
       background: #14b150;
     }
+
+    .btn.whatsapp {
+      background: #25D366;
+    }
+
+    .btn.whatsapp:hover {
+      background: #1da851;
+    }
   </style>
 </head>
 <body>
@@ -133,23 +163,25 @@
 
   <div class="sidebar" id="sidebar">
     <a href="#">🏠 Home</a>
-    <a href="#">🗺️ Tours</a>
-    <a href="#">📞 Contact</a>
+    <a href="tours.html">🗺️ Tours</a>
+    <a href="contact.html">📞 Contact</a>
   </div>
 
   <header>
     <div class="menu-icon" onclick="toggleMenu()">☰</div>
-    <h2>Let's Discover Egypt</h2>
+    <h2><a href="#">Let's Discover Egypt</a></h2>
   </header>
 
-  <div class="main">
+  <div class="hero">
     <h1>Welcome to Egypt</h1>
-    <p>Explore the land of Pharaohs with private guided tours</p>
-    <br />
+  </div>
+
+  <div class="main">
     <h2>Pyramids & Camel Ride Tour</h2>
     <p>Click below to view full tour details and booking</p>
 
     <a href="pyramids.html" class="btn">Book Now</a>
+    <a href="https://wa.me/201234567890" class="btn whatsapp" target="_blank">WhatsApp</a>
   </div>
 
   <script>
