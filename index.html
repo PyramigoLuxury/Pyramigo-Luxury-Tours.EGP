@@ -5,6 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Private Egypt Tours | Let's Discover Egypt</title>
   <meta name="description" content="Explore Egypt with private guided tours. Visit the Pyramids, enjoy camel rides, and discover ancient wonders. Book now!">
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
   <style>
     * {
       box-sizing: border-box;
@@ -13,9 +17,10 @@
     }
 
     body {
-      font-family: 'Segoe UI', sans-serif;
+      font-family: 'Poppins', sans-serif;
       background: #f8f8f8;
       overflow-x: hidden;
+      color: #333;
     }
 
     header {
@@ -43,7 +48,7 @@
       left: 50%;
       transform: translateX(-50%);
       font-size: 20px;
-      font-weight: bold;
+      font-weight: 600;
     }
 
     header h2 a {
@@ -107,6 +112,7 @@
       color: white;
       text-shadow: 1px 1px 4px rgba(0,0,0,0.7);
       margin-top: 70px;
+      animation: fadeIn 1.2s ease;
     }
 
     .hero h1 {
@@ -118,6 +124,7 @@
       text-align: center;
       max-width: 600px;
       margin: 0 auto;
+      animation: slideUp 1s ease;
     }
 
     h2 {
@@ -155,6 +162,27 @@
     .btn.whatsapp:hover {
       background: #1da851;
     }
+
+    footer {
+      text-align: center;
+      padding: 30px 20px;
+      color: #777;
+      font-size: 14px;
+      background: #fff;
+      margin-top: 40px;
+      box-shadow: 0 -1px 3px rgba(0, 0, 0, 0.05);
+    }
+
+    /* Animations */
+    @keyframes fadeIn {
+      from { opacity: 0 }
+      to { opacity: 1 }
+    }
+
+    @keyframes slideUp {
+      from { transform: translateY(30px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
   </style>
 </head>
 <body>
@@ -179,10 +207,13 @@
   <div class="main">
     <h2>Pyramids & Camel Ride Tour</h2>
     <p>Click below to view full tour details and booking</p>
-
     <a href="pyramids.html" class="btn">Book Now</a>
     <a href="https://wa.me/201234567890" class="btn whatsapp" target="_blank">WhatsApp</a>
   </div>
+
+  <footer>
+    &copy; 2025 Let's Discover Egypt. All rights reserved.
+  </footer>
 
   <script>
     function toggleMenu() {
