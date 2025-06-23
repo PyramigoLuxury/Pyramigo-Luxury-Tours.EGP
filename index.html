@@ -209,16 +209,13 @@
   <!-- Main Section -->
   <main class="main">
     <p>Explore the land of Pharaohs with private guided tours</p>
-    <a href="pyramids.html" class="btn" aria-label="Book the pyramids tour">Book Now</a>
-    <a href="https://wa.me/201234567890" class="btn whatsapp" aria-label="Chat on WhatsApp" target="_blank" rel="noopener noreferrer">
+    <a href="pyramids.html" class="btn">Book Now</a>
+    <a href="https://wa.me/201234567890" class="btn whatsapp" target="_blank" rel="noopener noreferrer">
       <i class="fab fa-whatsapp"></i> WhatsApp
     </a>
 
     <div style="margin-top: 30px;">
-      <picture>
-        <source srcset="pyramids-sunset.webp" type="image/webp">
-        <img src="pyramids-sunset.jpg" alt="Tourist riding a camel in front of the Pyramids of Giza at sunset" loading="lazy" style="width: 100%; max-width: 600px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
-      </picture>
+      <img src="pyramids-sunset.jpg" alt="Tourist riding a camel in front of the Pyramids of Giza at sunset" loading="lazy" style="width: 100%; max-width: 600px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
 
       <div style="margin-top: 20px; text-align: left;">
         <h3 style="font-size: 20px; color: #111;">
@@ -271,13 +268,6 @@
       document.getElementById("overlay").classList.remove("active");
       document.body.style.overflow = "auto";
     }
-
-    // ✅ إغلاق القائمة عند الضغط على أي رابط داخلها
-    document.addEventListener("DOMContentLoaded", function () {
-      document.querySelectorAll('.sidebar a').forEach(link => {
-        link.addEventListener('click', closeMenu);
-      });
-    });
   </script>
 </body>
 </html>
