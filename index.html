@@ -8,6 +8,10 @@
   <meta name="keywords" content="Egypt tours, Pyramids, Cairo travel, Giza, tourism, discover Egypt">
   <link rel="icon" href="favicon.png" type="image/png">
 
+  <!-- Performance: Preconnect -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
   <!-- Google Font -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <!-- Font Awesome Icons -->
@@ -49,14 +53,15 @@
       text-decoration: none;
       color: #333;
     }
-    .sidebar {
+
+    nav.sidebar {
       position: fixed;
       top: 0; left: -250px;
       width: 250px; height: 100%;
       background: #333;
       color: white;
       padding: 60px 20px;
-      transition: left 0.3s ease;
+      transition: left 0.3s ease-in-out;
       z-index: 11;
     }
     .sidebar.active { left: 0; }
@@ -74,6 +79,7 @@
       padding-left: 10px;
       transition: all 0.3s ease;
     }
+
     .overlay {
       display: none;
       position: fixed;
@@ -155,13 +161,11 @@
       margin-top: 40px;
       box-shadow: 0 -1px 3px rgba(0, 0, 0, 0.05);
     }
-
     footer a {
       color: #555;
       text-decoration: none;
       margin: 0 5px;
     }
-
     footer a:hover { text-decoration: underline; }
 
     @media (max-width: 480px) {
@@ -179,20 +183,20 @@
 
   <div class="overlay" id="overlay" onclick="closeMenu()"></div>
 
-  <div class="sidebar" id="sidebar">
+  <nav class="sidebar" id="sidebar">
     <a href="#"><i class="fas fa-home"></i> Home</a>
     <a href="#about"><i class="fas fa-info-circle"></i> About Us</a>
     <a href="tours.html"><i class="fas fa-map-marked-alt"></i> Tours</a>
     <a href="contact.html"><i class="fas fa-phone"></i> Contact</a>
-  </div>
+  </nav>
 
   <header>
-    <div class="menu-icon" onclick="toggleMenu()">☰</div>
+    <div class="menu-icon" onclick="toggleMenu()" aria-label="Toggle navigation menu">☰</div>
     <h2><a href="#"><i class="fas fa-globe-africa"></i> Let's Discover Egypt</a></h2>
   </header>
 
   <!-- Hero Section -->
-  <div class="hero">
+  <section class="hero">
     <div class="hero-text">
       <h1>LET'S DISCOVER EGYPT</h1>
       <p>Uncover the Magic</p>
@@ -200,17 +204,18 @@
         We are the only specialized team offering a premium private visit to the Giza Pyramids — combined with a professional camel-riding experience.
       </p>
     </div>
-  </div>
+  </section>
 
   <!-- Main Section -->
-  <div class="main">
+  <main class="main">
     <p>Explore the land of Pharaohs with private guided tours</p>
     <a href="pyramids.html" class="btn">Book Now</a>
-    <a href="https://wa.me/201234567890" class="btn whatsapp" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+    <a href="https://wa.me/201234567890" class="btn whatsapp" target="_blank" rel="noopener noreferrer">
+      <i class="fab fa-whatsapp"></i> WhatsApp
+    </a>
 
-    <!-- Image + Description -->
     <div style="margin-top: 30px;">
-      <img src="pyramids-sunset.jpg" alt="Private Camel Ride Tour at the Pyramids of Giza" loading="lazy" style="width: 100%; max-width: 600px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+      <img src="pyramids-sunset.jpg" alt="Tourist riding a camel in front of the Pyramids of Giza at sunset" loading="lazy" style="width: 100%; max-width: 600px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
 
       <div style="margin-top: 20px; text-align: left;">
         <h3 style="font-size: 20px; color: #111;">
@@ -225,17 +230,17 @@
         </p>
       </div>
     </div>
-  </div>
+  </main>
 
   <!-- About Section -->
-  <div class="about" id="about">
+  <section class="about" id="about">
     <h2>About Us</h2>
     <p>
       Let's Discover Egypt is your gateway to the wonders of ancient history and modern adventure.
       We offer personalized tours to the most iconic sites in Egypt, including the Pyramids of Giza,
       camel rides, and hidden gems guided by passionate local experts. Experience Egypt like never before.
     </p>
-  </div>
+  </section>
 
   <!-- Footer -->
   <footer>
@@ -265,4 +270,4 @@
     }
   </script>
 </body>
-    </html>
+</html>
