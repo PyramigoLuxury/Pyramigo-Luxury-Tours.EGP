@@ -5,8 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Let's Discover Egypt</title>
   <meta name="description" content="Explore Egypt with private guided tours. Visit the Pyramids, enjoy camel rides, and discover ancient wonders. Book now!">
-
+  <meta name="keywords" content="Egypt tours, Pyramids, Cairo travel, Giza, tourism, discover Egypt">
+  <link rel="icon" href="favicon.png" type="image/png">
+  
+  <!-- Google Font -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
   <style>
     * {
@@ -79,6 +85,10 @@
       padding: 15px 0;
       border-bottom: 1px solid #444;
       font-size: 16px;
+    }
+
+    .sidebar a i {
+      margin-right: 8px;
     }
 
     .sidebar a:hover {
@@ -185,6 +195,35 @@
       margin-top: 40px;
       box-shadow: 0 -1px 3px rgba(0, 0, 0, 0.05);
     }
+
+    footer a {
+      color: #555;
+      text-decoration: none;
+      margin: 0 5px;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 480px) {
+      header h2 {
+        font-size: 16px;
+      }
+
+      .hero-text h1 {
+        font-size: 26px;
+      }
+
+      .hero-text p {
+        font-size: 14px;
+      }
+
+      .btn {
+        font-size: 14px;
+        padding: 10px 20px;
+      }
+    }
   </style>
 </head>
 <body>
@@ -192,10 +231,10 @@
   <div class="overlay" id="overlay" onclick="closeMenu()"></div>
 
   <div class="sidebar" id="sidebar">
-    <a href="#">🏠 Home</a>
-    <a href="#about">ℹ️ About Us</a>
-    <a href="tours.html">🗺️ Tours</a>
-    <a href="contact.html">📞 Contact</a>
+    <a href="#"><i class="fas fa-home"></i> Home</a>
+    <a href="#about"><i class="fas fa-info-circle"></i> About Us</a>
+    <a href="tours.html"><i class="fas fa-map-marked-alt"></i> Tours</a>
+    <a href="contact.html"><i class="fas fa-phone"></i> Contact</a>
   </div>
 
   <header>
@@ -215,7 +254,7 @@
   <div class="main">
     <p>Explore the land of Pharaohs with private guided tours</p>
     <a href="pyramids.html" class="btn">Book Now</a>
-    <a href="https://wa.me/201234567890" class="btn whatsapp" target="_blank">WhatsApp</a>
+    <a href="https://wa.me/201234567890" class="btn whatsapp" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a>
   </div>
 
   <!-- About Section -->
@@ -228,8 +267,13 @@
     </p>
   </div>
 
+  <!-- Footer -->
   <footer>
-    &copy; 2025 Let's Discover Egypt. All rights reserved.
+    <p>&copy; 2025 Let's Discover Egypt. All rights reserved.</p>
+    <p>
+      <a href="privacy.html">Privacy Policy</a> |
+      <a href="terms.html">Terms</a>
+    </p>
   </footer>
 
   <script>
@@ -251,4 +295,4 @@
     }
   </script>
 </body>
-</html>
+  </html>
