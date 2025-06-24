@@ -3,17 +3,18 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Nile Dinner Cruise - Let's Discover Egypt</title>
+  <title>Nile Cruise - Let's Discover Egypt</title>
   <link rel="icon" href="favicon.png" type="image/png">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
       font-family: 'Poppins', sans-serif;
       background: #fff;
       color: #333;
     }
+
     header {
       position: fixed;
       top: 0; left: 0;
@@ -26,7 +27,12 @@
       box-shadow: 0 2px 5px rgba(0,0,0,0.1);
       z-index: 10;
     }
-    .menu-icon { font-size: 24px; cursor: pointer; }
+
+    .menu-icon {
+      font-size: 24px;
+      cursor: pointer;
+    }
+
     header h2 {
       position: absolute;
       left: 50%;
@@ -34,36 +40,43 @@
       font-size: 20px;
       font-weight: 600;
     }
+
     header h2 a {
       text-decoration: none;
       color: #333;
     }
-    .main {
-      margin-top: 90px;
-      padding: 40px 20px;
-      max-width: 800px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-    .main img {
+
+    .cover {
+      margin-top: 70px;
       width: 100%;
-      max-height: 400px;
-      object-fit: cover;
-      border-radius: 12px;
-      margin-bottom: 30px;
+      height: 300px;
+      background-image: url('nile-cruise.jpg');
+      background-size: cover;
+      background-position: center;
     }
-    h1 {
-      font-size: 28px;
+
+    .container {
+      padding: 40px 20px;
+      max-width: 900px;
+      margin: auto;
+      text-align: center;
+    }
+
+    .container h1 {
+      font-size: 32px;
       margin-bottom: 20px;
+      text-transform: uppercase;
     }
-    p {
+
+    .container p {
       font-size: 16px;
-      line-height: 1.7;
-      margin-bottom: 20px;
       color: #555;
+      line-height: 1.8;
     }
+
     .btn {
       display: inline-block;
+      margin-top: 25px;
       padding: 12px 25px;
       background: #1cd760;
       color: white;
@@ -71,9 +84,11 @@
       text-decoration: none;
       font-size: 16px;
     }
+
     .btn:hover {
       background: #14b150;
     }
+
     footer {
       text-align: center;
       padding: 30px 20px;
@@ -83,12 +98,18 @@
       margin-top: 40px;
       box-shadow: 0 -1px 3px rgba(0, 0, 0, 0.05);
     }
+
     footer a {
       color: #555;
       text-decoration: none;
       margin: 0 5px;
     }
+
     footer a:hover { text-decoration: underline; }
+
+    @media (max-width: 600px) {
+      .container h1 { font-size: 24px; }
+    }
   </style>
 </head>
 <body>
@@ -98,15 +119,21 @@
     <h2><a href="index.html"><i class="fas fa-globe-africa"></i> Let's Discover Egypt</a></h2>
   </header>
 
-  <div class="main">
-    <img src="nile-cruise.jpg" alt="Nile Dinner Cruise">
+  <div class="cover"></div>
 
-    <h1>Evening Dinner Nile Cruise in Cairo</h1>
-    <p>Enjoy a magical evening on the Nile River with our relaxing dinner cruise. Savor authentic Egyptian cuisine as you glide along the water, with live entertainment including belly dancing, Tanoura shows, and music.</p>
-
-    <p>Perfect for couples, families, or solo travelers looking for a peaceful and memorable night out in Cairo. Includes hotel pickup and drop-off by private car.</p>
-
-    <a href="https://wa.me/201234567890" class="btn">Book Now on WhatsApp</a>
+  <div class="container">
+    <h1>Evening Nile Dinner Cruise in Cairo</h1>
+    <p>
+      Embark on a magical evening cruise along the Nile River in Cairo. Enjoy an authentic Egyptian dinner aboard a luxury boat, accompanied by traditional entertainment like belly dancing, Tanoura shows, and live music. Admire the glittering city lights from the river and relax with private round-trip transfers from your hotel.
+    </p>
+    <p>
+      ✅ Includes: Dinner, live entertainment, private hotel transfer, cruise ticket<br>
+      📍 Location: Cairo, Nile River<br>
+      ⏰ Duration: Approx. 2-3 hours
+    </p>
+    <a class="btn" href="https://wa.me/201234567890" target="_blank">
+      <i class="fab fa-whatsapp"></i> Book Now via WhatsApp
+    </a>
   </div>
 
   <footer>
@@ -118,4 +145,4 @@
   </footer>
 
 </body>
-  </html>
+</html>
