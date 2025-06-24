@@ -97,12 +97,8 @@
 
     .hero {
       background: #f2f2f2;
-      min-height: 60vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      padding: 40px 20px 20px; /* تعديل هنا: استبدل min-height بـ padding فقط */
       text-align: center;
-      padding: 20px 20px 0;
     }
 
     .hero-text h1 {
@@ -121,7 +117,7 @@
     }
 
     .main {
-      padding: 40px 20px;
+      padding: 40px 20px 10px; /* تقليل المسافة من الأسفل */
       text-align: center;
       max-width: 800px;
       margin: 0 auto;
@@ -170,7 +166,7 @@
       color: #777;
       font-size: 14px;
       background: #fff;
-      margin-top: 40px;
+      margin-top: 0; /* أزلنا المسافة بين .main و .footer */
       box-shadow: 0 -1px 3px rgba(0, 0, 0, 0.05);
     }
 
@@ -214,7 +210,7 @@
     <div class="hero-text">
       <h1>LET'S DISCOVER EGYPT</h1>
       <p>Uncover the Magic</p>
-      <p style="font-size: 16px; margin-top: 10px; line-height: 1.6;">
+      <p style="font-size: 16px; margin-top: 10px;">
         The first team in Egypt to offer a true VIP experience to the Pyramids.<br>
         Enjoy a one-of-a-kind journey led by experts in Egyptology.<br>
         Our mission is to make you feel royal — with a luxurious visit through ancient history.
@@ -282,4 +278,4 @@
     }
   </script>
 </body>
-  </html>
+        </html>
