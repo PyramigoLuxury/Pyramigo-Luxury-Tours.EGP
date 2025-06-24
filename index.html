@@ -21,6 +21,7 @@
       overflow-x: hidden;
       color: #333;
     }
+
     header {
       position: fixed;
       top: 0; left: 0;
@@ -33,11 +34,13 @@
       box-shadow: 0 2px 5px rgba(0,0,0,0.1);
       z-index: 10;
     }
+
     .menu-icon {
       font-size: 24px;
       cursor: pointer;
       z-index: 12;
     }
+
     header h2 {
       position: absolute;
       left: 50%;
@@ -45,10 +48,12 @@
       font-size: 20px;
       font-weight: 600;
     }
+
     header h2 a {
       text-decoration: none;
       color: #333;
     }
+
     .sidebar {
       position: fixed;
       top: 0; left: -250px;
@@ -59,7 +64,9 @@
       transition: left 0.3s ease;
       z-index: 11;
     }
+
     .sidebar.active { left: 0; }
+
     .sidebar a {
       display: block;
       color: white;
@@ -68,12 +75,15 @@
       border-bottom: 1px solid #444;
       font-size: 16px;
     }
+
     .sidebar a i { margin-right: 8px; }
+
     .sidebar a:hover {
       background: #444;
       padding-left: 10px;
       transition: all 0.3s ease;
     }
+
     .overlay {
       display: none;
       position: fixed;
@@ -82,25 +92,32 @@
       background: rgba(0,0,0,0.3);
       z-index: 10;
     }
+
     .overlay.active { display: block; }
 
     .hero {
       background: #f2f2f2;
-      height: 60vh;
+      min-height: 60vh;
       display: flex;
       align-items: center;
       justify-content: center;
       text-align: center;
-      padding: 40px 20px;
+      padding: 20px 20px 0;
     }
+
     .hero-text h1 {
       font-size: 36px;
       font-weight: bold;
       margin-bottom: 10px;
     }
+
     .hero-text p {
       font-size: 18px;
       font-weight: 300;
+    }
+
+    .hero-text p:last-child {
+      margin-bottom: 0;
     }
 
     .main {
@@ -123,21 +140,22 @@
       display: inline-block;
       transition: background 0.3s ease;
     }
+
     .btn:hover { background: #14b150; }
-    .btn.whatsapp { background: #25D366; }
-    .btn.whatsapp:hover { background: #1da851; }
 
     .about {
       padding: 40px 20px;
       background: #fafafa;
       text-align: center;
     }
+
     .about h2 {
       font-size: 28px;
       margin-bottom: 20px;
       font-weight: 600;
       color: #111;
     }
+
     .about p {
       font-size: 16px;
       line-height: 1.6;
@@ -205,20 +223,22 @@
   <!-- Main Section -->
   <div class="main">
     <p>Explore the land of Pharaohs with private guided tours</p>
-    <a href="pyramids.html" class="btn">Book Now</a>
-    <a href="https://wa.me/201234567890" class="btn whatsapp" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+
+    <div style="margin-top: 20px; display: flex; justify-content: center;">
+      <a href="pyramids.html" class="btn">Book Now</a>
+    </div>
 
     <!-- Image + Description -->
     <div style="margin-top: 30px;">
       <img src="pyramids-sunset.jpg" alt="Private Camel Ride Tour at the Pyramids of Giza" loading="lazy" style="width: 100%; max-width: 600px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
 
       <div style="margin-top: 20px; text-align: left;">
-        <h3 style="font-size: 20px; color: #111;">ALL INCLUSIVE PRIVATE HALF-DAY TRIP TO GIZA PYRAMIDS WITH CAMEL RIDE</h3>
-        <p style="font-size: 16px; line-height: 1.6; color: #444;">
-          Enjoy this half-day trip to see the Giza pyramids and Sphinx, one of the seven wonders of the ancient world.
-          Experience a professional camel ride across the golden sands of the Giza plateau, capturing breathtaking views of the pyramids.
-          A perfect experience for families, couples, and solo travelers seeking an unforgettable adventure in Egypt.
-        </p>
+        <h3 style="font-size: 20px; color: #111;">
+          <a href="pyramids.html" style="color: #111; text-decoration: underline;">
+            ALL INCLUSIVE PRIVATE HALF-DAY TRIP TO GIZA PYRAMIDS WITH CAMEL RIDE
+          </a>
+        </h3>
+        <!-- تم حذف الفقرة الطويلة بناءً على طلبك -->
       </div>
     </div>
   </div>
