@@ -10,42 +10,137 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
       font-family: 'Poppins', sans-serif;
-      background: #fff;
+      background: #ffffff;
+      overflow-x: hidden;
       color: #333;
-      margin: 0;
-      padding: 0;
     }
 
+    /* Header */
     header {
-      background: white;
-      padding: 20px;
-      text-align: center;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    }
-
-    header h1 {
-      font-size: 24px;
-      margin: 0;
-    }
-
-    .cover {
+      position: fixed;
+      top: 0; left: 0;
       width: 100%;
-      height: 300px;
-      background: url('pyramids-cover.jpeg') center/cover no-repeat;
+      background: white;
+      padding: 15px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      z-index: 10;
     }
 
-    .container {
+    .menu-icon {
+      font-size: 24px;
+      cursor: pointer;
+      z-index: 12;
+    }
+
+    header h2 {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 20px;
+      font-weight: 600;
+    }
+
+    header h2 a {
+      text-decoration: none;
+      color: #333;
+    }
+
+    .sidebar {
+      position: fixed;
+      top: 0; left: -250px;
+      width: 250px; height: 100%;
+      background: #333;
+      color: white;
+      padding: 60px 20px;
+      transition: left 0.3s ease;
+      z-index: 11;
+    }
+
+    .sidebar.active { left: 0; }
+
+    .sidebar a {
+      display: block;
+      color: white;
+      text-decoration: none;
+      padding: 15px 0;
+      border-bottom: 1px solid #444;
+      font-size: 16px;
+    }
+
+    .sidebar a i { margin-right: 8px; }
+
+    .sidebar a:hover {
+      background: #444;
+      padding-left: 10px;
+      transition: all 0.3s ease;
+    }
+
+    .overlay {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.3);
+      z-index: 10;
+    }
+
+    .overlay.active { display: block; }
+
+    /* Main Content */
+    .main {
       max-width: 800px;
-      margin: auto;
-      padding: 30px 20px;
+      margin: 100px auto 40px;
+      padding: 20px;
+    }
+
+    .main h1 {
+      font-size: 26px;
+      color: #111;
+      margin-bottom: 10px;
+      text-align: center;
+    }
+
+    .main .price {
+      text-align: center;
+      font-size: 18px;
+      color: #1cd760;
+      font-weight: 600;
+      margin-bottom: 15px;
+    }
+
+    .btn {
+      display: block;
+      width: fit-content;
+      margin: 0 auto 30px;
+      padding: 12px 25px;
+      background: #1cd760;
+      color: white;
+      border: none;
+      border-radius: 30px;
+      font-size: 16px;
+      text-decoration: none;
+      transition: background 0.3s ease;
+    }
+
+    .btn:hover { background: #14b150; }
+
+    img.tour-img {
+      width: 100%;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      margin: 20px 0;
     }
 
     h2 {
-      font-size: 22px;
+      margin-top: 30px;
+      font-size: 20px;
       color: #111;
-      margin-bottom: 10px;
     }
 
     p {
@@ -53,81 +148,60 @@
       margin-bottom: 15px;
     }
 
-    .highlight {
-      font-weight: bold;
-      color: #1cd760;
-    }
-
-    .price-book {
-      display: flex;
-      align-items: center;
-      gap: 15px;
-      margin-top: 15px;
-      flex-wrap: wrap;
-    }
-
-    .btn {
-      padding: 10px 20px;
-      background: #1cd760;
-      color: white;
-      border: none;
-      border-radius: 30px;
-      text-decoration: none;
-      font-size: 16px;
-      cursor: pointer;
-      transition: background 0.3s ease;
-    }
-
-    .btn:hover {
-      background: #14b150;
+    ul {
+      margin: 10px 0 20px 20px;
+      line-height: 1.7;
     }
 
     footer {
       text-align: center;
       padding: 30px 20px;
-      font-size: 14px;
       color: #777;
+      font-size: 14px;
       background: #f9f9f9;
-      margin-top: 40px;
-    }
-
-    @media(max-width: 480px) {
-      header h1 { font-size: 18px; }
-      h2 { font-size: 18px; }
+      box-shadow: 0 -1px 3px rgba(0, 0, 0, 0.05);
     }
   </style>
 </head>
 <body>
 
+  <!-- Overlay -->
+  <div class="overlay" id="overlay" onclick="closeMenu()"></div>
+
+  <!-- Sidebar -->
+  <div class="sidebar" id="sidebar">
+    <a href="index.html"><i class="fas fa-home"></i> Home</a>
+    <a href="about.html"><i class="fas fa-info-circle"></i> About Us</a>
+    <a href="tours.html"><i class="fas fa-map-marked-alt"></i> Tours</a>
+    <a href="contact.html"><i class="fas fa-phone"></i> Contact</a>
+  </div>
+
+  <!-- Header -->
   <header>
-    <h1>VIP PRIVATE TOUR – GIZA PYRAMIDS & CAMEL RIDE WITH LUNCH</h1>
+    <div class="menu-icon" onclick="toggleMenu()">☰</div>
+    <h2><a href="index.html"><i class="fas fa-globe-africa"></i> Let's Discover Egypt</a></h2>
   </header>
 
-  <div class="cover"></div>
+  <!-- Main Content -->
+  <div class="main">
+    <h1>VIP PRIVATE TOUR – GIZA PYRAMIDS & CAMEL RIDE WITH LUNCH</h1>
+    <div class="price">From $65 per person</div>
+    <a href="contact.html" class="btn">Book Now</a>
 
-  <div class="container">
-
-    <div class="price-book">
-      <p class="highlight">From $65 per person</p>
-      <a href="contact.html" class="btn">Book Now</a>
-    </div>
+    <img src="pyramids-sunset.jpg" alt="Giza Pyramids Tour" class="tour-img">
 
     <h2>Tour Overview</h2>
     <p>Enjoy this half-day trip to see the Giza pyramids and Sphinx, one of the seven wonders of the ancient world, and experience camel-riding alongside the Giza pyramids with wonderful views of the pyramids and Sahara desert.</p>
-
-    <p>Meet your guide in the lobby of your hotel at 9:00 AM to begin this half-day tour of the Pyramids of Giza and the Sphinx. Head toward the Pyramids of Cheops, Chephren, and Mykerinus and discover the oldest of the Seven Wonders of the Ancient World, and the only one to remain largely intact.</p>
-
-    <p>Egyptologists believe the Pyramid of Cheops (also known as the Great Pyramid of Giza) was built as a tomb for the Egyptian Pharaoh Khufu and constructed over a 14 to 20-year period in 2560 BC.</p>
-
+    <p>Meet your guide in the lobby of your hotel at 9:00 AM to begin this half-day tour of the Pyramids of Giza and the Sphinx. Head toward the Pyramids of Cheops, Chephren, and Mykerinus and discover the oldest of the Seven Wonders of the Ancient World.</p>
     <p>During the tour, you will enjoy a 30-minute camel ride. Your guide will help you take stunning photos to remember your trip.</p>
 
-    <h3>Departure Point:</h3>
+    <h2>Departure Point</h2>
     <p>Your hotel in Cairo or Giza</p>
 
-    <h3>Duration:</h3>
+    <h2>Duration</h2>
     <p>5 hours</p>
 
-    <h3>Return Details:</h3>
+    <h2>Return Details</h2>
     <p>Returns to original departure point</p>
 
     <h2>What's Included</h2>
@@ -151,6 +225,22 @@
   <footer>
     &copy; 2025 Let's Discover Egypt. All rights reserved.
   </footer>
+
+  <script>
+    function toggleMenu() {
+      const sidebar = document.getElementById("sidebar");
+      const overlay = document.getElementById("overlay");
+      sidebar.classList.toggle("active");
+      overlay.classList.toggle("active");
+      document.body.style.overflow = sidebar.classList.contains("active") ? "hidden" : "auto";
+    }
+
+    function closeMenu() {
+      document.getElementById("sidebar").classList.remove("active");
+      document.getElementById("overlay").classList.remove("active");
+      document.body.style.overflow = "auto";
+    }
+  </script>
 
 </body>
 </html>
