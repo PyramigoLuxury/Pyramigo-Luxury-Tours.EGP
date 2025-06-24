@@ -3,72 +3,238 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Pyramids & Camel Ride Tour</title>
+  <title>VIP Giza Pyramids Tour - Let's Discover Egypt</title>
+  <link rel="icon" href="favicon.png" type="image/png">
+
+  <!-- Fonts & Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
   <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
-      margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background-color: #fff;
-      color: #222;
+      font-family: 'Poppins', sans-serif;
+      background: #fff;
+      color: #333;
     }
 
     header {
-      text-align: center;
-      padding: 20px;
-      font-size: 1.8em;
-      font-weight: bold;
-    }
-
-    .container {
-      max-width: 800px;
-      margin: auto;
-      padding: 20px;
-    }
-
-    .hero {
+      position: fixed;
+      top: 0; left: 0;
       width: 100%;
-      border-radius: 10px;
-      margin-bottom: 20px;
+      background: white;
+      padding: 15px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      z-index: 10;
     }
 
-    .info p {
-      font-size: 1.1em;
-      line-height: 1.6;
+    .menu-icon {
+      font-size: 24px;
+      cursor: pointer;
+    }
+
+    header h2 {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 20px;
+      font-weight: 600;
+    }
+
+    header h2 a {
+      text-decoration: none;
+      color: #333;
+    }
+
+    .sidebar {
+      position: fixed;
+      top: 0; left: -250px;
+      width: 250px; height: 100%;
+      background: #333;
+      color: white;
+      padding: 60px 20px;
+      transition: left 0.3s ease;
+      z-index: 11;
+    }
+
+    .sidebar.active { left: 0; }
+
+    .sidebar a {
+      display: block;
+      color: white;
+      text-decoration: none;
+      padding: 15px 0;
+      border-bottom: 1px solid #444;
+      font-size: 16px;
+    }
+
+    .sidebar a i { margin-right: 8px; }
+
+    .sidebar a:hover {
+      background: #444;
+      padding-left: 10px;
+      transition: all 0.3s ease;
+    }
+
+    .overlay {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.3);
+      z-index: 10;
+    }
+
+    .overlay.active { display: block; }
+
+    .hero-image {
+      margin-top: 60px;
+      width: 100%;
+      max-height: 400px;
+      object-fit: cover;
+    }
+
+    .main-content {
+      padding: 40px 20px;
+      max-width: 900px;
+      margin: auto;
+    }
+
+    .main-content h1 {
+      font-size: 32px;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .main-content p {
+      font-size: 16px;
+      line-height: 1.7;
+      color: #555;
+      margin-bottom: 25px;
+    }
+
+    .info-box {
+      background: #f9f9f9;
+      border-left: 4px solid #1cd760;
+      padding: 15px 20px;
+      margin: 20px 0;
+    }
+
+    .info-box strong {
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    .features {
+      margin: 20px 0;
+      list-style: none;
+      padding: 0;
+    }
+
+    .features li {
+      padding-left: 24px;
+      margin-bottom: 12px;
+      position: relative;
+    }
+
+    .features li::before {
+      content: '✔';
+      position: absolute;
+      left: 0;
+      color: #1cd760;
     }
 
     .btn {
       display: inline-block;
-      margin-top: 20px;
-      background-color: #25D366;
+      background: #1cd760;
       color: white;
-      padding: 12px 26px;
-      border-radius: 40px;
-      font-size: 1em;
+      padding: 12px 30px;
+      border-radius: 30px;
       text-decoration: none;
-      transition: 0.2s ease;
+      font-weight: 600;
+      margin-top: 20px;
+      text-align: center;
     }
 
     .btn:hover {
-      background-color: #1cac55;
+      background: #14b150;
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px 20px;
+      font-size: 14px;
+      color: #777;
+      background: #f9f9f9;
+      margin-top: 40px;
+    }
+
+    @media (max-width: 600px) {
+      .main-content h1 { font-size: 24px; }
     }
   </style>
 </head>
 <body>
 
-<header>Pyramids & Camel Ride Tour</header>
+  <div class="overlay" id="overlay" onclick="closeMenu()"></div>
 
-<div class="container">
-  <img src="https://upload.wikimedia.org/wikipedia/commons/f/f2/Camels_at_Giza_Pyramids_2019.jpg" class="hero" alt="Pyramids and Camels">
-
-  <div class="info">
-    <p><strong>Duration:</strong> 4–5 hours</p>
-    <p><strong>Includes:</strong> Private air-conditioned car, English-speaking guide, tickets, camel ride, and lunch with a view.</p>
-    <p><strong>Price:</strong> From $50 per person</p>
-    <p>Visit the Great Pyramids of Giza, see the Sphinx up close, and ride camels through the desert. Ideal for explorers and adventure seekers!</p>
-
-    <a href="https://wa.me/201234567890" class="btn" target="_blank">Book via WhatsApp</a>
+  <div class="sidebar" id="sidebar">
+    <a href="index.html"><i class="fas fa-home"></i> Home</a>
+    <a href="tours.html"><i class="fas fa-map-marked-alt"></i> Tours</a>
+    <a href="about.html"><i class="fas fa-info-circle"></i> About Us</a>
+    <a href="contact.html"><i class="fas fa-phone"></i> Contact</a>
   </div>
-</div>
 
+  <header>
+    <div class="menu-icon" onclick="toggleMenu()">☰</div>
+    <h2><a href="index.html"><i class="fas fa-globe-africa"></i> Let's Discover Egypt</a></h2>
+  </header>
+
+  <img src="pyramids-sunset.jpg" alt="Giza Pyramids" class="hero-image" />
+
+  <div class="main-content">
+    <h1>VIP Giza Pyramids & Camel Ride</h1>
+
+    <div class="info-box">
+      <strong>Duration:</strong> 4–5 hours<br>
+      <strong>Includes:</strong> Private air-conditioned car, English-speaking guide, tickets, camel ride, and lunch with a view.<br>
+      <strong>Price:</strong> From $50 per person
+    </div>
+
+    <p>
+      Visit the Great Pyramids of Giza, see the Sphinx up close, and ride camels through the desert. Ideal for explorers and adventure seekers.
+    </p>
+
+    <ul class="features">
+      <li>Private professional Egyptologist guide</li>
+      <li>Scenic camel ride in the Giza plateau</li>
+      <li>All entrance tickets included</li>
+      <li>Round-trip hotel transfers by private A/C vehicle</li>
+      <li>Customizable timing to suit your schedule</li>
+    </ul>
+
+    <a href="https://wa.me/201234567890" class="btn"><i class="fab fa-whatsapp"></i> Book via WhatsApp</a>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 Let's Discover Egypt. All rights reserved.</p>
+  </footer>
+
+  <script>
+    function toggleMenu() {
+      document.getElementById("sidebar").classList.toggle("active");
+      document.getElementById("overlay").classList.toggle("active");
+      document.body.style.overflow = document.getElementById("sidebar").classList.contains("active") ? "hidden" : "auto";
+    }
+
+    function closeMenu() {
+      document.getElementById("sidebar").classList.remove("active");
+      document.getElementById("overlay").classList.remove("active");
+      document.body.style.overflow = "auto";
+    }
+  </script>
 </body>
 </html>
