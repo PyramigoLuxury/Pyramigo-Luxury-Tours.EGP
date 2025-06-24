@@ -8,13 +8,19 @@
   <meta name="keywords" content="Egypt tours, Pyramids, Cairo travel, Giza, tourism, discover Egypt">
   <link rel="icon" href="favicon.png" type="image/png">
 
-  <!-- Google Font -->
+  <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-  <!-- Font Awesome Icons -->
+
+  <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
   <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
     body {
       font-family: 'Poppins', sans-serif;
       background: #ffffff;
@@ -22,6 +28,7 @@
       color: #333;
     }
 
+    /* Header */
     header {
       position: fixed;
       top: 0; left: 0;
@@ -54,6 +61,7 @@
       color: #333;
     }
 
+    /* Sidebar */
     .sidebar {
       position: fixed;
       top: 0; left: -250px;
@@ -76,7 +84,9 @@
       font-size: 16px;
     }
 
-    .sidebar a i { margin-right: 8px; }
+    .sidebar a i {
+      margin-right: 8px;
+    }
 
     .sidebar a:hover {
       background: #444;
@@ -93,8 +103,11 @@
       z-index: 10;
     }
 
-    .overlay.active { display: block; }
+    .overlay.active {
+      display: block;
+    }
 
+    /* Hero Section */
     .hero {
       background: #f2f2f2;
       min-height: 60vh;
@@ -117,6 +130,7 @@
       margin-bottom: 10px;
     }
 
+    /* Main Section */
     .main {
       padding: 40px 20px;
       text-align: center;
@@ -138,8 +152,11 @@
       transition: background 0.3s ease;
     }
 
-    .btn:hover { background: #14b150; }
+    .btn:hover {
+      background: #14b150;
+    }
 
+    /* Footer */
     footer {
       text-align: center;
       padding: 30px 20px;
@@ -156,12 +173,24 @@
       margin: 0 5px;
     }
 
-    footer a:hover { text-decoration: underline; }
+    footer a:hover {
+      text-decoration: underline;
+    }
 
+    /* Responsive */
     @media (max-width: 480px) {
-      header h2 { font-size: 16px; }
-      .hero-text h1 { font-size: 26px; }
-      .hero-text p { font-size: 14px; }
+      header h2 {
+        font-size: 16px;
+      }
+
+      .hero-text h1 {
+        font-size: 26px;
+      }
+
+      .hero-text p {
+        font-size: 14px;
+      }
+
       .btn {
         font-size: 14px;
         padding: 10px 20px;
@@ -169,20 +198,24 @@
     }
   </style>
 </head>
+
 <body>
 
+  <!-- Overlay -->
   <div class="overlay" id="overlay" onclick="closeMenu()"></div>
 
+  <!-- Sidebar -->
   <div class="sidebar" id="sidebar">
-    <a href="#"><i class="fas fa-home"></i> Home</a>
+    <a href="index.html"><i class="fas fa-home"></i> Home</a>
     <a href="about.html"><i class="fas fa-info-circle"></i> About Us</a>
     <a href="tours.html"><i class="fas fa-map-marked-alt"></i> Tours</a>
     <a href="contact.html"><i class="fas fa-phone"></i> Contact</a>
   </div>
 
+  <!-- Header -->
   <header>
     <div class="menu-icon" onclick="toggleMenu()">☰</div>
-    <h2><a href="#"><i class="fas fa-globe-africa"></i> Let's Discover Egypt</a></h2>
+    <h2><a href="index.html"><i class="fas fa-globe-africa"></i> Let's Discover Egypt</a></h2>
   </header>
 
   <!-- Hero Section -->
@@ -204,9 +237,13 @@
       <a href="pyramids.html" class="btn">Book Now</a>
     </div>
 
-    <!-- Image + Description -->
     <div style="margin-top: 30px;">
-      <img src="pyramids-sunset.jpg" alt="Private Camel Ride Tour at the Pyramids of Giza" loading="lazy" style="width: 100%; max-width: 600px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+      <img 
+        src="pyramids-sunset.jpg" 
+        alt="Private Camel Ride Tour at the Pyramids of Giza" 
+        loading="lazy"
+        style="width: 100%; max-width: 600px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);"
+      >
 
       <div style="margin-top: 20px; text-align: left;">
         <h3 style="font-size: 20px; color: #111;">
@@ -227,6 +264,7 @@
     </p>
   </footer>
 
+  <!-- Scripts -->
   <script>
     function toggleMenu() {
       const body = document.body;
@@ -235,7 +273,6 @@
 
       sidebar.classList.toggle("active");
       overlay.classList.toggle("active");
-
       body.style.overflow = sidebar.classList.contains("active") ? "hidden" : "auto";
     }
 
