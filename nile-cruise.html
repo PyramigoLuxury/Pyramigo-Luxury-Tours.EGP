@@ -3,72 +3,206 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Nile Dinner Cruise in Cairo | Let's Discover Egypt</title>
-  <meta name="description" content="Enjoy a dinner cruise on the Nile with Egyptian food, traditional dances, and views of Cairo.">
-  <link rel="stylesheet" href="style.css">
-  <link rel="icon" href="favicon.ico" />
-</head>
-<body>
-  <header class="hero" style="background-image: url('nile-cover.jpeg');">
-    <div class="overlay">
-      <h1>Nile Dinner Cruise in Cairo</h1>
-    </div>
-  </header>
+  <title>Nile Dinner Cruise | Let's Discover Egypt</title>
+  <meta name="description" content="Enjoy a Nile River dinner cruise with traditional dances, Egyptian buffet, and amazing Cairo views.">
+  <link rel="icon" href="favicon.png" type="image/png">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-  <main class="tour-details">
-    <section class="info">
-      <div class="detail-box">
-        <h2>Duration</h2>
-        <p>4 hours</p>
-      </div>
-      <div class="detail-box">
-        <h2>Includes</h2>
-        <p>Dinner, live music, Tanoura and belly dance shows, hotel pickup & drop-off</p>
-      </div>
-      <div class="detail-box">
-        <h2>Price</h2>
-        <p>From $55 per person</p>
-      </div>
-    </section>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #fff;
+      color: #333;
+    }
 
-    <section class="description">
-      <p>
-        Enjoy a combination of Egyptian food, traditional dances, a sailing trip and views to the illuminated city of Cairo on this Nile River dinner cruise.
-      </p>
-    </section>
+    header {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%;
+      background: white;
+      padding: 15px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      z-index: 10;
+    }
 
-    <section class="itinerary">
-      <h2>ITINERARY</h2>
-      <p>
-        You will be picked up from your hotel by your private driver and representative and taken to the port on the Nile River (the longest river in the world and the main source of life for Egypt). Board the luxurious boat and enjoy a few hours of wonderful Egyptian food, mesmerizing belly dancers and whirling Dervish dancers (Tannoura), enchanting music, live band and the lovely breeze on the River Nile. Take pictures of the show and of the wonderful nightly view of the illuminated city of Cairo from the top-deck. Once the cruise is over you will be driven back to your hotel.
-      </p>
-    </section>
+    .menu-icon {
+      font-size: 24px;
+      cursor: pointer;
+    }
 
-    <section class="details">
-      <h2>Departure Point</h2>
-      <p>Traveler pickup is offered — Any Hotel or any place in Cairo</p>
+    header h2 {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 20px;
+      font-weight: 600;
+    }
 
-      <h2>Departure Time</h2>
-      <p>6:00 PM</p>
+    header h2 a {
+      text-decoration: none;
+      color: #333;
+    }
 
-      <h2>Duration</h2>
-      <p>4 hours</p>
-    </section>
+    .sidebar {
+      position: fixed;
+      top: 0; left: -250px;
+      width: 250px;
+      height: 100%;
+      background: #333;
+      color: white;
+      padding: 60px 20px;
+      transition: 0.3s ease;
+      z-index: 11;
+    }
 
-    <section class="reviews">
-      <h2>REVIEWS</h2>
-      <p>Coming soon...</p>
-    </section>
+    .sidebar.active { left: 0; }
 
-    <div class="booking">
-      <a href="https://wa.me/201234567890" target="_blank" class="whatsapp-btn">
-        Book Now on WhatsApp
-      </a>
-    </div>
-  </main>
+    .sidebar a {
+      display: block;
+      color: white;
+      text-decoration: none;
+      padding: 15px 0;
+      border-bottom: 1px solid #444;
+    }
 
-  <footer>
-    <p>&copy; 2025 Let's Discover Egypt. All rights reserved.</p>
-  </footer>
-</body>
-</html>
+    .sidebar a:hover { background: #444; padding-left: 10px; }
+
+    .overlay {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.3);
+      z-index: 10;
+    }
+
+    .overlay.active { display: block; }
+
+    .hero {
+      background: url('nile-cover.jpeg') center/cover no-repeat;
+      min-height: 60vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 60px 20px;
+      margin-top: 60px;
+      color: white;
+      background-blend-mode: multiply;
+      background-color: rgba(0,0,0,0.4);
+    }
+
+    .hero h1 {
+      font-size: 32px;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .hero p {
+      font-size: 18px;
+      font-weight: 400;
+    }
+
+    .section {
+      padding: 40px 20px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .section h2 {
+      font-size: 24px;
+      margin-bottom: 15px;
+      color: #111;
+    }
+
+    .info-cards {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      margin-bottom: 30px;
+    }
+
+    .card {
+      flex: 1 1 220px;
+      background: #f9f9f9;
+      padding: 20px;
+      border-radius: 12px;
+      text-align: center;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+
+    .card i {
+      font-size: 24px;
+      margin-bottom: 10px;
+      color: #1cd760;
+    }
+
+    .price-book {
+      text-align: center;
+      margin: 30px 0;
+    }
+
+    .price-book .price {
+      font-size: 22px;
+      font-weight: 600;
+      color: #1cd760;
+      margin-bottom: 10px;
+    }
+
+    .btn {
+      background: #1cd760;
+      color: white;
+      padding: 12px 25px;
+      border: none;
+      border-radius: 30px;
+      font-size: 16px;
+      text-decoration: none;
+      transition: 0.3s ease;
+    }
+
+    .btn:hover { background: #14b150; }
+
+    .details p {
+      line-height: 1.7;
+      margin-bottom: 15px;
+    }
+
+    .lists {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 30px;
+    }
+
+    .list-box {
+      flex: 1;
+      background: #f2f2f2;
+      padding: 20px;
+      border-radius: 12px;
+    }
+
+    .list-box ul {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .list-box ul li {
+      margin-bottom: 10px;
+      padding-left: 20px;
+      position: relative;
+    }
+
+    .list-box ul li:before {
+      content: "✔";
+      color: #1cd760;
+      position: absolute;
+      left: 0;
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px 20px
