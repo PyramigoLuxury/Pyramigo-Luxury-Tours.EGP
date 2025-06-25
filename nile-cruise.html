@@ -3,126 +3,72 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Evening Nile Cruise - Let's Discover Egypt</title>
-  <link rel="icon" href="favicon.png" type="image/png">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      font-family: 'Poppins', sans-serif;
-      background: #fff;
-      color: #333;
-    }
-    header {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%;
-      background: white;
-      padding: 15px 20px;
-      display: flex;
-      align-items: center;
-      justify-content: flex-start;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-      z-index: 10;
-    }
-    .menu-icon {
-      font-size: 24px;
-      cursor: pointer;
-    }
-    header h2 {
-      position: absolute;
-      left: 50%;
-      transform: translateX(-50%);
-      font-size: 20px;
-      font-weight: 600;
-    }
-    header h2 a {
-      text-decoration: none;
-      color: #333;
-    }
-    .cover {
-      margin-top: 70px;
-      width: 100%;
-      height: 320px;
-      background-image: url('nile-cover.jpeg');
-      background-size: cover;
-      background-position: center;
-    }
-    .main {
-      padding: 40px 20px;
-      text-align: center;
-    }
-    .main h1 {
-      font-size: 32px;
-      margin-bottom: 20px;
-    }
-    .main p {
-      max-width: 800px;
-      margin: 0 auto;
-      font-size: 16px;
-      color: #555;
-      line-height: 1.6;
-    }
-    .btn {
-      display: inline-block;
-      margin-top: 30px;
-      padding: 12px 25px;
-      background: #1cd760;
-      color: white;
-      border-radius: 30px;
-      text-decoration: none;
-      font-size: 16px;
-    }
-    .btn:hover {
-      background: #14b150;
-    }
-    footer {
-      text-align: center;
-      padding: 30px 20px;
-      color: #777;
-      font-size: 14px;
-      background: #fff;
-      margin-top: 40px;
-      box-shadow: 0 -1px 3px rgba(0, 0, 0, 0.05);
-    }
-    footer a {
-      color: #555;
-      text-decoration: none;
-      margin: 0 5px;
-    }
-    footer a:hover { text-decoration: underline; }
-    @media (max-width: 480px) {
-      .main h1 { font-size: 24px; }
-    }
-  </style>
+  <title>Nile Dinner Cruise in Cairo | Let's Discover Egypt</title>
+  <meta name="description" content="Enjoy a dinner cruise on the Nile with Egyptian food, traditional dances, and views of Cairo.">
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="favicon.ico" />
 </head>
 <body>
-
-  <header>
-    <div class="menu-icon" onclick="history.back()">←</div>
-    <h2><a href="index.html"><i class="fas fa-globe-africa"></i> Let's Discover Egypt</a></h2>
+  <header class="hero" style="background-image: url('nile-cover.jpeg');">
+    <div class="overlay">
+      <h1>Nile Dinner Cruise in Cairo</h1>
+    </div>
   </header>
 
-  <div class="cover"></div>
+  <main class="tour-details">
+    <section class="info">
+      <div class="detail-box">
+        <h2>Duration</h2>
+        <p>4 hours</p>
+      </div>
+      <div class="detail-box">
+        <h2>Includes</h2>
+        <p>Dinner, live music, Tanoura and belly dance shows, hotel pickup & drop-off</p>
+      </div>
+      <div class="detail-box">
+        <h2>Price</h2>
+        <p>From $55 per person</p>
+      </div>
+    </section>
 
-  <div class="main">
-    <h1>Evening Nile Dinner Cruise in Cairo</h1>
-    <p>
-      Experience an unforgettable evening sailing the Nile River in Cairo.
-      This magical dinner cruise includes a full Egyptian buffet dinner, traditional belly dancing shows, live music, and a relaxing atmosphere under the stars.
-      Perfect for couples, families, and groups, this tour includes private transportation to and from your hotel.
-    </p>
-    <a href="https://wa.me/201234567890" class="btn" target="_blank">Book via WhatsApp</a>
-  </div>
+    <section class="description">
+      <p>
+        Enjoy a combination of Egyptian food, traditional dances, a sailing trip and views to the illuminated city of Cairo on this Nile River dinner cruise.
+      </p>
+    </section>
+
+    <section class="itinerary">
+      <h2>ITINERARY</h2>
+      <p>
+        You will be picked up from your hotel by your private driver and representative and taken to the port on the Nile River (the longest river in the world and the main source of life for Egypt). Board the luxurious boat and enjoy a few hours of wonderful Egyptian food, mesmerizing belly dancers and whirling Dervish dancers (Tannoura), enchanting music, live band and the lovely breeze on the River Nile. Take pictures of the show and of the wonderful nightly view of the illuminated city of Cairo from the top-deck. Once the cruise is over you will be driven back to your hotel.
+      </p>
+    </section>
+
+    <section class="details">
+      <h2>Departure Point</h2>
+      <p>Traveler pickup is offered — Any Hotel or any place in Cairo</p>
+
+      <h2>Departure Time</h2>
+      <p>6:00 PM</p>
+
+      <h2>Duration</h2>
+      <p>4 hours</p>
+    </section>
+
+    <section class="reviews">
+      <h2>REVIEWS</h2>
+      <p>Coming soon...</p>
+    </section>
+
+    <div class="booking">
+      <a href="https://wa.me/201234567890" target="_blank" class="whatsapp-btn">
+        Book Now on WhatsApp
+      </a>
+    </div>
+  </main>
 
   <footer>
     <p>&copy; 2025 Let's Discover Egypt. All rights reserved.</p>
-    <p>
-      <a href="privacy.html">Privacy Policy</a> |
-      <a href="terms.html">Terms</a>
-    </p>
   </footer>
-
 </body>
 </html>
