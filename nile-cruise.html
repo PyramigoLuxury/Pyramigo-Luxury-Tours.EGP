@@ -3,186 +3,305 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Nile Cruise Dinner | Let's Discover Egypt</title>
-  <meta name="description" content="Enjoy a magical evening Nile cruise in Cairo with dinner, live music, and traditional performances.">
-  <link rel="stylesheet" href="styles.css" />
-  <link rel="icon" href="favicon.ico" type="image/x-icon" />
+  <title>Nile Dinner Cruise | Let's Discover Egypt</title>
+  <meta name="description" content="Evening Nile Cruise with dinner, music, and belly dancing in Cairo. A magical sailing night on the River Nile.">
+  <link rel="icon" href="favicon.png" type="image/png">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
   <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
-      margin: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      line-height: 1.6;
-      background-color: #f4f4f4;
-    }
-
-    header {
-      background-image: url('nile-cover.jpeg');
-      background-size: cover;
-      background-position: center;
-      height: 75vh;
-      color: white;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      padding: 0 20px;
-    }
-
-    header h1 {
-      font-size: 3em;
-      background: rgba(0, 0, 0, 0.6);
-      padding: 20px;
-      border-radius: 15px;
-    }
-
-    .container {
-      max-width: 1100px;
-      margin: auto;
-      padding: 40px 20px;
-      background-color: white;
-      border-radius: 12px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-      margin-top: -60px;
-      z-index: 2;
-      position: relative;
-    }
-
-    .section {
-      margin-bottom: 30px;
-    }
-
-    .section h2 {
-      color: #0a3d62;
-      margin-bottom: 10px;
-      font-size: 1.8em;
-    }
-
-    .section p, .section li {
-      font-size: 1.1em;
+      font-family: 'Poppins', sans-serif;
+      background: #fff;
       color: #333;
     }
 
-    .info-box {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 20px;
-      margin-top: 20px;
+    header {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%;
+      background: white;
+      padding: 15px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      z-index: 10;
     }
 
-    .info-item {
-      background-color: #f0f0f0;
-      padding: 20px;
-      border-radius: 10px;
-      text-align: center;
+    .menu-icon {
+      font-size: 24px;
+      cursor: pointer;
     }
 
-    .info-item h3 {
-      margin: 0 0 10px;
-      color: #2c3e50;
+    header h2 {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 20px;
+      font-weight: 600;
     }
 
-    .info-item p {
-      margin: 0;
-      font-weight: bold;
-    }
-
-    .cta-button {
-      display: inline-block;
-      margin-top: 30px;
-      background-color: #27ae60;
-      color: white;
-      padding: 15px 30px;
-      border-radius: 8px;
+    header h2 a {
       text-decoration: none;
-      font-size: 1.1em;
-      transition: background-color 0.3s ease;
+      color: #333;
     }
 
-    .cta-button:hover {
-      background-color: #219150;
+    .sidebar {
+      position: fixed;
+      top: 0; left: -250px;
+      width: 250px;
+      height: 100%;
+      background: #333;
+      color: white;
+      padding: 60px 20px;
+      transition: 0.3s ease;
+      z-index: 11;
+    }
+
+    .sidebar.active { left: 0; }
+
+    .sidebar a {
+      display: block;
+      color: white;
+      text-decoration: none;
+      padding: 15px 0;
+      border-bottom: 1px solid #444;
+    }
+
+    .sidebar a:hover { background: #444; padding-left: 10px; }
+
+    .overlay {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.3);
+      z-index: 10;
+    }
+
+    .overlay.active { display: block; }
+
+    .hero {
+      background: url('nile-cover.jpeg') center/cover no-repeat;
+      min-height: 60vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 60px 20px;
+      margin-top: 60px;
+      color: white;
+      background-blend-mode: multiply;
+      background-color: rgba(0,0,0,0.4);
+    }
+
+    .hero h1 {
+      font-size: 32px;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .hero p {
+      font-size: 18px;
+      font-weight: 400;
+    }
+
+    .section {
+      padding: 40px 20px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .section h2 {
+      font-size: 24px;
+      margin-bottom: 15px;
+      color: #111;
+    }
+
+    .info-cards {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      margin-bottom: 30px;
+    }
+
+    .card {
+      flex: 1 1 220px;
+      background: #f9f9f9;
+      padding: 20px;
+      border-radius: 12px;
+      text-align: center;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+
+    .card i {
+      font-size: 24px;
+      margin-bottom: 10px;
+      color: #1cd760;
+    }
+
+    .price-book {
+      text-align: center;
+      margin: 30px 0;
+    }
+
+    .price-book .price {
+      font-size: 22px;
+      font-weight: 600;
+      color: #1cd760;
+      margin-bottom: 10px;
+    }
+
+    .btn {
+      background: #1cd760;
+      color: white;
+      padding: 12px 25px;
+      border: none;
+      border-radius: 30px;
+      font-size: 16px;
+      text-decoration: none;
+      transition: 0.3s ease;
+    }
+
+    .btn:hover { background: #14b150; }
+
+    .details p {
+      line-height: 1.7;
+      margin-bottom: 15px;
+    }
+
+    .lists {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 30px;
+    }
+
+    .list-box {
+      flex: 1;
+      background: #f2f2f2;
+      padding: 20px;
+      border-radius: 12px;
+    }
+
+    .list-box ul {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .list-box ul li {
+      margin-bottom: 10px;
+      padding-left: 20px;
+      position: relative;
+    }
+
+    .list-box ul li:before {
+      content: "✔";
+      color: #1cd760;
+      position: absolute;
+      left: 0;
     }
 
     footer {
       text-align: center;
-      padding: 20px;
-      background-color: #0a3d62;
-      color: white;
+      padding: 30px 20px;
+      font-size: 14px;
+      color: #777;
+      background: #f9f9f9;
       margin-top: 40px;
     }
 
-    @media (max-width: 768px) {
-      header h1 {
-        font-size: 2em;
-      }
-
-      .info-box {
-        grid-template-columns: 1fr;
-      }
+    @media (max-width: 600px) {
+      .hero h1 { font-size: 24px; }
+      .card { flex: 1 1 100%; }
     }
   </style>
 </head>
+
 <body>
 
-  <header>
-    <h1>Evening Nile Cruise with Dinner in Cairo</h1>
-  </header>
+<div class="overlay" id="overlay" onclick="closeMenu()"></div>
 
-  <div class="container">
+<div class="sidebar" id="sidebar">
+  <a href="index.html"><i class="fas fa-home"></i> Home</a>
+  <a href="about.html"><i class="fas fa-info-circle"></i> About Us</a>
+  <a href="tours.html"><i class="fas fa-map-marked-alt"></i> Tours</a>
+  <a href="contact.html"><i class="fas fa-phone"></i> Contact</a>
+</div>
 
-    <div class="section">
-      <h2>Tour Overview</h2>
-      <p>Enjoy a magical evening on a Nile River cruise in Cairo with a delicious open buffet dinner, live music, belly dancing, and Tanoura show. Admire the city's skyline and relax on the calm waters of the Nile.</p>
-      <p>Enjoy a combination of Egyptian food, traditional dances, a sailing trip and views to the illuminated city of Cairo on this Nile River dinner cruise.</p>
-    </div>
+<header>
+  <div class="menu-icon" onclick="toggleMenu()">☰</div>
+  <h2><a href="index.html"><i class="fas fa-globe-africa"></i> Let's Discover Egypt</a></h2>
+</header>
 
-    <div class="info-box">
-      <div class="info-item">
-        <h3>Duration</h3>
-        <p>4 hours</p>
-      </div>
-      <div class="info-item">
-        <h3>Includes</h3>
-        <p>Dinner, hotel transfer, guide, entertainment</p>
-      </div>
-      <div class="info-item">
-        <h3>Price</h3>
-        <p>From $55 per person</p>
-      </div>
-    </div>
+<div class="hero">
+  <div>
+    <h1>NILE DINNER CRUISE IN CAIRO</h1>
+    <p>Enjoy food, music, and Cairo’s magical night view on the River Nile</p>
+  </div>
+</div>
 
-    <div class="section">
-      <h2>What’s Included</h2>
-      <ul>
-        <li>Pickup and drop-off at your hotel in Cairo or Giza</li>
-        <li>Open buffet dinner on a Nile Cruise</li>
-        <li>Live entertainment (belly dance & Tanoura show)</li>
-        <li>Air-conditioned private transfer</li>
-        <li>English-speaking tour guide</li>
-      </ul>
-    </div>
-
-    <div class="section">
-      <h2>Itinerary</h2>
-      <p>You will be picked up from your hotel by your private driver and representative and taken to the port on the Nile River (the longest river in the world and the main source of life for Egypt).</p>
-      <p>Board the luxurious boat and enjoy a few hours of wonderful Egyptian food, mesmerizing belly dancers and whirling Dervish dancers (Tannoura), enchanting music, live band and the lovely breeze on the River Nile.</p>
-      <p>Take pictures of the show and of the wonderful nightly view of the illuminated city of Cairo from the top-deck. Once the cruise is over you will be driven back to your hotel.</p>
-    </div>
-
-    <div class="section">
-      <h2>Departure & Duration</h2>
-      <ul>
-        <li><strong>Departure Point:</strong> Traveler pickup is offered from any hotel or location in Cairo</li>
-        <li><strong>Departure Time:</strong> 6:00 PM</li>
-        <li><strong>Duration:</strong> 4 hours</li>
-      </ul>
-    </div>
-
-    <a href="https://wa.me/201234567890" class="cta-button" target="_blank">Book Now on WhatsApp</a>
+<div class="section">
+  <div class="info-cards">
+    <div class="card"><i class="fas fa-dollar-sign"></i><p>From $55 per person</p></div>
+    <div class="card"><i class="fas fa-clock"></i><p>Duration: 4 hours</p></div>
+    <div class="card"><i class="fas fa-ship"></i><p>Nile River Cruise</p></div>
+    <div class="card"><i class="fas fa-calendar-check"></i><p>Available Daily</p></div>
   </div>
 
-  <footer>
-    &copy; 2025 Let's Discover Egypt. All rights reserved.
-  </footer>
+  <div class="price-book">
+    <div class="price">Only $55 – includes dinner, show, and hotel pickup</div>
+    <a href="https://wa.me/201234567890" class="btn" target="_blank">Book Now on WhatsApp</a>
+  </div>
+
+  <div class="details">
+    <h2>Tour Description</h2>
+    <p>Enjoy a combination of Egyptian food, traditional dances, a sailing trip and views to the illuminated city of Cairo on this Nile River dinner cruise.</p>
+    <p>You will be picked up from your hotel by your private driver and representative and taken to the port on the Nile River. Board the luxurious boat and enjoy a few hours of wonderful Egyptian food, mesmerizing belly dancers and whirling Dervish (Tanoura) show, enchanting music, live band and a lovely breeze.</p>
+    <p>Take pictures of the show and of Cairo's stunning skyline from the upper deck. After the cruise, you’ll be transferred back to your hotel.</p>
+  </div>
+
+  <div class="lists">
+    <div class="list-box">
+      <h3>What's Included</h3>
+      <ul>
+        <li>Hotel pickup and drop-off (Cairo or Giza)</li>
+        <li>Open buffet dinner on the Nile</li>
+        <li>Live belly dance & Tanoura show</li>
+        <li>Private air-conditioned vehicle</li>
+        <li>English-speaking guide</li>
+      </ul>
+    </div>
+
+    <div class="list-box">
+      <h3>Departure Details</h3>
+      <ul>
+        <li>Departure Point: Your hotel in Cairo or Giza</li>
+        <li>Departure Time: 6:00 PM</li>
+        <li>Duration: Around 4 hours</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<footer>
+  &copy; 2025 Let's Discover Egypt. All rights reserved.
+</footer>
+
+<script>
+  function toggleMenu() {
+    document.getElementById("sidebar").classList.toggle("active");
+    document.getElementById("overlay").classList.toggle("active");
+    document.body.style.overflow = document.getElementById("sidebar").classList.contains("active") ? "hidden" : "auto";
+  }
+
+  function closeMenu() {
+    document.getElementById("sidebar").classList.remove("active");
+    document.getElementById("overlay").classList.remove("active");
+    document.body.style.overflow = "auto";
+  }
+</script>
 
 </body>
 </html>
