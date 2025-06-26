@@ -2,206 +2,280 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Book Now | Let's Discover Egypt</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Book a Tour | Let's Discover Egypt</title>
+  <link rel="icon" href="favicon.png" type="image/png">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
-      margin: 0;
-      padding: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background: #f1f1f1;
+      font-family: 'Poppins', sans-serif;
+      background: #f9f9f9;
+      color: #333;
+    }
+    header {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%;
+      background: white;
+      padding: 15px 20px;
       display: flex;
       align-items: center;
-      justify-content: center;
-      min-height: 100vh;
+      justify-content: flex-start;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      z-index: 10;
     }
-
-    .booking-card {
-      background: #fff;
-      max-width: 600px;
-      width: 90%;
-      border-radius: 20px;
-      box-shadow: 0 0 30px rgba(0,0,0,0.1);
-      padding: 30px;
+    .menu-icon { font-size: 24px; cursor: pointer; }
+    header h2 {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 20px;
+      font-weight: 600;
     }
+    header h2 a { text-decoration: none; color: #333; }
 
-    .booking-card h2 {
-      text-align: center;
-      color: #1a73e8;
-      margin-bottom: 30px;
+    .sidebar {
+      position: fixed;
+      top: 0; left: -250px;
+      width: 250px; height: 100%;
+      background: #333;
+      color: white;
+      padding: 60px 20px;
+      transition: left 0.3s ease;
+      z-index: 11;
     }
-
-    .form-group {
-      margin-bottom: 20px;
-    }
-
-    .form-group label {
-      font-weight: bold;
-      margin-bottom: 6px;
+    .sidebar.active { left: 0; }
+    .sidebar a {
       display: block;
+      color: white;
+      text-decoration: none;
+      padding: 15px 0;
+      border-bottom: 1px solid #444;
+      font-size: 16px;
+    }
+    .sidebar a:hover {
+      background: #444;
+      padding-left: 10px;
+      transition: all 0.3s ease;
+    }
+    .overlay {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.3);
+      z-index: 10;
+    }
+    .overlay.active { display: block; }
+
+    .main {
+      margin-top: 100px;
+      padding: 40px 20px;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
     }
 
-    .form-group i {
-      margin-right: 8px;
-      color: #1a73e8;
-    }
-
-    select, input {
-      width: 100%;
-      padding: 12px;
-      border-radius: 10px;
-      border: 1px solid #ccc;
-      font-size: 15px;
-      margin-top: 5px;
-    }
-
-    #sub-people {
-      margin-top: 10px;
-    }
-
-    .price-box {
-      font-size: 18px;
-      font-weight: bold;
-      color: #1a73e8;
+    h1, h2 {
       text-align: center;
-      margin-top: 20px;
+      margin-bottom: 25px;
+    }
+
+    .price-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 40px;
+    }
+    .price-table th, .price-table td {
+      padding: 12px;
+      border: 1px solid #ccc;
+      text-align: left;
+    }
+    .price-table th {
+      background-color: #eee;
+    }
+
+    form {
+      background: #fff;
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      margin-top: 15px;
+    }
+
+    input, select, textarea, button {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 15px;
+      margin-top: 4px;
     }
 
     button {
-      background: #1a73e8;
-      color: white;
-      border: none;
-      padding: 14px;
-      border-radius: 12px;
-      width: 100%;
+      background-color: #1cd760;
+      color: #fff;
+      font-weight: bold;
       font-size: 16px;
-      margin-top: 25px;
+      margin-top: 20px;
       cursor: pointer;
-      transition: background 0.3s;
+      border: none;
     }
 
     button:hover {
-      background: #155bc2;
+      background-color: #14b150;
     }
 
-    @media (max-width: 500px) {
-      .booking-card {
-        padding: 20px;
-      }
+    #price-summary {
+      margin-top: 10px;
+      font-weight: bold;
+      color: #1cd760;
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px 20px;
+      font-size: 14px;
+      color: #777;
+      background: #fff;
+      margin-top: 60px;
+    }
+
+    @media (max-width: 480px) {
+      header h2 { font-size: 16px; }
     }
   </style>
 </head>
 <body>
-  <div class="booking-card">
-    <h2><i class="fa-solid fa-ticket"></i> Book Your Tour</h2>
 
-    <!-- عدد الأشخاص -->
-    <div class="form-group">
-      <label for="people"><i class="fa-solid fa-user-group"></i> Number of People</label>
-      <select id="people">
-        <option value="1">1 Person</option>
-        <option value="group-2-4">2–4 People</option>
-        <option value="group-5-10">5–10 People</option>
-      </select>
+<div class="overlay" id="overlay" onclick="closeMenu()"></div>
 
-      <div id="sub-people" class="form-group" style="display: none;">
-        <label for="subPeople">Select Exact Number:</label>
-        <select id="subPeople"></select>
-      </div>
-    </div>
+<div class="sidebar" id="sidebar">
+  <a href="index.html"><i class="fas fa-home"></i> Home</a>
+  <a href="about.html"><i class="fas fa-info-circle"></i> About Us</a>
+  <a href="tours.html"><i class="fas fa-map-marked-alt"></i> Tours</a>
+  <a href="contact.html"><i class="fas fa-phone"></i> Contact</a>
+</div>
 
-    <!-- السعر -->
-    <div class="price-box" id="price">Price: $50</div>
+<header>
+  <div class="menu-icon" onclick="toggleMenu()">☰</div>
+  <h2><a href="index.html"><i class="fas fa-globe-africa"></i> Let's Discover Egypt</a></h2>
+</header>
 
-    <!-- الدولة -->
-    <div class="form-group">
-      <label for="country"><i class="fa-solid fa-earth-africa"></i> Your Country</label>
-      <select id="country" style="width: 100%;"></select>
-    </div>
+<div class="main">
+  <h1>Book Your Tour</h1>
 
-    <!-- التاريخ -->
-    <div class="form-group">
-      <label for="date"><i class="fa-solid fa-calendar-days"></i> Select Date</label>
-      <input type="text" id="date" placeholder="Pick a date" />
-    </div>
+  <h2>Add Guest</h2>
+  <table class="price-table">
+    <tr><th>Group Size</th><th>Price per Person</th></tr>
+    <tr><td>1 Person</td><td>USD 65</td></tr>
+    <tr><td>2 – 4 Persons</td><td>USD 55</td></tr>
+    <tr><td>5 – 15 Persons</td><td>USD 35</td></tr>
+    <tr><td>Child</td><td>USD 25</td></tr>
+    <tr><td>Infant</td><td>FREE</td></tr>
+  </table>
 
-    <!-- الوقت -->
-    <div class="form-group">
-      <label for="time"><i class="fa-solid fa-clock"></i> Select Time</label>
-      <select id="time">
-        <option>8:00 AM</option>
-        <option>9:00 AM</option>
-        <option>10:00 AM</option>
-        <option>11:00 AM</option>
-        <option>12:00 PM</option>
-        <option>1:00 PM</option>
-        <option>2:00 PM</option>
-      </select>
-    </div>
+  <form>
+    <label for="name">Full Name</label>
+    <input type="text" id="name" name="name" required>
 
-    <button><i class="fa-solid fa-check"></i> Confirm Booking</button>
-  </div>
+    <label for="country">Country</label>
+    <input type="text" id="country" name="country" required>
 
-  <!-- Scripts -->
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-  <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-  <script>
-    const basePrice = 50;
-    const peopleSelect = document.getElementById('people');
-    const subPeople = document.getElementById('subPeople');
-    const subPeopleBox = document.getElementById('sub-people');
-    const priceDisplay = document.getElementById('price');
+    <label for="email">Email Address</label>
+    <input type="email" id="email" name="email">
 
-    peopleSelect.addEventListener('change', () => {
-      const value = peopleSelect.value;
-      if (value === 'group-2-4') {
-        showSubOptions(2, 4);
-      } else if (value === 'group-5-10') {
-        showSubOptions(5, 10);
-      } else {
-        subPeopleBox.style.display = 'none';
-        priceDisplay.textContent = `Price: $${basePrice}`;
-      }
-    });
+    <label for="phone">Phone / WhatsApp</label>
+    <input type="text" id="phone" name="phone" required>
 
-    subPeople.addEventListener('change', () => {
-      const count = parseInt(subPeople.value);
-      const price = basePrice * count;
-      priceDisplay.textContent = `Price: $${price}`;
-    });
+    <label for="tour">Select Tour</label>
+    <select id="tour" name="tour" required>
+      <option value="">-- Please Select --</option>
+      <option value="giza">VIP Giza Pyramids Tour</option>
+      <option value="nile">Nile Cruise Dinner Tour</option>
+      <option value="custom">Other (Please specify in notes)</option>
+    </select>
 
-    function showSubOptions(min, max) {
-      subPeople.innerHTML = '';
-      for (let i = min; i <= max; i++) {
-        subPeople.innerHTML += `<option value="${i}">${i} People</option>`;
-      }
-      subPeopleBox.style.display = 'block';
-      subPeople.dispatchEvent(new Event('change'));
+    <label for="people">Number of People</label>
+    <select id="people" name="people" required onchange="calculatePrice()">
+      <option value="">-- Select Number of People --</option>
+    </select>
+
+    <div id="price-summary"></div>
+
+    <label for="date">Tour Date</label>
+    <input type="date" id="date" name="date" required>
+
+    <label for="time">Tour Time</label>
+    <select id="time" name="time" required>
+      <option value="">-- Select Time --</option>
+      <option value="8am">8:00 AM</option>
+      <option value="9am">9:00 AM</option>
+      <option value="10am">10:00 AM</option>
+      <option value="11am">11:00 AM</option>
+      <option value="12pm">12:00 PM</option>
+      <option value="1pm">1:00 PM</option>
+      <option value="2pm">2:00 PM</option>
+    </select>
+
+    <label for="notes">Notes (Optional)</label>
+    <textarea id="notes" name="notes" rows="4"></textarea>
+
+    <button type="submit">Confirm Booking</button>
+  </form>
+</div>
+
+<footer>
+  &copy; 2025 Let's Discover Egypt. All rights reserved.
+</footer>
+
+<script>
+  function toggleMenu() {
+    const sidebar = document.getElementById("sidebar");
+    const overlay = document.getElementById("overlay");
+    sidebar.classList.toggle("active");
+    overlay.classList.toggle("active");
+    document.body.style.overflow = sidebar.classList.contains("active") ? "hidden" : "auto";
+  }
+
+  function closeMenu() {
+    document.getElementById("sidebar").classList.remove("active");
+    document.getElementById("overlay").classList.remove("active");
+    document.body.style.overflow = "auto";
+  }
+
+  // Populate people select
+  const peopleSelect = document.getElementById("people");
+  for (let i = 1; i <= 15; i++) {
+    const opt = document.createElement("option");
+    opt.value = i;
+    opt.textContent = `${i} ${i === 1 ? "Person" : "Persons"}`;
+    peopleSelect.appendChild(opt);
+  }
+
+  function calculatePrice() {
+    const num = parseInt(peopleSelect.value);
+    const priceBox = document.getElementById("price-summary");
+    if (!num) {
+      priceBox.textContent = "";
+      return;
     }
 
-    // الدول
-    const countries = [
-      "Egypt", "United States", "United Kingdom", "Germany", "France", "Italy",
-      "Spain", "Canada", "Australia", "India", "Brazil", "Japan", "China", "Russia",
-      "Netherlands", "UAE", "Saudi Arabia", "Qatar", "South Africa", "Argentina"
-    ];
-    countries.forEach(country => {
-      $('#country').append(new Option(country, country));
-    });
+    let unitPrice = 65;
+    if (num >= 2 && num <= 4) unitPrice = 55;
+    else if (num >= 5 && num <= 15) unitPrice = 35;
 
-    $('#country').select2({
-      placeholder: "Select your country"
-    });
+    const total = unitPrice * num;
+    priceBox.textContent = `Price for ${num}: ${num} x USD ${unitPrice} = USD ${total}`;
+  }
+</script>
 
-    flatpickr("#date", {
-      minDate: "today",
-      dateFormat: "Y-m-d"
-    });
-  </script>
 </body>
 </html>
