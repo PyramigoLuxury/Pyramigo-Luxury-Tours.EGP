@@ -39,7 +39,7 @@
     header h2 {
       position: absolute;
       left: 50%;
-      top: 50%;
+      top: 45%; /* رفع العنوان */
       transform: translate(-50%, -50%);
       font-size: 18px;
       font-weight: 600;
@@ -108,18 +108,10 @@
 
     h1 {
       font-size: 22px;
-      margin-bottom: 20px;
+      margin-bottom: 25px;
       text-align: center;
       font-weight: 600;
-      line-height: 1.6;
-    }
-
-    h1 small {
-      font-size: 16px;
-      font-weight: 400;
-      color: #666;
-      display: block;
-      margin-top: 8px;
+      line-height: 1.5;
     }
 
     .price-table {
@@ -228,10 +220,7 @@
   </header>
 
   <div class="main">
-    <h1>
-      Private Camel Ride Tour at the Pyramids of Giza
-      <small>ALL INCLUSIVE PRIVATE HALF-DAY TRIP TO GIZA PYRAMIDS WITH CAMEL RIDE</small>
-    </h1>
+    <h1>ALL INCLUSIVE PRIVATE HALF-DAY TRIP TO GIZA PYRAMIDS WITH CAMEL RIDE</h1>
 
     <table class="price-table">
       <thead>
@@ -271,6 +260,11 @@
           <td><button class="qty-btn" onclick="showOptions(this, [0,1,2])">0</button><div class="price-info"></div></td>
           <td>Infant</td>
           <td>FREE</td>
+        </tr>
+        <!-- ✅ Total Row -->
+        <tr>
+          <td colspan="2" style="text-align:right; font-weight: bold;">Total Amount</td>
+          <td id="total-amount" style="color: green; font-weight: bold;">USD 0</td>
         </tr>
       </tbody>
     </table>
@@ -359,8 +353,10 @@
           const td = btn.closest("td");
           const info = td.querySelector(".price-info");
           const priceText = td.parentElement.querySelector("td:nth-child(3)").innerText;
-          const price = parseInt(priceText.replace('USD','').trim());
+          const price = priceText.includes("FREE") ? 0 : parseInt(priceText.replace('USD','').trim());
           info.innerText = val > 0 && price ? `Total: USD ${price * val}` : '';
+
+          calculateTotal(); // Update total
         };
         popup.appendChild(option);
       });
@@ -370,6 +366,23 @@
       const rect = btn.getBoundingClientRect();
       popup.style.left = `${rect.left + window.scrollX}px`;
       popup.style.top = `${rect.bottom + window.scrollY + 2}px`;
+    }
+
+    function calculateTotal() {
+      let total = 0;
+      document.querySelectorAll(".price-table tbody tr").forEach(row => {
+        const btn = row.querySelector(".qty-btn");
+        const priceCell = row.querySelector("td:nth-child(3)");
+        if (!btn || !priceCell) return;
+
+        const qty = parseInt(btn.innerText.trim()) || 0;
+        const priceText = priceCell.innerText;
+        const price = priceText.includes("FREE") ? 0 : parseInt(priceText.replace("USD", "").trim());
+
+        total += qty * price;
+      });
+
+      document.getElementById("total-amount").innerText = `USD ${total}`;
     }
 
     document.addEventListener("click", e => {
