@@ -8,16 +8,82 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
       font-family: 'Poppins', sans-serif;
       background: #fff;
-      padding: 60px 20px;
       color: #333;
     }
 
+    header {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%;
+      background: white;
+      padding: 15px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      z-index: 10;
+    }
+
+    .menu-icon {
+      font-size: 24px;
+      cursor: pointer;
+    }
+
+    header h2 {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 20px;
+      font-weight: 600;
+    }
+
+    header h2 a {
+      text-decoration: none;
+      color: #333;
+    }
+
+    .sidebar {
+      position: fixed;
+      top: 0; left: -250px;
+      width: 250px;
+      height: 100%;
+      background: #333;
+      color: white;
+      padding: 60px 20px;
+      transition: 0.3s ease;
+      z-index: 11;
+    }
+
+    .sidebar.active { left: 0; }
+
+    .sidebar a {
+      display: block;
+      color: white;
+      text-decoration: none;
+      padding: 15px 0;
+      border-bottom: 1px solid #444;
+    }
+
+    .sidebar a:hover { background: #444; padding-left: 10px; }
+
+    .overlay {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.3);
+      z-index: 10;
+    }
+
+    .overlay.active { display: block; }
+
     .container {
       max-width: 500px;
-      margin: auto;
+      margin: 100px auto 40px;
       background: #f9f9f9;
       padding: 30px;
       border-radius: 12px;
@@ -62,54 +128,83 @@
 
     footer {
       text-align: center;
-      padding: 20px;
+      padding: 30px 20px;
       font-size: 14px;
       color: #777;
+      background: #f9f9f9;
+      margin-top: 40px;
     }
   </style>
 </head>
 <body>
 
-  <div class="container">
-    <h1>Book Your Tour</h1>
-    <form id="bookingForm" onsubmit="sendWhatsApp(); return false;">
-      <label for="name">Your Name</label>
-      <input type="text" id="name" required>
+<div class="overlay" id="overlay" onclick="closeMenu()"></div>
 
-      <label for="phone">Phone Number</label>
-      <input type="tel" id="phone" required>
+<div class="sidebar" id="sidebar">
+  <a href="index.html"><i class="fas fa-home"></i> Home</a>
+  <a href="about.html"><i class="fas fa-info-circle"></i> About Us</a>
+  <a href="tours.html"><i class="fas fa-map-marked-alt"></i> Tours</a>
+  <a href="contact.html"><i class="fas fa-phone"></i> Contact</a>
+  <a href="book.html"><i class="fas fa-calendar-check"></i> Book Now</a>
+</div>
 
-      <label for="tour">Select Tour</label>
-      <select id="tour" required>
-        <option value="" disabled selected>Select a tour</option>
-        <option value="VIP Giza Pyramids Tour">VIP Giza Pyramids Tour</option>
-        <option value="Nile Dinner Cruise">Nile Dinner Cruise</option>
-        <option value="Custom Tour Request">Custom Tour Request</option>
-      </select>
+<header>
+  <div class="menu-icon" onclick="toggleMenu()">☰</div>
+  <h2><a href="index.html"><i class="fas fa-globe-africa"></i> Let's Discover Egypt</a></h2>
+</header>
 
-      <label for="date">Preferred Date</label>
-      <input type="date" id="date" required>
+<div class="container">
+  <h1>Book Your Tour</h1>
+  <form id="bookingForm" onsubmit="sendWhatsApp(); return false;">
+    <label for="name">Your Name</label>
+    <input type="text" id="name" required>
 
-      <button type="submit" class="btn"><i class="fab fa-whatsapp"></i> Book on WhatsApp</button>
-    </form>
-  </div>
+    <label for="phone">Phone Number</label>
+    <input type="tel" id="phone" required>
 
-  <footer>
-    &copy; 2025 Let's Discover Egypt. All rights reserved.
-  </footer>
+    <label for="tour">Select Tour</label>
+    <select id="tour" required>
+      <option value="" disabled selected>Select a tour</option>
+      <option value="VIP Giza Pyramids Tour">VIP Giza Pyramids Tour</option>
+      <option value="Nile Dinner Cruise">Nile Dinner Cruise</option>
+      <option value="Custom Tour Request">Custom Tour Request</option>
+    </select>
 
-  <script>
-    function sendWhatsApp() {
-      const name = document.getElementById("name").value;
-      const phone = document.getElementById("phone").value;
-      const tour = document.getElementById("tour").value;
-      const date = document.getElementById("date").value;
+    <label for="date">Preferred Date</label>
+    <input type="date" id="date" required>
 
-      const message = `Hello, my name is ${name}. I'd like to book the "${tour}" tour on ${date}. My phone number is: ${phone}.`;
-      const whatsappLink = `https://wa.me/201234567890?text=${encodeURIComponent(message)}`;
-      window.open(whatsappLink, "_blank");
-    }
-  </script>
+    <button type="submit" class="btn"><i class="fab fa-whatsapp"></i> Book on WhatsApp</button>
+  </form>
+</div>
+
+<footer>
+  &copy; 2025 Let's Discover Egypt. All rights reserved.
+</footer>
+
+<script>
+  function toggleMenu() {
+    document.getElementById("sidebar").classList.toggle("active");
+    document.getElementById("overlay").classList.toggle("active");
+    document.body.style.overflow = document.getElementById("sidebar").classList.contains("active") ? "hidden" : "auto";
+  }
+
+  function closeMenu() {
+    document.getElementById("sidebar").classList.remove("active");
+    document.getElementById("overlay").classList.remove("active");
+    document.body.style.overflow = "auto";
+  }
+
+  function sendWhatsApp() {
+    const name = document.getElementById("name").value;
+    const phone = document.getElementById("phone").value;
+    const tour = document.getElementById("tour").value;
+    const date = document.getElementById("date").value;
+
+    const message = `Hello, my name is ${name}. I'd like to book the "${tour}" tour on ${date}. My phone number is: ${phone}.`;
+    const whatsappLink = `https://wa.me/201234567890?text=${encodeURIComponent(message)}`;
+    window.open(whatsappLink, "_blank");
+  }
+</script>
 
 </body>
-</html>
+      </html>
