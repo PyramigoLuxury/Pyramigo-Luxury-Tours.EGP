@@ -2,118 +2,155 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Book Your Tour | Let's Discover Egypt</title>
+  <title>Book Now | Let's Discover Egypt</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-  <link href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
   <style>
     body {
-      font-family: Arial, sans-serif;
-      background: #f9f9f9;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: #f1f1f1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+    }
+
+    .booking-card {
+      background: #fff;
+      max-width: 600px;
+      width: 90%;
+      border-radius: 20px;
+      box-shadow: 0 0 30px rgba(0,0,0,0.1);
       padding: 30px;
     }
-    .container {
-      max-width: 600px;
-      margin: auto;
-      background: white;
-      padding: 25px;
-      border-radius: 15px;
-      box-shadow: 0 0 15px rgba(0,0,0,0.1);
-    }
-    h2 {
+
+    .booking-card h2 {
       text-align: center;
+      color: #1a73e8;
+      margin-bottom: 30px;
+    }
+
+    .form-group {
       margin-bottom: 20px;
     }
-    label {
+
+    .form-group label {
       font-weight: bold;
+      margin-bottom: 6px;
       display: block;
-      margin-top: 15px;
-      margin-bottom: 5px;
     }
+
+    .form-group i {
+      margin-right: 8px;
+      color: #1a73e8;
+    }
+
     select, input {
       width: 100%;
-      padding: 10px;
-      margin-top: 3px;
-      border-radius: 8px;
+      padding: 12px;
+      border-radius: 10px;
       border: 1px solid #ccc;
+      font-size: 15px;
+      margin-top: 5px;
     }
+
+    #sub-people {
+      margin-top: 10px;
+    }
+
     .price-box {
-      margin-top: 15px;
       font-size: 18px;
       font-weight: bold;
       color: #1a73e8;
+      text-align: center;
+      margin-top: 20px;
     }
-    .hidden {
-      display: none;
-    }
+
     button {
-      margin-top: 25px;
-      width: 100%;
-      padding: 12px;
       background: #1a73e8;
       color: white;
       border: none;
-      border-radius: 10px;
+      padding: 14px;
+      border-radius: 12px;
+      width: 100%;
       font-size: 16px;
+      margin-top: 25px;
       cursor: pointer;
+      transition: background 0.3s;
     }
+
     button:hover {
-      background: #0d5bd3;
+      background: #155bc2;
+    }
+
+    @media (max-width: 500px) {
+      .booking-card {
+        padding: 20px;
+      }
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <h2>Book Your Tour</h2>
+  <div class="booking-card">
+    <h2><i class="fa-solid fa-ticket"></i> Book Your Tour</h2>
 
     <!-- عدد الأشخاص -->
-    <label for="people">Number of People:</label>
-    <select id="people">
-      <option value="1">1 Person</option>
-      <option value="group-2-4">2–4 People</option>
-      <option value="group-5-10">5–10 People</option>
-    </select>
+    <div class="form-group">
+      <label for="people"><i class="fa-solid fa-user-group"></i> Number of People</label>
+      <select id="people">
+        <option value="1">1 Person</option>
+        <option value="group-2-4">2–4 People</option>
+        <option value="group-5-10">5–10 People</option>
+      </select>
 
-    <!-- لو اختار مجموعة يظهر له اختيار دقيق -->
-    <div id="sub-people" class="hidden">
-      <label for="subPeople">Select Exact Number:</label>
-      <select id="subPeople"></select>
+      <div id="sub-people" class="form-group" style="display: none;">
+        <label for="subPeople">Select Exact Number:</label>
+        <select id="subPeople"></select>
+      </div>
     </div>
 
     <!-- السعر -->
     <div class="price-box" id="price">Price: $50</div>
 
-    <!-- اختيار الدولة -->
-    <label for="country">Country:</label>
-    <select id="country" style="width: 100%;">
-      <!-- هيتم تحميل الدول عبر JS -->
-    </select>
+    <!-- الدولة -->
+    <div class="form-group">
+      <label for="country"><i class="fa-solid fa-earth-africa"></i> Your Country</label>
+      <select id="country" style="width: 100%;"></select>
+    </div>
 
     <!-- التاريخ -->
-    <label for="date">Select Date:</label>
-    <input type="text" id="date" placeholder="Pick a date" />
+    <div class="form-group">
+      <label for="date"><i class="fa-solid fa-calendar-days"></i> Select Date</label>
+      <input type="text" id="date" placeholder="Pick a date" />
+    </div>
 
     <!-- الوقت -->
-    <label for="time">Select Time:</label>
-    <select id="time">
-      <option>8:00 AM</option>
-      <option>9:00 AM</option>
-      <option>10:00 AM</option>
-      <option>11:00 AM</option>
-      <option>12:00 PM</option>
-      <option>1:00 PM</option>
-      <option>2:00 PM</option>
-    </select>
+    <div class="form-group">
+      <label for="time"><i class="fa-solid fa-clock"></i> Select Time</label>
+      <select id="time">
+        <option>8:00 AM</option>
+        <option>9:00 AM</option>
+        <option>10:00 AM</option>
+        <option>11:00 AM</option>
+        <option>12:00 PM</option>
+        <option>1:00 PM</option>
+        <option>2:00 PM</option>
+      </select>
+    </div>
 
-    <button>Confirm Booking</button>
+    <button><i class="fa-solid fa-check"></i> Confirm Booking</button>
   </div>
 
   <!-- Scripts -->
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+  <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
   <script>
-    // سعر حسب العدد
     const basePrice = 50;
     const peopleSelect = document.getElementById('people');
     const subPeople = document.getElementById('subPeople');
@@ -127,7 +164,7 @@
       } else if (value === 'group-5-10') {
         showSubOptions(5, 10);
       } else {
-        subPeopleBox.classList.add('hidden');
+        subPeopleBox.style.display = 'none';
         priceDisplay.textContent = `Price: $${basePrice}`;
       }
     });
@@ -143,18 +180,16 @@
       for (let i = min; i <= max; i++) {
         subPeople.innerHTML += `<option value="${i}">${i} People</option>`;
       }
-      subPeopleBox.classList.remove('hidden');
+      subPeopleBox.style.display = 'block';
       subPeople.dispatchEvent(new Event('change'));
     }
 
-    // الدولة مع البحث
+    // الدول
     const countries = [
       "Egypt", "United States", "United Kingdom", "Germany", "France", "Italy",
       "Spain", "Canada", "Australia", "India", "Brazil", "Japan", "China", "Russia",
       "Netherlands", "UAE", "Saudi Arabia", "Qatar", "South Africa", "Argentina"
-      // تقدر تزود باقي الدول
     ];
-
     countries.forEach(country => {
       $('#country').append(new Option(country, country));
     });
@@ -163,7 +198,6 @@
       placeholder: "Select your country"
     });
 
-    // التقويم
     flatpickr("#date", {
       minDate: "today",
       dateFormat: "Y-m-d"
