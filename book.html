@@ -3,249 +3,329 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Book a Tour | Let's Discover Egypt</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <title>Book Now | Let's Discover Egypt</title>
+  <link rel="icon" href="favicon.png" type="image/png">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
-    body { background: #f9f9f9; display: flex; min-height: 100vh; }
-    .sidebar {
-      width: 240px;
-      background: #222;
-      color: white;
-      position: fixed;
-      top: 0; left: 0; bottom: 0;
-      padding-top: 60px;
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #ffffff;
+      overflow-x: hidden;
+      color: #333;
+      padding-bottom: 50px;
     }
-    .sidebar ul { list-style: none; padding: 0; }
-    .sidebar ul li { padding: 15px 20px; border-bottom: 1px solid #333; }
-    .sidebar ul li a { color: white; text-decoration: none; display: block; }
-    .sidebar ul li a:hover { background: #444; }
 
     header {
       position: fixed;
-      top: 0; left: 240px; right: 0;
-      height: 60px;
-      background: #fff;
+      top: 0; left: 0;
+      width: 100%;
+      background: white;
+      padding: 15px 20px;
       display: flex;
       align-items: center;
-      justify-content: center;
-      border-bottom: 1px solid #ddd;
-      z-index: 1000;
+      justify-content: flex-start;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      z-index: 10;
     }
-    header h1 {
-      font-size: 20px;
+
+    .menu-icon {
+      font-size: 24px;
+      cursor: pointer;
+      z-index: 12;
+    }
+
+    header h2 {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 18px;
       font-weight: 600;
-      color: #222;
+      white-space: nowrap;
+      display: flex;
+      align-items: center;
+      gap: 6px;
     }
-    .content {
-      margin-left: 240px;
-      padding: 80px 20px 40px;
+
+    header h2 i { font-size: 18px; }
+
+    .sidebar {
+      position: fixed;
+      top: 0; left: -250px;
+      width: 250px; height: 100%;
+      background: #333;
+      color: white;
+      padding: 60px 20px;
+      transition: left 0.3s ease;
+      z-index: 11;
+    }
+
+    .sidebar.active { left: 0; }
+
+    .sidebar a {
+      display: block;
+      color: white;
+      text-decoration: none;
+      padding: 15px 0;
+      border-bottom: 1px solid #444;
+      font-size: 16px;
+    }
+
+    .sidebar a i { margin-right: 8px; }
+
+    .sidebar a:hover {
+      background: #444;
+      padding-left: 10px;
+      transition: all 0.3s ease;
+    }
+
+    .overlay {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.3);
+      z-index: 10;
+    }
+
+    .overlay.active { display: block; }
+
+    .main {
+      padding: 100px 20px 40px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    h1 {
+      font-size: 28px;
+      margin-bottom: 25px;
+      text-align: center;
+      font-weight: 600;
+    }
+
+    .price-table {
       width: 100%;
-      max-width: 1000px;
+      border-collapse: collapse;
+      margin-bottom: 40px;
+    }
+
+    .price-table th, .price-table td {
+      border: 1px solid #ddd;
+      padding: 10px;
+      text-align: center;
+    }
+
+    .price-table th {
+      background-color: #f7f7f7;
+      font-weight: 600;
+    }
+
+    .qty-btn {
+      padding: 5px 10px;
+      background-color: #f2f2f2;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 14px;
+      cursor: pointer;
+    }
+
+    .select-popup {
+      position: absolute;
+      background: white;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      padding: 5px;
+      z-index: 1000;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    .select-popup button {
+      display: block;
+      width: 100%;
+      border: none;
+      background: none;
+      padding: 6px;
+      text-align: left;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    .select-popup button:hover {
+      background-color: #f2f2f2;
     }
 
     h2 {
       font-size: 22px;
-      margin-bottom: 20px;
-      color: #444;
+      margin: 30px 0 15px;
+      font-weight: 600;
     }
 
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-bottom: 20px;
-      background: white;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-    }
-    th, td {
-      padding: 12px;
-      border: 1px solid #ddd;
-      text-align: left;
-    }
-
-    .counter {
-      width: 60px;
+    .booking-form {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
     }
 
     .form-group {
-      margin-bottom: 15px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
     }
 
-    .form-group label {
-      display: block;
-      margin-bottom: 6px;
-      font-weight: 500;
-    }
-
-    .form-group input, .form-group select {
-      width: 100%;
-      padding: 10px;
+    .form-group input,
+    .form-group select {
+      flex: 1;
+      min-width: 180px;
+      padding: 10px 14px;
       border: 1px solid #ccc;
       border-radius: 6px;
-    }
-
-    .final-price {
-      font-weight: bold;
-      margin: 10px 0 20px;
-      font-size: 18px;
-    }
-
-    button {
-      background: #e91e63;
-      color: white;
-      padding: 12px 20px;
-      border: none;
-      border-radius: 6px;
-      font-size: 16px;
-      cursor: pointer;
-    }
-
-    button:hover {
-      background: #c2185b;
-    }
-
-    @media (max-width: 768px) {
-      .sidebar { width: 200px; }
-      header { left: 200px; }
-      .content { margin-left: 200px; }
+      font-size: 15px;
+      background: #fafafa;
     }
   </style>
 </head>
+
 <body>
 
-  <!-- Sidebar -->
-  <nav class="sidebar">
-    <ul>
-      <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
-      <li><a href="tours.html"><i class="fas fa-map"></i> Tours</a></li>
-      <li><a href="book.html"><i class="fas fa-calendar-check"></i> Book</a></li>
-      <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
-      <li><a href="privacy.html"><i class="fas fa-lock"></i> Privacy</a></li>
-    </ul>
-  </nav>
+  <div class="overlay" id="overlay" onclick="closeMenu()"></div>
 
-  <!-- Header -->
-  <header>
-    <h1>Let's Discover Egypt</h1>
-  </header>
-
-  <!-- Content -->
-  <div class="content">
-    <h2>ALL INCLUSIVE PRIVATE HALF-DAY TRIP TO GIZA PYRAMIDS WITH CAMEL RIDE</h2>
-
-    <!-- Price Table -->
-    <table>
-      <tr><th>Type</th><th>Price (USD)</th><th>People</th></tr>
-      <tr><td>Per Person</td><td>65</td><td><input type="number" value="0" min="0" class="counter" data-price="65"></td></tr>
-      <tr><td>2–4 pax</td><td>55</td><td><input type="number" value="0" min="0" class="counter" data-price="55"></td></tr>
-      <tr><td>5–8 pax</td><td>45</td><td><input type="number" value="0" min="0" class="counter" data-price="45"></td></tr>
-      <tr><td>9–15 pax</td><td>30</td><td><input type="number" value="0" min="0" class="counter" data-price="30"></td></tr>
-      <tr><td>Child</td><td>25</td><td><input type="number" value="0" min="0" class="counter" data-price="25"></td></tr>
-      <tr><td>Infant</td><td>Free</td><td><input type="number" value="0" min="0" class="counter" data-price="0"></td></tr>
-    </table>
-
-    <div class="final-price" id="finalPrice">Total: USD 0</div>
-
-    <!-- Booking Form -->
-    <div class="form-group"><label>First Name</label><input type="text" id="firstName"></div>
-    <div class="form-group"><label>Last Name</label><input type="text" id="lastName"></div>
-    <div class="form-group"><label>Email</label><input type="email" id="email"></div>
-
-    <div class="form-group">
-      <label>Phone Number</label>
-      <select id="countryCode">
-        <option value="+1">United States (+1)</option>
-        <option value="+20" selected>Egypt (+20)</option>
-        <option value="+44">UK (+44)</option>
-        <option value="+971">UAE (+971)</option>
-        <option value="+966">Saudi Arabia (+966)</option>
-      </select>
-      <input type="text" id="phone">
-    </div>
-
-    <div class="form-group"><label>WhatsApp Number</label><input type="text" id="whatsapp"></div>
-    <div class="form-group"><label>Gender</label>
-      <select id="gender">
-        <option value="">Select</option>
-        <option>Male</option>
-        <option>Female</option>
-      </select>
-    </div>
-    <div class="form-group"><label>Nationality</label><input type="text" id="nationality"></div>
-    <div class="form-group"><label>Pickup Location</label><input type="text" id="pickup"></div>
-    <div class="form-group"><label>Date</label><input type="date" id="date"></div>
-    <div class="form-group"><label>Preferred Time</label>
-      <select id="time">
-        <option>7:00 AM</option>
-        <option>8:00 AM</option>
-        <option>9:00 AM</option>
-        <option>10:00 AM</option>
-        <option>11:00 AM</option>
-        <option>12:00 PM</option>
-        <option>1:00 PM</option>
-        <option>2:00 PM</option>
-      </select>
-    </div>
-
-    <button onclick="bookNow()">Book Now on WhatsApp</button>
+  <div class="sidebar" id="sidebar">
+    <a href="index.html"><i class="fas fa-home"></i> Home</a>
+    <a href="about.html"><i class="fas fa-info-circle"></i> About Us</a>
+    <a href="tours.html"><i class="fas fa-map-marked-alt"></i> Tours</a>
+    <a href="contact.html"><i class="fas fa-phone"></i> Contact</a>
   </div>
 
-  <!-- JavaScript -->
+  <header>
+    <div class="menu-icon" onclick="toggleMenu()">☰</div>
+    <h2><a href="index.html"><i class="fas fa-globe-africa"></i> Let's Discover Egypt</a></h2>
+  </header>
+
+  <div class="main">
+    <h1>Book Your Tour</h1>
+
+    <!-- Price Table -->
+    <table class="price-table">
+      <thead>
+        <tr>
+          <th>Select</th>
+          <th>Category</th>
+          <th>Price</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td><button class="qty-btn" onclick="showOptions(this, [0,1])">0</button></td><td>Price per person</td><td>USD 65</td></tr>
+        <tr><td><button class="qty-btn" onclick="showOptions(this, [0,2,3,4])">0</button></td><td>2–4 persons</td><td>USD 55</td></tr>
+        <tr><td><button class="qty-btn" onclick="showOptions(this, [0,5,6,7,8])">0</button></td><td>5–8 persons</td><td>USD 45</td></tr>
+        <tr><td><button class="qty-btn" onclick="showOptions(this, [0,9,10,11,12,13,14,15])">0</button></td><td>9–15 persons</td><td>USD 30</td></tr>
+        <tr><td><button class="qty-btn" onclick="showOptions(this, [0,1,2,3,4])">0</button></td><td>Child</td><td>USD 25</td></tr>
+        <tr><td><button class="qty-btn" onclick="showOptions(this, [0,1,2])">0</button></td><td>Infant</td><td>FREE</td></tr>
+      </tbody>
+    </table>
+
+    <!-- Guest Info -->
+    <h2>Guest Details</h2>
+    <form class="booking-form">
+      <div class="form-group">
+        <input type="text" name="firstName" placeholder="First Name" required />
+        <input type="text" name="lastName" placeholder="Last Name" required />
+      </div>
+      <div class="form-group">
+        <input type="email" name="email" placeholder="Email" required />
+        <input type="tel" name="phone" placeholder="Phone Number" required />
+      </div>
+      <div class="form-group">
+        <input type="tel" name="whatsapp" placeholder="WhatsApp Number" required />
+        <input type="text" name="pickup" placeholder="Pickup Location (Hotel or Address)" required />
+      </div>
+      <div class="form-group">
+        <select name="gender" required>
+          <option value="" disabled selected>Gender</option>
+          <option value="male">Male</option>
+          <option value="female">Female</option>
+        </select>
+        <select name="nationality" required>
+          <option value="" disabled selected>Nationality</option>
+          <option value="Egyptian">Egyptian</option>
+          <option value="American">American</option>
+          <option value="British">British</option>
+          <option value="French">French</option>
+          <option value="German">German</option>
+          <option value="Italian">Italian</option>
+          <option value="Spanish">Spanish</option>
+          <option value="Chinese">Chinese</option>
+          <option value="Indian">Indian</option>
+          <option value="Other">Other</option>
+        </select>
+      </div>
+
+      <!-- Date & Time -->
+      <h2>Tour Date & Time</h2>
+      <div class="form-group">
+        <input type="date" name="tourDate" required />
+        <select name="tourTime" required>
+          <option value="" disabled selected>Select Time</option>
+          <option>7:00 AM</option>
+          <option>8:00 AM</option>
+          <option>9:00 AM</option>
+          <option>10:00 AM</option>
+          <option>11:00 AM</option>
+          <option>12:00 PM</option>
+          <option>1:00 PM</option>
+          <option>2:00 PM</option>
+        </select>
+      </div>
+    </form>
+  </div>
+
+  <!-- Scripts -->
   <script>
-    const counters = document.querySelectorAll('.counter');
-    const finalPrice = document.getElementById('finalPrice');
+    function toggleMenu() {
+      const sidebar = document.getElementById("sidebar");
+      const overlay = document.getElementById("overlay");
+      sidebar.classList.toggle("active");
+      overlay.classList.toggle("active");
+      document.body.style.overflow = sidebar.classList.contains("active") ? "hidden" : "auto";
+    }
 
-    function calculatePrice() {
-      let total = 0;
-      let breakdown = "";
-      counters.forEach(input => {
-        const qty = parseInt(input.value);
-        const price = parseFloat(input.dataset.price);
-        if (qty > 0) {
-          total += qty * price;
-          const label = input.closest('tr').children[0].innerText;
-          breakdown += `${label}: ${qty} x $${price} = $${qty * price}%0A`;
-        }
+    function closeMenu() {
+      document.getElementById("sidebar").classList.remove("active");
+      document.getElementById("overlay").classList.remove("active");
+      document.body.style.overflow = "auto";
+    }
+
+    function showOptions(btn, values) {
+      document.querySelectorAll(".select-popup").forEach(e => e.remove());
+
+      const popup = document.createElement("div");
+      popup.className = "select-popup";
+
+      values.forEach(val => {
+        const option = document.createElement("button");
+        option.innerText = val;
+        option.onclick = () => {
+          btn.innerText = val;
+          popup.remove();
+        };
+        popup.appendChild(option);
       });
-      finalPrice.innerText = `Total: USD ${total}`;
-      return { total, breakdown };
+
+      document.body.appendChild(popup);
+
+      const rect = btn.getBoundingClientRect();
+      popup.style.left = `${rect.left + window.scrollX}px`;
+      popup.style.top = `${rect.bottom + window.scrollY + 2}px`;
     }
 
-    counters.forEach(input => {
-      input.addEventListener('input', calculatePrice);
+    document.addEventListener("click", e => {
+      if (!e.target.classList.contains("qty-btn")) {
+        document.querySelectorAll(".select-popup").forEach(p => p.remove());
+      }
     });
-
-    function bookNow() {
-      const { total, breakdown } = calculatePrice();
-      const name = document.getElementById('firstName').value + ' ' + document.getElementById('lastName').value;
-      const email = document.getElementById('email').value;
-      const phone = document.getElementById('countryCode').value + ' ' + document.getElementById('phone').value;
-      const whatsapp = document.getElementById('whatsapp').value;
-      const gender = document.getElementById('gender').value;
-      const nationality = document.getElementById('nationality').value;
-      const pickup = document.getElementById('pickup').value;
-      const date = document.getElementById('date').value;
-      const time = document.getElementById('time').value;
-
-      const message = `*📍 Booking Request - Let's Discover Egypt*%0A%0A
-*🕌 Tour:* ALL INCLUSIVE PRIVATE HALF-DAY TRIP TO GIZA PYRAMIDS WITH CAMEL RIDE%0A%0A
-*👤 Name:* ${name}%0A
-*📧 Email:* ${email}%0A
-*📞 Phone:* ${phone}%0A
-*📱 WhatsApp:* ${whatsapp}%0A
-*🧍 Gender:* ${gender}%0A
-*🌍 Nationality:* ${nationality}%0A
-*📍 Pickup Location:* ${pickup}%0A
-*📅 Date:* ${date}%0A
-*⏰ Time:* ${time}%0A%0A
-*💰 Price Breakdown:*%0A${breakdown}%0A
-*💳 Total Price:* USD ${total}%0A%0A
-Please confirm the booking 🙏`;
-
-      window.open(`https://wa.me/201234567890?text=${message}`, '_blank');
-    }
   </script>
 
 </body>
-        </html>
+            </html>
