@@ -7,7 +7,7 @@
   <meta name="description" content="Book your VIP Egypt tour experience online. Choose your group, date, nationality and confirm instantly.">
   <link rel="icon" href="favicon.png" type="image/png">
 
-  <!-- Google Fonts -->
+  <!-- Fonts + Icons -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 
@@ -91,7 +91,7 @@
       margin: 100px auto 40px;
     }
 
-    h1, h2 { text-align: center; }
+    h1, h2 { text-align: center; margin-bottom: 20px; }
 
     .content-box {
       background: #fff;
@@ -101,37 +101,30 @@
       margin-bottom: 30px;
     }
 
-    ul { list-style: none; padding-left: 0; }
-
-    ul li {
-      margin-bottom: 10px;
-      font-size: 16px;
-    }
-
-    ul li i { color: #1cd760; margin-right: 8px; }
-
     table {
       width: 100%;
       border-collapse: collapse;
-      text-align: center;
-      margin-top: 20px;
+      margin-bottom: 30px;
     }
 
     table th, table td {
       padding: 12px;
       border-bottom: 1px solid #eee;
+      text-align: left;
     }
 
-    table thead { background-color: #1cd760; color: white; }
+    table thead {
+      background-color: #1cd760;
+      color: white;
+    }
 
     input, select {
       width: 100%;
-      padding: 12px;
-      margin-top: 10px;
-      margin-bottom: 20px;
+      padding: 10px;
       border-radius: 8px;
       border: 1px solid #ccc;
-      font-size: 16px;
+      font-size: 15px;
+      margin-bottom: 15px;
     }
 
     .phone-group {
@@ -148,11 +141,11 @@
     }
 
     .total {
-      font-size: 20px;
+      font-size: 18px;
       font-weight: bold;
       text-align: center;
       color: #1cd760;
-      margin-bottom: 20px;
+      margin: 20px 0;
     }
 
     .time-card {
@@ -162,6 +155,13 @@
       box-shadow: 0 2px 6px rgba(0,0,0,0.06);
       position: relative;
       margin-bottom: 15px;
+      cursor: pointer;
+    }
+
+    .time-card.selected {
+      background: #1cd760;
+      color: white;
+      font-weight: bold;
     }
 
     .time-card::after {
@@ -214,21 +214,11 @@
   <h2><a href="index.html"><i class="fas fa-globe-africa"></i> Let's Discover Egypt</a></h2>
 </header>
 
-<!-- Tour Details -->
+<!-- Main Booking Section -->
 <section class="content-box">
   <h1>ALL INCLUSIVE PRIVATE HALF-DAY TRIP TO GIZA PYRAMIDS WITH CAMEL RIDE</h1>
-  <p style="text-align: center; color: #555; margin: 10px 0 20px;">Explore the ancient wonders of Egypt in style</p>
-  <ul>
-    <li><i class="fas fa-check-circle"></i> Private guide & Egyptologist</li>
-    <li><i class="fas fa-check-circle"></i> Visit Pyramids, Sphinx & Camel Ride</li>
-    <li><i class="fas fa-check-circle"></i> 5-star lunch included</li>
-    <li><i class="fas fa-check-circle"></i> Air-conditioned private transport</li>
-    <li><i class="fas fa-check-circle"></i> Hotel pickup & drop-off</li>
-  </ul>
-</section>
 
-<!-- Pricing Table -->
-<section class="content-box">
+  <!-- Pricing Table -->
   <h2>Tour Pricing</h2>
   <table>
     <thead>
@@ -246,58 +236,57 @@
       <tr><td>Infant (Under 5)</td><td>FREE</td></tr>
     </tbody>
   </table>
-</section>
 
-<!-- Date & Time -->
-<section class="content-box">
-  <h2>Select Your Date</h2>
-  <input type="date" id="tourDate" onchange="showTimes()" />
-  <div id="selectedDate" style="display: none; margin-top: 20px; text-align: center; font-weight: bold;"></div>
-  <div id="timeSlots" style="display: none; margin-top: 20px;">
-    <p style="text-align: center;">Select departure time below</p>
+  <!-- Booking Form -->
+  <h2>Complete Your Booking</h2>
+  <table>
+    <tbody>
+      <tr><td>Adults:</td><td><input type="number" id="adults" value="1" min="0" /></td></tr>
+      <tr><td>Children (5–11 yrs):</td><td><input type="number" id="children" value="0" min="0" /></td></tr>
+      <tr><td>Infants (Under 5):</td><td><input type="number" id="infants" value="0" min="0" /></td></tr>
+      <tr><td colspan="2" class="total">Total Price: <span id="totalPrice">$65</span></td></tr>
+      <tr>
+        <td>Nationality:</td>
+        <td>
+          <select id="nationality">
+            <option value="">-- Select --</option>
+            <option>Egyptian</option>
+            <option>American</option>
+            <option>British</option>
+            <option>German</option>
+            <option>French</option>
+            <option>Indian</option>
+            <option>Saudi</option>
+            <option>Chinese</option>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <td>Phone Number:</td>
+        <td>
+          <div class="phone-group">
+            <select>
+              <option value="+20">🇪🇬 +20</option>
+              <option value="+1">🇺🇸 +1</option>
+              <option value="+44">🇬🇧 +44</option>
+              <option value="+49">🇩🇪 +49</option>
+              <option value="+966">🇸🇦 +966</option>
+            </select>
+            <input type="tel" placeholder="Your phone number" />
+          </div>
+        </td>
+      </tr>
+      <tr><td>Select Date:</td><td><input type="date" id="tourDate" onchange="showTimes()" /></td></tr>
+    </tbody>
+  </table>
+
+  <div id="selectedDate" style="display:none; text-align:center; margin:20px 0; font-weight:bold;"></div>
+
+  <div id="timeSlots" style="display:none;">
+    <p style="text-align:center;">Select departure time below:</p>
     <div class="time-card">6:00 PM<br><small>Places remaining</small></div>
     <div class="time-card">7:00 PM<br><small>Places remaining</small></div>
     <div class="time-card">8:00 PM<br><small>Places remaining</small></div>
-  </div>
-</section>
-
-<!-- Booking Form -->
-<section class="content-box">
-  <h2>Complete Your Booking</h2>
-  <label>Adults:</label>
-  <input type="number" id="adults" value="1" min="0" />
-
-  <label>Children (5–11 yrs):</label>
-  <input type="number" id="children" value="0" min="0" />
-
-  <label>Infants (Under 5):</label>
-  <input type="number" id="infants" value="0" min="0" />
-
-  <div class="total">Total Price: <span id="totalPrice">$65</span></div>
-
-  <label>Select Nationality:</label>
-  <select id="nationality">
-    <option value="">-- Select --</option>
-    <option>Egyptian</option>
-    <option>American</option>
-    <option>British</option>
-    <option>German</option>
-    <option>French</option>
-    <option>Indian</option>
-    <option>Saudi</option>
-    <option>Chinese</option>
-  </select>
-
-  <label>Phone Number:</label>
-  <div class="phone-group">
-    <select>
-      <option value="+20">🇪🇬 +20</option>
-      <option value="+1">🇺🇸 +1</option>
-      <option value="+44">🇬🇧 +44</option>
-      <option value="+49">🇩🇪 +49</option>
-      <option value="+966">🇸🇦 +966</option>
-    </select>
-    <input type="tel" placeholder="Your phone number" />
   </div>
 </section>
 
@@ -321,18 +310,6 @@
     document.body.style.overflow = "auto";
   }
 
-  function showTimes() {
-    const dateInput = document.getElementById('tourDate');
-    const selectedDateDiv = document.getElementById('selectedDate');
-    const timeSlots = document.getElementById('timeSlots');
-    if (dateInput.value) {
-      const selectedDate = new Date(dateInput.value);
-      selectedDateDiv.innerText = selectedDate.toDateString();
-      selectedDateDiv.style.display = 'block';
-      timeSlots.style.display = 'block';
-    }
-  }
-
   function calculateTotal() {
     const adults = parseInt(document.getElementById("adults").value) || 0;
     const children = parseInt(document.getElementById("children").value) || 0;
@@ -345,6 +322,18 @@
 
     const total = (pricePerAdult * adults) + (children * 20);
     document.getElementById("totalPrice").innerText = `$${total}`;
+  }
+
+  function showTimes() {
+    const dateInput = document.getElementById('tourDate');
+    const selectedDateDiv = document.getElementById('selectedDate');
+    const timeSlots = document.getElementById('timeSlots');
+    if (dateInput.value) {
+      const selectedDate = new Date(dateInput.value);
+      selectedDateDiv.innerText = selectedDate.toDateString();
+      selectedDateDiv.style.display = 'block';
+      timeSlots.style.display = 'block';
+    }
   }
 
   document.getElementById("adults").addEventListener("input", calculateTotal);
