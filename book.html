@@ -25,7 +25,6 @@
       padding: 15px 20px;
       display: flex;
       align-items: center;
-      justify-content: flex-start;
       box-shadow: 0 2px 5px rgba(0,0,0,0.1);
       z-index: 10;
     }
@@ -37,16 +36,15 @@
     }
 
     header h2 {
-      position: absolute;
-      left: 50%;
-      top: 45%; /* رفع العنوان */
-      transform: translate(-50%, -50%);
+      margin-left: auto;
+      margin-right: auto;
       font-size: 18px;
       font-weight: 600;
       white-space: nowrap;
       display: flex;
       align-items: center;
       gap: 6px;
+      position: relative;
     }
 
     header h2 a {
@@ -261,7 +259,6 @@
           <td>Infant</td>
           <td>FREE</td>
         </tr>
-        <!-- ✅ Total Row -->
         <tr>
           <td colspan="2" style="text-align:right; font-weight: bold;">Total Amount</td>
           <td id="total-amount" style="color: green; font-weight: bold;">USD 0</td>
@@ -322,7 +319,6 @@
     </form>
   </div>
 
-  <!-- Scripts -->
   <script>
     function toggleMenu() {
       const sidebar = document.getElementById("sidebar");
@@ -355,8 +351,7 @@
           const priceText = td.parentElement.querySelector("td:nth-child(3)").innerText;
           const price = priceText.includes("FREE") ? 0 : parseInt(priceText.replace('USD','').trim());
           info.innerText = val > 0 && price ? `Total: USD ${price * val}` : '';
-
-          calculateTotal(); // Update total
+          calculateTotal();
         };
         popup.appendChild(option);
       });
