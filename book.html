@@ -7,7 +7,6 @@
   <link rel="icon" href="favicon.png" type="image/png">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
@@ -50,7 +49,15 @@
       gap: 6px;
     }
 
-    header h2 i { font-size: 18px; }
+    header h2 a {
+      text-decoration: none;
+      color: #000;
+    }
+
+    header h2 i {
+      font-size: 18px;
+      color: #000;
+    }
 
     .sidebar {
       position: fixed;
@@ -100,10 +107,19 @@
     }
 
     h1 {
-      font-size: 28px;
-      margin-bottom: 25px;
+      font-size: 22px;
+      margin-bottom: 20px;
       text-align: center;
       font-weight: 600;
+      line-height: 1.6;
+    }
+
+    h1 small {
+      font-size: 16px;
+      font-weight: 400;
+      color: #666;
+      display: block;
+      margin-top: 8px;
     }
 
     .price-table {
@@ -130,6 +146,13 @@
       border-radius: 4px;
       font-size: 14px;
       cursor: pointer;
+    }
+
+    .price-info {
+      font-size: 13px;
+      color: #007b00;
+      margin-top: 5px;
+      font-weight: 500;
     }
 
     .select-popup {
@@ -205,9 +228,11 @@
   </header>
 
   <div class="main">
-    <h1>Book Your Tour</h1>
+    <h1>
+      Private Camel Ride Tour at the Pyramids of Giza
+      <small>ALL INCLUSIVE PRIVATE HALF-DAY TRIP TO GIZA PYRAMIDS WITH CAMEL RIDE</small>
+    </h1>
 
-    <!-- Price Table -->
     <table class="price-table">
       <thead>
         <tr>
@@ -217,16 +242,39 @@
         </tr>
       </thead>
       <tbody>
-        <tr><td><button class="qty-btn" onclick="showOptions(this, [0,1])">0</button></td><td>Price per person</td><td>USD 65</td></tr>
-        <tr><td><button class="qty-btn" onclick="showOptions(this, [0,2,3,4])">0</button></td><td>2–4 persons</td><td>USD 55</td></tr>
-        <tr><td><button class="qty-btn" onclick="showOptions(this, [0,5,6,7,8])">0</button></td><td>5–8 persons</td><td>USD 45</td></tr>
-        <tr><td><button class="qty-btn" onclick="showOptions(this, [0,9,10,11,12,13,14,15])">0</button></td><td>9–15 persons</td><td>USD 30</td></tr>
-        <tr><td><button class="qty-btn" onclick="showOptions(this, [0,1,2,3,4])">0</button></td><td>Child</td><td>USD 25</td></tr>
-        <tr><td><button class="qty-btn" onclick="showOptions(this, [0,1,2])">0</button></td><td>Infant</td><td>FREE</td></tr>
+        <tr>
+          <td><button class="qty-btn" onclick="showOptions(this, [0,1])">0</button><div class="price-info"></div></td>
+          <td>Price per person</td>
+          <td>USD 65</td>
+        </tr>
+        <tr>
+          <td><button class="qty-btn" onclick="showOptions(this, [0,2,3,4])">0</button><div class="price-info"></div></td>
+          <td>2–4 persons</td>
+          <td>USD 55</td>
+        </tr>
+        <tr>
+          <td><button class="qty-btn" onclick="showOptions(this, [0,5,6,7,8])">0</button><div class="price-info"></div></td>
+          <td>5–8 persons</td>
+          <td>USD 45</td>
+        </tr>
+        <tr>
+          <td><button class="qty-btn" onclick="showOptions(this, [0,9,10,11,12,13,14,15])">0</button><div class="price-info"></div></td>
+          <td>9–15 persons</td>
+          <td>USD 30</td>
+        </tr>
+        <tr>
+          <td><button class="qty-btn" onclick="showOptions(this, [0,1,2,3,4])">0</button><div class="price-info"></div></td>
+          <td>Child</td>
+          <td>USD 25</td>
+        </tr>
+        <tr>
+          <td><button class="qty-btn" onclick="showOptions(this, [0,1,2])">0</button><div class="price-info"></div></td>
+          <td>Infant</td>
+          <td>FREE</td>
+        </tr>
       </tbody>
     </table>
 
-    <!-- Guest Info -->
     <h2>Guest Details</h2>
     <form class="booking-form">
       <div class="form-group">
@@ -262,7 +310,6 @@
         </select>
       </div>
 
-      <!-- Date & Time -->
       <h2>Tour Date & Time</h2>
       <div class="form-group">
         <input type="date" name="tourDate" required />
@@ -309,6 +356,11 @@
         option.onclick = () => {
           btn.innerText = val;
           popup.remove();
+          const td = btn.closest("td");
+          const info = td.querySelector(".price-info");
+          const priceText = td.parentElement.querySelector("td:nth-child(3)").innerText;
+          const price = parseInt(priceText.replace('USD','').trim());
+          info.innerText = val > 0 && price ? `Total: USD ${price * val}` : '';
         };
         popup.appendChild(option);
       });
@@ -328,4 +380,4 @@
   </script>
 
 </body>
-            </html>
+</html>
