@@ -26,10 +26,7 @@
       box-shadow: 0 2px 5px rgba(0,0,0,0.1);
       z-index: 10;
     }
-    .menu-icon {
-      font-size: 24px;
-      cursor: pointer;
-    }
+    .menu-icon { font-size: 24px; cursor: pointer; }
     header h2 {
       position: absolute;
       left: 50%;
@@ -37,10 +34,42 @@
       font-size: 20px;
       font-weight: 600;
     }
-    header h2 a {
-      text-decoration: none;
-      color: #333;
+    header h2 a { text-decoration: none; color: #333; }
+
+    .sidebar {
+      position: fixed;
+      top: 0; left: -250px;
+      width: 250px; height: 100%;
+      background: #333;
+      color: white;
+      padding: 60px 20px;
+      transition: left 0.3s ease;
+      z-index: 11;
     }
+    .sidebar.active { left: 0; }
+    .sidebar a {
+      display: block;
+      color: white;
+      text-decoration: none;
+      padding: 15px 0;
+      border-bottom: 1px solid #444;
+      font-size: 16px;
+    }
+    .sidebar a:hover {
+      background: #444;
+      padding-left: 10px;
+      transition: all 0.3s ease;
+    }
+    .overlay {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.3);
+      z-index: 10;
+    }
+    .overlay.active { display: block; }
+
     .main {
       margin-top: 100px;
       padding: 40px 20px;
@@ -48,21 +77,39 @@
       margin-left: auto;
       margin-right: auto;
     }
+
     h1, h2 {
       text-align: center;
       margin-bottom: 25px;
     }
+
+    .price-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 40px;
+    }
+    .price-table th, .price-table td {
+      padding: 12px;
+      border: 1px solid #ccc;
+      text-align: left;
+    }
+    .price-table th {
+      background-color: #eee;
+    }
+
     form {
       background: #fff;
       padding: 25px;
       border-radius: 12px;
       box-shadow: 0 2px 8px rgba(0,0,0,0.08);
     }
+
     label {
       display: block;
       margin-bottom: 8px;
       margin-top: 15px;
     }
+
     input, select, textarea, button {
       width: 100%;
       padding: 10px;
@@ -71,6 +118,7 @@
       font-size: 15px;
       margin-top: 4px;
     }
+
     button {
       background-color: #1cd760;
       color: #fff;
@@ -80,17 +128,17 @@
       cursor: pointer;
       border: none;
     }
+
     button:hover {
       background-color: #14b150;
     }
-    .phone-group {
-      display: flex;
-      gap: 10px;
+
+    #price-summary {
+      margin-top: 10px;
+      font-weight: bold;
+      color: #1cd760;
     }
-    .phone-group select {
-      max-width: 130px;
-      flex-shrink: 0;
-    }
+
     footer {
       text-align: center;
       padding: 30px 20px;
@@ -99,70 +147,83 @@
       background: #fff;
       margin-top: 60px;
     }
+
+    @media (max-width: 480px) {
+      header h2 { font-size: 16px; }
+    }
   </style>
 </head>
 <body>
 
+<div class="overlay" id="overlay" onclick="closeMenu()"></div>
+
+<div class="sidebar" id="sidebar">
+  <a href="index.html"><i class="fas fa-home"></i> Home</a>
+  <a href="about.html"><i class="fas fa-info-circle"></i> About Us</a>
+  <a href="tours.html"><i class="fas fa-map-marked-alt"></i> Tours</a>
+  <a href="contact.html"><i class="fas fa-phone"></i> Contact</a>
+</div>
+
 <header>
-  <div class="menu-icon">☰</div>
+  <div class="menu-icon" onclick="toggleMenu()">☰</div>
   <h2><a href="index.html"><i class="fas fa-globe-africa"></i> Let's Discover Egypt</a></h2>
 </header>
 
 <div class="main">
   <h1>Book Your Tour</h1>
 
+  <h2>Add Guest</h2>
+  <table class="price-table">
+    <tr><th>Group Size</th><th>Price per Person</th></tr>
+    <tr><td>1 Person</td><td>USD 65</td></tr>
+    <tr><td>2 – 4 Persons</td><td>USD 55</td></tr>
+    <tr><td>5 – 15 Persons</td><td>USD 35</td></tr>
+    <tr><td>Child</td><td>USD 25</td></tr>
+    <tr><td>Infant</td><td>FREE</td></tr>
+  </table>
+
   <form>
     <label for="name">Full Name</label>
     <input type="text" id="name" name="name" required>
 
+    <label for="country">Country</label>
+    <input type="text" id="country" name="country" required>
+
     <label for="email">Email Address</label>
     <input type="email" id="email" name="email">
 
-    <label for="country">Country</label>
-    <select id="country" name="country" required onchange="updateCountryCode()">
-      <option value="">-- Select Your Country --</option>
-      <option value="EG">Egypt</option>
-      <option value="SA">Saudi Arabia</option>
-      <option value="AE">UAE</option>
-      <option value="US">USA</option>
-      <option value="GB">UK</option>
-      <option value="FR">France</option>
-      <option value="DE">Germany</option>
-      <option value="IT">Italy</option>
-      <option value="IN">India</option>
-      <option value="OTHER">Other</option>
-    </select>
-
-    <label>Phone / WhatsApp</label>
-    <div class="phone-group">
-      <select id="countryCode" name="countryCode" required>
-        <option value="+20">+20</option>
-      </select>
-      <input type="text" id="phone" name="phone" placeholder="Enter your number" required>
-    </div>
+    <label for="phone">Phone / WhatsApp</label>
+    <input type="text" id="phone" name="phone" required>
 
     <label for="tour">Select Tour</label>
     <select id="tour" name="tour" required>
       <option value="">-- Please Select --</option>
       <option value="giza">VIP Giza Pyramids Tour</option>
       <option value="nile">Nile Cruise Dinner Tour</option>
-      <option value="custom">Other (Specify in Notes)</option>
+      <option value="custom">Other (Please specify in notes)</option>
     </select>
 
     <label for="people">Number of People</label>
-    <select id="people" name="people" required>
-      <option value="">-- Select --</option>
-      <option value="1">1 Person - $65</option>
-      <option value="2">2 Persons - $55 each</option>
-      <option value="3">3 Persons - $55 each</option>
-      <option value="4">4 Persons - $55 each</option>
-      <option value="5">5+ Persons - $35 each</option>
-      <option value="child">Child - $25</option>
-      <option value="infant">Infant - FREE</option>
+    <select id="people" name="people" required onchange="calculatePrice()">
+      <option value="">-- Select Number of People --</option>
     </select>
+
+    <div id="price-summary"></div>
 
     <label for="date">Tour Date</label>
     <input type="date" id="date" name="date" required>
+
+    <label for="time">Tour Time</label>
+    <select id="time" name="time" required>
+      <option value="">-- Select Time --</option>
+      <option value="8am">8:00 AM</option>
+      <option value="9am">9:00 AM</option>
+      <option value="10am">10:00 AM</option>
+      <option value="11am">11:00 AM</option>
+      <option value="12pm">12:00 PM</option>
+      <option value="1pm">1:00 PM</option>
+      <option value="2pm">2:00 PM</option>
+    </select>
 
     <label for="notes">Notes (Optional)</label>
     <textarea id="notes" name="notes" rows="4"></textarea>
@@ -176,29 +237,43 @@
 </footer>
 
 <script>
-  const countryCodes = {
-    "EG": "+20",
-    "SA": "+966",
-    "AE": "+971",
-    "US": "+1",
-    "GB": "+44",
-    "FR": "+33",
-    "DE": "+49",
-    "IT": "+39",
-    "IN": "+91",
-    "OTHER": "+"
-  };
+  function toggleMenu() {
+    const sidebar = document.getElementById("sidebar");
+    const overlay = document.getElementById("overlay");
+    sidebar.classList.toggle("active");
+    overlay.classList.toggle("active");
+    document.body.style.overflow = sidebar.classList.contains("active") ? "hidden" : "auto";
+  }
 
-  function updateCountryCode() {
-    const countrySelect = document.getElementById("country");
-    const codeSelect = document.getElementById("countryCode");
-    const selected = countrySelect.value;
+  function closeMenu() {
+    document.getElementById("sidebar").classList.remove("active");
+    document.getElementById("overlay").classList.remove("active");
+    document.body.style.overflow = "auto";
+  }
 
-    codeSelect.innerHTML = "";
-    const option = document.createElement("option");
-    option.value = countryCodes[selected] || "+";
-    option.textContent = countryCodes[selected] || "+";
-    codeSelect.appendChild(option);
+  // Populate people select
+  const peopleSelect = document.getElementById("people");
+  for (let i = 1; i <= 15; i++) {
+    const opt = document.createElement("option");
+    opt.value = i;
+    opt.textContent = `${i} ${i === 1 ? "Person" : "Persons"}`;
+    peopleSelect.appendChild(opt);
+  }
+
+  function calculatePrice() {
+    const num = parseInt(peopleSelect.value);
+    const priceBox = document.getElementById("price-summary");
+    if (!num) {
+      priceBox.textContent = "";
+      return;
+    }
+
+    let unitPrice = 65;
+    if (num >= 2 && num <= 4) unitPrice = 55;
+    else if (num >= 5 && num <= 15) unitPrice = 35;
+
+    const total = unitPrice * num;
+    priceBox.textContent = `Price for ${num}: ${num} x USD ${unitPrice} = USD ${total}`;
   }
 </script>
 
