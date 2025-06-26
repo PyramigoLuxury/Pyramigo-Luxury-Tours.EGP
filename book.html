@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Book Now | Let's Discover Egypt</title>
+  <link rel="icon" href="favicon.png" type="image/png">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #fff;
+      padding: 60px 20px;
+      color: #333;
+    }
+
+    .container {
+      max-width: 500px;
+      margin: auto;
+      background: #f9f9f9;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.05);
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: 600;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 12px;
+      margin-top: 8px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+    }
+
+    .btn {
+      margin-top: 25px;
+      width: 100%;
+      padding: 14px;
+      background: #1cd760;
+      border: none;
+      border-radius: 30px;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+      text-align: center;
+    }
+
+    .btn:hover {
+      background: #14b150;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      font-size: 14px;
+      color: #777;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>Book Your Tour</h1>
+    <form id="bookingForm" onsubmit="sendWhatsApp(); return false;">
+      <label for="name">Your Name</label>
+      <input type="text" id="name" required>
+
+      <label for="phone">Phone Number</label>
+      <input type="tel" id="phone" required>
+
+      <label for="tour">Select Tour</label>
+      <select id="tour" required>
+        <option value="" disabled selected>Select a tour</option>
+        <option value="VIP Giza Pyramids Tour">VIP Giza Pyramids Tour</option>
+        <option value="Nile Dinner Cruise">Nile Dinner Cruise</option>
+        <option value="Custom Tour Request">Custom Tour Request</option>
+      </select>
+
+      <label for="date">Preferred Date</label>
+      <input type="date" id="date" required>
+
+      <button type="submit" class="btn"><i class="fab fa-whatsapp"></i> Book on WhatsApp</button>
+    </form>
+  </div>
+
+  <footer>
+    &copy; 2025 Let's Discover Egypt. All rights reserved.
+  </footer>
+
+  <script>
+    function sendWhatsApp() {
+      const name = document.getElementById("name").value;
+      const phone = document.getElementById("phone").value;
+      const tour = document.getElementById("tour").value;
+      const date = document.getElementById("date").value;
+
+      const message = `Hello, my name is ${name}. I'd like to book the "${tour}" tour on ${date}. My phone number is: ${phone}.`;
+      const whatsappLink = `https://wa.me/201234567890?text=${encodeURIComponent(message)}`;
+      window.open(whatsappLink, "_blank");
+    }
+  </script>
+
+</body>
+</html>
