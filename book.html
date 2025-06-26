@@ -2,23 +2,161 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Test Booking</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Book a Tour | Let's Discover Egypt</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #f9f9f9;
+      padding: 40px 20px;
+      color: #333;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 30px;
+      font-size: 28px;
+    }
+
+    .form-container {
+      max-width: 600px;
+      background: #fff;
+      padding: 30px;
+      border-radius: 12px;
+      margin: auto;
+      box-shadow: 0 0 15px rgba(0,0,0,0.05);
+    }
+
+    label {
+      display: block;
+      margin-bottom: 6px;
+      font-weight: 600;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 20px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 16px;
+    }
+
+    .total-price {
+      font-size: 18px;
+      font-weight: bold;
+      text-align: right;
+      margin-bottom: 20px;
+      color: #1cd760;
+    }
+
+    .btn {
+      display: block;
+      width: 100%;
+      padding: 14px;
+      background: #1cd760;
+      color: #fff;
+      font-size: 16px;
+      text-align: center;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: 0.3s;
+      text-decoration: none;
+    }
+
+    .btn:hover {
+      background: #14b150;
+    }
+  </style>
 </head>
 <body>
-  <h1>Book Now</h1>
-  <input id="name" placeholder="Your name"><br><br>
-  <a href="#" id="whatsapp" target="_blank">Send to WhatsApp</a>
+
+  <h1>Book Your Tour</h1>
+
+  <div class="form-container">
+    <label for="tour">Select Tour</label>
+    <select id="tour">
+      <option value="VIP Giza Pyramids Tour">VIP Giza Pyramids Tour</option>
+      <option value="Nile Cruise Tour">Nile Cruise Tour</option>
+      <option value="Cairo City Tour">Cairo City Tour</option>
+    </select>
+
+    <label for="people">Number of People</label>
+    <select id="people" onchange="updatePrice()">
+      <option value="1">1 Person</option>
+      <option value="2">2 People</option>
+      <option value="3">3 People</option>
+      <option value="4">4 People</option>
+      <option value="5">5 People</option>
+      <option value="6">6 People</option>
+    </select>
+
+    <div class="total-price">Total: $<span id="price">65</span></div>
+
+    <label for="country">Country</label>
+    <select id="country">
+      <option value="Egypt">Egypt</option>
+      <option value="Saudi Arabia">Saudi Arabia</option>
+      <option value="United Arab Emirates">United Arab Emirates</option>
+      <option value="USA">USA</option>
+      <option value="UK">UK</option>
+      <option value="France">France</option>
+      <option value="Germany">Germany</option>
+      <!-- Add more countries if needed -->
+    </select>
+
+    <label for="date">Select Date</label>
+    <input type="date" id="date"/>
+
+    <label for="time">Select Time</label>
+    <input type="time" id="time"/>
+
+    <label for="name">Your Name</label>
+    <input type="text" id="name" placeholder="Full Name"/>
+
+    <label for="phone">WhatsApp Number</label>
+    <input type="tel" id="phone" placeholder="+20xxxxxxxxxx"/>
+
+    <a href="#" onclick="sendWhatsApp()" class="btn">Confirm & Send on WhatsApp</a>
+  </div>
 
   <script>
-    const btn = document.getElementById("whatsapp");
-    const nameInput = document.getElementById("name");
+    function updatePrice() {
+      const people = document.getElementById('people').value;
+      const pricePerPerson = 65;
+      const total = pricePerPerson * parseInt(people);
+      document.getElementById('price').textContent = total;
+    }
 
-    nameInput.addEventListener("input", () => {
-      const name = nameInput.value;
-      const message = `Hello, I want to book. My name is ${name}`;
-      const phone = "201234567890"; // حط رقمك هنا
-      btn.href = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
-    });
+    function sendWhatsApp() {
+      const tour = document.getElementById('tour').value;
+      const people = document.getElementById('people').value;
+      const country = document.getElementById('country').value;
+      const date = document.getElementById('date').value;
+      const time = document.getElementById('time').value;
+      const name = document.getElementById('name').value;
+      const phone = document.getElementById('phone').value;
+      const total = document.getElementById('price').textContent;
+
+      const message = `*New Tour Booking Request*\n\n` +
+                      `👤 Name: ${name}\n` +
+                      `📞 Phone: ${phone}\n` +
+                      `🌍 Country: ${country}\n` +
+                      `🎯 Tour: ${tour}\n` +
+                      `👥 People: ${people}\n` +
+                      `📅 Date: ${date}\n` +
+                      `⏰ Time: ${time}\n` +
+                      `💵 Total Price: $${total}`;
+
+      const encodedMessage = encodeURIComponent(message);
+      const whatsappNumber = "201001234567"; // Replace with your number (without +)
+
+      window.open(`https://wa.me/${whatsappNumber}?text=${encodedMessage}`, '_blank');
+    }
   </script>
+
 </body>
-</html>
+      </html>
