@@ -1,162 +1,94 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Book a Tour | Let's Discover Egypt</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet"/>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
-  <style>
-    body {
-      font-family: 'Poppins', sans-serif;
-      background: #f9f9f9;
-      padding: 40px 20px;
-      color: #333;
-    }
+<section style="padding: 40px; background-color: #f2f2f2;">
+  <div style="max-width: 700px; margin: auto; background: white; padding: 30px; border-radius: 16px; box-shadow: 0 0 12px rgba(0,0,0,0.1);">
+    <h2 style="text-align: center; font-size: 26px; margin-bottom: 25px;">Book Your Tour</h2>
 
-    h1 {
-      text-align: center;
-      margin-bottom: 30px;
-      font-size: 28px;
-    }
+    <!-- Adults -->
+    <label>
+      Adults:
+      <input type="number" id="adults" min="0" value="1" style="width: 100%; padding: 10px; margin-top: 5px; border-radius: 8px; border: 1px solid #ccc;">
+    </label>
 
-    .form-container {
-      max-width: 600px;
-      background: #fff;
-      padding: 30px;
-      border-radius: 12px;
-      margin: auto;
-      box-shadow: 0 0 15px rgba(0,0,0,0.05);
-    }
+    <!-- Children -->
+    <label>
+      Children (5-11 yrs):
+      <input type="number" id="children" min="0" value="0" style="width: 100%; padding: 10px; margin-top: 5px; border-radius: 8px; border: 1px solid #ccc;">
+    </label>
 
-    label {
-      display: block;
-      margin-bottom: 6px;
-      font-weight: 600;
-    }
+    <!-- Infants -->
+    <label>
+      Infants (Under 5 yrs):
+      <input type="number" id="infants" min="0" value="0" style="width: 100%; padding: 10px; margin-top: 5px; border-radius: 8px; border: 1px solid #ccc;">
+    </label>
 
-    input, select {
-      width: 100%;
-      padding: 12px;
-      margin-bottom: 20px;
-      border: 1px solid #ccc;
-      border-radius: 8px;
-      font-size: 16px;
-    }
+    <!-- Total Price -->
+    <div style="margin-top: 20px; font-size: 20px; font-weight: bold; text-align: center;">
+      Total Price: <span id="totalPrice">$65</span>
+    </div>
 
-    .total-price {
-      font-size: 18px;
-      font-weight: bold;
-      text-align: right;
-      margin-bottom: 20px;
-      color: #1cd760;
-    }
+    <!-- Date Picker -->
+    <label style="display: block; margin-top: 25px;">
+      <strong>Select Tour Date:</strong><br />
+      <input type="date" id="tourDate" style="width: 100%; padding: 12px; font-size: 16px; border-radius: 8px; border: 1px solid #ccc; margin-top: 8px;">
+    </label>
 
-    .btn {
-      display: block;
-      width: 100%;
-      padding: 14px;
-      background: #1cd760;
-      color: #fff;
-      font-size: 16px;
-      text-align: center;
-      border: none;
-      border-radius: 30px;
-      cursor: pointer;
-      transition: 0.3s;
-      text-decoration: none;
-    }
+    <!-- Nationality -->
+    <label style="display: block; margin-top: 20px;">
+      <strong>Select Nationality:</strong><br />
+      <select id="nationality" style="width: 100%; padding: 12px; font-size: 16px; border-radius: 8px; border: 1px solid #ccc; margin-top: 8px;">
+        <option value="">-- Select Country --</option>
+        <option value="Egyptian">Egyptian</option>
+        <option value="American">American</option>
+        <option value="British">British</option>
+        <option value="German">German</option>
+        <option value="French">French</option>
+        <option value="Indian">Indian</option>
+        <option value="Chinese">Chinese</option>
+        <option value="Saudi">Saudi</option>
+        <option value="Emirati">Emirati</option>
+      </select>
+    </label>
 
-    .btn:hover {
-      background: #14b150;
-    }
-  </style>
-</head>
-<body>
-
-  <h1>Book Your Tour</h1>
-
-  <div class="form-container">
-    <label for="tour">Select Tour</label>
-    <select id="tour">
-      <option value="VIP Giza Pyramids Tour">VIP Giza Pyramids Tour</option>
-      <option value="Nile Cruise Tour">Nile Cruise Tour</option>
-      <option value="Cairo City Tour">Cairo City Tour</option>
-    </select>
-
-    <label for="people">Number of People</label>
-    <select id="people" onchange="updatePrice()">
-      <option value="1">1 Person</option>
-      <option value="2">2 People</option>
-      <option value="3">3 People</option>
-      <option value="4">4 People</option>
-      <option value="5">5 People</option>
-      <option value="6">6 People</option>
-    </select>
-
-    <div class="total-price">Total: $<span id="price">65</span></div>
-
-    <label for="country">Country</label>
-    <select id="country">
-      <option value="Egypt">Egypt</option>
-      <option value="Saudi Arabia">Saudi Arabia</option>
-      <option value="United Arab Emirates">United Arab Emirates</option>
-      <option value="USA">USA</option>
-      <option value="UK">UK</option>
-      <option value="France">France</option>
-      <option value="Germany">Germany</option>
-      <!-- Add more countries if needed -->
-    </select>
-
-    <label for="date">Select Date</label>
-    <input type="date" id="date"/>
-
-    <label for="time">Select Time</label>
-    <input type="time" id="time"/>
-
-    <label for="name">Your Name</label>
-    <input type="text" id="name" placeholder="Full Name"/>
-
-    <label for="phone">WhatsApp Number</label>
-    <input type="tel" id="phone" placeholder="+20xxxxxxxxxx"/>
-
-    <a href="#" onclick="sendWhatsApp()" class="btn">Confirm & Send on WhatsApp</a>
+    <!-- Phone Number -->
+    <label style="display: block; margin-top: 20px;">
+      <strong>Phone Number (with Country Code):</strong><br />
+      <div style="display: flex; gap: 10px; margin-top: 8px;">
+        <select id="countryCode" style="flex: 0.5; padding: 12px; font-size: 16px; border-radius: 8px; border: 1px solid #ccc;">
+          <option value="+20">🇪🇬 +20</option>
+          <option value="+1">🇺🇸 +1</option>
+          <option value="+44">🇬🇧 +44</option>
+          <option value="+49">🇩🇪 +49</option>
+          <option value="+33">🇫🇷 +33</option>
+          <option value="+91">🇮🇳 +91</option>
+          <option value="+86">🇨🇳 +86</option>
+          <option value="+966">🇸🇦 +966</option>
+          <option value="+971">🇦🇪 +971</option>
+        </select>
+        <input type="tel" id="phoneNumber" placeholder="Your phone number" style="flex: 1; padding: 12px; font-size: 16px; border-radius: 8px; border: 1px solid #ccc;">
+      </div>
+    </label>
   </div>
+</section>
 
-  <script>
-    function updatePrice() {
-      const people = document.getElementById('people').value;
-      const pricePerPerson = 65;
-      const total = pricePerPerson * parseInt(people);
-      document.getElementById('price').textContent = total;
-    }
+<!-- Price Calculation Script -->
+<script>
+  function calculateTotal() {
+    const adults = parseInt(document.getElementById("adults").value) || 0;
+    const children = parseInt(document.getElementById("children").value) || 0;
+    const infants = parseInt(document.getElementById("infants").value) || 0;
 
-    function sendWhatsApp() {
-      const tour = document.getElementById('tour').value;
-      const people = document.getElementById('people').value;
-      const country = document.getElementById('country').value;
-      const date = document.getElementById('date').value;
-      const time = document.getElementById('time').value;
-      const name = document.getElementById('name').value;
-      const phone = document.getElementById('phone').value;
-      const total = document.getElementById('price').textContent;
+    let adultPrice = 0;
+    if (adults === 1) adultPrice = 65;
+    else if (adults >= 2 && adults <= 4) adultPrice = 55;
+    else if (adults >= 5) adultPrice = 45;
 
-      const message = `*New Tour Booking Request*\n\n` +
-                      `👤 Name: ${name}\n` +
-                      `📞 Phone: ${phone}\n` +
-                      `🌍 Country: ${country}\n` +
-                      `🎯 Tour: ${tour}\n` +
-                      `👥 People: ${people}\n` +
-                      `📅 Date: ${date}\n` +
-                      `⏰ Time: ${time}\n` +
-                      `💵 Total Price: $${total}`;
+    const total = (adultPrice * adults) + (25 * children); // infants = free
+    document.getElementById("totalPrice").innerText = `$${total}`;
+  }
 
-      const encodedMessage = encodeURIComponent(message);
-      const whatsappNumber = "201001234567"; // Replace with your number (without +)
+  document.getElementById("adults").addEventListener("input", calculateTotal);
+  document.getElementById("children").addEventListener("input", calculateTotal);
+  document.getElementById("infants").addEventListener("input", calculateTotal);
 
-      window.open(`https://wa.me/${whatsappNumber}?text=${encodedMessage}`, '_blank');
-    }
-  </script>
-
-</body>
-      </html>
+  // Initial calc
+  calculateTotal();
+</script>
