@@ -5,11 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Book a Tour | Let's Discover Egypt</title>
   <link rel="icon" href="favicon.png" type="image/png">
-
-  <!-- Fonts & Icons -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
@@ -17,7 +14,6 @@
       background: #f9f9f9;
       color: #333;
     }
-
     header {
       position: fixed;
       top: 0; left: 0;
@@ -30,12 +26,7 @@
       box-shadow: 0 2px 5px rgba(0,0,0,0.1);
       z-index: 10;
     }
-
-    .menu-icon {
-      font-size: 24px;
-      cursor: pointer;
-    }
-
+    .menu-icon { font-size: 24px; cursor: pointer; }
     header h2 {
       position: absolute;
       left: 50%;
@@ -43,12 +34,7 @@
       font-size: 20px;
       font-weight: 600;
     }
-
-    header h2 a {
-      text-decoration: none;
-      color: #333;
-    }
-
+    header h2 a { text-decoration: none; color: #333; }
     .sidebar {
       position: fixed;
       top: 0; left: -250px;
@@ -59,9 +45,7 @@
       transition: left 0.3s ease;
       z-index: 11;
     }
-
     .sidebar.active { left: 0; }
-
     .sidebar a {
       display: block;
       color: white;
@@ -70,15 +54,12 @@
       border-bottom: 1px solid #444;
       font-size: 16px;
     }
-
     .sidebar a i { margin-right: 8px; }
-
     .sidebar a:hover {
       background: #444;
       padding-left: 10px;
       transition: all 0.3s ease;
     }
-
     .overlay {
       display: none;
       position: fixed;
@@ -87,9 +68,7 @@
       background: rgba(0,0,0,0.3);
       z-index: 10;
     }
-
     .overlay.active { display: block; }
-
     .main {
       margin-top: 100px;
       padding: 40px 20px;
@@ -97,41 +76,29 @@
       margin-left: auto;
       margin-right: auto;
     }
-
-    h1, h2 {
-      text-align: center;
-      margin-bottom: 25px;
-    }
-
+    h1, h2 { text-align: center; margin-bottom: 25px; }
     .price-table {
       width: 100%;
       border-collapse: collapse;
       margin-bottom: 40px;
     }
-
     .price-table th, .price-table td {
       padding: 12px;
       border: 1px solid #ccc;
       text-align: left;
     }
-
-    .price-table th {
-      background-color: #eee;
-    }
-
+    .price-table th { background-color: #eee; }
     form {
       background: #fff;
       padding: 25px;
       border-radius: 12px;
       box-shadow: 0 2px 8px rgba(0,0,0,0.08);
     }
-
     label {
       display: block;
       margin-bottom: 8px;
       margin-top: 15px;
     }
-
     input, select, textarea, button {
       width: 100%;
       padding: 10px;
@@ -140,7 +107,11 @@
       font-size: 15px;
       margin-top: 4px;
     }
-
+    #priceDisplay {
+      margin-top: 10px;
+      font-weight: bold;
+      color: #1cd760;
+    }
     button {
       background-color: #1cd760;
       color: #fff;
@@ -150,11 +121,7 @@
       cursor: pointer;
       border: none;
     }
-
-    button:hover {
-      background-color: #14b150;
-    }
-
+    button:hover { background-color: #14b150; }
     footer {
       text-align: center;
       padding: 30px 20px;
@@ -163,7 +130,6 @@
       background: #fff;
       margin-top: 60px;
     }
-
     @media (max-width: 480px) {
       header h2 { font-size: 16px; }
     }
@@ -219,8 +185,21 @@
     <label for="people">Number of People</label>
     <select id="people" name="people" required>
       <option value="">-- Select Number of People --</option>
-      ${[...Array(15)].map((_, i) => `<option value="${i+1}">${i+1} ${i+1 === 1 ? 'Person' : 'Persons'}</option>`).join('')}
+      <option value="1">1 Person</option>
+      <option value="2">2 Persons</option>
+      <option value="3">3 Persons</option>
+      <option value="4">4 Persons</option>
+      <option value="5">5 Persons</option>
+      <option value="6">6 Persons</option>
+      <option value="7">7 Persons</option>
+      <option value="8">8 Persons</option>
+      <option value="9">9 Persons</option>
+      <option value="10">10 Persons</option>
+      <option value="child">Child</option>
+      <option value="infant">Infant</option>
     </select>
+
+    <div id="priceDisplay"></div>
 
     <label for="date">Tour Date</label>
     <input type="date" id="date" name="date" required>
@@ -251,16 +230,27 @@
     document.body.style.overflow = "auto";
   }
 
-  // Populate number of people dynamically (JS alternative)
+  // Dynamic price based on selection
+  const priceMap = {
+    "1": 65,
+    "2": 55, "3": 55, "4": 55,
+    "5": 35, "6": 35, "7": 35, "8": 35, "9": 35, "10": 35,
+    "child": 25,
+    "infant": 0
+  };
+
   const peopleSelect = document.getElementById("people");
-  if (peopleSelect && peopleSelect.children.length <= 2) {
-    for (let i = 1; i <= 15; i++) {
-      const opt = document.createElement("option");
-      opt.value = i;
-      opt.textContent = i + (i === 1 ? " Person" : " Persons");
-      peopleSelect.appendChild(opt);
+  const priceDisplay = document.getElementById("priceDisplay");
+
+  peopleSelect.addEventListener("change", function () {
+    const selected = peopleSelect.value;
+    if (priceMap[selected] !== undefined) {
+      const label = selected === "infant" ? "Free" : `$${priceMap[selected]} per person`;
+      priceDisplay.textContent = `Price: ${label}`;
+    } else {
+      priceDisplay.textContent = "";
     }
-  }
+  });
 </script>
 
 </body>
