@@ -3,165 +3,130 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Book Now | Let's Discover Egypt</title>
-  <meta name="description" content="Book your Egypt tour now with Let's Discover Egypt. Fill the form and reserve your VIP experience.">
-  <link rel="icon" href="favicon.png" type="image/png">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
+  <title>Book a Tour | Let's Discover Egypt</title>
   <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
-      font-family: 'Poppins', sans-serif;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
       background: #f9f9f9;
-      color: #333;
     }
-
-    header {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%;
-      background: white;
-      padding: 15px 20px;
-      display: flex;
-      align-items: center;
-      justify-content: flex-start;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-      z-index: 10;
-    }
-
-    .menu-icon {
-      font-size: 24px;
-      cursor: pointer;
-    }
-
-    header h2 {
-      position: absolute;
-      left: 50%;
-      transform: translateX(-50%);
-      font-size: 20px;
-      font-weight: 600;
-    }
-
-    header h2 a {
-      text-decoration: none;
-      color: #333;
-    }
-
-    .container {
-      padding: 100px 20px 40px;
-      max-width: 600px;
-      margin: 0 auto;
-      background: white;
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-    }
-
     h1 {
       text-align: center;
-      margin-bottom: 20px;
-      font-size: 26px;
-      color: #1cd760;
+      color: #222;
     }
-
-    form label {
+    .price-table {
+      max-width: 600px;
+      margin: 20px auto;
+      border-collapse: collapse;
+      width: 100%;
+    }
+    .price-table th, .price-table td {
+      padding: 12px;
+      border: 1px solid #ccc;
+      text-align: left;
+    }
+    .price-table th {
+      background-color: #eee;
+    }
+    form {
+      max-width: 600px;
+      margin: 30px auto;
+      background: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    label {
       display: block;
-      margin-bottom: 5px;
-      font-weight: 500;
+      margin-bottom: 8px;
+      margin-top: 15px;
     }
-
-    form input, form select, form textarea {
+    input, select, textarea, button {
       width: 100%;
       padding: 10px;
-      margin-bottom: 20px;
-      border-radius: 6px;
+      margin-top: 4px;
       border: 1px solid #ccc;
-      font-size: 15px;
+      border-radius: 6px;
     }
-
-    form textarea {
-      resize: vertical;
-      min-height: 100px;
-    }
-
-    .btn {
-      background: #1cd760;
-      color: white;
-      border: none;
-      padding: 12px 25px;
+    button {
+      background-color: #d4af37;
+      color: #fff;
       font-size: 16px;
-      border-radius: 30px;
+      margin-top: 20px;
       cursor: pointer;
-      transition: background 0.3s ease;
-      display: block;
-      width: 100%;
+      border: none;
     }
-
-    .btn:hover {
-      background: #14b150;
-    }
-
-    footer {
-      text-align: center;
-      padding: 30px 20px;
-      font-size: 14px;
-      color: #777;
-      background: #f2f2f2;
-      margin-top: 40px;
-    }
-
-    @media (max-width: 480px) {
-      h1 { font-size: 22px; }
+    button:hover {
+      background-color: #c19e2f;
     }
   </style>
 </head>
-
 <body>
 
-  <header>
-    <div class="menu-icon" onclick="history.back()">←</div>
-    <h2><a href="index.html"><i class="fas fa-globe-africa"></i> Let's Discover Egypt</a></h2>
-  </header>
+  <h1>Book Your Tour</h1>
 
-  <div class="container">
-    <h1>Book Your Tour</h1>
+  <h2 style="text-align:center;">Add Guest</h2>
+  <table class="price-table">
+    <tr>
+      <th>Group Size</th>
+      <th>Price per Person</th>
+    </tr>
+    <tr>
+      <td>1 Person</td>
+      <td>USD 65</td>
+    </tr>
+    <tr>
+      <td>2 – 4 Persons</td>
+      <td>USD 55</td>
+    </tr>
+    <tr>
+      <td>5 – 8 Persons</td>
+      <td>USD 35</td>
+    </tr>
+    <tr>
+      <td>9 – 15 Persons</td>
+      <td>USD 35</td>
+    </tr>
+    <tr>
+      <td>Child</td>
+      <td>USD 25</td>
+    </tr>
+    <tr>
+      <td>Infant</td>
+      <td>FREE</td>
+    </tr>
+  </table>
 
-    <form action="https://formsubmit.co/your@email.com" method="POST">
-      <label for="tour">Selected Tour</label>
-      <input type="text" id="tour" name="Tour" readonly />
+  <form>
+    <label for="name">Full Name</label>
+    <input type="text" id="name" name="name" required>
 
-      <label for="name">Full Name</label>
-      <input type="text" id="name" name="Name" placeholder="Your full name" required />
+    <label for="email">Email Address</label>
+    <input type="email" id="email" name="email">
 
-      <label for="email">Email Address</label>
-      <input type="email" id="email" name="Email" placeholder="you@example.com" required />
+    <label for="phone">Phone / WhatsApp</label>
+    <input type="text" id="phone" name="phone" required>
 
-      <label for="phone">Phone Number</label>
-      <input type="tel" id="phone" name="Phone" placeholder="+20..." required />
+    <label for="tour">Select Tour</label>
+    <select id="tour" name="tour" required>
+      <option value="">-- Please Select --</option>
+      <option value="giza">VIP Giza Pyramids Tour</option>
+      <option value="nile">Nile Cruise Dinner Tour</option>
+      <option value="custom">Other (Please specify in notes)</option>
+    </select>
 
-      <label for="date">Preferred Date</label>
-      <input type="date" id="date" name="Date" required />
+    <label for="people">Number of People</label>
+    <input type="number" id="people" name="people" min="1" required>
 
-      <label for="message">Additional Notes</label>
-      <textarea id="message" name="Message" placeholder="Any special requests or questions?"></textarea>
+    <label for="date">Tour Date</label>
+    <input type="date" id="date" name="date" required>
 
-      <!-- You can replace with your own email or system -->
-      <input type="hidden" name="_next" value="thankyou.html">
-      <input type="hidden" name="_captcha" value="false">
+    <label for="notes">Notes (Optional)</label>
+    <textarea id="notes" name="notes" rows="4"></textarea>
 
-      <button type="submit" class="btn">Confirm Booking</button>
-    </form>
-  </div>
+    <button type="submit">Confirm Booking</button>
+  </form>
 
-  <footer>
-    &copy; 2025 Let's Discover Egypt. All rights reserved.
-  </footer>
-
-  <script>
-    // Read tour name from URL (book.html?tour=...)
-    const params = new URLSearchParams(window.location.search);
-    const tourName = params.get("tour") || "Custom Tour";
-    document.getElementById("tour").value = decodeURIComponent(tourName);
-  </script>
 </body>
 </html>
