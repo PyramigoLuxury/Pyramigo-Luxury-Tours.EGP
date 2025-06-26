@@ -4,98 +4,198 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Book a Tour | Let's Discover Egypt</title>
+  <link rel="icon" href="favicon.png" type="image/png">
+
+  <!-- Fonts & Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
   <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 20px;
+      font-family: 'Poppins', sans-serif;
       background: #f9f9f9;
+      color: #333;
     }
-    h1 {
-      text-align: center;
-      color: #222;
-    }
-    .price-table {
-      max-width: 600px;
-      margin: 20px auto;
-      border-collapse: collapse;
+
+    header {
+      position: fixed;
+      top: 0; left: 0;
       width: 100%;
+      background: white;
+      padding: 15px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      z-index: 10;
     }
+
+    .menu-icon {
+      font-size: 24px;
+      cursor: pointer;
+    }
+
+    header h2 {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 20px;
+      font-weight: 600;
+    }
+
+    header h2 a {
+      text-decoration: none;
+      color: #333;
+    }
+
+    .sidebar {
+      position: fixed;
+      top: 0; left: -250px;
+      width: 250px; height: 100%;
+      background: #333;
+      color: white;
+      padding: 60px 20px;
+      transition: left 0.3s ease;
+      z-index: 11;
+    }
+
+    .sidebar.active { left: 0; }
+
+    .sidebar a {
+      display: block;
+      color: white;
+      text-decoration: none;
+      padding: 15px 0;
+      border-bottom: 1px solid #444;
+      font-size: 16px;
+    }
+
+    .sidebar a i { margin-right: 8px; }
+
+    .sidebar a:hover {
+      background: #444;
+      padding-left: 10px;
+      transition: all 0.3s ease;
+    }
+
+    .overlay {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.3);
+      z-index: 10;
+    }
+
+    .overlay.active { display: block; }
+
+    .main {
+      margin-top: 100px;
+      padding: 40px 20px;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    h1, h2 {
+      text-align: center;
+      margin-bottom: 25px;
+    }
+
+    .price-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 40px;
+    }
+
     .price-table th, .price-table td {
       padding: 12px;
       border: 1px solid #ccc;
       text-align: left;
     }
+
     .price-table th {
       background-color: #eee;
     }
+
     form {
-      max-width: 600px;
-      margin: 30px auto;
       background: #fff;
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
     }
+
     label {
       display: block;
       margin-bottom: 8px;
       margin-top: 15px;
     }
+
     input, select, textarea, button {
       width: 100%;
       padding: 10px;
-      margin-top: 4px;
       border: 1px solid #ccc;
       border-radius: 6px;
+      font-size: 15px;
+      margin-top: 4px;
     }
+
     button {
-      background-color: #d4af37;
+      background-color: #1cd760;
       color: #fff;
+      font-weight: bold;
       font-size: 16px;
       margin-top: 20px;
       cursor: pointer;
       border: none;
     }
+
     button:hover {
-      background-color: #c19e2f;
+      background-color: #14b150;
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px 20px;
+      font-size: 14px;
+      color: #777;
+      background: #fff;
+      margin-top: 60px;
+    }
+
+    @media (max-width: 480px) {
+      header h2 { font-size: 16px; }
     }
   </style>
 </head>
 <body>
 
+<div class="overlay" id="overlay" onclick="closeMenu()"></div>
+
+<div class="sidebar" id="sidebar">
+  <a href="index.html"><i class="fas fa-home"></i> Home</a>
+  <a href="about.html"><i class="fas fa-info-circle"></i> About Us</a>
+  <a href="tours.html"><i class="fas fa-map-marked-alt"></i> Tours</a>
+  <a href="contact.html"><i class="fas fa-phone"></i> Contact</a>
+</div>
+
+<header>
+  <div class="menu-icon" onclick="toggleMenu()">☰</div>
+  <h2><a href="index.html"><i class="fas fa-globe-africa"></i> Let's Discover Egypt</a></h2>
+</header>
+
+<div class="main">
   <h1>Book Your Tour</h1>
 
-  <h2 style="text-align:center;">Add Guest</h2>
+  <h2>Add Guest</h2>
   <table class="price-table">
-    <tr>
-      <th>Group Size</th>
-      <th>Price per Person</th>
-    </tr>
-    <tr>
-      <td>1 Person</td>
-      <td>USD 65</td>
-    </tr>
-    <tr>
-      <td>2 – 4 Persons</td>
-      <td>USD 55</td>
-    </tr>
-    <tr>
-      <td>5 – 8 Persons</td>
-      <td>USD 35</td>
-    </tr>
-    <tr>
-      <td>9 – 15 Persons</td>
-      <td>USD 35</td>
-    </tr>
-    <tr>
-      <td>Child</td>
-      <td>USD 25</td>
-    </tr>
-    <tr>
-      <td>Infant</td>
-      <td>FREE</td>
-    </tr>
+    <tr><th>Group Size</th><th>Price per Person</th></tr>
+    <tr><td>1 Person</td><td>USD 65</td></tr>
+    <tr><td>2 – 4 Persons</td><td>USD 55</td></tr>
+    <tr><td>5 – 15 Persons</td><td>USD 35</td></tr>
+    <tr><td>Child</td><td>USD 25</td></tr>
+    <tr><td>Infant</td><td>FREE</td></tr>
   </table>
 
   <form>
@@ -117,7 +217,10 @@
     </select>
 
     <label for="people">Number of People</label>
-    <input type="number" id="people" name="people" min="1" required>
+    <select id="people" name="people" required>
+      <option value="">-- Select Number of People --</option>
+      ${[...Array(15)].map((_, i) => `<option value="${i+1}">${i+1} ${i+1 === 1 ? 'Person' : 'Persons'}</option>`).join('')}
+    </select>
 
     <label for="date">Tour Date</label>
     <input type="date" id="date" name="date" required>
@@ -127,6 +230,38 @@
 
     <button type="submit">Confirm Booking</button>
   </form>
+</div>
+
+<footer>
+  &copy; 2025 Let's Discover Egypt. All rights reserved.
+</footer>
+
+<script>
+  function toggleMenu() {
+    const sidebar = document.getElementById("sidebar");
+    const overlay = document.getElementById("overlay");
+    sidebar.classList.toggle("active");
+    overlay.classList.toggle("active");
+    document.body.style.overflow = sidebar.classList.contains("active") ? "hidden" : "auto";
+  }
+
+  function closeMenu() {
+    document.getElementById("sidebar").classList.remove("active");
+    document.getElementById("overlay").classList.remove("active");
+    document.body.style.overflow = "auto";
+  }
+
+  // Populate number of people dynamically (JS alternative)
+  const peopleSelect = document.getElementById("people");
+  if (peopleSelect && peopleSelect.children.length <= 2) {
+    for (let i = 1; i <= 15; i++) {
+      const opt = document.createElement("option");
+      opt.value = i;
+      opt.textContent = i + (i === 1 ? " Person" : " Persons");
+      peopleSelect.appendChild(opt);
+    }
+  }
+</script>
 
 </body>
 </html>
