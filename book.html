@@ -1,94 +1,577 @@
-<section style="padding: 40px; background-color: #f2f2f2;">
-  <div style="max-width: 700px; margin: auto; background: white; padding: 30px; border-radius: 16px; box-shadow: 0 0 12px rgba(0,0,0,0.1);">
-    <h2 style="text-align: center; font-size: 26px; margin-bottom: 25px;">Book Your Tour</h2>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Let's Discover Egypt</title>
+  <meta name="description" content="Explore Egypt with private guided tours. Visit the Pyramids, enjoy camel rides, and discover ancient wonders. Book now!">
+  <meta name="keywords" content="Egypt tours, Pyramids, Cairo travel, Giza, tourism, discover Egypt">
+  <link rel="icon" href="favicon.png" type="image/png">
 
-    <!-- Adults -->
-    <label>
-      Adults:
-      <input type="number" id="adults" min="0" value="1" style="width: 100%; padding: 10px; margin-top: 5px; border-radius: 8px; border: 1px solid #ccc;">
-    </label>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 
-    <!-- Children -->
-    <label>
-      Children (5-11 yrs):
-      <input type="number" id="children" min="0" value="0" style="width: 100%; padding: 10px; margin-top: 5px; border-radius: 8px; border: 1px solid #ccc;">
-    </label>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-    <!-- Infants -->
-    <label>
-      Infants (Under 5 yrs):
-      <input type="number" id="infants" min="0" value="0" style="width: 100%; padding: 10px; margin-top: 5px; border-radius: 8px; border: 1px solid #ccc;">
-    </label>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-    <!-- Total Price -->
-    <div style="margin-top: 20px; font-size: 20px; font-weight: bold; text-align: center;">
-      Total Price: <span id="totalPrice">$65</span>
-    </div>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #ffffff;
+      overflow-x: hidden;
+      color: #333;
+    }
 
-    <!-- Date Picker -->
-    <label style="display: block; margin-top: 25px;">
-      <strong>Select Tour Date:</strong><br />
-      <input type="date" id="tourDate" style="width: 100%; padding: 12px; font-size: 16px; border-radius: 8px; border: 1px solid #ccc; margin-top: 8px;">
-    </label>
+    /* Header */
+    header {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%;
+      background: white;
+      padding: 15px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      z-index: 10;
+    }
 
-    <!-- Nationality -->
-    <label style="display: block; margin-top: 20px;">
-      <strong>Select Nationality:</strong><br />
-      <select id="nationality" style="width: 100%; padding: 12px; font-size: 16px; border-radius: 8px; border: 1px solid #ccc; margin-top: 8px;">
-        <option value="">-- Select Country --</option>
-        <option value="Egyptian">Egyptian</option>
-        <option value="American">American</option>
-        <option value="British">British</option>
-        <option value="German">German</option>
-        <option value="French">French</option>
-        <option value="Indian">Indian</option>
-        <option value="Chinese">Chinese</option>
-        <option value="Saudi">Saudi</option>
-        <option value="Emirati">Emirati</option>
-      </select>
-    </label>
+    .menu-icon {
+      font-size: 24px;
+      cursor: pointer;
+      z-index: 12;
+    }
 
-    <!-- Phone Number -->
-    <label style="display: block; margin-top: 20px;">
-      <strong>Phone Number (with Country Code):</strong><br />
-      <div style="display: flex; gap: 10px; margin-top: 8px;">
-        <select id="countryCode" style="flex: 0.5; padding: 12px; font-size: 16px; border-radius: 8px; border: 1px solid #ccc;">
-          <option value="+20">🇪🇬 +20</option>
-          <option value="+1">🇺🇸 +1</option>
-          <option value="+44">🇬🇧 +44</option>
-          <option value="+49">🇩🇪 +49</option>
-          <option value="+33">🇫🇷 +33</option>
-          <option value="+91">🇮🇳 +91</option>
-          <option value="+86">🇨🇳 +86</option>
-          <option value="+966">🇸🇦 +966</option>
-          <option value="+971">🇦🇪 +971</option>
-        </select>
-        <input type="tel" id="phoneNumber" placeholder="Your phone number" style="flex: 1; padding: 12px; font-size: 16px; border-radius: 8px; border: 1px solid #ccc;">
-      </div>
-    </label>
+    header h2 {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 20px;
+      font-weight: 600;
+    }
+
+    header h2 a {
+      text-decoration: none;
+      color: #333;
+    }
+
+    /* Sidebar */
+    .sidebar {
+      position: fixed;
+      top: 0; left: -250px;
+      width: 250px; height: 100%;
+      background: #333;
+      color: white;
+      padding: 60px 20px;
+      transition: left 0.3s ease;
+      z-index: 11;
+    }
+
+    .sidebar.active { left: 0; }
+
+    .sidebar a {
+      display: block;
+      color: white;
+      text-decoration: none;
+      padding: 15px 0;
+      border-bottom: 1px solid #444;
+      font-size: 16px;
+    }
+
+    .sidebar a i {
+      margin-right: 8px;
+    }
+
+    .sidebar a:hover {
+      background: #444;
+      padding-left: 10px;
+      transition: all 0.3s ease;
+    }
+
+    .overlay {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.3);
+      z-index: 10;
+    }
+
+    .overlay.active {
+      display: block;
+    }
+
+    /* Hero Section */
+    .hero {
+      background: #f2f2f2;
+      min-height: 60vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 20px 20px 0;
+    }
+
+    .hero-text h1 {
+      font-size: 36px;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    .hero-text p {
+      font-size: 18px;
+      font-weight: 300;
+      margin-bottom: 10px;
+    }
+
+    /* Main Section */
+    .main {
+      padding: 40px 20px;
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .btn {
+      margin: 15px 10px 0;
+      padding: 12px 25px;
+      background: #1cd760;
+      color: white;
+      border: none;
+      border-radius: 30px;
+      font-size: 16px;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      transition: background 0.3s ease;
+    }
+
+    .btn:hover {
+      background: #14b150;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 30px 20px;
+      color: #777;
+      font-size: 14px;
+      background: #fff;
+      margin-top: 40px;
+      box-shadow: 0 -1px 3px rgba(0, 0, 0, 0.05);
+    }
+
+    footer a {
+      color: #555;
+      text-decoration: none;
+      margin: 0 5px;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    /* Responsive */
+    @media (max-width: 480px) {
+      header h2 {
+        font-size: 16px;
+      }
+
+      .hero-text h1 {
+        font-size: 26px;
+      }
+
+      .hero-text p {
+        font-size: 14px;
+      }
+
+      .btn {
+        font-size: 14px;
+        padding: 10px 20px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Overlay -->
+  <div class="overlay" id="overlay" onclick="closeMenu()"></div>
+
+  <!-- Sidebar -->
+  <div class="sidebar" id="sidebar">
+    <a href="index.html"><i class="fas fa-home"></i> Home</a>
+    <a href="about.html"><i class="fas fa-info-circle"></i> About Us</a>
+    <a href="tours.html"><i class="fas fa-map-marked-alt"></i> Tours</a>
+    <a href="contact.html"><i class="fas fa-phone"></i> Contact</a>
   </div>
-</section>
 
-<!-- Price Calculation Script -->
-<script>
-  function calculateTotal() {
-    const adults = parseInt(document.getElementById("adults").value) || 0;
-    const children = parseInt(document.getElementById("children").value) || 0;
-    const infants = parseInt(document.getElementById("infants").value) || 0;
+  <!-- Header -->
+  <header>
+    <div class="menu-icon" onclick="toggleMenu()">☰</div>
+    <h2><a href="index.html"><i class="fas fa-globe-africa"></i> Let's Discover Egypt</a></h2>
+  </header>
 
-    let adultPrice = 0;
-    if (adults === 1) adultPrice = 65;
-    else if (adults >= 2 && adults <= 4) adultPrice = 55;
-    else if (adults >= 5) adultPrice = 45;
+  <!-- Hero Section -->
+  <div class="hero">
+    <div class="hero-text">
+      <h1>LET'S DISCOVER EGYPT</h1>
+      <p>Uncover the Magic</p>
+      <p>The first team in Egypt to offer a true VIP experience to the Pyramids.</p>
+      <p>Enjoy a one-of-a-kind journey led by experts in Egyptology.</p>
+      <p>Our mission is to make you feel royal — with a luxurious visit through ancient history.</p>
+    </div>
+  </div>
 
-    const total = (adultPrice * adults) + (25 * children); // infants = free
-    document.getElementById("totalPrice").innerText = `$${total}`;
-  }
+  <!-- Main Section -->
+  <div class="main">
+    <p>Unveil the secrets of the Pharaohs in unmatched style — a VIP experience beyond imagination.</p>
 
-  document.getElementById("adults").addEventListener("input", calculateTotal);
-  document.getElementById("children").addEventListener("input", calculateTotal);
-  document.getElementById("infants").addEventListener("input", calculateTotal);
+    <div style="margin-top: 30px;">
+      <img 
+        src="pyramids-sunset.jpg" 
+        alt="Private Camel Ride Tour at the Pyramids of Giza" 
+        loading="lazy"
+        style="width: 100%; max-width: 600px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);"
+      >
 
-  // Initial calc
-  calculateTotal();
-</script>
+      <div style="margin-top: 20px; text-align: left;">
+        <h3 style="font-size: 20px; color: #111;">
+          <a href="pyramids.html" style="color: #111; text-decoration: underline;">
+            ALL INCLUSIVE PRIVATE HALF-DAY TRIP TO GIZA PYRAMIDS WITH CAMEL RIDE
+          </a>
+        </h3>
+
+        <div style="margin-top: 10px; display: flex; align-items: center; gap: 15px; flex-wrap: wrap;">
+          <p style="font-size: 16px; color: #1cd760; font-weight: bold; margin: 0;">
+            From 65 USD
+          </p>
+          <a href="pyramids.html" class="btn" style="margin: 0;">Book Now</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 Let's Discover Egypt. All rights reserved.</p>
+    <p>
+      <a href="privacy.html">Privacy Policy</a> |
+      <a href="terms.html">Terms</a>
+    </p>
+  </footer>
+
+  <!-- Scripts -->
+  <script>
+    function toggleMenu() {
+      const body = document.body;
+      const sidebar = document.getElementById("sidebar");
+      const overlay = document.getElementById("overlay");
+
+      sidebar.classList.toggle("active");
+      overlay.classList.toggle("active");
+      body.style.overflow = sidebar.classList.contains("active") ? "hidden" : "auto";
+    }
+
+    function closeMenu() {
+      document.getElementById("sidebar").classList.remove("active");
+      document.getElementById("overlay").classList.remove("active");
+      document.body.style.overflow = "auto";
+    }
+  </script>
+</body>
+</html><!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Let's Discover Egypt</title>
+  <meta name="description" content="Explore Egypt with private guided tours. Visit the Pyramids, enjoy camel rides, and discover ancient wonders. Book now!">
+  <meta name="keywords" content="Egypt tours, Pyramids, Cairo travel, Giza, tourism, discover Egypt">
+  <link rel="icon" href="favicon.png" type="image/png">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #ffffff;
+      overflow-x: hidden;
+      color: #333;
+    }
+
+    /* Header */
+    header {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%;
+      background: white;
+      padding: 15px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      z-index: 10;
+    }
+
+    .menu-icon {
+      font-size: 24px;
+      cursor: pointer;
+      z-index: 12;
+    }
+
+    header h2 {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 20px;
+      font-weight: 600;
+    }
+
+    header h2 a {
+      text-decoration: none;
+      color: #333;
+    }
+
+    /* Sidebar */
+    .sidebar {
+      position: fixed;
+      top: 0; left: -250px;
+      width: 250px; height: 100%;
+      background: #333;
+      color: white;
+      padding: 60px 20px;
+      transition: left 0.3s ease;
+      z-index: 11;
+    }
+
+    .sidebar.active { left: 0; }
+
+    .sidebar a {
+      display: block;
+      color: white;
+      text-decoration: none;
+      padding: 15px 0;
+      border-bottom: 1px solid #444;
+      font-size: 16px;
+    }
+
+    .sidebar a i {
+      margin-right: 8px;
+    }
+
+    .sidebar a:hover {
+      background: #444;
+      padding-left: 10px;
+      transition: all 0.3s ease;
+    }
+
+    .overlay {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.3);
+      z-index: 10;
+    }
+
+    .overlay.active {
+      display: block;
+    }
+
+    /* Hero Section */
+    .hero {
+      background: #f2f2f2;
+      min-height: 60vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 20px 20px 0;
+    }
+
+    .hero-text h1 {
+      font-size: 36px;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    .hero-text p {
+      font-size: 18px;
+      font-weight: 300;
+      margin-bottom: 10px;
+    }
+
+    /* Main Section */
+    .main {
+      padding: 40px 20px;
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .btn {
+      margin: 15px 10px 0;
+      padding: 12px 25px;
+      background: #1cd760;
+      color: white;
+      border: none;
+      border-radius: 30px;
+      font-size: 16px;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      transition: background 0.3s ease;
+    }
+
+    .btn:hover {
+      background: #14b150;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 30px 20px;
+      color: #777;
+      font-size: 14px;
+      background: #fff;
+      margin-top: 40px;
+      box-shadow: 0 -1px 3px rgba(0, 0, 0, 0.05);
+    }
+
+    footer a {
+      color: #555;
+      text-decoration: none;
+      margin: 0 5px;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    /* Responsive */
+    @media (max-width: 480px) {
+      header h2 {
+        font-size: 16px;
+      }
+
+      .hero-text h1 {
+        font-size: 26px;
+      }
+
+      .hero-text p {
+        font-size: 14px;
+      }
+
+      .btn {
+        font-size: 14px;
+        padding: 10px 20px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Overlay -->
+  <div class="overlay" id="overlay" onclick="closeMenu()"></div>
+
+  <!-- Sidebar -->
+  <div class="sidebar" id="sidebar">
+    <a href="index.html"><i class="fas fa-home"></i> Home</a>
+    <a href="about.html"><i class="fas fa-info-circle"></i> About Us</a>
+    <a href="tours.html"><i class="fas fa-map-marked-alt"></i> Tours</a>
+    <a href="contact.html"><i class="fas fa-phone"></i> Contact</a>
+  </div>
+
+  <!-- Header -->
+  <header>
+    <div class="menu-icon" onclick="toggleMenu()">☰</div>
+    <h2><a href="index.html"><i class="fas fa-globe-africa"></i> Let's Discover Egypt</a></h2>
+  </header>
+
+  <!-- Hero Section -->
+  <div class="hero">
+    <div class="hero-text">
+      <h1>LET'S DISCOVER EGYPT</h1>
+      <p>Uncover the Magic</p>
+      <p>The first team in Egypt to offer a true VIP experience to the Pyramids.</p>
+      <p>Enjoy a one-of-a-kind journey led by experts in Egyptology.</p>
+      <p>Our mission is to make you feel royal — with a luxurious visit through ancient history.</p>
+    </div>
+  </div>
+
+  <!-- Main Section -->
+  <div class="main">
+    <p>Unveil the secrets of the Pharaohs in unmatched style — a VIP experience beyond imagination.</p>
+
+    <div style="margin-top: 30px;">
+      <img 
+        src="pyramids-sunset.jpg" 
+        alt="Private Camel Ride Tour at the Pyramids of Giza" 
+        loading="lazy"
+        style="width: 100%; max-width: 600px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);"
+      >
+
+      <div style="margin-top: 20px; text-align: left;">
+        <h3 style="font-size: 20px; color: #111;">
+          <a href="pyramids.html" style="color: #111; text-decoration: underline;">
+            ALL INCLUSIVE PRIVATE HALF-DAY TRIP TO GIZA PYRAMIDS WITH CAMEL RIDE
+          </a>
+        </h3>
+
+        <div style="margin-top: 10px; display: flex; align-items: center; gap: 15px; flex-wrap: wrap;">
+          <p style="font-size: 16px; color: #1cd760; font-weight: bold; margin: 0;">
+            From 65 USD
+          </p>
+          <a href="pyramids.html" class="btn" style="margin: 0;">Book Now</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 Let's Discover Egypt. All rights reserved.</p>
+    <p>
+      <a href="privacy.html">Privacy Policy</a> |
+      <a href="terms.html">Terms</a>
+    </p>
+  </footer>
+
+  <!-- Scripts -->
+  <script>
+    function toggleMenu() {
+      const body = document.body;
+      const sidebar = document.getElementById("sidebar");
+      const overlay = document.getElementById("overlay");
+
+      sidebar.classList.toggle("active");
+      overlay.classList.toggle("active");
+      body.style.overflow = sidebar.classList.contains("active") ? "hidden" : "auto";
+    }
+
+    function closeMenu() {
+      document.getElementById("sidebar").classList.remove("active");
+      document.getElementById("overlay").classList.remove("active");
+      document.body.style.overflow = "auto";
+    }
+  </script>
+</body>
+</html>
