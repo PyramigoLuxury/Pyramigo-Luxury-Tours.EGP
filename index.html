@@ -10,11 +10,16 @@
 
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
   <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
     body {
       font-family: 'Poppins', sans-serif;
@@ -23,6 +28,7 @@
       color: #333;
     }
 
+    /* Header */
     header {
       position: fixed;
       top: 0; left: 0;
@@ -55,6 +61,7 @@
       color: #333;
     }
 
+    /* Sidebar */
     .sidebar {
       position: fixed;
       top: 0; left: -250px;
@@ -77,7 +84,9 @@
       font-size: 16px;
     }
 
-    .sidebar a i { margin-right: 8px; }
+    .sidebar a i {
+      margin-right: 8px;
+    }
 
     .sidebar a:hover {
       background: #444;
@@ -94,8 +103,11 @@
       z-index: 10;
     }
 
-    .overlay.active { display: block; }
+    .overlay.active {
+      display: block;
+    }
 
+    /* Hero Section */
     .hero {
       background: #f2f2f2;
       min-height: 60vh;
@@ -118,6 +130,7 @@
       margin-bottom: 10px;
     }
 
+    /* Main Section */
     .main {
       padding: 40px 20px;
       text-align: center;
@@ -143,6 +156,7 @@
       background: #14b150;
     }
 
+    /* Footer */
     footer {
       text-align: center;
       padding: 30px 20px;
@@ -163,10 +177,20 @@
       text-decoration: underline;
     }
 
+    /* Responsive */
     @media (max-width: 480px) {
-      header h2 { font-size: 16px; }
-      .hero-text h1 { font-size: 26px; }
-      .hero-text p { font-size: 14px; }
+      header h2 {
+        font-size: 16px;
+      }
+
+      .hero-text h1 {
+        font-size: 26px;
+      }
+
+      .hero-text p {
+        font-size: 14px;
+      }
+
       .btn {
         font-size: 14px;
         padding: 10px 20px;
@@ -177,8 +201,10 @@
 
 <body>
 
+  <!-- Overlay -->
   <div class="overlay" id="overlay" onclick="closeMenu()"></div>
 
+  <!-- Sidebar -->
   <div class="sidebar" id="sidebar">
     <a href="index.html"><i class="fas fa-home"></i> Home</a>
     <a href="about.html"><i class="fas fa-info-circle"></i> About Us</a>
@@ -186,11 +212,13 @@
     <a href="contact.html"><i class="fas fa-phone"></i> Contact</a>
   </div>
 
+  <!-- Header -->
   <header>
     <div class="menu-icon" onclick="toggleMenu()">☰</div>
     <h2><a href="index.html"><i class="fas fa-globe-africa"></i> Let's Discover Egypt</a></h2>
   </header>
 
+  <!-- Hero Section -->
   <div class="hero">
     <div class="hero-text">
       <h1>LET'S DISCOVER EGYPT</h1>
@@ -198,23 +226,27 @@
       <p>The first team in Egypt to offer a true VIP experience to the Pyramids.</p>
       <p>Enjoy a one-of-a-kind journey led by experts in Egyptology.</p>
       <p>Our mission is to make you feel royal — with a luxurious visit through ancient history.</p>
+      <a href="tours.html" class="btn">Explore Tours</a>
     </div>
   </div>
 
+  <!-- Main Section -->
   <div class="main">
     <p>Unveil the secrets of the Pharaohs in unmatched style — a VIP experience beyond imagination.</p>
 
     <div style="margin-top: 30px;">
-      <img 
-        src="pyramids-sunset.jpg" 
-        alt="Private Camel Ride Tour at the Pyramids of Giza" 
-        loading="lazy"
-        style="width: 100%; max-width: 600px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);"
-      >
+      <a href="tours.html">
+        <img 
+          src="pyramids-sunset.jpg" 
+          alt="Private Camel Ride Tour at the Pyramids of Giza" 
+          loading="lazy"
+          style="width: 100%; max-width: 600px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);"
+        >
+      </a>
 
       <div style="margin-top: 20px; text-align: left;">
         <h3 style="font-size: 20px; color: #111;">
-          <a href="pyramids.html" style="color: #111; text-decoration: underline;">
+          <a href="tours.html" style="color: #111; text-decoration: underline;">
             ALL INCLUSIVE PRIVATE HALF-DAY TRIP TO GIZA PYRAMIDS WITH CAMEL RIDE
           </a>
         </h3>
@@ -223,12 +255,13 @@
           <p style="font-size: 16px; color: #1cd760; font-weight: bold; margin: 0;">
             From 65 USD
           </p>
-          <a href="book.html?tour=VIP%20Giza%20Pyramids%20Tour" class="btn" style="margin: 0;">Book Now</a>
+          <a href="tours.html" class="btn" style="margin: 0;">Book Now</a>
         </div>
       </div>
     </div>
   </div>
 
+  <!-- Footer -->
   <footer>
     <p>&copy; 2025 Let's Discover Egypt. All rights reserved.</p>
     <p>
@@ -237,6 +270,7 @@
     </p>
   </footer>
 
+  <!-- Scripts -->
   <script>
     function toggleMenu() {
       const body = document.body;
