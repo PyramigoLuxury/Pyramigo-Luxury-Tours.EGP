@@ -104,6 +104,11 @@
       background-color: #f7f7f7;
       font-weight: 600;
     }
+    .qty-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
     .qty-btn {
       padding: 6px 12px;
       background-color: #f0f0f0;
@@ -111,6 +116,11 @@
       border-radius: 4px;
       font-size: 14px;
       cursor: pointer;
+    }
+    .row-total {
+      font-size: 13px;
+      color: #444;
+      margin-top: 6px;
     }
     .select-popup {
       position: absolute;
@@ -175,53 +185,46 @@
           <th>Select</th>
           <th>Category</th>
           <th>Price</th>
-          <th>Total</th>
         </tr>
       </thead>
       <tbody>
         <tr>
-          <td><button class="qty-btn" data-qty="0" data-price="65" onclick="showOptions(this, [0,1,2,3,4,5], 65, 'total1')">0</button></td>
+          <td><div class="qty-container"><button class="qty-btn" data-qty="0" data-price="65" onclick="showOptions(this, [0,1,2,3,4,5], 65, 'row1')">0</button><span class="row-total" id="row1">USD 0</span></div></td>
           <td>Price per person</td>
           <td>USD 65</td>
-          <td id="total1">USD 0</td>
         </tr>
         <tr>
-          <td><button class="qty-btn" data-qty="0" data-price="55" onclick="showOptions(this, [0,2,3,4], 55, 'total2')">0</button></td>
+          <td><div class="qty-container"><button class="qty-btn" data-qty="0" data-price="55" onclick="showOptions(this, [0,2,3,4], 55, 'row2')">0</button><span class="row-total" id="row2">USD 0</span></div></td>
           <td>2–4 persons</td>
           <td>USD 55</td>
-          <td id="total2">USD 0</td>
         </tr>
         <tr>
-          <td><button class="qty-btn" data-qty="0" data-price="45" onclick="showOptions(this, [0,5,6,7,8], 45, 'total3')">0</button></td>
+          <td><div class="qty-container"><button class="qty-btn" data-qty="0" data-price="45" onclick="showOptions(this, [0,5,6,7,8], 45, 'row3')">0</button><span class="row-total" id="row3">USD 0</span></div></td>
           <td>5–8 persons</td>
           <td>USD 45</td>
-          <td id="total3">USD 0</td>
         </tr>
         <tr>
-          <td><button class="qty-btn" data-qty="0" data-price="30" onclick="showOptions(this, [0,9,10,11,12,13,14,15], 30, 'total4')">0</button></td>
+          <td><div class="qty-container"><button class="qty-btn" data-qty="0" data-price="30" onclick="showOptions(this, [0,9,10,11,12,13,14,15], 30, 'row4')">0</button><span class="row-total" id="row4">USD 0</span></div></td>
           <td>9–15 persons</td>
           <td>USD 30</td>
-          <td id="total4">USD 0</td>
         </tr>
         <tr>
-          <td><button class="qty-btn" data-qty="0" data-price="25" onclick="showOptions(this, [0,1,2,3,4], 25, 'total5')">0</button></td>
+          <td><div class="qty-container"><button class="qty-btn" data-qty="0" data-price="25" onclick="showOptions(this, [0,1,2,3,4], 25, 'row5')">0</button><span class="row-total" id="row5">USD 0</span></div></td>
           <td>Child</td>
           <td>USD 25</td>
-          <td id="total5">USD 0</td>
         </tr>
         <tr>
-          <td><button class="qty-btn" data-qty="0" data-price="0" onclick="showOptions(this, [0,1,2], 0, 'total6')">0</button></td>
+          <td><div class="qty-container"><button class="qty-btn" data-qty="0" data-price="0" onclick="showOptions(this, [0,1,2], 0, 'row6')">0</button><span class="row-total" id="row6">USD 0</span></div></td>
           <td>Infant</td>
           <td>FREE</td>
-          <td id="total6">USD 0</td>
         </tr>
       </tbody>
     </table>
 
-    <!-- ✅ Dynamic total row -->
+    <!-- ✅ التوتال العام -->
     <div class="totals" id="summaryRow">
-      <span id="summaryText">0. Price per person</span>
-      <span id="summaryPrice">USD 0</span>
+      <span id="summaryText">0 people selected</span>
+      <span id="summaryPrice">Total: USD 0</span>
     </div>
   </div>
 
@@ -240,7 +243,7 @@
       document.body.style.overflow = "auto";
     }
 
-    function showOptions(btn, values, price = 0, totalId = null) {
+    function showOptions(btn, values, price = 0, rowId = null) {
       document.querySelectorAll(".select-popup").forEach(e => e.remove());
 
       const popup = document.createElement("div");
@@ -253,11 +256,11 @@
           btn.innerText = val;
           btn.setAttribute('data-qty', val);
           btn.setAttribute('data-price', price);
-          popup.remove();
-          if (totalId && price >= 0) {
-            document.getElementById(totalId).innerText = "USD " + (val * price);
-            updateTotals();
+          if (rowId && price >= 0) {
+            document.getElementById(rowId).innerText = "USD " + (val * price);
           }
+          popup.remove();
+          updateTotals();
         };
         popup.appendChild(option);
       });
@@ -280,9 +283,8 @@
         totalPrice += qty * price;
       });
 
-      let avg = (totalPeople > 0) ? totalPrice / totalPeople : 0;
-      document.getElementById("summaryText").innerText = `${totalPeople}. Price per person`;
-      document.getElementById("summaryPrice").innerText = `USD ${avg.toFixed(2)}`;
+      document.getElementById("summaryText").innerText = `${totalPeople} people selected`;
+      document.getElementById("summaryPrice").innerText = `Total: USD ${totalPrice}`;
     }
 
     document.addEventListener("click", e => {
