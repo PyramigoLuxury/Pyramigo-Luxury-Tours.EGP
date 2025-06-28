@@ -1,71 +1,194 @@
-<table style="width: 100%; border-collapse: collapse; margin-top: 20px;">
-  <thead>
-    <tr style="background-color: #f2f2f2;">
-      <th style="padding: 10px; border: 1px solid #ddd;">Select</th>
-      <th style="padding: 10px; border: 1px solid #ddd;">Category</th>
-      <th style="padding: 10px; border: 1px solid #ddd;">Price</th>
-      <th style="padding: 10px; border: 1px solid #ddd;">Total</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td style="text-align: center; border: 1px solid #ddd;">
-        <input type="number" min="0" value="0" class="qty" data-price="65" style="width: 50px;" />
-      </td>
-      <td style="border: 1px solid #ddd; padding: 10px;">Price per person</td>
-      <td style="text-align: center; border: 1px solid #ddd;">USD 65</td>
-      <td style="text-align: center; border: 1px solid #ddd;" class="line-total">USD 0</td>
-    </tr>
-    <tr>
-      <td style="text-align: center; border: 1px solid #ddd;">
-        <input type="number" min="0" value="0" class="qty" data-price="55" style="width: 50px;" />
-      </td>
-      <td style="border: 1px solid #ddd; padding: 10px;">2–4 persons</td>
-      <td style="text-align: center; border: 1px solid #ddd;">USD 55</td>
-      <td style="text-align: center; border: 1px solid #ddd;" class="line-total">USD 0</td>
-    </tr>
-    <tr>
-      <td style="text-align: center; border: 1px solid #ddd;">
-        <input type="number" min="0" value="0" class="qty" data-price="45" style="width: 50px;" />
-      </td>
-      <td style="border: 1px solid #ddd; padding: 10px;">5–8 persons</td>
-      <td style="text-align: center; border: 1px solid #ddd;">USD 45</td>
-      <td style="text-align: center; border: 1px solid #ddd;" class="line-total">USD 0</td>
-    </tr>
-    <tr>
-      <td style="text-align: center; border: 1px solid #ddd;">
-        <input type="number" min="0" value="0" class="qty" data-price="35" style="width: 50px;" />
-      </td>
-      <td style="border: 1px solid #ddd; padding: 10px;">9–15 persons</td>
-      <td style="text-align: center; border: 1px solid #ddd;">USD 35</td>
-      <td style="text-align: center; border: 1px solid #ddd;" class="line-total">USD 0</td>
-    </tr>
-    <tr style="background-color: #f9f9f9;">
-      <td colspan="3" style="text-align: right; padding: 10px; font-weight: bold; border: 1px solid #ddd;">Total</td>
-      <td style="text-align: center; padding: 10px; font-weight: bold; border: 1px solid #ddd;" id="final-total">USD 0</td>
-    </tr>
-  </tbody>
-</table>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Book Now | Let's Discover Egypt</title>
+  <link rel="icon" href="favicon.png" type="image/png">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/a2d9d5a4f8.js" crossorigin="anonymous"></script>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background-color: #f4f4f4;
+    }
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 60px;
+      background-color: #222;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 20px;
+      z-index: 1000;
+    }
+    header .logo {
+      font-size: 18px;
+      font-weight: bold;
+    }
+    header .menu-toggle {
+      font-size: 24px;
+      cursor: pointer;
+      display: block;
+    }
+    aside {
+      position: fixed;
+      top: 60px;
+      left: 0;
+      width: 200px;
+      height: 100%;
+      background-color: #333;
+      padding-top: 20px;
+      transition: transform 0.3s ease;
+    }
+    aside a {
+      display: block;
+      color: #fff;
+      padding: 12px 20px;
+      text-decoration: none;
+    }
+    aside a:hover {
+      background-color: #444;
+    }
+    main {
+      margin-left: 200px;
+      padding: 100px 20px 40px;
+    }
+    .table-section {
+      background: #fff;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      max-width: 900px;
+      margin: auto;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+    }
+    th, td {
+      border: 1px solid #ddd;
+      padding: 12px;
+      text-align: center;
+    }
+    th {
+      background-color: #f2f2f2;
+      font-weight: 600;
+    }
+    .line-total, #final-total {
+      font-weight: bold;
+      color: #222;
+    }
+    input[type="number"] {
+      width: 60px;
+      padding: 5px;
+    }
+    @media (max-width: 768px) {
+      aside {
+        transform: translateX(-100%);
+      }
+      aside.active {
+        transform: translateX(0);
+      }
+      main {
+        margin-left: 0;
+        padding-top: 80px;
+      }
+    }
+  </style>
+</head>
+<body>
 
-<script>
-  const qtyInputs = document.querySelectorAll('.qty');
-  const finalTotal = document.getElementById('final-total');
+  <header>
+    <div class="logo">Let's Discover Egypt</div>
+    <div class="menu-toggle" onclick="toggleSidebar()">☰</div>
+  </header>
 
-  function calculateTotals() {
-    let total = 0;
+  <aside id="sidebar">
+    <a href="index.html"><i class="fas fa-home"></i> Home</a>
+    <a href="tours.html"><i class="fas fa-map"></i> Tours</a>
+    <a href="book.html"><i class="fas fa-calendar-check"></i> Book Now</a>
+    <a href="contact.html"><i class="fas fa-envelope"></i> Contact</a>
+  </aside>
+
+  <main>
+    <section class="table-section">
+      <h2 style="text-align: center;">Choose Your Package</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Select</th>
+            <th>Category</th>
+            <th>Price</th>
+            <th>Total</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><input type="number" min="0" value="0" class="qty" data-price="65"></td>
+            <td>Price per person</td>
+            <td>USD 65</td>
+            <td class="line-total">USD 0</td>
+          </tr>
+          <tr>
+            <td><input type="number" min="0" value="0" class="qty" data-price="55"></td>
+            <td>2–4 persons</td>
+            <td>USD 55</td>
+            <td class="line-total">USD 0</td>
+          </tr>
+          <tr>
+            <td><input type="number" min="0" value="0" class="qty" data-price="45"></td>
+            <td>5–8 persons</td>
+            <td>USD 45</td>
+            <td class="line-total">USD 0</td>
+          </tr>
+          <tr>
+            <td><input type="number" min="0" value="0" class="qty" data-price="35"></td>
+            <td>9–15 persons</td>
+            <td>USD 35</td>
+            <td class="line-total">USD 0</td>
+          </tr>
+          <tr style="background-color: #f9f9f9;">
+            <td colspan="3" style="text-align: right; font-weight: bold;">Total</td>
+            <td id="final-total">USD 0</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+  </main>
+
+  <script>
+    const qtyInputs = document.querySelectorAll('.qty');
+    const finalTotal = document.getElementById('final-total');
+
+    function calculateTotals() {
+      let total = 0;
+      qtyInputs.forEach(input => {
+        const price = parseFloat(input.dataset.price);
+        const quantity = parseInt(input.value) || 0;
+        const lineTotal = price * quantity;
+        input.closest('tr').querySelector('.line-total').textContent = 'USD ' + lineTotal;
+        total += lineTotal;
+      });
+      finalTotal.textContent = 'USD ' + total;
+    }
+
     qtyInputs.forEach(input => {
-      const price = parseFloat(input.dataset.price);
-      const quantity = parseInt(input.value) || 0;
-      const lineTotal = price * quantity;
-      input.closest('tr').querySelector('.line-total').textContent = 'USD ' + lineTotal;
-      total += lineTotal;
+      input.addEventListener('input', calculateTotals);
     });
-    finalTotal.textContent = 'USD ' + total;
-  }
 
-  qtyInputs.forEach(input => {
-    input.addEventListener('input', calculateTotals);
-  });
+    function toggleSidebar() {
+      document.getElementById('sidebar').classList.toggle('active');
+    }
 
-  calculateTotals();
-</script>
+    calculateTotals();
+  </script>
+
+</body>
+</html>
