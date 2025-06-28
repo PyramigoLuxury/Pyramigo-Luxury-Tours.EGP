@@ -2,198 +2,281 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="احجز رحلة نصف يوم خاصة إلى أهرامات الجيزة تشمل ركوب الجمال ودليل خاص وجميع الرسوم." />
-  <title>ALL INCLUSIVE PRIVATE HALF-DAY TRIP TO GIZA PYRAMIDS</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Tour Prices | Let's Discover Egypt</title>
+  <link rel="icon" href="favicon.png" type="image/png">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
-      font-family: Arial, sans-serif;
-      background-color: #f4f4f4;
-      margin: 0;
-      padding: 0 10px 60px; /* space for mobile keyboard */
+      font-family: 'Poppins', sans-serif;
+      background: #ffffff;
+      color: #333;
     }
     header {
-      background-color: #000;
-      color: #fff;
-      padding: 20px;
-      text-align: center;
-    }
-    main {
-      display: flex;
-      flex-wrap: wrap;
-      padding: 20px;
-      gap: 20px;
-    }
-    section, form {
-      background: #fff;
-      padding: 20px;
-      border-radius: 8px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-      flex: 1 1 300px;
-    }
-    h1, h2, h3 {
-      margin-top: 0;
-    }
-    .btn {
-      padding: 10px 20px;
-      border: none;
-      background: #000;
-      color: #fff;
-      border-radius: 4px;
-      cursor: pointer;
-    }
-    .btn:hover {
-      background-color: #333;
-    }
-    .form-group {
-      margin-bottom: 15px;
-    }
-    label {
-      display: block;
-      margin-bottom: 5px;
-      font-weight: bold;
-    }
-    input, select, textarea {
+      position: fixed;
+      top: 0; left: 0;
       width: 100%;
-      padding: 8px;
-      box-sizing: border-box;
+      background: white;
+      padding: 15px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      z-index: 10;
+    }
+    .menu-icon {
+      font-size: 24px;
+      cursor: pointer;
+      z-index: 12;
+    }
+    header h2 {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 18px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    header h2 a {
+      text-decoration: none;
+      color: #333;
     }
     .sidebar {
       position: fixed;
-      left: -250px;
-      top: 0;
+      top: 0; left: -250px;
       width: 250px;
       height: 100%;
-      background: #111;
-      color: white;
-      padding: 20px;
-      transition: left 0.3s;
-      z-index: 1000;
+      background: #333;
+      padding: 60px 20px;
+      transition: left 0.3s ease;
+      z-index: 11;
     }
+    .sidebar.active { left: 0; }
     .sidebar a {
-      color: white;
-      display: block;
-      margin: 10px 0;
+      color: #fff;
       text-decoration: none;
+      display: block;
+      padding: 15px 0;
+      border-bottom: 1px solid #444;
+      font-size: 16px;
+    }
+    .sidebar a:hover {
+      background: #444;
+      padding-left: 10px;
     }
     .overlay {
-      position: fixed;
       display: none;
-      top: 0;
-      left: 0;
+      position: fixed;
+      top: 0; left: 0;
       width: 100%;
       height: 100%;
-      background: rgba(0,0,0,0.5);
-      z-index: 999;
+      background: rgba(0,0,0,0.3);
+      z-index: 10;
     }
+    .overlay.active { display: block; }
+
+    .main {
+      padding: 100px 20px 40px;
+      max-width: 700px;
+      margin: auto;
+    }
+    h1 {
+      font-size: 22px;
+      text-align: center;
+      margin-bottom: 25px;
+      font-weight: 600;
+    }
+
+    form {
+      margin-top: 30px;
+      border: 1px solid #ddd;
+      padding: 20px;
+      border-radius: 10px;
+      background: #fefefe;
+    }
+    form h2 {
+      font-size: 18px;
+      margin-bottom: 20px;
+      font-weight: 600;
+    }
+    form label {
+      display: block;
+      font-size: 13px;
+      margin-bottom: 6px;
+    }
+    form input, form select {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 13px;
+    }
+    form button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      background: #333;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
     @media (max-width: 500px) {
-      main {
-        flex-direction: column;
+      h1 { font-size: 18px; }
+      form {
+        padding: 15px;
       }
     }
   </style>
 </head>
 <body>
+
+  <div class="overlay" id="overlay" onclick="closeMenu()"></div>
+  <div class="sidebar" id="sidebar">
+    <a href="index.html"><i class="fas fa-home"></i> Home</a>
+    <a href="tours.html"><i class="fas fa-map-marked-alt"></i> Tours</a>
+    <a href="contact.html"><i class="fas fa-phone"></i> Contact</a>
+  </div>
+
   <header>
-    <button onclick="openMenu()" class="btn" aria-label="Open menu">☰</button>
-    <h1>ALL INCLUSIVE PRIVATE HALF-DAY TRIP TO GIZA PYRAMIDS</h1>
+    <div class="menu-icon" onclick="toggleMenu()">☰</div>
+    <h2><a href="index.html"><i class="fas fa-globe-africa"></i> Let's Discover Egypt</a></h2>
   </header>
 
-  <nav class="sidebar" id="sidebar" aria-label="Sidebar navigation">
-    <a href="#">Home</a>
-    <a href="#">Tours</a>
-    <a href="#">Contact</a>
-    <button onclick="closeMenu()" class="btn" aria-label="Close menu">Close</button>
-  </nav>
-  <div class="overlay" id="overlay" onclick="closeMenu()" aria-hidden="true"></div>
+  <div class="main">
+    <h1>ALL INCLUSIVE PRIVATE HALF-DAY TRIP TO GIZA PYRAMIDS WITH CAMEL RIDE.</h1>
 
-  <main>
-    <section>
-      <h2>Tour Details</h2>
-      <p><strong>Price per person:</strong> $35</p>
-      <div>
-        <button class="btn" onclick="showOptions()" aria-expanded="false" aria-controls="people-options">Select Number of People</button>
-        <div id="people-options" style="display:none; margin-top: 10px;">
-          <label for="people">Choose:</label>
-          <select id="people" onchange="updateTotal()">
-            <option value="1">1 Person</option>
-            <option value="2">2 People</option>
-            <option value="3">3 People</option>
-            <option value="4">4 People</option>
-            <option value="5">5 People</option>
+    <!-- Booking Form -->
+    <form>
+      <h2>Booking Information</h2>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+        <div><label>First Name</label><input type="text" required></div>
+        <div><label>Last Name</label><input type="text" required></div>
+        <div>
+          <label>Nationality</label>
+          <input list="nationalities" name="nationality" placeholder="Select or type..." required>
+          <datalist id="nationalities">
+            <option value="Egyptian">
+            <option value="American">
+            <option value="British">
+            <option value="Canadian">
+            <option value="French">
+            <option value="German">
+            <option value="Italian">
+            <option value="Spanish">
+            <option value="Australian">
+            <option value="Brazilian">
+            <option value="Chinese">
+            <option value="Indian">
+            <option value="Japanese">
+            <option value="Kuwaiti">
+            <option value="Saudi">
+            <option value="Emirati">
+            <option value="Qatari">
+            <option value="Omani">
+            <option value="Moroccan">
+            <option value="Tunisian">
+            <option value="Lebanese">
+            <option value="Jordanian">
+            <option value="Sudanese">
+            <option value="Palestinian">
+            <option value="Turkish">
+            <option value="Russian">
+            <option value="Ukrainian">
+            <option value="South African">
+            <option value="Nigerian">
+            <option value="Pakistani">
+            <option value="Bangladeshi">
+            <option value="Malaysian">
+            <option value="Singaporean">
+            <option value="Indonesian">
+          </datalist>
+        </div>
+        <div>
+          <label>Gender</label>
+          <select required>
+            <option value="">Select</option>
+            <option>Male</option>
+            <option>Female</option>
           </select>
         </div>
-        <p>Total: <span id="total">$35</span></p>
+        <div><label>Email</label><input type="email" required></div>
+        <div><label>Pick-up Location</label><input type="text" required></div>
+        <div><label>Tour Date</label><input type="date" required></div>
+        <div><label>Time</label><input type="time" required></div>
+        <div style="grid-column: span 2;">
+          <label>Phone Number</label>
+          <div style="display: flex; gap: 5px;">
+            <input list="countryCodes" placeholder="+20" style="width: 35%;" required>
+            <input type="tel" placeholder="123456789" style="flex: 1;" required>
+            <datalist id="countryCodes">
+              <option value="+20 (Egypt)">
+              <option value="+1 (USA)">
+              <option value="+44 (UK)">
+              <option value="+971 (UAE)">
+              <option value="+966 (Saudi Arabia)">
+              <option value="+965 (Kuwait)">
+              <option value="+962 (Jordan)">
+              <option value="+961 (Lebanon)">
+              <option value="+212 (Morocco)">
+              <option value="+213 (Algeria)">
+              <option value="+216 (Tunisia)">
+              <option value="+218 (Libya)">
+              <option value="+249 (Sudan)">
+              <option value="+973 (Bahrain)">
+              <option value="+968 (Oman)">
+              <option value="+964 (Iraq)">
+              <option value="+90 (Turkey)">
+              <option value="+33 (France)">
+              <option value="+39 (Italy)">
+              <option value="+34 (Spain)">
+              <option value="+49 (Germany)">
+              <option value="+43 (Austria)">
+              <option value="+41 (Switzerland)">
+              <option value="+380 (Ukraine)">
+              <option value="+7 (Russia)">
+              <option value="+81 (Japan)">
+              <option value="+82 (South Korea)">
+              <option value="+86 (China)">
+              <option value="+91 (India)">
+              <option value="+63 (Philippines)">
+              <option value="+60 (Malaysia)">
+              <option value="+65 (Singapore)">
+              <option value="+61 (Australia)">
+              <option value="+64 (New Zealand)">
+              <option value="+27 (South Africa)">
+              <option value="+254 (Kenya)">
+              <option value="+55 (Brazil)">
+              <option value="+52 (Mexico)">
+              <option value="+351 (Portugal)">
+              <option value="+48 (Poland)">
+              <option value="+46 (Sweden)">
+              <option value="+45 (Denmark)">
+            </datalist>
+          </div>
+        </div>
       </div>
-    </section>
-
-    <form onsubmit="return validateForm()" aria-label="Booking form">
-      <h2>Book Now</h2>
-
-      <div class="form-group">
-        <label for="firstName">First Name</label>
-        <input id="firstName" type="text" required />
-      </div>
-
-      <div class="form-group">
-        <label for="lastName">Last Name</label>
-        <input id="lastName" type="text" required />
-      </div>
-
-      <div class="form-group">
-        <label for="email">Email</label>
-        <input id="email" type="email" required oninvalid="this.setCustomValidity('Please enter a valid email')" oninput="this.setCustomValidity('')" />
-      </div>
-
-      <div class="form-group">
-        <label for="phone">Phone Number</label>
-        <input id="phone" type="tel" required />
-      </div>
-
-      <div class="form-group">
-        <label for="hotel">Hotel Name</label>
-        <input id="hotel" type="text" required />
-      </div>
-
-      <div class="form-group">
-        <label for="notes">Additional Notes</label>
-        <textarea id="notes" rows="3" placeholder="Pickup time, language preference, etc."></textarea>
-      </div>
-
-      <button type="submit" class="btn">Submit Booking</button>
+      <button type="submit">Confirm Booking</button>
     </form>
-  </main>
+  </div>
 
   <script>
-    function showOptions() {
-      const options = document.getElementById("people-options");
-      const btn = event.target;
-      const isVisible = options.style.display === "block";
-      options.style.display = isVisible ? "none" : "block";
-      btn.setAttribute("aria-expanded", !isVisible);
+    function toggleMenu() {
+      document.getElementById("sidebar").classList.toggle("active");
+      document.getElementById("overlay").classList.toggle("active");
+      document.body.style.overflow = document.getElementById("sidebar").classList.contains("active") ? "hidden" : "auto";
     }
-
-    function updateTotal() {
-      const pricePerPerson = 35;
-      const people = parseInt(document.getElementById("people").value, 10);
-      document.getElementById("total").textContent = "$" + (pricePerPerson * people);
-    }
-
-    function openMenu() {
-      document.getElementById("sidebar").style.left = "0";
-      document.getElementById("overlay").style.display = "block";
-    }
-
     function closeMenu() {
-      document.getElementById("sidebar").style.left = "-250px";
-      document.getElementById("overlay").style.display = "none";
-    }
-
-    function validateForm() {
-      // Optional: Add more validation here if needed
-      alert("Form submitted successfully!");
-      return false; // prevent real submit for demo
+      document.getElementById("sidebar").classList.remove("active");
+      document.getElementById("overlay").classList.remove("active");
+      document.body.style.overflow = "auto";
     }
   </script>
+
 </body>
-</html>
+                </html>
