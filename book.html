@@ -79,7 +79,6 @@
       z-index: 10;
     }
     .overlay.active { display: block; }
-
     .main {
       padding: 100px 20px 40px;
       max-width: 700px;
@@ -163,7 +162,6 @@
       display: flex;
       justify-content: space-between;
     }
-
     form {
       margin-top: 30px;
       border: 1px solid #ddd;
@@ -171,19 +169,16 @@
       border-radius: 10px;
       background: #fefefe;
     }
-
     form h2 {
       font-size: 18px;
       margin-bottom: 20px;
       font-weight: 600;
     }
-
     form label {
       display: block;
       font-size: 13px;
       margin-bottom: 6px;
     }
-
     form input, form select {
       width: 100%;
       padding: 8px;
@@ -191,7 +186,6 @@
       border-radius: 6px;
       font-size: 13px;
     }
-
     form button {
       margin-top: 20px;
       padding: 10px 20px;
@@ -201,7 +195,6 @@
       border-radius: 6px;
       cursor: pointer;
     }
-
     .notes {
       margin-top: 30px;
       background: #fffbe6;
@@ -209,19 +202,16 @@
       border: 1px solid #f0e1a0;
       border-radius: 10px;
     }
-
     .notes h3 {
       font-size: 16px;
       font-weight: 600;
       margin-bottom: 10px;
     }
-
     .notes ul {
       padding-left: 20px;
       font-size: 14px;
       line-height: 1.7;
     }
-
     @media (max-width: 500px) {
       h1 { font-size: 18px; }
       .price-table th, .price-table td { font-size: 12px; padding: 6px; }
@@ -248,7 +238,6 @@
 
   <div class="main">
     <h1>ALL INCLUSIVE PRIVATE HALF-DAY TRIP TO GIZA PYRAMIDS WITH CAMEL RIDE.</h1>
-    
     <!-- Pricing Table -->
     <div class="table-wrapper">
       <table class="price-table">
@@ -305,7 +294,13 @@
       <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
         <div><label>First Name</label><input type="text" required></div>
         <div><label>Last Name</label><input type="text" required></div>
-        <div><label>Nationality</label><input type="text" required></div>
+
+        <div>
+          <label>Nationality</label>
+          <input type="text" id="nationalityInput" placeholder="Select Nationality" readonly onclick="toggleNationalityDropdown()" required>
+          <div id="nationalityDropdown" class="select-popup" style="display:none; max-height: 150px; overflow-y:auto; position:absolute;"></div>
+        </div>
+
         <div>
           <label>Gender</label>
           <select required>
@@ -314,14 +309,24 @@
             <option>Female</option>
           </select>
         </div>
+
         <div><label>Email</label><input type="email" required></div>
         <div><label>Pick-up Location</label><input type="text" required></div>
         <div><label>Tour Date</label><input type="date" required></div>
         <div><label>Time</label><input type="time" required></div>
+
+        <div style="grid-column: span 2;">
+          <label>Phone Number</label>
+          <div style="display: flex; gap: 10px;">
+            <input type="text" id="countryCodeInput" placeholder="+Code" readonly onclick="togglePhoneDropdown()" style="width: 100px;" required>
+            <input type="tel" placeholder="Phone Number" required style="flex:1;">
+          </div>
+          <div id="phoneDropdown" class="select-popup" style="display:none; max-height: 150px; overflow-y:auto; position:absolute;"></div>
+        </div>
+
       </div>
       <button type="submit">Confirm Booking</button>
     </form>
-
     <!-- Notes Section -->
     <div class="notes">
       <h3><i class="fas fa-info-circle"></i> Important Notes</h3>
@@ -335,23 +340,23 @@
     </div>
   </div>
 
+  <!-- JavaScript -->
   <script>
+    // Sidebar toggle
     function toggleMenu() {
-      const sidebar = document.getElementById("sidebar");
-      const overlay = document.getElementById("overlay");
-      sidebar.classList.toggle("active");
-      overlay.classList.toggle("active");
-      document.body.style.overflow = sidebar.classList.contains("active") ? "hidden" : "auto";
+      document.getElementById("sidebar").classList.toggle("active");
+      document.getElementById("overlay").classList.toggle("active");
+      document.body.style.overflow = document.getElementById("sidebar").classList.contains("active") ? "hidden" : "auto";
     }
-
     function closeMenu() {
       document.getElementById("sidebar").classList.remove("active");
       document.getElementById("overlay").classList.remove("active");
       document.body.style.overflow = "auto";
     }
 
+    // Quantity select
     function showOptions(btn, values, price = 0, rowId = null) {
-      document.querySelectorAll(".select-popup").forEach(e => e.remove());
+      document.querySelectorAll(".select-popup").forEach(e => e.style.display = "none");
 
       const popup = document.createElement("div");
       popup.className = "select-popup";
@@ -373,32 +378,91 @@
       });
 
       document.body.appendChild(popup);
-
       const rect = btn.getBoundingClientRect();
       popup.style.left = `${rect.left + window.scrollX}px`;
       popup.style.top = `${rect.bottom + window.scrollY + 2}px`;
     }
 
+    // Total calc
     function updateTotals() {
       let totalPeople = 0;
       let totalPrice = 0;
-
       document.querySelectorAll('.qty-btn').forEach(btn => {
         const qty = parseInt(btn.getAttribute('data-qty')) || 0;
         const price = parseInt(btn.getAttribute('data-price')) || 0;
         totalPeople += qty;
         totalPrice += qty * price;
       });
-
       document.getElementById("summaryText").innerText = `${totalPeople} people selected`;
       document.getElementById("summaryPrice").innerText = `Total: USD ${totalPrice}`;
     }
 
+    // Close any open dropdown on click outside
     document.addEventListener("click", e => {
-      if (!e.target.classList.contains("qty-btn")) {
-        document.querySelectorAll(".select-popup").forEach(p => p.remove());
+      if (!e.target.closest(".qty-btn") && !e.target.closest(".select-popup") && !e.target.matches('#nationalityInput') && !e.target.matches('#countryCodeInput')) {
+        document.querySelectorAll(".select-popup").forEach(p => p.style.display = "none");
       }
     });
+
+    // Nationality dropdown
+    const nationalities = ["Afghan", "Albanian", "Algerian", "American", "Andorran", "Angolan", "Argentine", "Armenian", "Australian", "Austrian", "Azerbaijani",
+      "Bahamian", "Bahraini", "Bangladeshi", "Barbadian", "Belarusian", "Belgian", "Belizean", "Beninese", "Bhutanese", "Bolivian", "Bosnian", "Brazilian",
+      "British", "Bruneian", "Bulgarian", "Burkinabe", "Burmese", "Burundian", "Cambodian", "Cameroonian", "Canadian", "Cape Verdean", "Central African",
+      "Chadian", "Chilean", "Chinese", "Colombian", "Comorian", "Congolese", "Costa Rican", "Croatian", "Cuban", "Cypriot", "Czech", "Danish", "Djiboutian",
+      "Dominican", "Dutch", "Ecuadorian", "Egyptian", "Emirati", "English", "Equatorial Guinean", "Eritrean", "Estonian", "Ethiopian", "Fijian", "Finnish",
+      "French", "Gabonese", "Gambian", "Georgian", "German", "Ghanaian", "Greek", "Grenadian", "Guatemalan", "Guinean", "Guyanese", "Haitian", "Honduran",
+      "Hungarian", "Icelandic", "Indian", "Indonesian", "Iranian", "Iraqi", "Irish", "Israeli", "Italian", "Ivorian", "Jamaican", "Japanese", "Jordanian",
+      "Kazakh", "Kenyan", "Kuwaiti", "Kyrgyz", "Lao", "Latvian", "Lebanese", "Liberian", "Libyan", "Lithuanian", "Luxembourgish", "Macedonian", "Malagasy",
+      "Malawian", "Malaysian", "Maldivian", "Malian", "Maltese", "Mauritanian", "Mauritian", "Mexican", "Moldovan", "Monacan", "Mongolian", "Montenegrin",
+      "Moroccan", "Mozambican", "Namibian", "Nepalese", "New Zealander", "Nicaraguan", "Nigerien", "Nigerian", "Norwegian", "Omani", "Pakistani", "Palestinian",
+      "Panamanian", "Paraguayan", "Peruvian", "Philippine", "Polish", "Portuguese", "Qatari", "Romanian", "Russian", "Rwandan", "Saint Lucian", "Salvadoran",
+      "Samoan", "Saudi", "Scottish", "Senegalese", "Serbian", "Seychellois", "Sierra Leonean", "Singaporean", "Slovak", "Slovenian", "Somali", "South African",
+      "South Korean", "Spanish", "Sri Lankan", "Sudanese", "Surinamese", "Swazi", "Swedish", "Swiss", "Syrian", "Taiwanese", "Tajik", "Tanzanian", "Thai",
+      "Togolese", "Tunisian", "Turkish", "Turkmen", "Ugandan", "Ukrainian", "Uruguayan", "Uzbek", "Venezuelan", "Vietnamese", "Welsh", "Yemeni", "Zambian", "Zimbabwean"];
+
+    function toggleNationalityDropdown() {
+      const input = document.getElementById("nationalityInput");
+      const dropdown = document.getElementById("nationalityDropdown");
+      dropdown.innerHTML = "";
+      nationalities.forEach(n => {
+        const btn = document.createElement("button");
+        btn.innerText = n;
+        btn.onclick = () => {
+          input.value = n;
+          dropdown.style.display = "none";
+        };
+        dropdown.appendChild(btn);
+      });
+      const rect = input.getBoundingClientRect();
+      dropdown.style.left = `${rect.left + window.scrollX}px`;
+      dropdown.style.top = `${rect.bottom + window.scrollY + 2}px`;
+      dropdown.style.display = "block";
+    }
+
+    const phoneCodes = [
+      { name: "Egypt", code: "+20" }, { name: "USA", code: "+1" }, { name: "UK", code: "+44" }, { name: "Germany", code: "+49" },
+      { name: "France", code: "+33" }, { name: "Italy", code: "+39" }, { name: "India", code: "+91" }, { name: "Kuwait", code: "+965" },
+      { name: "UAE", code: "+971" }, { name: "Saudi Arabia", code: "+966" }, { name: "Canada", code: "+1" }, { name: "Qatar", code: "+974" }
+    ];
+
+    function togglePhoneDropdown() {
+      const input = document.getElementById("countryCodeInput");
+      const dropdown = document.getElementById("phoneDropdown");
+      dropdown.innerHTML = "";
+      phoneCodes.forEach(item => {
+        const btn = document.createElement("button");
+        btn.innerText = `${item.name} (${item.code})`;
+        btn.onclick = () => {
+          input.value = item.code;
+          dropdown.style.display = "none";
+        };
+        dropdown.appendChild(btn);
+      });
+      const rect = input.getBoundingClientRect();
+      dropdown.style.left = `${rect.left + window.scrollX}px`;
+      dropdown.style.top = `${rect.bottom + window.scrollY + 2}px`;
+      dropdown.style.display = "block";
+    }
   </script>
 
 </body>
