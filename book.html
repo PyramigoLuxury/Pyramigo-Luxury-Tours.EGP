@@ -85,7 +85,7 @@
       margin: auto;
     }
     h1 {
-      font-size: 26px;
+      font-size: 24px;
       text-align: center;
       margin-bottom: 30px;
       font-weight: 600;
@@ -93,7 +93,7 @@
     .price-table {
       width: 100%;
       border-collapse: collapse;
-      margin-bottom: 20px;
+      margin-bottom: 10px;
     }
     .price-table th, .price-table td {
       border: 1px solid #ccc;
@@ -137,9 +137,14 @@
     .totals {
       font-size: 16px;
       font-weight: 600;
-      text-align: left;
-      margin-top: 10px;
-      padding-left: 10px;
+      margin-top: 15px;
+      padding: 12px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      background-color: #f9f9f9;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
     }
     @media (max-width: 500px) {
       h1 { font-size: 20px; }
@@ -163,7 +168,7 @@
   </header>
 
   <div class="main">
-    <h1>Tour Pricing Table</h1>
+    <h1>ALL INCLUSIVE PRIVATE HALF-DAY TRIP TO GIZA PYRAMIDS WITH CAMEL RIDE.</h1>
     <table class="price-table">
       <thead>
         <tr>
@@ -213,10 +218,10 @@
       </tbody>
     </table>
 
-    <!-- ✅ Totals section -->
-    <div class="totals">
-      <div id="totalPeople">Total People Selected: 0</div>
-      <div id="grandTotal">Total Price: USD 0</div>
+    <!-- ✅ Dynamic total row -->
+    <div class="totals" id="summaryRow">
+      <span id="summaryText">0. Price per person</span>
+      <span id="summaryPrice">USD 0</span>
     </div>
   </div>
 
@@ -275,8 +280,9 @@
         totalPrice += qty * price;
       });
 
-      document.getElementById("totalPeople").innerText = "Total People Selected: " + totalPeople;
-      document.getElementById("grandTotal").innerText = "Total Price: USD " + totalPrice;
+      let avg = (totalPeople > 0) ? totalPrice / totalPeople : 0;
+      document.getElementById("summaryText").innerText = `${totalPeople}. Price per person`;
+      document.getElementById("summaryPrice").innerText = `USD ${avg.toFixed(2)}`;
     }
 
     document.addEventListener("click", e => {
