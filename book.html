@@ -1,290 +1,71 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Tour Prices | Let's Discover Egypt</title>
-  <link rel="icon" href="favicon.png" type="image/png">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body {
-      font-family: 'Poppins', sans-serif;
-      background: #ffffff;
-      color: #333;
-    }
-    header {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%;
-      background: white;
-      padding: 15px 20px;
-      display: flex;
-      align-items: center;
-      justify-content: flex-start;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-      z-index: 10;
-    }
-    .menu-icon {
-      font-size: 24px;
-      cursor: pointer;
-      z-index: 12;
-    }
-    header h2 {
-      position: absolute;
-      left: 50%;
-      top: 50%;
-      transform: translate(-50%, -50%);
-      font-size: 18px;
-      font-weight: 600;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-    header h2 a {
-      text-decoration: none;
-      color: #333;
-    }
-    .sidebar {
-      position: fixed;
-      top: 0; left: -250px;
-      width: 250px;
-      height: 100%;
-      background: #333;
-      padding: 60px 20px;
-      transition: left 0.3s ease;
-      z-index: 11;
-    }
-    .sidebar.active { left: 0; }
-    .sidebar a {
-      color: #fff;
-      text-decoration: none;
-      display: block;
-      padding: 15px 0;
-      border-bottom: 1px solid #444;
-      font-size: 16px;
-    }
-    .sidebar a:hover {
-      background: #444;
-      padding-left: 10px;
-    }
-    .overlay {
-      display: none;
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0,0,0,0.3);
-      z-index: 10;
-    }
-    .overlay.active { display: block; }
-    .main {
-      padding: 100px 20px 40px;
-      max-width: 900px;
-      margin: auto;
-    }
-    h1 {
-      font-size: 26px;
-      text-align: center;
-      margin-bottom: 30px;
-      font-weight: 600;
-    }
-    .price-table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-bottom: 20px;
-    }
-    .price-table th, .price-table td {
-      border: 1px solid #ccc;
-      padding: 12px;
-      text-align: center;
-    }
-    .price-table th {
-      background-color: #f7f7f7;
-      font-weight: 600;
-    }
-    .qty-btn {
-      padding: 6px 12px;
-      background-color: #f0f0f0;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-      font-size: 14px;
-      cursor: pointer;
-    }
-    .select-popup {
-      position: absolute;
-      background: white;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-      padding: 5px;
-      z-index: 1000;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    }
-    .select-popup button {
-      display: block;
-      width: 100%;
-      border: none;
-      background: none;
-      padding: 6px;
-      text-align: left;
-      cursor: pointer;
-      font-size: 14px;
-    }
-    .select-popup button:hover {
-      background-color: #f2f2f2;
-    }
-    .totals {
-      font-size: 16px;
-      font-weight: 600;
-      text-align: right;
-      margin-top: 10px;
-    }
-    @media (max-width: 500px) {
-      h1 { font-size: 20px; }
-      .price-table th, .price-table td { font-size: 14px; padding: 10px; }
-    }
-  </style>
-</head>
-<body>
+<table style="width: 100%; border-collapse: collapse; margin-top: 20px;">
+  <thead>
+    <tr style="background-color: #f2f2f2;">
+      <th style="padding: 10px; border: 1px solid #ddd;">Select</th>
+      <th style="padding: 10px; border: 1px solid #ddd;">Category</th>
+      <th style="padding: 10px; border: 1px solid #ddd;">Price</th>
+      <th style="padding: 10px; border: 1px solid #ddd;">Total</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center; border: 1px solid #ddd;">
+        <input type="number" min="0" value="0" class="qty" data-price="65" style="width: 50px;" />
+      </td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Price per person</td>
+      <td style="text-align: center; border: 1px solid #ddd;">USD 65</td>
+      <td style="text-align: center; border: 1px solid #ddd;" class="line-total">USD 0</td>
+    </tr>
+    <tr>
+      <td style="text-align: center; border: 1px solid #ddd;">
+        <input type="number" min="0" value="0" class="qty" data-price="55" style="width: 50px;" />
+      </td>
+      <td style="border: 1px solid #ddd; padding: 10px;">2–4 persons</td>
+      <td style="text-align: center; border: 1px solid #ddd;">USD 55</td>
+      <td style="text-align: center; border: 1px solid #ddd;" class="line-total">USD 0</td>
+    </tr>
+    <tr>
+      <td style="text-align: center; border: 1px solid #ddd;">
+        <input type="number" min="0" value="0" class="qty" data-price="45" style="width: 50px;" />
+      </td>
+      <td style="border: 1px solid #ddd; padding: 10px;">5–8 persons</td>
+      <td style="text-align: center; border: 1px solid #ddd;">USD 45</td>
+      <td style="text-align: center; border: 1px solid #ddd;" class="line-total">USD 0</td>
+    </tr>
+    <tr>
+      <td style="text-align: center; border: 1px solid #ddd;">
+        <input type="number" min="0" value="0" class="qty" data-price="35" style="width: 50px;" />
+      </td>
+      <td style="border: 1px solid #ddd; padding: 10px;">9–15 persons</td>
+      <td style="text-align: center; border: 1px solid #ddd;">USD 35</td>
+      <td style="text-align: center; border: 1px solid #ddd;" class="line-total">USD 0</td>
+    </tr>
+    <tr style="background-color: #f9f9f9;">
+      <td colspan="3" style="text-align: right; padding: 10px; font-weight: bold; border: 1px solid #ddd;">Total</td>
+      <td style="text-align: center; padding: 10px; font-weight: bold; border: 1px solid #ddd;" id="final-total">USD 0</td>
+    </tr>
+  </tbody>
+</table>
 
-  <div class="overlay" id="overlay" onclick="closeMenu()"></div>
+<script>
+  const qtyInputs = document.querySelectorAll('.qty');
+  const finalTotal = document.getElementById('final-total');
 
-  <div class="sidebar" id="sidebar">
-    <a href="index.html"><i class="fas fa-home"></i> Home</a>
-    <a href="tours.html"><i class="fas fa-map-marked-alt"></i> Tours</a>
-    <a href="contact.html"><i class="fas fa-phone"></i> Contact</a>
-  </div>
-
-  <header>
-    <div class="menu-icon" onclick="toggleMenu()">☰</div>
-    <h2><a href="index.html"><i class="fas fa-globe-africa"></i> Let's Discover Egypt</a></h2>
-  </header>
-
-  <div class="main">
-    <h1>Tour Pricing Table</h1>
-    <table class="price-table">
-      <thead>
-        <tr>
-          <th>Select</th>
-          <th>Category</th>
-          <th>Price</th>
-          <th>Total</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><button class="qty-btn" data-qty="0" data-price="65" onclick="showOptions(this, [0,1,2,3,4,5], 65, 'total1')">0</button></td>
-          <td>Price per person</td>
-          <td>USD 65</td>
-          <td id="total1">USD 0</td>
-        </tr>
-        <tr>
-          <td><button class="qty-btn" data-qty="0" data-price="55" onclick="showOptions(this, [0,2,3,4], 55, 'total2')">0</button></td>
-          <td>2–4 persons</td>
-          <td>USD 55</td>
-          <td id="total2">USD 0</td>
-        </tr>
-        <tr>
-          <td><button class="qty-btn" data-qty="0" data-price="45" onclick="showOptions(this, [0,5,6,7,8], 45, 'total3')">0</button></td>
-          <td>5–8 persons</td>
-          <td>USD 45</td>
-          <td id="total3">USD 0</td>
-        </tr>
-        <tr>
-          <td><button class="qty-btn" data-qty="0" data-price="30" onclick="showOptions(this, [0,9,10,11,12,13,14,15], 30, 'total4')">0</button></td>
-          <td>9–15 persons</td>
-          <td>USD 30</td>
-          <td id="total4">USD 0</td>
-        </tr>
-        <tr>
-          <td><button class="qty-btn" data-qty="0" data-price="25" onclick="showOptions(this, [0,1,2,3,4], 25, 'total5')">0</button></td>
-          <td>Child</td>
-          <td>USD 25</td>
-          <td id="total5">USD 0</td>
-        </tr>
-        <tr>
-          <td><button class="qty-btn" data-qty="0" data-price="0" onclick="showOptions(this, [0,1,2], 0, 'total6')">0</button></td>
-          <td>Infant</td>
-          <td>FREE</td>
-          <td id="total6">USD 0</td>
-        </tr>
-      </tbody>
-    </table>
-
-    <div class="totals">
-      <div id="totalPeople">Total People Selected: 0</div>
-      <div id="grandTotal">Total Price: USD 0</div>
-    </div>
-  </div>
-
-  <script>
-    function toggleMenu() {
-      const sidebar = document.getElementById("sidebar");
-      const overlay = document.getElementById("overlay");
-      sidebar.classList.toggle("active");
-      overlay.classList.toggle("active");
-      document.body.style.overflow = sidebar.classList.contains("active") ? "hidden" : "auto";
-    }
-
-    function closeMenu() {
-      document.getElementById("sidebar").classList.remove("active");
-      document.getElementById("overlay").classList.remove("active");
-      document.body.style.overflow = "auto";
-    }
-
-    function showOptions(btn, values, price = 0, totalId = null) {
-      document.querySelectorAll(".select-popup").forEach(e => e.remove());
-
-      const popup = document.createElement("div");
-      popup.className = "select-popup";
-
-      values.forEach(val => {
-        const option = document.createElement("button");
-        option.innerText = val;
-        option.onclick = () => {
-          btn.innerText = val;
-          popup.remove();
-          if (totalId && price >= 0) {
-            const total = val * price;
-            document.getElementById(totalId).innerText = "USD " + total;
-            btn.setAttribute('data-qty', val);
-            btn.setAttribute('data-price', price);
-            updateGrandTotal();
-          }
-        };
-        popup.appendChild(option);
-      });
-
-      document.body.appendChild(popup);
-
-      const rect = btn.getBoundingClientRect();
-      popup.style.left = `${rect.left + window.scrollX}px`;
-      popup.style.top = `${rect.bottom + window.scrollY + 2}px`;
-    }
-
-    function updateGrandTotal() {
-      const btns = document.querySelectorAll('.qty-btn');
-      let totalPeople = 0;
-      let totalPrice = 0;
-
-      btns.forEach(btn => {
-        const qty = parseInt(btn.getAttribute('data-qty') || '0');
-        const price = parseInt(btn.getAttribute('data-price') || '0');
-        totalPeople += qty;
-        totalPrice += qty * price;
-      });
-
-      document.getElementById("totalPeople").innerText = "Total People Selected: " + totalPeople;
-      document.getElementById("grandTotal").innerText = "Total Price: USD " + totalPrice;
-    }
-
-    document.addEventListener("click", e => {
-      if (!e.target.classList.contains("qty-btn")) {
-        document.querySelectorAll(".select-popup").forEach(p => p.remove());
-      }
+  function calculateTotals() {
+    let total = 0;
+    qtyInputs.forEach(input => {
+      const price = parseFloat(input.dataset.price);
+      const quantity = parseInt(input.value) || 0;
+      const lineTotal = price * quantity;
+      input.closest('tr').querySelector('.line-total').textContent = 'USD ' + lineTotal;
+      total += lineTotal;
     });
-  </script>
+    finalTotal.textContent = 'USD ' + total;
+  }
 
-</body>
-  </html>
+  qtyInputs.forEach(input => {
+    input.addEventListener('input', calculateTotals);
+  });
+
+  calculateTotals();
+</script>
