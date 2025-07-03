@@ -248,11 +248,10 @@
 
   <div class="main">
     <h1>ALL INCLUSIVE PRIVATE HALF-DAY TRIP TO GIZA PYRAMIDS WITH CAMEL RIDE.</h1>
+    
+    <!-- Pricing Table -->
+    <!-- (نفس جدول الأسعار زي ما هو بدون تعديل) -->
 
-    <!-- جدول الأسعار موجود هنا بالكامل كما هو -->
-    <!-- ... -->
-
-    <!-- ملخص الأسعار -->
     <div class="totals" id="summaryRow">
       <span id="summaryText">0 people selected</span>
       <span id="summaryPrice">Total: USD 0</span>
@@ -273,9 +272,26 @@
             <option>Female</option>
           </select>
         </div>
+        <div><label>Email</label><input type="email" required></div>
         <div>
-          <label>Email <i class="fab fa-whatsapp" style="color: green;" title="Booking confirmation via WhatsApp available"></i></label>
-          <input type="email" required>
+          <label>Phone Number</label>
+          <div style="display: flex; gap: 8px;">
+            <select style="flex: 1;" required>
+              <option value="+20">🇪🇬 +20</option>
+              <option value="+1">🇺🇸 +1</option>
+              <option value="+44">🇬🇧 +44</option>
+              <option value="+971">🇦🇪 +971</option>
+              <option value="+966">🇸🇦 +966</option>
+              <option value="+49">🇩🇪 +49</option>
+              <option value="+33">🇫🇷 +33</option>
+              <option value="+39">🇮🇹 +39</option>
+              <option value="+34">🇪🇸 +34</option>
+              <option value="+81">🇯🇵 +81</option>
+              <option value="+91">🇮🇳 +91</option>
+              <option value="+90">🇹🇷 +90</option>
+            </select>
+            <input type="tel" placeholder="Phone Number" style="flex: 2;" required>
+          </div>
         </div>
         <div><label>Pick-up Location</label><input type="text" required></div>
         <div><label>Tour Date</label><input type="date" required></div>
@@ -314,7 +330,6 @@
 
     function showOptions(btn, values, price = 0, rowId = null) {
       document.querySelectorAll(".select-popup").forEach(e => e.remove());
-
       const popup = document.createElement("div");
       popup.className = "select-popup";
 
@@ -335,7 +350,6 @@
       });
 
       document.body.appendChild(popup);
-
       const rect = btn.getBoundingClientRect();
       popup.style.left = `${rect.left + window.scrollX}px`;
       popup.style.top = `${rect.bottom + window.scrollY + 2}px`;
@@ -344,7 +358,6 @@
     function updateTotals() {
       let totalPeople = 0;
       let totalPrice = 0;
-
       document.querySelectorAll('.qty-btn').forEach(btn => {
         const qty = parseInt(btn.getAttribute('data-qty')) || 0;
         const price = parseInt(btn.getAttribute('data-price')) || 0;
@@ -364,4 +377,4 @@
   </script>
 
 </body>
-  </html>
+</html>
