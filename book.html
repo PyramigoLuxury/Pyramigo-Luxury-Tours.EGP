@@ -1,151 +1,20 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Tour Prices | Let's Discover Egypt</title>
-  <link rel="icon" href="favicon.png" type="image/png">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <style>
-    body {
-      font-family: 'Poppins', sans-serif;
-      padding: 40px;
-      max-width: 800px;
-      margin: auto;
-      background: #fff;
-      color: #333;
-    }
-    h1 {
-      font-size: 24px;
-      margin-bottom: 20px;
-    }
-    form {
-      margin-top: 30px;
-      border: 1px solid #ddd;
-      padding: 20px;
-      border-radius: 10px;
-      background: #fefefe;
-    }
-    form h2 {
-      font-size: 18px;
-      margin-bottom: 20px;
-      font-weight: 600;
-    }
-    form label {
-      display: block;
-      font-size: 13px;
-      margin-bottom: 6px;
-    }
-    form input, form select {
-      width: 100%;
-      padding: 8px;
-      border: 1px solid #ccc;
-      border-radius: 6px;
-      font-size: 13px;
-    }
-    form button {
-      margin-top: 20px;
-      padding: 10px 20px;
-      background: #333;
-      color: #fff;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-    }
-    .phone-group {
-      display: flex;
-      gap: 8px;
-    }
-    .phone-group select {
-      width: 40%;
-    }
-    .phone-group input {
-      width: 60%;
-    }
-  </style>
-</head>
-<body>
+Booking Information 
 
-<h1>ALL INCLUSIVE PRIVATE HALF-DAY TRIP TO GIZA PYRAMIDS WITH CAMEL RIDE.</h1>
+First Name
 
-<form onsubmit="sendWhatsApp(event)">
-  <h2>Booking Information</h2>
-  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
-    <div>
-      <label>First Name</label>
-      <input type="text" id="firstName" required>
-    </div>
-    <div>
-      <label>Last Name</label>
-      <input type="text" id="lastName" required>
-    </div>
+Last Name
 
-    <div>
-      <label>Nationality</label>
-      <input type="text" id="nationality" required>
-    </div>
-    <div>
-      <label>Gender</label>
-      <select id="gender" required>
-        <option value="">Select</option>
-        <option>Male</option>
-        <option>Female</option>
-      </select>
-    </div>
+Nationality
 
-    <div>
-      <label>WhatsApp Number</label>
-      <div class="phone-group">
-        <select id="countryCode" required>
-          <option value="+1">+1 (US)</option>
-          <option value="+20" selected>+20 (EG)</option>
-          <option value="+44">+44 (UK)</option>
-          <option value="+49">+49 (DE)</option>
-          <option value="+91">+91 (IN)</option>
-        </select>
-        <input type="tel" id="phoneNumber" placeholder="1234567890" required>
-      </div>
-    </div>
+Gender Select Male Female 
 
-    <div>
-      <label>Pick-up Location</label>
-      <input type="text" id="pickup" required>
-    </div>
-    <div>
-      <label>Tour Date</label>
-      <input type="date" id="tourDate" required>
-    </div>
-    <div>
-      <label>Time</label>
-      <input type="time" id="tourTime" required>
-    </div>
-  </div>
+Email
 
-  <button type="submit">Confirm Booking</button>
-</form>
+Pick-up Location
 
-<script>
-function sendWhatsApp(e) {
-  e.preventDefault();
+Tour Date
 
-  const fname = document.getElementById('firstName').value;
-  const lname = document.getElementById('lastName').value;
-  const nationality = document.getElementById('nationality').value;
-  const gender = document.getElementById('gender').value;
-  const code = document.getElementById('countryCode').value;
-  const phone = document.getElementById('phoneNumber').value;
-  const pickup = document.getElementById('pickup').value;
-  const date = document.getElementById('tourDate').value;
-  const time = document.getElementById('tourTime').value;
+Time
 
-  const fullPhone = code + phone;
-  const message = `Booking Request:%0AName: ${fname} ${lname}%0ANationality: ${nationality}%0AGender: ${gender}%0AWhatsApp: ${fullPhone}%0APick-up: ${pickup}%0ADate: ${date}%0ATime: ${time}`;
+<!-- WhatsApp Number Field --> <div style="grid-column: span 2;"> <label>WhatsApp Number</label> <div style="display: flex; gap: 10px;"> <select required style="width: 30%;"> <option value="+20" selected>+20 (EG)</option> <option value="+1">+1 (US)</option> <option value="+44">+44 (UK)</option> <option value="+49">+49 (DE)</option> <option value="+91">+91 (IN)</option> </select> <input type="tel" placeholder="Enter your number" required style="flex: 1;"> </div> </div> 
 
-  const whatsappURL = `https://wa.me/${fullPhone.replace(/\\D/g, '')}?text=${message}`;
-  window.open(whatsappURL, '_blank');
-}
-</script>
-
-</body>
-</html>
