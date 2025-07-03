@@ -8,162 +8,18 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
       font-family: 'Poppins', sans-serif;
-      background: #ffffff;
-      color: #333;
-    }
-    header {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%;
-      background: white;
-      padding: 15px 20px;
-      display: flex;
-      align-items: center;
-      justify-content: flex-start;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-      z-index: 10;
-    }
-    .menu-icon {
-      font-size: 24px;
-      cursor: pointer;
-      z-index: 12;
-    }
-    header h2 {
-      position: absolute;
-      left: 50%;
-      top: 50%;
-      transform: translate(-50%, -50%);
-      font-size: 18px;
-      font-weight: 600;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-    header h2 a {
-      text-decoration: none;
-      color: #333;
-    }
-    .sidebar {
-      position: fixed;
-      top: 0; left: -250px;
-      width: 250px;
-      height: 100%;
-      background: #333;
-      padding: 60px 20px;
-      transition: left 0.3s ease;
-      z-index: 11;
-    }
-    .sidebar.active { left: 0; }
-    .sidebar a {
-      color: #fff;
-      text-decoration: none;
-      display: block;
-      padding: 15px 0;
-      border-bottom: 1px solid #444;
-      font-size: 16px;
-    }
-    .sidebar a:hover {
-      background: #444;
-      padding-left: 10px;
-    }
-    .overlay {
-      display: none;
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0,0,0,0.3);
-      z-index: 10;
-    }
-    .overlay.active { display: block; }
-
-    .main {
-      padding: 100px 20px 40px;
-      max-width: 700px;
+      padding: 40px;
+      max-width: 800px;
       margin: auto;
+      background: #fff;
+      color: #333;
     }
     h1 {
-      font-size: 22px;
-      text-align: center;
-      margin-bottom: 25px;
-      font-weight: 600;
+      font-size: 24px;
+      margin-bottom: 20px;
     }
-    .table-wrapper {
-      background: #fff;
-      border: 1px solid #ddd;
-      border-radius: 10px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-      overflow: hidden;
-    }
-    .price-table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 13px;
-    }
-    .price-table th, .price-table td {
-      border-bottom: 1px solid #eee;
-      padding: 6px 8px;
-      text-align: center;
-    }
-    .price-table th {
-      background-color: #f7f7f7;
-      font-weight: 600;
-    }
-    .qty-container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-    .qty-btn {
-      padding: 4px 8px;
-      background-color: #f0f0f0;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-      font-size: 12px;
-      cursor: pointer;
-    }
-    .row-total {
-      font-size: 11px;
-      color: #444;
-      margin-top: 3px;
-    }
-    .select-popup {
-      position: absolute;
-      background: white;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-      padding: 5px;
-      z-index: 1000;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    }
-    .select-popup button {
-      display: block;
-      width: 100%;
-      border: none;
-      background: none;
-      padding: 6px;
-      text-align: left;
-      cursor: pointer;
-      font-size: 13px;
-    }
-    .select-popup button:hover {
-      background-color: #f2f2f2;
-    }
-    .totals {
-      font-size: 14px;
-      font-weight: 600;
-      margin-top: 15px;
-      padding: 10px 15px;
-      border: 1px solid #ccc;
-      border-radius: 6px;
-      background-color: #f9f9f9;
-      display: flex;
-      justify-content: space-between;
-    }
-
     form {
       margin-top: 30px;
       border: 1px solid #ddd;
@@ -171,19 +27,16 @@
       border-radius: 10px;
       background: #fefefe;
     }
-
     form h2 {
       font-size: 18px;
       margin-bottom: 20px;
       font-weight: 600;
     }
-
     form label {
       display: block;
       font-size: 13px;
       margin-bottom: 6px;
     }
-
     form input, form select {
       width: 100%;
       padding: 8px;
@@ -191,7 +44,6 @@
       border-radius: 6px;
       font-size: 13px;
     }
-
     form button {
       margin-top: 20px;
       padding: 10px 20px;
@@ -201,157 +53,99 @@
       border-radius: 6px;
       cursor: pointer;
     }
-
-    .notes {
-      margin-top: 30px;
-      background: #fffbe6;
-      padding: 20px;
-      border: 1px solid #f0e1a0;
-      border-radius: 10px;
+    .phone-group {
+      display: flex;
+      gap: 8px;
     }
-
-    .notes h3 {
-      font-size: 16px;
-      font-weight: 600;
-      margin-bottom: 10px;
+    .phone-group select {
+      width: 40%;
     }
-
-    .notes ul {
-      padding-left: 20px;
-      font-size: 14px;
-      line-height: 1.7;
-    }
-
-    @media (max-width: 500px) {
-      h1 { font-size: 18px; }
-      .price-table th, .price-table td { font-size: 12px; padding: 6px; }
-      form {
-        padding: 15px;
-      }
+    .phone-group input {
+      width: 60%;
     }
   </style>
 </head>
 <body>
 
-  <div class="overlay" id="overlay" onclick="closeMenu()"></div>
+<h1>ALL INCLUSIVE PRIVATE HALF-DAY TRIP TO GIZA PYRAMIDS WITH CAMEL RIDE.</h1>
 
-  <div class="sidebar" id="sidebar">
-    <a href="index.html"><i class="fas fa-home"></i> Home</a>
-    <a href="tours.html"><i class="fas fa-map-marked-alt"></i> Tours</a>
-    <a href="contact.html"><i class="fas fa-phone"></i> Contact</a>
-  </div>
-
-  <header>
-    <div class="menu-icon" onclick="toggleMenu()">☰</div>
-    <h2><a href="index.html"><i class="fas fa-globe-africa"></i> Let's Discover Egypt</a></h2>
-  </header>
-
-  <div class="main">
-    <h1>ALL INCLUSIVE PRIVATE HALF-DAY TRIP TO GIZA PYRAMIDS WITH CAMEL RIDE.</h1>
-
-    <!-- Pricing Table -->
-    <!-- ... جدول الأسعار محفوظ ... -->
-
-    <!-- Summary -->
-    <div class="totals" id="summaryRow">
-      <span id="summaryText">0 people selected</span>
-      <span id="summaryPrice">Total: USD 0</span>
+<form onsubmit="sendWhatsApp(event)">
+  <h2>Booking Information</h2>
+  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+    <div>
+      <label>First Name</label>
+      <input type="text" id="firstName" required>
+    </div>
+    <div>
+      <label>Last Name</label>
+      <input type="text" id="lastName" required>
     </div>
 
-    <!-- Booking Form -->
-    <form>
-      <h2>Booking Information</h2>
-      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
-        <div><label>First Name</label><input type="text" required></div>
-        <div><label>Last Name</label><input type="text" required></div>
-        <div><label>Nationality</label><input type="text" required></div>
-        <div>
-          <label>Gender</label>
-          <select required>
-            <option value="">Select</option>
-            <option>Male</option>
-            <option>Female</option>
-          </select>
-        </div>
-        <div><label>Email</label><input type="email" required></div>
-        <div><label>WhatsApp Number</label><input type="text" placeholder="+201234567890" required></div>
-        <div><label>Pick-up Location</label><input type="text" required></div>
-        <div><label>Tour Date</label><input type="date" required></div>
-        <div><label>Time</label><input type="time" required></div>
+    <div>
+      <label>Nationality</label>
+      <input type="text" id="nationality" required>
+    </div>
+    <div>
+      <label>Gender</label>
+      <select id="gender" required>
+        <option value="">Select</option>
+        <option>Male</option>
+        <option>Female</option>
+      </select>
+    </div>
+
+    <div>
+      <label>WhatsApp Number</label>
+      <div class="phone-group">
+        <select id="countryCode" required>
+          <option value="+1">+1 (US)</option>
+          <option value="+20" selected>+20 (EG)</option>
+          <option value="+44">+44 (UK)</option>
+          <option value="+49">+49 (DE)</option>
+          <option value="+91">+91 (IN)</option>
+        </select>
+        <input type="tel" id="phoneNumber" placeholder="1234567890" required>
       </div>
-      <button type="submit">Confirm Booking</button>
-    </form>
+    </div>
 
-    <!-- Notes Section -->
-    <div class="notes">
-      <h3><i class="fas fa-info-circle"></i> Important Notes</h3>
-      <ul>
-        <li>Infants under 2 years old join free of charge.</li>
-        <li>Please bring your passport on the day of the tour.</li>
-        <li>Pick-up time will be confirmed via WhatsApp after booking.</li>
-        <li>Free cancellation up to 24 hours in advance.</li>
-        <li>Prices include all taxes, entrance fees, and private guide.</li>
-      </ul>
+    <div>
+      <label>Pick-up Location</label>
+      <input type="text" id="pickup" required>
+    </div>
+    <div>
+      <label>Tour Date</label>
+      <input type="date" id="tourDate" required>
+    </div>
+    <div>
+      <label>Time</label>
+      <input type="time" id="tourTime" required>
     </div>
   </div>
 
-  <script>
-    function toggleMenu() {
-      document.getElementById("sidebar").classList.toggle("active");
-      document.getElementById("overlay").classList.toggle("active");
-      document.body.style.overflow = document.getElementById("sidebar").classList.contains("active") ? "hidden" : "auto";
-    }
+  <button type="submit">Confirm Booking</button>
+</form>
 
-    function closeMenu() {
-      document.getElementById("sidebar").classList.remove("active");
-      document.getElementById("overlay").classList.remove("active");
-      document.body.style.overflow = "auto";
-    }
+<script>
+function sendWhatsApp(e) {
+  e.preventDefault();
 
-    function showOptions(btn, values, price = 0, rowId = null) {
-      document.querySelectorAll(".select-popup").forEach(e => e.remove());
-      const popup = document.createElement("div");
-      popup.className = "select-popup";
-      values.forEach(val => {
-        const option = document.createElement("button");
-        option.innerText = val;
-        option.onclick = () => {
-          btn.innerText = val;
-          btn.setAttribute('data-qty', val);
-          btn.setAttribute('data-price', price);
-          if (rowId && price >= 0) {
-            document.getElementById(rowId).innerText = "USD " + (val * price);
-          }
-          popup.remove();
-          updateTotals();
-        };
-        popup.appendChild(option);
-      });
-      document.body.appendChild(popup);
-      const rect = btn.getBoundingClientRect();
-      popup.style.left = `${rect.left + window.scrollX}px`;
-      popup.style.top = `${rect.bottom + window.scrollY + 2}px`;
-    }
+  const fname = document.getElementById('firstName').value;
+  const lname = document.getElementById('lastName').value;
+  const nationality = document.getElementById('nationality').value;
+  const gender = document.getElementById('gender').value;
+  const code = document.getElementById('countryCode').value;
+  const phone = document.getElementById('phoneNumber').value;
+  const pickup = document.getElementById('pickup').value;
+  const date = document.getElementById('tourDate').value;
+  const time = document.getElementById('tourTime').value;
 
-    function updateTotals() {
-      let totalPeople = 0;
-      let totalPrice = 0;
-      document.querySelectorAll('.qty-btn').forEach(btn => {
-        const qty = parseInt(btn.getAttribute('data-qty')) || 0;
-        const price = parseInt(btn.getAttribute('data-price')) || 0;
-        totalPeople += qty;
-        totalPrice += qty * price;
-      });
-      document.getElementById("summaryText").innerText = `${totalPeople} people selected`;
-      document.getElementById("summaryPrice").innerText = `Total: USD ${totalPrice}`;
-    }
+  const fullPhone = code + phone;
+  const message = `Booking Request:%0AName: ${fname} ${lname}%0ANationality: ${nationality}%0AGender: ${gender}%0AWhatsApp: ${fullPhone}%0APick-up: ${pickup}%0ADate: ${date}%0ATime: ${time}`;
 
-    document.addEventListener("click", e => {
-      if (!e.target.classList.contains("qty-btn")) {
-        document.querySelectorAll(".select-popup").forEach(p => p.remove());
-      }
-    });
-  </script>
+  const whatsappURL = `https://wa.me/${fullPhone.replace(/\\D/g, '')}?text=${message}`;
+  window.open(whatsappURL, '_blank');
+}
+</script>
 
 </body>
 </html>
