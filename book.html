@@ -1,20 +1,166 @@
-Tour Booking Form body { font-family: Arial, sans-serif; padding: 30px; background-color: #f2f2f2; } form { background: white; padding: 20px; border-radius: 10px; max-width: 800px; margin: auto; box-shadow: 0 0 10px rgba(0,0,0,0.1); } h2 { text-align: center; } label { display: block; margin-bottom: 5px; font-weight: bold; } input, select { width: 100%; padding: 8px; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 5px; } button { padding: 10px 20px; background-color: #28a745; color: white; border: none; border-radius: 5px; cursor: pointer; font-size: 16px; } button:hover { background-color: #218838; } .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; } .full-width { grid-column: span 2; } .phone-group { display: flex; gap: 10px; } .phone-group select { flex: 1; } .phone-group input { flex: 2; } Booking Information 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Tour Booking</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/6.6.6/css/flag-icons.min.css"/>
 
-First Name 
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 30px;
+      background: #f2f2f2;
+    }
 
-Last Name 
+    form {
+      background: #fff;
+      padding: 25px;
+      max-width: 700px;
+      margin: auto;
+      border-radius: 10px;
+      box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
+    }
 
-Nationality 
+    form h2 {
+      margin-bottom: 20px;
+      text-align: center;
+    }
 
-Gender Select Male Female 
+    form label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
 
-Email 
+    form input,
+    form select {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
 
-Pick-up Location 
+    .phone-field {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
 
-Tour Date 
+    .phone-flag-select {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      padding: 6px 8px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      background: white;
+      font-size: 13px;
+      cursor: pointer;
+    }
 
-Time 
+    .phone-flag-select select {
+      border: none;
+      background: transparent;
+      font-size: 13px;
+      cursor: pointer;
+    }
 
-<!-- Phone with country code --> <div class="full-width"> <label>Phone Number (with country code)</label> <div class="phone-group"> <select name="countryCode" required> <option value="">🌍 Select Country</option> <option value="+20">🇪🇬 +20 Egypt</option> <option value="+966">🇸🇦 +966 Saudi Arabia</option> <option value="+971">🇦🇪 +971 UAE</option> <option value="+965">🇰🇼 +965 Kuwait</option> <option value="+974">🇶🇦 +974 Qatar</option> <option value="+962">🇯🇴 +962 Jordan</option> <option value="+961">🇱🇧 +961 Lebanon</option> <option value="+212">🇲🇦 +212 Morocco</option> <option value="+1">🇺🇸 +1 United States</option> <option value="+44">🇬🇧 +44 United Kingdom</option> <option value="+49">🇩🇪 +49 Germany</option> <option value="+33">🇫🇷 +33 France</option> <option value="+34">🇪🇸 +34 Spain</option> <option value="+90">🇹🇷 +90 Turkey</option> <option value="+91">🇮🇳 +91 India</option> <option value="+81">🇯🇵 +81 Japan</option> <option value="+86">🇨🇳 +86 China</option> <option value="+61">🇦🇺 +61 Australia</option> <option value="+55">🇧🇷 +55 Brazil</option> <option value="+27">🇿🇦 +27 South Africa</option> </select> <input type="tel" name="phone" placeholder="123456789" required> </div> </div> </div> <div style="text-align: center; margin-top: 20px;"> <button type="submit">Confirm Booking</button> </div> 
+    button {
+      display: block;
+      width: 100%;
+      background: #2196f3;
+      color: white;
+      padding: 12px;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+    }
 
+    button:hover {
+      background: #0b7dda;
+    }
+  </style>
+</head>
+<body>
+
+  <form>
+    <h2>Booking Information</h2>
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+      <div>
+        <label>First Name</label>
+        <input type="text" required>
+      </div>
+      <div>
+        <label>Last Name</label>
+        <input type="text" required>
+      </div>
+      <div>
+        <label>Nationality</label>
+        <input type="text" required>
+      </div>
+      <div>
+        <label>Gender</label>
+        <select required>
+          <option value="">Select</option>
+          <option>Male</option>
+          <option>Female</option>
+        </select>
+      </div>
+      <div>
+        <label>Email</label>
+        <input type="email" required>
+      </div>
+      <div>
+        <label>Pick-up Location</label>
+        <input type="text" required>
+      </div>
+      <div>
+        <label>Tour Date</label>
+        <input type="date" required>
+      </div>
+      <div>
+        <label>Time</label>
+        <input type="time" required>
+      </div>
+
+      <div style="grid-column: span 2;">
+        <label>Phone / WhatsApp</label>
+        <div class="phone-field">
+          <div class="phone-flag-select">
+            <span class="fi fi-us" id="selected-flag"></span>
+            <select id="countryCode" onchange="updateFlag(this)">
+              <option value="+1" data-flag="us" selected>🇺🇸 +1 USA</option>
+              <option value="+20" data-flag="eg">🇪🇬 +20 Egypt</option>
+              <option value="+44" data-flag="gb">🇬🇧 +44 UK</option>
+              <option value="+49" data-flag="de">🇩🇪 +49 Germany</option>
+              <option value="+33" data-flag="fr">🇫🇷 +33 France</option>
+              <option value="+39" data-flag="it">🇮🇹 +39 Italy</option>
+              <option value="+34" data-flag="es">🇪🇸 +34 Spain</option>
+              <option value="+91" data-flag="in">🇮🇳 +91 India</option>
+              <option value="+971" data-flag="ae">🇦🇪 +971 UAE</option>
+              <option value="+966" data-flag="sa">🇸🇦 +966 Saudi Arabia</option>
+              <!-- يمكنك إضافة باقي الدول هنا -->
+            </select>
+          </div>
+          <input type="tel" placeholder="Phone number" required style="flex:1;">
+        </div>
+      </div>
+    </div>
+
+    <button type="submit">Confirm Booking</button>
+  </form>
+
+  <script>
+    function updateFlag(select) {
+      const selectedFlag = document.getElementById('selected-flag');
+      const selectedOption = select.options[select.selectedIndex];
+      const flagCode = selectedOption.getAttribute('data-flag');
+      selectedFlag.className = 'fi fi-' + flagCode;
+    }
+  </script>
+
+</body>
+</html>
