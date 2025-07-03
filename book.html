@@ -1,303 +1,44 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Tour Prices | Let's Discover Egypt</title>
-  <link rel="icon" href="favicon.png" type="image/png">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <style>
-    /* [نفس التنسيق الموجود بدون أي تغيير] */
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body {
-      font-family: 'Poppins', sans-serif;
-      background: #ffffff;
-      color: #333;
-    }
-    header {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%;
-      background: white;
-      padding: 15px 20px;
-      display: flex;
-      align-items: center;
-      justify-content: flex-start;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-      z-index: 10;
-    }
-    .menu-icon {
-      font-size: 24px;
-      cursor: pointer;
-      z-index: 12;
-    }
-    header h2 {
-      position: absolute;
-      left: 50%;
-      top: 50%;
-      transform: translate(-50%, -50%);
-      font-size: 18px;
-      font-weight: 600;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-    header h2 a {
-      text-decoration: none;
-      color: #333;
-    }
-    .sidebar {
-      position: fixed;
-      top: 0; left: -250px;
-      width: 250px;
-      height: 100%;
-      background: #333;
-      padding: 60px 20px;
-      transition: left 0.3s ease;
-      z-index: 11;
-    }
-    .sidebar.active { left: 0; }
-    .sidebar a {
-      color: #fff;
-      text-decoration: none;
-      display: block;
-      padding: 15px 0;
-      border-bottom: 1px solid #444;
-      font-size: 16px;
-    }
-    .sidebar a:hover {
-      background: #444;
-      padding-left: 10px;
-    }
-    .overlay {
-      display: none;
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0,0,0,0.3);
-      z-index: 10;
-    }
-    .overlay.active { display: block; }
+<div class="main">
+  <h1>ALL INCLUSIVE PRIVATE HALF-DAY TRIP TO GIZA PYRAMIDS WITH CAMEL RIDE.</h1>
+  
+  <!-- Pricing Table -->
+  <!-- ... نفس جدول الأسعار بدون تغيير ... -->
 
-    .main {
-      padding: 100px 20px 40px;
-      max-width: 700px;
-      margin: auto;
-    }
-    h1 {
-      font-size: 22px;
-      text-align: center;
-      margin-bottom: 25px;
-      font-weight: 600;
-    }
-    .table-wrapper {
-      background: #fff;
-      border: 1px solid #ddd;
-      border-radius: 10px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-      overflow: hidden;
-    }
-    .price-table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 13px;
-    }
-    .price-table th, .price-table td {
-      border-bottom: 1px solid #eee;
-      padding: 6px 8px;
-      text-align: center;
-    }
-    .price-table th {
-      background-color: #f7f7f7;
-      font-weight: 600;
-    }
-    .qty-container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-    .qty-btn {
-      padding: 4px 8px;
-      background-color: #f0f0f0;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-      font-size: 12px;
-      cursor: pointer;
-    }
-    .row-total {
-      font-size: 11px;
-      color: #444;
-      margin-top: 3px;
-    }
-    .select-popup {
-      position: absolute;
-      background: white;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-      padding: 5px;
-      z-index: 1000;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    }
-    .select-popup button {
-      display: block;
-      width: 100%;
-      border: none;
-      background: none;
-      padding: 6px;
-      text-align: left;
-      cursor: pointer;
-      font-size: 13px;
-    }
-    .select-popup button:hover {
-      background-color: #f2f2f2;
-    }
-    .totals {
-      font-size: 14px;
-      font-weight: 600;
-      margin-top: 15px;
-      padding: 10px 15px;
-      border: 1px solid #ccc;
-      border-radius: 6px;
-      background-color: #f9f9f9;
-      display: flex;
-      justify-content: space-between;
-    }
-
-    form {
-      margin-top: 30px;
-      border: 1px solid #ddd;
-      padding: 20px;
-      border-radius: 10px;
-      background: #fefefe;
-    }
-
-    form h2 {
-      font-size: 18px;
-      margin-bottom: 20px;
-      font-weight: 600;
-    }
-
-    form label {
-      display: block;
-      font-size: 13px;
-      margin-bottom: 6px;
-    }
-
-    form input, form select {
-      width: 100%;
-      padding: 8px;
-      border: 1px solid #ccc;
-      border-radius: 6px;
-      font-size: 13px;
-    }
-
-    form button {
-      margin-top: 20px;
-      padding: 10px 20px;
-      background: #333;
-      color: #fff;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-    }
-
-    .notes {
-      margin-top: 30px;
-      background: #fffbe6;
-      padding: 20px;
-      border: 1px solid #f0e1a0;
-      border-radius: 10px;
-    }
-
-    .notes h3 {
-      font-size: 16px;
-      font-weight: 600;
-      margin-bottom: 10px;
-    }
-
-    .notes ul {
-      padding-left: 20px;
-      font-size: 14px;
-      line-height: 1.7;
-    }
-
-    @media (max-width: 500px) {
-      h1 { font-size: 18px; }
-      .price-table th, .price-table td { font-size: 12px; padding: 6px; }
-      form {
-        padding: 15px;
-      }
-    }
-  </style>
-</head>
-<body>
-
-  <div class="overlay" id="overlay" onclick="closeMenu()"></div>
-
-  <div class="sidebar" id="sidebar">
-    <a href="index.html"><i class="fas fa-home"></i> Home</a>
-    <a href="tours.html"><i class="fas fa-map-marked-alt"></i> Tours</a>
-    <a href="contact.html"><i class="fas fa-phone"></i> Contact</a>
-  </div>
-
-  <header>
-    <div class="menu-icon" onclick="toggleMenu()">☰</div>
-    <h2><a href="index.html"><i class="fas fa-globe-africa"></i> Let's Discover Egypt</a></h2>
-  </header>
-
-  <div class="main">
-    <h1>ALL INCLUSIVE PRIVATE HALF-DAY TRIP TO GIZA PYRAMIDS WITH CAMEL RIDE.</h1>
-    
-    <!-- Pricing Table -->
-    <!-- [كما هو بدون تغيير] -->
-
-    <div class="totals" id="summaryRow">
-      <span id="summaryText">0 people selected</span>
-      <span id="summaryPrice">Total: USD 0</span>
-    </div>
-
-    <!-- Booking Form (تمت إضافة خانة واتساب) -->
-    <form>
-      <h2>Booking Information</h2>
-      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
-        <div><label>First Name</label><input type="text" required></div>
-        <div><label>Last Name</label><input type="text" required></div>
-        <div><label>Nationality</label><input type="text" required></div>
-        <div>
-          <label>Gender</label>
-          <select required>
-            <option value="">Select</option>
-            <option>Male</option>
-            <option>Female</option>
-          </select>
-        </div>
-        <div><label>Email</label><input type="email" required></div>
-        <div><label>WhatsApp Number</label><input type="tel" required placeholder="+1234567890"></div>
-        <div><label>Pick-up Location</label><input type="text" required></div>
-        <div><label>Tour Date</label><input type="date" required></div>
-        <div><label>Time</label><input type="time" required></div>
+  <!-- Booking Form -->
+  <form>
+    <h2>Booking Information</h2>
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+      <div><label>First Name</label><input type="text" required></div>
+      <div><label>Last Name</label><input type="text" required></div>
+      <div><label>Nationality</label><input type="text" required></div>
+      <div>
+        <label>Gender</label>
+        <select required>
+          <option value="">Select</option>
+          <option>Male</option>
+          <option>Female</option>
+        </select>
       </div>
-      <button type="submit">Confirm Booking</button>
-    </form>
-
-    <!-- Notes Section -->
-    <div class="notes">
-      <h3><i class="fas fa-info-circle"></i> Important Notes</h3>
-      <ul>
-        <li>Infants under 2 years old join free of charge.</li>
-        <li>Please bring your passport on the day of the tour.</li>
-        <li>Pick-up time will be confirmed via WhatsApp after booking.</li>
-        <li>Free cancellation up to 24 hours in advance.</li>
-        <li>Prices include all taxes, entrance fees, and private guide.</li>
-      </ul>
+      <div>
+        <label>Email <i class="fab fa-whatsapp" style="color: green;" title="Booking confirmation via WhatsApp available"></i></label>
+        <input type="email" required>
+      </div>
+      <div><label>Pick-up Location</label><input type="text" required></div>
+      <div><label>Tour Date</label><input type="date" required></div>
+      <div><label>Time</label><input type="time" required></div>
     </div>
+    <button type="submit">Confirm Booking</button>
+  </form>
+
+  <!-- Notes Section -->
+  <div class="notes">
+    <h3><i class="fas fa-info-circle"></i> Important Notes</h3>
+    <ul>
+      <li>Infants under 2 years old join free of charge.</li>
+      <li>Please bring your passport on the day of the tour.</li>
+      <li>Pick-up time will be confirmed via WhatsApp after booking.</li>
+      <li>Free cancellation up to 24 hours in advance.</li>
+      <li>Prices include all taxes, entrance fees, and private guide.</li>
+    </ul>
   </div>
-
-  <script>
-    // [نفس السكربت بدون أي تعديل]
-  </script>
-
-</body>
-</html>
+</div>
