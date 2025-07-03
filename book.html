@@ -8,20 +8,249 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
-    /* نفس التنسيق بالكامل بدون تغيير */
-    /* ... كل التنسيقات محفوظة زي ما هي ... */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #ffffff;
+      color: #333;
+    }
+    header {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%;
+      background: white;
+      padding: 15px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      z-index: 10;
+    }
+    .menu-icon {
+      font-size: 24px;
+      cursor: pointer;
+      z-index: 12;
+    }
+    header h2 {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 18px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    header h2 a {
+      text-decoration: none;
+      color: #333;
+    }
+    .sidebar {
+      position: fixed;
+      top: 0; left: -250px;
+      width: 250px;
+      height: 100%;
+      background: #333;
+      padding: 60px 20px;
+      transition: left 0.3s ease;
+      z-index: 11;
+    }
+    .sidebar.active { left: 0; }
+    .sidebar a {
+      color: #fff;
+      text-decoration: none;
+      display: block;
+      padding: 15px 0;
+      border-bottom: 1px solid #444;
+      font-size: 16px;
+    }
+    .sidebar a:hover {
+      background: #444;
+      padding-left: 10px;
+    }
+    .overlay {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.3);
+      z-index: 10;
+    }
+    .overlay.active { display: block; }
+
+    .main {
+      padding: 100px 20px 40px;
+      max-width: 700px;
+      margin: auto;
+    }
+    h1 {
+      font-size: 22px;
+      text-align: center;
+      margin-bottom: 25px;
+      font-weight: 600;
+    }
+    .table-wrapper {
+      background: #fff;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      overflow: hidden;
+    }
+    .price-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+    .price-table th, .price-table td {
+      border-bottom: 1px solid #eee;
+      padding: 6px 8px;
+      text-align: center;
+    }
+    .price-table th {
+      background-color: #f7f7f7;
+      font-weight: 600;
+    }
+    .qty-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .qty-btn {
+      padding: 4px 8px;
+      background-color: #f0f0f0;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 12px;
+      cursor: pointer;
+    }
+    .row-total {
+      font-size: 11px;
+      color: #444;
+      margin-top: 3px;
+    }
+    .select-popup {
+      position: absolute;
+      background: white;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      padding: 5px;
+      z-index: 1000;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    .select-popup button {
+      display: block;
+      width: 100%;
+      border: none;
+      background: none;
+      padding: 6px;
+      text-align: left;
+      cursor: pointer;
+      font-size: 13px;
+    }
+    .select-popup button:hover {
+      background-color: #f2f2f2;
+    }
+    .totals {
+      font-size: 14px;
+      font-weight: 600;
+      margin-top: 15px;
+      padding: 10px 15px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      background-color: #f9f9f9;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    form {
+      margin-top: 30px;
+      border: 1px solid #ddd;
+      padding: 20px;
+      border-radius: 10px;
+      background: #fefefe;
+    }
+
+    form h2 {
+      font-size: 18px;
+      margin-bottom: 20px;
+      font-weight: 600;
+    }
+
+    form label {
+      display: block;
+      font-size: 13px;
+      margin-bottom: 6px;
+    }
+
+    form input, form select {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 13px;
+    }
+
+    form button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      background: #333;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .notes {
+      margin-top: 30px;
+      background: #fffbe6;
+      padding: 20px;
+      border: 1px solid #f0e1a0;
+      border-radius: 10px;
+    }
+
+    .notes h3 {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+
+    .notes ul {
+      padding-left: 20px;
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    @media (max-width: 500px) {
+      h1 { font-size: 18px; }
+      .price-table th, .price-table td { font-size: 12px; padding: 6px; }
+      form {
+        padding: 15px;
+      }
+    }
   </style>
 </head>
 <body>
 
-  <!-- Sidebar + Header زي ما هو -->
-  <!-- ... الكود محفوظ زي ما هو ... -->
+  <div class="overlay" id="overlay" onclick="closeMenu()"></div>
+
+  <div class="sidebar" id="sidebar">
+    <a href="index.html"><i class="fas fa-home"></i> Home</a>
+    <a href="tours.html"><i class="fas fa-map-marked-alt"></i> Tours</a>
+    <a href="contact.html"><i class="fas fa-phone"></i> Contact</a>
+  </div>
+
+  <header>
+    <div class="menu-icon" onclick="toggleMenu()">☰</div>
+    <h2><a href="index.html"><i class="fas fa-globe-africa"></i> Let's Discover Egypt</a></h2>
+  </header>
 
   <div class="main">
     <h1>ALL INCLUSIVE PRIVATE HALF-DAY TRIP TO GIZA PYRAMIDS WITH CAMEL RIDE.</h1>
 
     <!-- Pricing Table -->
-    <!-- ... جدول الأسعار زي ما هو ... -->
+    <!-- ... جدول الأسعار محفوظ ... -->
 
     <!-- Summary -->
     <div class="totals" id="summaryRow">
@@ -66,10 +295,62 @@
     </div>
   </div>
 
-  <!-- Scripts -->
   <script>
-    // toggleMenu, closeMenu, showOptions, updateTotals
-    // كل الاسكربت زي ما هو بدون تعديل
+    function toggleMenu() {
+      document.getElementById("sidebar").classList.toggle("active");
+      document.getElementById("overlay").classList.toggle("active");
+      document.body.style.overflow = document.getElementById("sidebar").classList.contains("active") ? "hidden" : "auto";
+    }
+
+    function closeMenu() {
+      document.getElementById("sidebar").classList.remove("active");
+      document.getElementById("overlay").classList.remove("active");
+      document.body.style.overflow = "auto";
+    }
+
+    function showOptions(btn, values, price = 0, rowId = null) {
+      document.querySelectorAll(".select-popup").forEach(e => e.remove());
+      const popup = document.createElement("div");
+      popup.className = "select-popup";
+      values.forEach(val => {
+        const option = document.createElement("button");
+        option.innerText = val;
+        option.onclick = () => {
+          btn.innerText = val;
+          btn.setAttribute('data-qty', val);
+          btn.setAttribute('data-price', price);
+          if (rowId && price >= 0) {
+            document.getElementById(rowId).innerText = "USD " + (val * price);
+          }
+          popup.remove();
+          updateTotals();
+        };
+        popup.appendChild(option);
+      });
+      document.body.appendChild(popup);
+      const rect = btn.getBoundingClientRect();
+      popup.style.left = `${rect.left + window.scrollX}px`;
+      popup.style.top = `${rect.bottom + window.scrollY + 2}px`;
+    }
+
+    function updateTotals() {
+      let totalPeople = 0;
+      let totalPrice = 0;
+      document.querySelectorAll('.qty-btn').forEach(btn => {
+        const qty = parseInt(btn.getAttribute('data-qty')) || 0;
+        const price = parseInt(btn.getAttribute('data-price')) || 0;
+        totalPeople += qty;
+        totalPrice += qty * price;
+      });
+      document.getElementById("summaryText").innerText = `${totalPeople} people selected`;
+      document.getElementById("summaryPrice").innerText = `Total: USD ${totalPrice}`;
+    }
+
+    document.addEventListener("click", e => {
+      if (!e.target.classList.contains("qty-btn")) {
+        document.querySelectorAll(".select-popup").forEach(p => p.remove());
+      }
+    });
   </script>
 
 </body>
