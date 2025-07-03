@@ -1,160 +1,20 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Tour Prices | Let's Discover Egypt</title>
-  <link rel="icon" href="favicon.png" type="image/png">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body {
-      font-family: 'Poppins', sans-serif;
-      background: #ffffff;
-      color: #333;
-    }
-    header {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%;
-      background: white;
-      padding: 15px 20px;
-      display: flex;
-      align-items: center;
-      justify-content: flex-start;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-      z-index: 10;
-    }
-    .menu-icon {
-      font-size: 24px;
-      cursor: pointer;
-      z-index: 12;
-    }
-    header h2 {
-      position: absolute;
-      left: 50%;
-      top: 50%;
-      transform: translate(-50%, -50%);
-      font-size: 18px;
-      font-weight: 600;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-    header h2 a {
-      text-decoration: none;
-      color: #333;
-    }
-    .sidebar {
-      position: fixed;
-      top: 0; left: -250px;
-      width: 250px;
-      height: 100%;
-      background: #333;
-      padding: 60px 20px;
-      transition: left 0.3s ease;
-      z-index: 11;
-    }
-    .sidebar.active { left: 0; }
-    .sidebar a {
-      color: #fff;
-      text-decoration: none;
-      display: block;
-      padding: 15px 0;
-      border-bottom: 1px solid #444;
-      font-size: 16px;
-    }
-    .sidebar a:hover {
-      background: #444;
-      padding-left: 10px;
-    }
-    .overlay {
-      display: none;
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0,0,0,0.3);
-      z-index: 10;
-    }
-    .overlay.active { display: block; }
+Tour Booking Form body { font-family: Arial, sans-serif; padding: 30px; background-color: #f2f2f2; } form { background: white; padding: 20px; border-radius: 10px; max-width: 800px; margin: auto; box-shadow: 0 0 10px rgba(0,0,0,0.1); } h2 { text-align: center; } label { display: block; margin-bottom: 5px; font-weight: bold; } input, select { width: 100%; padding: 8px; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 5px; } button { padding: 10px 20px; background-color: #28a745; color: white; border: none; border-radius: 5px; cursor: pointer; font-size: 16px; } button:hover { background-color: #218838; } .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; } .full-width { grid-column: span 2; } .phone-group { display: flex; gap: 10px; } .phone-group select { flex: 1; } .phone-group input { flex: 2; } Booking Information 
 
-    .main {
-      padding: 100px 20px 40px;
-      max-width: 700px;
-      margin: auto;
-    }
-    h1 {
-      font-size: 22px;
-      text-align: center;
-      margin-bottom: 25px;
-      font-weight: 600;
-    }
-    form {
-      margin-top: 30px;
-      border: 1px solid #ddd;
-      padding: 20px;
-      border-radius: 10px;
-      background: #fefefe;
-    }
+First Name 
 
-    form h2 {
-      font-size: 18px;
-      margin-bottom: 20px;
-      font-weight: 600;
-    }
+Last Name 
 
-    form label {
-      display: block;
-      font-size: 13px;
-      margin-bottom: 6px;
-    }
+Nationality 
 
-    form input, form select {
-      width: 100%;
-      padding: 8px;
-      border: 1px solid #ccc;
-      border-radius: 6px;
-      font-size: 13px;
-    }
+Gender Select Male Female 
 
-    form button {
-      margin-top: 20px;
-      padding: 10px 20px;
-      background: #333;
-      color: #fff;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-    }
-  </style>
-</head>
-<body>
-  <div class="main">
-    <h1>Booking Form</h1>
-    <form>
-      <h2>Booking Information</h2>
-      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
-        <div><label>First Name</label><input type="text" required></div>
-        <div><label>Last Name</label><input type="text" required></div>
-        <div><label>Nationality</label><input type="text" required></div>
-        <div>
-          <label>Gender</label>
-          <select required>
-            <option value="">Select</option>
-            <option>Male</option>
-            <option>Female</option>
-          </select>
-        </div>
-        <div><label>Email</label><input type="email" required></div>
-        <div><label>WhatsApp Number</label><input type="tel" placeholder="+20..." required></div>
-        <div><label>Pick-up Location</label><input type="text" required></div>
-        <div><label>Tour Date</label><input type="date" required></div>
-        <div><label>Time</label><input type="time" required></div>
-      </div>
-      <button type="submit">Confirm Booking</button>
-    </form>
-  </div>
-</body>
-</html>
+Email 
+
+Pick-up Location 
+
+Tour Date 
+
+Time 
+
+<!-- Phone with country code --> <div class="full-width"> <label>Phone Number (with country code)</label> <div class="phone-group"> <select name="countryCode" required> <option value="">🌍 Select Country</option> <option value="+20">🇪🇬 +20 Egypt</option> <option value="+966">🇸🇦 +966 Saudi Arabia</option> <option value="+971">🇦🇪 +971 UAE</option> <option value="+965">🇰🇼 +965 Kuwait</option> <option value="+974">🇶🇦 +974 Qatar</option> <option value="+962">🇯🇴 +962 Jordan</option> <option value="+961">🇱🇧 +961 Lebanon</option> <option value="+212">🇲🇦 +212 Morocco</option> <option value="+1">🇺🇸 +1 United States</option> <option value="+44">🇬🇧 +44 United Kingdom</option> <option value="+49">🇩🇪 +49 Germany</option> <option value="+33">🇫🇷 +33 France</option> <option value="+34">🇪🇸 +34 Spain</option> <option value="+90">🇹🇷 +90 Turkey</option> <option value="+91">🇮🇳 +91 India</option> <option value="+81">🇯🇵 +81 Japan</option> <option value="+86">🇨🇳 +86 China</option> <option value="+61">🇦🇺 +61 Australia</option> <option value="+55">🇧🇷 +55 Brazil</option> <option value="+27">🇿🇦 +27 South Africa</option> </select> <input type="tel" name="phone" placeholder="123456789" required> </div> </div> </div> <div style="text-align: center; margin-top: 20px;"> <button type="submit">Confirm Booking</button> </div> 
+
