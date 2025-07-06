@@ -8,133 +8,150 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: 'Poppins', sans-serif; background: #ffffff; color: #333; }
-    header {
-      position: fixed; top: 0; left: 0; width: 100%; background: white;
-      padding: 15px 20px; display: flex; align-items: center; justify-content: flex-start;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1); z-index: 10;
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #ffffff;
+      color: #333;
+      margin: 0;
     }
-    .menu-icon { font-size: 24px; cursor: pointer; z-index: 12; }
-    header h2 {
-      position: absolute; left: 50%; top: 50%;
-      transform: translate(-50%, -50%); font-size: 18px; font-weight: 600;
-      display: flex; align-items: center; gap: 6px;
-    }
-    header h2 a { text-decoration: none; color: #333; }
-    .sidebar {
-      position: fixed; top: 0; left: -250px; width: 250px; height: 100%;
-      background: #333; padding: 60px 20px; transition: left 0.3s ease; z-index: 11;
-    }
-    .sidebar.active { left: 0; }
-    .sidebar a {
-      color: #fff; text-decoration: none; display: block; padding: 15px 0;
-      border-bottom: 1px solid #444; font-size: 16px;
-    }
-    .sidebar a:hover { background: #444; padding-left: 10px; }
-    .overlay {
-      display: none; position: fixed; top: 0; left: 0;
-      width: 100%; height: 100%; background: rgba(0,0,0,0.3); z-index: 10;
-    }
-    .overlay.active { display: block; }
     .main {
-      padding: 100px 20px 40px; max-width: 700px; margin: auto;
+      padding: 100px 20px 40px;
+      max-width: 700px;
+      margin: auto;
     }
-    h1 { font-size: 22px; text-align: center; margin-bottom: 25px; font-weight: 600; }
-
-    .table-wrapper {
-      background: #fff; border: 1px solid #ddd; border-radius: 10px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1); overflow: hidden;
+    h1 {
+      font-size: 22px;
+      text-align: center;
+      margin-bottom: 25px;
+      font-weight: 600;
     }
-    .price-table { width: 100%; border-collapse: collapse; font-size: 13px; }
-    .price-table th, .price-table td {
-      border-bottom: 1px solid #eee; padding: 6px 8px; text-align: center;
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 30px;
+      font-size: 14px;
     }
-    .price-table th { background-color: #f7f7f7; font-weight: 600; }
-    .qty-container { display: flex; flex-direction: column; align-items: center; }
-    .qty-btn {
-      padding: 4px 8px; background-color: #f0f0f0;
-      border: 1px solid #ccc; border-radius: 4px; font-size: 12px; cursor: pointer;
+    table, th, td {
+      border: 1px solid #ddd;
     }
-    .row-total { font-size: 11px; color: #444; margin-top: 3px; }
-
-    .totals {
-      font-size: 14px; font-weight: 600; margin-top: 15px;
-      padding: 10px 15px; border: 1px solid #ccc;
-      border-radius: 6px; background-color: #f9f9f9;
-      display: flex; justify-content: space-between;
+    th, td {
+      padding: 10px;
+      text-align: center;
+    }
+    th {
+      background-color: #f9f9f9;
+    }
+    .popup-options {
+      position: absolute;
+      background: #fff;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      z-index: 9999;
+      display: none;
+    }
+    .popup-options button {
+      display: block;
+      width: 100%;
+      padding: 8px 10px;
+      border: none;
+      background: none;
+      text-align: left;
+      cursor: pointer;
+      font-size: 14px;
+    }
+    .popup-options button:hover {
+      background-color: #f1f1f1;
+    }
+    .highlight {
+      color: green;
+      font-weight: bold;
+    }
+    .time-field {
+      position: relative;
+    }
+    input, select {
+      width: 100%;
+      padding: 10px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      font-size: 14px;
     }
     form {
-      margin-top: 30px; border: 1px solid #ddd;
-      padding: 20px; border-radius: 10px; background: #fefefe;
+      border: 1px solid #ddd;
+      padding: 20px;
+      border-radius: 10px;
+      background: #fefefe;
     }
-    form h2 { font-size: 18px; margin-bottom: 20px; font-weight: 600; }
-    form label { display: block; font-size: 13px; margin-bottom: 6px; }
-    form input, form select {
-      width: 100%; padding: 8px; border: 1px solid #ccc;
-      border-radius: 6px; font-size: 13px;
+    form h2 {
+      font-size: 18px;
+      margin-bottom: 20px;
+      font-weight: 600;
+      text-align: center;
+    }
+    form label {
+      display: block;
+      font-size: 13px;
+      margin-bottom: 6px;
     }
     form button {
-      margin-top: 20px; padding: 10px 20px;
-      background: #333; color: #fff; border: none;
-      border-radius: 6px; cursor: pointer;
-    }
-    .notes {
-      margin-top: 30px; background: #fffbe6;
-      padding: 20px; border: 1px solid #f0e1a0;
-      border-radius: 10px;
-    }
-    .notes h3 { font-size: 16px; font-weight: 600; margin-bottom: 10px; }
-    .notes ul { padding-left: 20px; font-size: 14px; line-height: 1.7; }
-
-    @media (max-width: 500px) {
-      h1 { font-size: 18px; }
-      .price-table th, .price-table td { font-size: 12px; padding: 6px; }
-      form { padding: 15px; }
+      margin-top: 20px;
+      padding: 10px 20px;
+      background: #333;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 16px;
     }
   </style>
 </head>
 <body>
 
-<div class="overlay" id="overlay" onclick="closeMenu()"></div>
-<div class="sidebar" id="sidebar">
-  <a href="index.html"><i class="fas fa-home"></i> Home</a>
-  <a href="tours.html"><i class="fas fa-map-marked-alt"></i> Tours</a>
-  <a href="contact.html"><i class="fas fa-phone"></i> Contact</a>
-</div>
-
-<header>
-  <div class="menu-icon" onclick="toggleMenu()">☰</div>
-  <h2><a href="index.html"><i class="fas fa-globe-africa"></i> Let's Discover Egypt</a></h2>
-</header>
-
 <div class="main">
-  <h1>ALL INCLUSIVE PRIVATE HALF-DAY TRIP TO GIZA PYRAMIDS WITH CAMEL RIDE.</h1>
+  <h1>ALL INCLUSIVE PRIVATE HALF-DAY TRIP TO GIZA PYRAMIDS WITH CAMEL RIDE</h1>
 
-  <div class="table-wrapper">
-    <table class="price-table">
-      <thead>
-        <tr>
-          <th>Select</th>
-          <th>Category</th>
-          <th>Price</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><div class="qty-container"><button class="qty-btn" data-qty="0" data-price="65" onclick="showOptions(this, [0,1,2,3,4,5], 65, 'row1')">0</button><span class="row-total" id="row1">USD 0</span></div></td>
-          <td>Price per person</td>
-          <td>USD 65</td>
-        </tr>
-        <!-- Add more rows as needed -->
-      </tbody>
-    </table>
-  </div>
-
-  <div class="totals" id="summaryRow">
-    <span id="summaryText">0 people selected</span>
-    <span id="summaryPrice">Total: USD 0</span>
-  </div>
+  <table>
+    <thead>
+      <tr>
+        <th>Select</th>
+        <th>Category</th>
+        <th>Price</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><input type="number" min="0" value="0" /></td>
+        <td>Price per person</td>
+        <td>USD 65</td>
+      </tr>
+      <tr>
+        <td><input type="number" min="0" value="0" /></td>
+        <td>2–4 persons</td>
+        <td>USD 55</td>
+      </tr>
+      <tr>
+        <td><input type="number" min="0" value="0" /></td>
+        <td>5–8 persons</td>
+        <td>USD 45</td>
+      </tr>
+      <tr>
+        <td><input type="number" min="0" value="0" /></td>
+        <td>9–15 persons</td>
+        <td>USD 30</td>
+      </tr>
+      <tr>
+        <td><input type="number" min="0" value="0" /></td>
+        <td>Child</td>
+        <td>USD 25</td>
+      </tr>
+      <tr>
+        <td><input type="number" min="0" value="0" /></td>
+        <td>Infant</td>
+        <td>FREE</td>
+      </tr>
+    </tbody>
+  </table>
 
   <form>
     <h2>Booking Information</h2>
@@ -152,103 +169,52 @@
       <div><label>Email</label><input type="email" required></div>
       <div><label>Pick-up Location</label><input type="text" required></div>
       <div><label>Tour Date</label><input type="date" required></div>
-      <div>
-        <label for="time">Time</label>
-        <select id="time" name="time" required>
-          <option value="">-- Please choose a time --</option>
-          <option value="7:00 AM">7:00 AM</option>
-          <option value="8:00 AM">8:00 AM</option>
-          <option value="9:00 AM">9:00 AM – Places remaining</option>
-          <option value="10:00 AM">10:00 AM – Places remaining</option>
-          <option value="11:00 AM">11:00 AM – Places remaining</option>
-          <option value="1:00 PM">1:00 PM – Places remaining</option>
-          <option value="2:00 PM">2:00 PM – Places remaining</option>
-        </select>
+
+      <!-- وقت الجولة -->
+      <div class="time-field">
+        <label for="selectedTime">Time</label>
+        <input type="text" id="selectedTime" name="time" placeholder="Choose time" readonly required onclick="showTimeOptions()">
+        <div class="popup-options" id="timeOptions">
+          <button onclick="selectTime('7:00 AM')">7:00 AM</button>
+          <button onclick="selectTime('8:00 AM')">8:00 AM</button>
+          <button class="highlight" onclick="selectTime('9:00 AM – Places remaining')">9:00 AM – Places remaining</button>
+          <button class="highlight" onclick="selectTime('10:00 AM – Places remaining')">10:00 AM – Places remaining</button>
+          <button class="highlight" onclick="selectTime('11:00 AM – Places remaining')">11:00 AM – Places remaining</button>
+          <button class="highlight" onclick="selectTime('1:00 PM – Places remaining')">1:00 PM – Places remaining</button>
+          <button class="highlight" onclick="selectTime('2:00 PM – Places remaining')">2:00 PM – Places remaining</button>
+        </div>
       </div>
+
       <div><label>WhatsApp Number</label><input type="tel" required></div>
     </div>
+
     <button type="submit">Confirm Booking</button>
   </form>
-
-  <div class="notes">
-    <h3><i class="fas fa-info-circle"></i> Important Notes</h3>
-    <ul>
-      <li>Infants under 2 years old join free of charge.</li>
-      <li>Please bring your passport on the day of the tour.</li>
-      <li>Pick-up time will be confirmed via WhatsApp after booking.</li>
-    </ul>
-  </div>
 </div>
 
 <script>
-  function toggleMenu() {
-    const sidebar = document.getElementById("sidebar");
-    const overlay = document.getElementById("overlay");
-    sidebar.classList.toggle("active");
-    overlay.classList.toggle("active");
-    document.body.style.overflow = sidebar.classList.contains("active") ? "hidden" : "auto";
-  }
+  function showTimeOptions() {
+    const menu = document.getElementById("timeOptions");
+    menu.style.display = "block";
 
-  function closeMenu() {
-    document.getElementById("sidebar").classList.remove("active");
-    document.getElementById("overlay").classList.remove("active");
-    document.body.style.overflow = "auto";
-  }
+    const input = document.getElementById("selectedTime");
+    const rect = input.getBoundingClientRect();
+    menu.style.top = `${rect.bottom + window.scrollY}px`;
+    menu.style.left = `${rect.left + window.scrollX}px`;
 
-  function showOptions(btn, values, price = 0, rowId = null) {
-    document.querySelectorAll(".select-popup").forEach(e => e.remove());
-    const popup = document.createElement("div");
-    popup.className = "select-popup";
-    values.forEach(val => {
-      const option = document.createElement("button");
-      option.innerText = val;
-      option.onclick = () => {
-        btn.innerText = val;
-        btn.setAttribute('data-qty', val);
-        btn.setAttribute('data-price', price);
-        if (rowId && price >= 0) {
-          document.getElementById(rowId).innerText = "USD " + (val * price);
-        }
-        popup.remove();
-        updateTotals();
-      };
-      popup.appendChild(option);
-    });
-    document.body.appendChild(popup);
-    const rect = btn.getBoundingClientRect();
-    popup.style.left = `${rect.left + window.scrollX}px`;
-    popup.style.top = `${rect.bottom + window.scrollY + 2}px`;
-  }
-
-  function updateTotals() {
-    let totalPeople = 0;
-    let totalPrice = 0;
-    document.querySelectorAll('.qty-btn').forEach(btn => {
-      const qty = parseInt(btn.getAttribute('data-qty')) || 0;
-      const price = parseInt(btn.getAttribute('data-price')) || 0;
-      totalPeople += qty;
-      totalPrice += qty * price;
-    });
-    document.getElementById("summaryText").innerText = `${totalPeople} people selected`;
-    document.getElementById("summaryPrice").innerText = `Total: USD ${totalPrice}`;
-  }
-
-  document.addEventListener("click", e => {
-    if (!e.target.classList.contains("qty-btn")) {
-      document.querySelectorAll(".select-popup").forEach(p => p.remove());
-    }
-  });
-
-  // ✅ تلوين "Places remaining"
-  window.addEventListener('DOMContentLoaded', () => {
-    const timeSelect = document.getElementById('time');
-    Array.from(timeSelect.options).forEach(option => {
-      if (option.text.includes('Places remaining')) {
-        option.style.color = 'green';
-        option.style.fontWeight = 'bold';
+    document.addEventListener("click", function outsideClick(e) {
+      if (!menu.contains(e.target) && e.target !== input) {
+        menu.style.display = "none";
+        document.removeEventListener("click", outsideClick);
       }
     });
-  });
+  }
+
+  function selectTime(value) {
+    event.preventDefault();
+    document.getElementById("selectedTime").value = value;
+    document.getElementById("timeOptions").style.display = "none";
+  }
 </script>
 
 </body>
