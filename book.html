@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Tour Prices | Let's Discover Egypt</title>
+  <title>Tour Booking | Let's Discover Egypt</title>
   <link rel="icon" href="favicon.png" type="image/png">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
@@ -41,6 +41,7 @@
       padding: 100px 20px 40px; max-width: 700px; margin: auto;
     }
     h1 { font-size: 22px; text-align: center; margin-bottom: 25px; font-weight: 600; }
+
     .table-wrapper {
       background: #fff; border: 1px solid #ddd; border-radius: 10px;
       box-shadow: 0 2px 8px rgba(0,0,0,0.1); overflow: hidden;
@@ -50,24 +51,13 @@
       border-bottom: 1px solid #eee; padding: 6px 8px; text-align: center;
     }
     .price-table th { background-color: #f7f7f7; font-weight: 600; }
-    .qty-container {
-      display: flex; flex-direction: column; align-items: center;
-    }
+    .qty-container { display: flex; flex-direction: column; align-items: center; }
     .qty-btn {
       padding: 4px 8px; background-color: #f0f0f0;
       border: 1px solid #ccc; border-radius: 4px; font-size: 12px; cursor: pointer;
     }
     .row-total { font-size: 11px; color: #444; margin-top: 3px; }
-    .select-popup {
-      position: absolute; background: white; border: 1px solid #ccc;
-      border-radius: 4px; padding: 5px; z-index: 1000;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    }
-    .select-popup button {
-      display: block; width: 100%; border: none; background: none;
-      padding: 6px; text-align: left; cursor: pointer; font-size: 13px;
-    }
-    .select-popup button:hover { background-color: #f2f2f2; }
+
     .totals {
       font-size: 14px; font-weight: 600; margin-top: 15px;
       padding: 10px 15px; border: 1px solid #ccc;
@@ -79,9 +69,7 @@
       padding: 20px; border-radius: 10px; background: #fefefe;
     }
     form h2 { font-size: 18px; margin-bottom: 20px; font-weight: 600; }
-    form label {
-      display: block; font-size: 13px; margin-bottom: 6px;
-    }
+    form label { display: block; font-size: 13px; margin-bottom: 6px; }
     form input, form select {
       width: 100%; padding: 8px; border: 1px solid #ccc;
       border-radius: 6px; font-size: 13px;
@@ -138,31 +126,7 @@
           <td>Price per person</td>
           <td>USD 65</td>
         </tr>
-        <tr>
-          <td><div class="qty-container"><button class="qty-btn" data-qty="0" data-price="55" onclick="showOptions(this, [0,2,3,4], 55, 'row2')">0</button><span class="row-total" id="row2">USD 0</span></div></td>
-          <td>2–4 persons</td>
-          <td>USD 55</td>
-        </tr>
-        <tr>
-          <td><div class="qty-container"><button class="qty-btn" data-qty="0" data-price="45" onclick="showOptions(this, [0,5,6,7,8], 45, 'row3')">0</button><span class="row-total" id="row3">USD 0</span></div></td>
-          <td>5–8 persons</td>
-          <td>USD 45</td>
-        </tr>
-        <tr>
-          <td><div class="qty-container"><button class="qty-btn" data-qty="0" data-price="30" onclick="showOptions(this, [0,9,10,11,12,13,14,15], 30, 'row4')">0</button><span class="row-total" id="row4">USD 0</span></div></td>
-          <td>9–15 persons</td>
-          <td>USD 30</td>
-        </tr>
-        <tr>
-          <td><div class="qty-container"><button class="qty-btn" data-qty="0" data-price="25" onclick="showOptions(this, [0,1,2,3,4], 25, 'row5')">0</button><span class="row-total" id="row5">USD 0</span></div></td>
-          <td>Child</td>
-          <td>USD 25</td>
-        </tr>
-        <tr>
-          <td><div class="qty-container"><button class="qty-btn" data-qty="0" data-price="0" onclick="showOptions(this, [0,1,2], 0, 'row6')">0</button><span class="row-total" id="row6">USD 0</span></div></td>
-          <td>Infant</td>
-          <td>FREE</td>
-        </tr>
+        <!-- Add more rows as needed -->
       </tbody>
     </table>
   </div>
@@ -172,7 +136,6 @@
     <span id="summaryPrice">Total: USD 0</span>
   </div>
 
-  <!-- Booking Form -->
   <form>
     <h2>Booking Information</h2>
     <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
@@ -207,15 +170,12 @@
     <button type="submit">Confirm Booking</button>
   </form>
 
-  <!-- Notes -->
   <div class="notes">
     <h3><i class="fas fa-info-circle"></i> Important Notes</h3>
     <ul>
       <li>Infants under 2 years old join free of charge.</li>
       <li>Please bring your passport on the day of the tour.</li>
       <li>Pick-up time will be confirmed via WhatsApp after booking.</li>
-      <li>Free cancellation up to 24 hours in advance.</li>
-      <li>Prices include all taxes, entrance fees, and private guide.</li>
     </ul>
   </div>
 </div>
@@ -239,7 +199,6 @@
     document.querySelectorAll(".select-popup").forEach(e => e.remove());
     const popup = document.createElement("div");
     popup.className = "select-popup";
-
     values.forEach(val => {
       const option = document.createElement("button");
       option.innerText = val;
@@ -255,7 +214,6 @@
       };
       popup.appendChild(option);
     });
-
     document.body.appendChild(popup);
     const rect = btn.getBoundingClientRect();
     popup.style.left = `${rect.left + window.scrollX}px`;
@@ -271,7 +229,6 @@
       totalPeople += qty;
       totalPrice += qty * price;
     });
-
     document.getElementById("summaryText").innerText = `${totalPeople} people selected`;
     document.getElementById("summaryPrice").innerText = `Total: USD ${totalPrice}`;
   }
@@ -280,6 +237,17 @@
     if (!e.target.classList.contains("qty-btn")) {
       document.querySelectorAll(".select-popup").forEach(p => p.remove());
     }
+  });
+
+  // ✅ تلوين "Places remaining"
+  window.addEventListener('DOMContentLoaded', () => {
+    const timeSelect = document.getElementById('time');
+    Array.from(timeSelect.options).forEach(option => {
+      if (option.text.includes('Places remaining')) {
+        option.style.color = 'green';
+        option.style.fontWeight = 'bold';
+      }
+    });
   });
 </script>
 
