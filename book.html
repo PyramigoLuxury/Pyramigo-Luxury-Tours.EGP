@@ -8,7 +8,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
-    /* (نفس الاستايلات زي ما كانت) */
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body { font-family: 'Poppins', sans-serif; background: #ffffff; color: #333; }
     header {
@@ -190,7 +189,19 @@
       <div><label>Email</label><input type="email" required></div>
       <div><label>Pick-up Location</label><input type="text" required></div>
       <div><label>Tour Date</label><input type="date" required></div>
-      <div><label>Time</label><input type="time" required></div>
+      <div>
+        <label for="time">Time</label>
+        <select id="time" name="time" required>
+          <option value="">-- Please choose a time --</option>
+          <option value="7:00 AM">7:00 AM</option>
+          <option value="8:00 AM">8:00 AM</option>
+          <option value="9:00 AM">9:00 AM – Places remaining</option>
+          <option value="10:00 AM">10:00 AM – Places remaining</option>
+          <option value="11:00 AM">11:00 AM – Places remaining</option>
+          <option value="1:00 PM">1:00 PM – Places remaining</option>
+          <option value="2:00 PM">2:00 PM – Places remaining</option>
+        </select>
+      </div>
       <div><label>WhatsApp Number</label><input type="tel" required></div>
     </div>
     <button type="submit">Confirm Booking</button>
