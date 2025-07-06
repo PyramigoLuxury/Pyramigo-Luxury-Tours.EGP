@@ -111,47 +111,49 @@
 <div class="main">
   <h1>ALL INCLUSIVE PRIVATE HALF-DAY TRIP TO GIZA PYRAMIDS WITH CAMEL RIDE</h1>
 
-  <table>
-    <thead>
-      <tr>
-        <th>Select</th>
-        <th>Category</th>
-        <th>Price</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><input type="number" min="0" value="0" /></td>
-        <td>Price per person</td>
-        <td>USD 65</td>
-      </tr>
-      <tr>
-        <td><input type="number" min="0" value="0" /></td>
-        <td>2–4 persons</td>
-        <td>USD 55</td>
-      </tr>
-      <tr>
-        <td><input type="number" min="0" value="0" /></td>
-        <td>5–8 persons</td>
-        <td>USD 45</td>
-      </tr>
-      <tr>
-        <td><input type="number" min="0" value="0" /></td>
-        <td>9–15 persons</td>
-        <td>USD 30</td>
-      </tr>
-      <tr>
-        <td><input type="number" min="0" value="0" /></td>
-        <td>Child</td>
-        <td>USD 25</td>
-      </tr>
-      <tr>
-        <td><input type="number" min="0" value="0" /></td>
-        <td>Infant</td>
-        <td>FREE</td>
-      </tr>
-    </tbody>
-  </table>
+  <div style="margin-top: 30px; overflow-x: auto;">
+    <table>
+      <thead>
+        <tr>
+          <th>Select</th>
+          <th>Category</th>
+          <th>Price</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><input type="number" min="0" value="0" /></td>
+          <td>Price per person</td>
+          <td>USD 65</td>
+        </tr>
+        <tr>
+          <td><input type="number" min="0" value="0" /></td>
+          <td>2–4 persons</td>
+          <td>USD 55</td>
+        </tr>
+        <tr>
+          <td><input type="number" min="0" value="0" /></td>
+          <td>5–8 persons</td>
+          <td>USD 45</td>
+        </tr>
+        <tr>
+          <td><input type="number" min="0" value="0" /></td>
+          <td>9–15 persons</td>
+          <td>USD 30</td>
+        </tr>
+        <tr>
+          <td><input type="number" min="0" value="0" /></td>
+          <td>Child</td>
+          <td>USD 25</td>
+        </tr>
+        <tr>
+          <td><input type="number" min="0" value="0" /></td>
+          <td>Infant</td>
+          <td>FREE</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 
   <form>
     <h2>Booking Information</h2>
@@ -170,7 +172,7 @@
       <div><label>Pick-up Location</label><input type="text" required></div>
       <div><label>Tour Date</label><input type="date" required></div>
 
-      <!-- وقت الجولة -->
+      <!-- خانة الوقت -->
       <div class="time-field">
         <label for="selectedTime">Time</label>
         <input type="text" id="selectedTime" name="time" placeholder="Choose time" readonly required onclick="showTimeOptions()">
