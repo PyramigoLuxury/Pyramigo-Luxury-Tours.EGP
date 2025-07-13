@@ -52,6 +52,34 @@
       background: #333; color: #fff; border: none;
       border-radius: 6px; cursor: pointer;
     }
+
+    .time-options {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .time-btn {
+      padding: 10px;
+      background-color: #f4f4f4;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      text-align: center;
+      font-size: 14px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .time-btn:hover {
+      background-color: #eaeaea;
+    }
+
+    .time-btn.selected {
+      background-color: #333;
+      color: #fff;
+      border-color: #333;
+    }
   </style>
 </head>
 <body>
@@ -110,8 +138,16 @@
     <label>Tour Date</label>
     <input type="date" required>
 
-    <label>Time</label>
-    <input type="time" required>
+    <label>Choose Tour Time</label>
+    <div class="time-options">
+      <div class="time-btn" onclick="selectTime(this)">8:00 AM<br><small>Places remaining</small></div>
+      <div class="time-btn" onclick="selectTime(this)">9:00 AM<br><small>Places remaining</small></div>
+      <div class="time-btn" onclick="selectTime(this)">10:00 AM<br><small>Places remaining</small></div>
+      <div class="time-btn" onclick="selectTime(this)">11:00 AM<br><small>Places remaining</small></div>
+      <div class="time-btn" onclick="selectTime(this)">1:00 PM<br><small>Places remaining</small></div>
+      <div class="time-btn" onclick="selectTime(this)">2:00 PM<br><small>Places remaining</small></div>
+    </div>
+    <input type="hidden" name="tour-time" id="tour-time" required>
 
     <label>WhatsApp Number</label>
     <input type="tel" id="whatsapp" name="whatsapp" required>
@@ -135,8 +171,14 @@
     utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/js/utils.js",
     formatOnDisplay: true,
     nationalMode: false,
-    separateDialCode: false
+    separateDialCode: true
   });
+
+  function selectTime(btn) {
+    document.querySelectorAll('.time-btn').forEach(b => b.classList.remove('selected'));
+    btn.classList.add('selected');
+    document.getElementById('tour-time').value = btn.innerText.split('\n')[0];
+  }
 </script>
 
 </body>
