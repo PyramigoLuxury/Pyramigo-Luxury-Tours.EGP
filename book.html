@@ -3,182 +3,193 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Tour Booking | Let's Discover Egypt</title>
-  <link rel="icon" href="favicon.png" type="image/png">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <title>Book Tour | Let's Discover Egypt</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/css/intlTelInput.min.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <style>
-    body { font-family: 'Poppins', sans-serif; margin: 0; padding: 0; background: #fff; color: #333; }
-    header {
-      position: fixed; top: 0; left: 0; width: 100%; background: white;
-      padding: 15px 20px; display: flex; align-items: center; justify-content: flex-start;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1); z-index: 10;
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      padding: 20px;
+      background: #fff;
+      color: #333;
     }
-    .menu-icon { font-size: 24px; cursor: pointer; z-index: 12; }
-    header h2 {
-      position: absolute; left: 50%; top: 50%;
-      transform: translate(-50%, -50%); font-size: 18px; font-weight: 600;
-      display: flex; align-items: center; gap: 6px;
+    h1 {
+      text-align: center;
+      margin-bottom: 30px;
+      font-size: 22px;
     }
-    header h2 a { text-decoration: none; color: #333; }
-    .main {
-      padding: 100px 20px 40px; max-width: 800px; margin: auto;
-    }
-    h1 { font-size: 22px; text-align: center; margin-bottom: 25px; font-weight: 600; }
     table {
-      width: 100%; border-collapse: collapse; margin-bottom: 30px;
-      border: 1px solid #ddd; border-radius: 10px; overflow: hidden;
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 30px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      overflow: hidden;
     }
     th, td {
-      text-align: center; padding: 10px; font-size: 14px;
+      padding: 10px;
       border-bottom: 1px solid #eee;
+      font-size: 14px;
+      text-align: center;
     }
-    th { background: #f8f8f8; font-weight: 600; }
+    th {
+      background: #f9f9f9;
+      font-weight: 600;
+    }
     form {
-      background: #fafafa; border: 1px solid #ddd;
-      padding: 20px; border-radius: 10px;
+      background: #fafafa;
+      padding: 20px;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      max-width: 600px;
+      margin: auto;
     }
-    form h2 { font-size: 18px; margin-bottom: 20px; font-weight: 600; }
     form label {
-      display: block; font-size: 13px; margin-bottom: 6px;
+      display: block;
+      margin-bottom: 5px;
+      font-size: 13px;
+      font-weight: 500;
     }
     form input, form select {
-      width: 100%; padding: 8px; border: 1px solid #ccc;
-      border-radius: 6px; font-size: 13px; margin-bottom: 15px;
+      width: 100%;
+      padding: 8px;
+      font-size: 14px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      margin-bottom: 15px;
     }
-    form button {
-      margin-top: 10px; padding: 10px 20px;
-      background: #333; color: #fff; border: none;
-      border-radius: 6px; cursor: pointer;
-    }
-
     .time-options {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      display: flex;
+      flex-direction: column;
       gap: 10px;
       margin-bottom: 20px;
     }
-
     .time-btn {
       padding: 10px;
-      background-color: #f4f4f4;
+      background: #f4f4f4;
       border: 1px solid #ccc;
       border-radius: 8px;
-      text-align: center;
+      text-align: left;
       font-size: 14px;
       cursor: pointer;
-      transition: all 0.3s ease;
+      transition: 0.2s;
     }
-
     .time-btn:hover {
-      background-color: #eaeaea;
+      background: #eee;
     }
-
     .time-btn.selected {
       background-color: #333;
       color: #fff;
       border-color: #333;
     }
+    .time-btn small {
+      display: block;
+      font-size: 12px;
+      color: #666;
+    }
+    button {
+      background: #333;
+      color: #fff;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 6px;
+      font-size: 15px;
+      cursor: pointer;
+    }
   </style>
 </head>
 <body>
 
-<header>
-  <div class="menu-icon">☰</div>
-  <h2><a href="#"><i class="fas fa-globe-africa"></i> Let's Discover Egypt</a></h2>
-</header>
+<h1>ALL INCLUSIVE PRIVATE HALF-DAY TRIP TO GIZA PYRAMIDS WITH CAMEL RIDE</h1>
 
-<div class="main">
-  <h1>ALL INCLUSIVE PRIVATE HALF-DAY TRIP TO GIZA PYRAMIDS WITH CAMEL RIDE.</h1>
+<!-- Prices Table -->
+<table>
+  <thead>
+    <tr><th>Category</th><th>Price</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>1 Person</td><td>USD 65</td></tr>
+    <tr><td>2–4 Persons</td><td>USD 55</td></tr>
+    <tr><td>5–8 Persons</td><td>USD 45</td></tr>
+    <tr><td>9–15 Persons</td><td>USD 30</td></tr>
+    <tr><td>Child</td><td>USD 25</td></tr>
+    <tr><td>Infant</td><td>FREE</td></tr>
+  </tbody>
+</table>
 
-  <!-- Price Table -->
-  <table>
-    <thead>
-      <tr>
-        <th>Category</th>
-        <th>Price</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr><td>1 Person</td><td>USD 65</td></tr>
-      <tr><td>2–4 Persons</td><td>USD 55</td></tr>
-      <tr><td>5–8 Persons</td><td>USD 45</td></tr>
-      <tr><td>9–15 Persons</td><td>USD 30</td></tr>
-      <tr><td>Child</td><td>USD 25</td></tr>
-      <tr><td>Infant</td><td>FREE</td></tr>
-    </tbody>
-  </table>
+<!-- Booking Form -->
+<form id="bookingForm">
+  <label>First Name</label>
+  <input type="text" required>
 
-  <!-- Booking Form -->
-  <form>
-    <h2>Booking Information</h2>
-    <label>First Name</label>
-    <input type="text" required>
+  <label>Last Name</label>
+  <input type="text" required>
 
-    <label>Last Name</label>
-    <input type="text" required>
+  <label>Nationality</label>
+  <input type="text" required>
 
-    <label>Nationality</label>
-    <input type="text" required>
+  <label>Gender</label>
+  <select required>
+    <option value="">Select</option>
+    <option>Male</option>
+    <option>Female</option>
+  </select>
 
-    <label>Gender</label>
-    <select required>
-      <option value="">Select</option>
-      <option>Male</option>
-      <option>Female</option>
-    </select>
+  <label>Email</label>
+  <input type="email" required>
 
-    <label>Email</label>
-    <input type="email" required>
+  <label>Pick-up Location</label>
+  <input type="text" required>
 
-    <label>Pick-up Location</label>
-    <input type="text" required>
+  <label>Tour Date</label>
+  <input type="date" required>
 
-    <label>Tour Date</label>
-    <input type="date" required>
+  <label>Choose Tour Time</label>
+  <div class="time-options">
+    <div class="time-btn" onclick="selectTime(this)">8:00 AM<br><small>Places remaining</small></div>
+    <div class="time-btn" onclick="selectTime(this)">9:00 AM<br><small>Places remaining</small></div>
+    <div class="time-btn" onclick="selectTime(this)">10:00 AM<br><small>Places remaining</small></div>
+    <div class="time-btn" onclick="selectTime(this)">11:00 AM<br><small>Places remaining</small></div>
+    <div class="time-btn" onclick="selectTime(this)">1:00 PM<br><small>Places remaining</small></div>
+    <div class="time-btn" onclick="selectTime(this)">2:00 PM<br><small>Places remaining</small></div>
+  </div>
+  <input type="hidden" name="tour-time" id="tour-time" required>
 
-    <label>Choose Tour Time</label>
-    <div class="time-options">
-      <div class="time-btn" onclick="selectTime(this)">8:00 AM<br><small>Places remaining</small></div>
-      <div class="time-btn" onclick="selectTime(this)">9:00 AM<br><small>Places remaining</small></div>
-      <div class="time-btn" onclick="selectTime(this)">10:00 AM<br><small>Places remaining</small></div>
-      <div class="time-btn" onclick="selectTime(this)">11:00 AM<br><small>Places remaining</small></div>
-      <div class="time-btn" onclick="selectTime(this)">1:00 PM<br><small>Places remaining</small></div>
-      <div class="time-btn" onclick="selectTime(this)">2:00 PM<br><small>Places remaining</small></div>
-    </div>
-    <input type="hidden" name="tour-time" id="tour-time" required>
+  <!-- Phone Code & WhatsApp -->
+  <label>Phone Code</label>
+  <select id="countryCode" required>
+    <option value="+20">🇪🇬 Egypt (+20)</option>
+    <option value="+966">🇸🇦 Saudi Arabia (+966)</option>
+    <option value="+971">🇦🇪 UAE (+971)</option>
+    <option value="+1">🇺🇸 USA (+1)</option>
+    <option value="+44">🇬🇧 UK (+44)</option>
+    <option value="+33">🇫🇷 France (+33)</option>
+    <!-- زوّد دول برحتك -->
+  </select>
 
-    <label>WhatsApp Number</label>
-    <input type="tel" id="whatsapp" name="whatsapp" required>
+  <label>WhatsApp Number</label>
+  <input type="tel" id="whatsappNumber" placeholder="123456789" required>
 
-    <button type="submit">Confirm Booking</button>
-  </form>
-</div>
+  <button type="submit">Confirm Booking</button>
+</form>
 
-<!-- Scripts -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/js/intlTelInput.min.js"></script>
+<!-- Script -->
 <script>
-  const input = document.querySelector("#whatsapp");
-  window.intlTelInput(input, {
-    initialCountry: "auto",
-    geoIpLookup: callback => {
-      fetch('https://ipapi.co/json')
-        .then(res => res.json())
-        .then(data => callback(data.country_code))
-        .catch(() => callback("us"));
-    },
-    utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/js/utils.js",
-    formatOnDisplay: true,
-    nationalMode: false,
-    separateDialCode: true
-  });
-
   function selectTime(btn) {
     document.querySelectorAll('.time-btn').forEach(b => b.classList.remove('selected'));
     btn.classList.add('selected');
     document.getElementById('tour-time').value = btn.innerText.split('\n')[0];
   }
+
+  document.getElementById("bookingForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+    const code = document.getElementById("countryCode").value;
+    const number = document.getElementById("whatsappNumber").value;
+    const fullNumber = code + number;
+    alert("Booking submitted!\nWhatsApp: " + fullNumber + "\nTime: " + document.getElementById("tour-time").value);
+    // هنا تقدر تبعت البيانات على واتساب أو سيرفرك
+  });
 </script>
 
 </body>
