@@ -147,29 +147,16 @@
 
   <label>Choose Tour Time</label>
   <div class="time-options">
+    <div class="time-btn" onclick="selectTime(this)">7:00 AM<br><small>Places remaining</small></div>
     <div class="time-btn" onclick="selectTime(this)">8:00 AM<br><small>Places remaining</small></div>
     <div class="time-btn" onclick="selectTime(this)">9:00 AM<br><small>Places remaining</small></div>
     <div class="time-btn" onclick="selectTime(this)">10:00 AM<br><small>Places remaining</small></div>
     <div class="time-btn" onclick="selectTime(this)">11:00 AM<br><small>Places remaining</small></div>
+    <div class="time-btn" onclick="selectTime(this)">12:00 PM<br><small>Places remaining</small></div>
     <div class="time-btn" onclick="selectTime(this)">1:00 PM<br><small>Places remaining</small></div>
     <div class="time-btn" onclick="selectTime(this)">2:00 PM<br><small>Places remaining</small></div>
   </div>
   <input type="hidden" name="tour-time" id="tour-time" required>
-
-  <!-- Phone Code & WhatsApp -->
-  <label>Phone Code</label>
-  <select id="countryCode" required>
-    <option value="+20">🇪🇬 Egypt (+20)</option>
-    <option value="+966">🇸🇦 Saudi Arabia (+966)</option>
-    <option value="+971">🇦🇪 UAE (+971)</option>
-    <option value="+1">🇺🇸 USA (+1)</option>
-    <option value="+44">🇬🇧 UK (+44)</option>
-    <option value="+33">🇫🇷 France (+33)</option>
-    <!-- زوّد دول برحتك -->
-  </select>
-
-  <label>WhatsApp Number</label>
-  <input type="tel" id="whatsappNumber" placeholder="123456789" required>
 
   <button type="submit">Confirm Booking</button>
 </form>
@@ -184,11 +171,8 @@
 
   document.getElementById("bookingForm").addEventListener("submit", function(e) {
     e.preventDefault();
-    const code = document.getElementById("countryCode").value;
-    const number = document.getElementById("whatsappNumber").value;
-    const fullNumber = code + number;
-    alert("Booking submitted!\nWhatsApp: " + fullNumber + "\nTime: " + document.getElementById("tour-time").value);
-    // هنا تقدر تبعت البيانات على واتساب أو سيرفرك
+    alert("Booking submitted!\nTime: " + document.getElementById("tour-time").value);
+    // يمكنك إرسال البيانات هنا إلى سيرفرك أو WhatsApp API لاحقًا
   });
 </script>
 
