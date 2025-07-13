@@ -159,65 +159,13 @@
   <input type="hidden" name="tour-time" id="tour-time" required>
 
   <!-- WhatsApp Number -->
-  <div style="display: flex; gap: 10px; margin-bottom: 15px;">
+  <label>WhatsApp Number</label>
+  <div style="display: flex; gap: 10px; align-items: center;">
     <select id="countryCode" required style="flex: 1; padding: 8px; border-radius: 6px; border: 1px solid #ccc;">
-      <option value="+1">🇺🇸 +1</option>
-      <option value="+7">🇷🇺 +7</option>
-      <option value="+20">🇪🇬 +20</option>
-      <option value="+27">🇿🇦 +27</option>
-      <option value="+30">🇬🇷 +30</option>
-      <option value="+31">🇳🇱 +31</option>
-      <option value="+32">🇧🇪 +32</option>
-      <option value="+33">🇫🇷 +33</option>
-      <option value="+34">🇪🇸 +34</option>
-      <option value="+39">🇮🇹 +39</option>
-      <option value="+44">🇬🇧 +44</option>
-      <option value="+49">🇩🇪 +49</option>
-      <option value="+52">🇲🇽 +52</option>
-      <option value="+55">🇧🇷 +55</option>
-      <option value="+61">🇦🇺 +61</option>
-      <option value="+62">🇮🇩 +62</option>
-      <option value="+63">🇵🇭 +63</option>
-      <option value="+64">🇳🇿 +64</option>
-      <option value="+65">🇸🇬 +65</option>
-      <option value="+66">🇹🇭 +66</option>
-      <option value="+81">🇯🇵 +81</option>
-      <option value="+82">🇰🇷 +82</option>
-      <option value="+84">🇻🇳 +84</option>
-      <option value="+86">🇨🇳 +86</option>
-      <option value="+90">🇹🇷 +90</option>
-      <option value="+91">🇮🇳 +91</option>
-      <option value="+92">🇵🇰 +92</option>
-      <option value="+93">🇦🇫 +93</option>
-      <option value="+94">🇱🇰 +94</option>
-      <option value="+95">🇲🇲 +95</option>
-      <option value="+98">🇮🇷 +98</option>
-      <option value="+211">🇸🇸 +211</option>
-      <option value="+212">🇲🇦 +212</option>
-      <option value="+213">🇩🇿 +213</option>
-      <option value="+216">🇹🇳 +216</option>
-      <option value="+218">🇱🇾 +218</option>
-      <option value="+249">🇸🇩 +249</option>
-      <option value="+251">🇪🇹 +251</option>
-      <option value="+254">🇰🇪 +254</option>
-      <option value="+255">🇹🇿 +255</option>
-      <option value="+256">🇺🇬 +256</option>
-      <option value="+966">🇸🇦 +966</option>
-      <option value="+967">🇾🇪 +967</option>
-      <option value="+968">🇴🇲 +968</option>
-      <option value="+971">🇦🇪 +971</option>
-      <option value="+972">🇮🇱 +972</option>
-      <option value="+973">🇧🇭 +973</option>
-      <option value="+974">🇶🇦 +974</option>
-      <option value="+975">🇧🇹 +975</option>
-      <option value="+976">🇲🇳 +976</option>
-      <option value="+977">🇳🇵 +977</option>
-      <option value="+992">🇹🇯 +992</option>
-      <option value="+993">🇹🇲 +993</option>
-      <option value="+994">🇦🇿 +994</option>
-      <option value="+995">🇬🇪 +995</option>
-      <option value="+996">🇰🇬 +996</option>
-      <option value="+998">🇺🇿 +998</option>
+      <option value="+20">🇪🇬 Egypt +20</option>
+      <option value="+1">🇺🇸 United States +1</option>
+      <option value="+44">🇬🇧 United Kingdom +44</option>
+      <!-- باقي الدول -->
     </select>
     <input type="tel" id="whatsappNumber" placeholder="123456789" required style="flex: 2; padding: 8px; border-radius: 6px; border: 1px solid #ccc;">
   </div>
@@ -240,9 +188,14 @@
     const fullNumber = code + number;
     const time = document.getElementById("tour-time").value;
 
+    if (!time) {
+      alert("⚠️ Please select a tour time before confirming.");
+      return;
+    }
+
     alert("Booking submitted!\nWhatsApp: " + fullNumber + "\nTime: " + time);
   });
 </script>
 
 </body>
-  </html>
+      </html>
