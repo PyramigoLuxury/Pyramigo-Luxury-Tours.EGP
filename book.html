@@ -100,16 +100,6 @@
         font-size: 13px;
       }
     }
-    #confirmation {
-      display: none;
-      text-align: center;
-      margin-top: 20px;
-      background: #e8f5e9;
-      padding: 15px;
-      border: 1px solid #a5d6a7;
-      border-radius: 8px;
-      color: #2e7d32;
-    }
     button[type="submit"] {
       background: #25D366;
       color: #fff;
@@ -149,29 +139,29 @@
 <!-- Booking Form -->
 <form id="bookingForm">
   <label>First Name</label>
-  <input type="text" required>
+  <input type="text" id="firstName" required>
 
   <label>Last Name</label>
-  <input type="text" required>
+  <input type="text" id="lastName" required>
 
   <label>Nationality</label>
-  <input type="text" required>
+  <input type="text" id="nationality" required>
 
   <label>Gender</label>
-  <select required>
+  <select id="gender" required>
     <option value="">Select</option>
     <option>Male</option>
     <option>Female</option>
   </select>
 
   <label>Email</label>
-  <input type="email" required>
+  <input type="email" id="email" required>
 
   <label>Pick-up Location</label>
-  <input type="text" required>
+  <input type="text" id="pickup" required>
 
   <label>Tour Date</label>
-  <input type="date" required>
+  <input type="date" id="date" required>
 
   <label>Choose Tour Time</label>
   <div class="time-options">
@@ -200,18 +190,10 @@
   <button type="submit"><i class="fab fa-whatsapp"></i>Confirm via WhatsApp</button>
 </form>
 
-<!-- Confirmation Message -->
-<div id="confirmation">
-  <h3>🎉 Booking Confirmed!</h3>
-  <p>We will contact you on WhatsApp: <span id="confirmedNumber"></span></p>
-  <p>Tour Time: <span id="confirmedTime"></span></p>
-</div>
-
-<!-- Script -->
 <script>
-  // Set today's date as minimum for date input
+  // Set today's date as min
   const today = new Date().toISOString().split("T")[0];
-  document.querySelector('input[type="date"]').setAttribute("min", today);
+  document.getElementById("date").setAttribute("min", today);
 
   function selectTime(btn) {
     document.querySelectorAll('.time-btn').forEach(b => b.classList.remove('selected'));
@@ -221,6 +203,7 @@
 
   document.getElementById("bookingForm").addEventListener("submit", function(e) {
     e.preventDefault();
+
     const code = document.getElementById("countryCode").value;
     const number = document.getElementById("whatsappNumber").value.trim();
     const fullNumber = code + number;
@@ -236,12 +219,24 @@
       return;
     }
 
-    // Show confirmation
-    document.getElementById("confirmedNumber").innerText = fullNumber;
-    document.getElementById("confirmedTime").innerText = time;
-    document.getElementById("confirmation").style.display = "block";
+    // Compose message
+    const message =
+      `📌 NEW BOOKING REQUEST:\n` +
+      `Name: ${document.getElementById("firstName").value} ${document.getElementById("lastName").value}\n` +
+      `Nationality: ${document.getElementById("nationality").value}\n` +
+      `Gender: ${document.getElementById("gender").value}\n` +
+      `Email: ${document.getElementById("email").value}\n` +
+      `Pick-up Location: ${document.getElementById("pickup").value}\n` +
+      `Tour Date: ${document.getElementById("date").value}\n` +
+      `Tour Time: ${time}\n` +
+      `WhatsApp: ${fullNumber}`;
+
+    const encodedMessage = encodeURIComponent(message);
+    const waNumber = code.replace("+", "") + number;
+
+    window.open(`https://wa.me/${waNumber}?text=${encodedMessage}`, '_blank');
   });
 </script>
 
 </body>
-</html>
+  </html>
