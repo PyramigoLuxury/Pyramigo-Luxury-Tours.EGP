@@ -10,125 +10,103 @@
     body {
       font-family: 'Poppins', sans-serif;
       margin: 0;
-      padding-top: 100px;
+      padding: 0;
       background: #fff;
       color: #333;
     }
-
-    /* Fixed logo top center */
-    .logo-header {
+    header {
       position: fixed;
       top: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      background: white;
-      z-index: 1000;
-      padding: 10px 20px;
+      left: 0;
+      width: 100%;
+      height: 70px;
+      background: #fff;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
       display: flex;
-      flex-direction: column;
       align-items: center;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      justify-content: center;
+      z-index: 1000;
     }
-    .logo-header img {
-      height: 50px;
-      margin-bottom: 5px;
+    header img {
+      height: 45px;
     }
-    .logo-header .brand {
-      font-size: 18px;
-      font-weight: bold;
-      color: #333;
-    }
-
-    /* Menu button */
-    .menu-toggle {
-      position: fixed;
-      top: 20px;
+    #menuBtn {
+      position: absolute;
       left: 20px;
       font-size: 24px;
       cursor: pointer;
-      z-index: 1100;
       background: none;
       border: none;
-      color: #333;
     }
-
-    /* Sidebar */
     .sidebar {
       position: fixed;
       top: 0;
       left: -250px;
       width: 220px;
       height: 100%;
-      background: #f9f9f9;
-      box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+      background: #333;
+      color: #fff;
       padding-top: 80px;
-      transition: 0.3s ease;
-      z-index: 1050;
+      transition: 0.3s;
+      z-index: 999;
     }
     .sidebar a {
       display: block;
-      padding: 15px 20px;
-      color: #333;
+      padding: 12px 20px;
+      color: #fff;
       text-decoration: none;
-      border-bottom: 1px solid #ddd;
+      font-size: 15px;
     }
     .sidebar a:hover {
-      background: #eee;
+      background: #444;
     }
-    .sidebar.active {
+    .show-sidebar {
       left: 0;
     }
 
-    /* Main content padding */
     main {
-      padding: 20px;
-      max-width: 700px;
+      padding: 100px 20px 40px;
+      max-width: 800px;
       margin: auto;
     }
 
-    /* Responsive */
-    @media (max-width: 600px) {
-      .logo-header img {
-        height: 40px;
-      }
-      .logo-header .brand {
-        font-size: 16px;
-      }
+    h1 {
+      text-align: center;
+      font-size: 26px;
+      margin-bottom: 30px;
     }
   </style>
 </head>
 <body>
 
-<!-- ☰ Menu Button -->
-<button class="menu-toggle" onclick="toggleMenu()"><i class="fas fa-bars"></i></button>
+<!-- Header with Logo and Menu -->
+<header>
+  <button id="menuBtn"><i class="fas fa-bars"></i></button>
+  <img src="lulu-logo.png" alt="Let's Discover Egypt Logo">
+</header>
 
-<!-- Fixed Logo -->
-<div class="logo-header">
-  <img src="lulu-logo.png" alt="Lulu Logo">
-  <div class="brand">Let's Discover Egypt</div>
-</div>
-
-<!-- Sidebar Navigation -->
+<!-- Sidebar -->
 <div class="sidebar" id="sidebar">
-  <a href="index.html">Home</a>
-  <a href="tours.html">Tours</a>
-  <a href="nile-cruise.html">Nile Cruise</a>
-  <a href="pyramids-tour.html">Giza Pyramids</a>
-  <a href="book.html">Book Now</a>
+  <a href="#">🏠 Home</a>
+  <a href="#">🗺️ Tours</a>
+  <a href="#">📸 Gallery</a>
+  <a href="#">📞 Contact</a>
+  <a href="#">ℹ️ About</a>
 </div>
 
 <!-- Main Content -->
 <main>
-  <!-- هنا تقدر تضيف الفورم أو باقي الصفحة -->
-  <h1>Book Your Tour</h1>
-  <p>This is the booking section. Add your form and content here.</p>
+  <h1>ALL INCLUSIVE PRIVATE HALF-DAY TRIP TO GIZA PYRAMIDS WITH CAMEL RIDE</h1>
+  <!-- باقي نموذج الحجز أو المحتوى هنا -->
 </main>
 
-<!-- JS Script -->
 <script>
-  function toggleMenu() {
-    document.getElementById("sidebar").classList.toggle("active");
-  }
+  const menuBtn = document.getElementById("menuBtn");
+  const sidebar = document.getElementById("sidebar");
+
+  menuBtn.addEventListener("click", () => {
+    sidebar.classList.toggle("show-sidebar");
+  });
 </script>
 
 </body>
