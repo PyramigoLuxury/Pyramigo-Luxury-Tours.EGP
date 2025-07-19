@@ -1,161 +1,161 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Book Tour | Let's Discover Egypt</title>
-  <link rel="icon" href="favicon.png" type="image/png">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
   <style>
     body {
-      font-family: 'Segoe UI', sans-serif;
       margin: 0;
-      background: #f2f2f2;
-      color: #333;
+      font-family: 'Cairo', sans-serif;
+      background-color: #f9f9f9;
     }
-
     header {
-      background-color: #004d40;
-      color: white;
-      padding: 1rem 2rem;
+      background-color: #2c3e50;
+      color: #fff;
+      padding: 1rem;
       display: flex;
       align-items: center;
       justify-content: space-between;
     }
-
-    header h1 {
+    .logo {
+      display: flex;
+      align-items: center;
+    }
+    .logo img {
+      height: 40px;
+      margin-right: 10px;
+    }
+    .menu {
       font-size: 1.5rem;
+      cursor: pointer;
     }
-
-    .container {
-      max-width: 900px;
-      margin: auto;
+    .sidebar {
+      position: fixed;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 220px;
+      background: #34495e;
+      color: #fff;
+      padding: 1rem;
+    }
+    .main {
+      margin-left: 240px;
       padding: 2rem;
-      background-color: #fff;
-      border-radius: 12px;
-      margin-top: 2rem;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
     }
-
-    h2 {
-      margin-bottom: 1rem;
-      color: #004d40;
-    }
-
-    table.pricing-table {
+    table {
       width: 100%;
       border-collapse: collapse;
-      margin-bottom: 1.5rem;
+      background: white;
     }
-
-    table.pricing-table th, table.pricing-table td {
-      padding: 0.8rem;
+    th, td {
+      padding: 12px;
       border: 1px solid #ddd;
       text-align: center;
     }
-
-    table.pricing-table th {
-      background-color: #e0f2f1;
-      color: #004d40;
+    th {
+      background-color: #2c3e50;
+      color: white;
     }
-
-    input[type="number"] {
-      width: 60px;
+    select {
       padding: 5px;
-      font-size: 1rem;
     }
-
-    #total-price {
+    .total {
+      font-weight: bold;
       font-size: 1.2rem;
-      color: #2e7d32;
-    }
-
-    footer {
-      text-align: center;
-      margin-top: 3rem;
-      font-size: 0.9rem;
-      color: #666;
+      text-align: right;
+      margin-top: 1rem;
+      padding: 0.5rem;
+      background-color: #fff;
+      border: 1px solid #ddd;
     }
   </style>
 </head>
 <body>
-
   <header>
-    <h1>Let's Discover Egypt</h1>
-    <span><i class="fa-solid fa-phone"></i> +20 100 000 0000</span>
+    <div class="logo">
+      <img src="lulu-logo.png" alt="Lulu Logo">
+      <h1>Let's Discover Egypt</h1>
+    </div>
+    <div class="menu">
+      <i class="fas fa-bars"></i>
+    </div>
   </header>
 
-  <div class="container">
-    <h2><i class="fa-solid fa-dollar-sign"></i> Tour Pricing</h2>
+  <div class="sidebar">
+    <h2>Menu</h2>
+    <ul>
+      <li>1. Select Tour</li>
+      <li>2. Pricing</li>
+      <li>3. Guest Info</li>
+      <li>4. Date & Time</li>
+      <li>5. Confirm</li>
+    </ul>
+  </div>
 
-    <table class="pricing-table">
+  <div class="main">
+    <h2>Tour Pricing</h2>
+    <table>
       <thead>
         <tr>
           <th>Category</th>
-          <th>Price per Person</th>
+          <th>Price / Person</th>
           <th>Number of People</th>
-          <th>Subtotal</th>
         </tr>
       </thead>
       <tbody>
         <tr>
-          <td>Adults</td>
-          <td id="adult-price">$65</td>
-          <td><input type="number" id="adult-count" min="0" value="0" onchange="updatePricing()" /></td>
-          <td id="adult-subtotal">$0</td>
+          <td>1 Person</td>
+          <td>$65</td>
+          <td><input type="number" id="num1" value="0" min="0" onchange="calc()"></td>
         </tr>
         <tr>
-          <td>Children</td>
+          <td>2–4 Persons</td>
+          <td>$55</td>
+          <td><input type="number" id="num2" value="0" min="0" onchange="calc()"></td>
+        </tr>
+        <tr>
+          <td>5–8 Persons</td>
+          <td>$45</td>
+          <td><input type="number" id="num3" value="0" min="0" onchange="calc()"></td>
+        </tr>
+        <tr>
+          <td>9–15 Persons</td>
+          <td>$30</td>
+          <td><input type="number" id="num4" value="0" min="0" onchange="calc()"></td>
+        </tr>
+        <tr>
+          <td>Child</td>
           <td>$25</td>
-          <td><input type="number" id="child-count" min="0" value="0" onchange="updatePricing()" /></td>
-          <td id="child-subtotal">$0</td>
+          <td><input type="number" id="num5" value="0" min="0" onchange="calc()"></td>
         </tr>
         <tr>
-          <td>Infants</td>
+          <td>Infant</td>
           <td>FREE</td>
-          <td><input type="number" id="infant-count" min="0" value="0" onchange="updatePricing()" /></td>
-          <td id="infant-subtotal">$0</td>
+          <td><input type="number" id="num6" value="0" min="0" onchange="calc()"></td>
         </tr>
       </tbody>
-      <tfoot>
-        <tr>
-          <td colspan="3"><strong>Total Price</strong></td>
-          <td id="total-price"><strong>$0</strong></td>
-        </tr>
-      </tfoot>
     </table>
+
+    <div class="total">
+      Total: <span id="totalPrice">$0</span>
+    </div>
   </div>
 
-  <footer>
-    &copy; 2025 Let's Discover Egypt. All rights reserved.
-  </footer>
-
   <script>
-    function updatePricing() {
-      const adultCount = parseInt(document.getElementById('adult-count').value) || 0;
-      const childCount = parseInt(document.getElementById('child-count').value) || 0;
-      const infantCount = parseInt(document.getElementById('infant-count').value) || 0;
-
-      let adultPrice = 65;
-      if (adultCount >= 2 && adultCount <= 4) adultPrice = 55;
-      else if (adultCount >= 5 && adultCount <= 8) adultPrice = 45;
-      else if (adultCount >= 9) adultPrice = 30;
-
-      document.getElementById('adult-price').innerText = `$${adultPrice}`;
-      const adultSubtotal = adultCount * adultPrice;
-      const childSubtotal = childCount * 25;
-      const infantSubtotal = 0;
-
-      const total = adultSubtotal + childSubtotal + infantSubtotal;
-
-      document.getElementById('adult-subtotal').innerText = `$${adultSubtotal}`;
-      document.getElementById('child-subtotal').innerText = `$${childSubtotal}`;
-      document.getElementById('infant-subtotal').innerText = `$${infantSubtotal}`;
-      document.getElementById('total-price').innerHTML = `<strong>$${total}</strong>`;
+    function calc() {
+      const prices = [65, 55, 45, 30, 25, 0];
+      let total = 0;
+      for (let i = 1; i <= 6; i++) {
+        const num = parseInt(document.getElementById('num' + i).value) || 0;
+        const sub = num * prices[i - 1];
+        total += sub;
+      }
+      document.getElementById('totalPrice').innerText = `$${total}`;
     }
-
-    window.onload = updatePricing;
   </script>
-
 </body>
 </html>
