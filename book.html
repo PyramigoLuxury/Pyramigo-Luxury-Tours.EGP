@@ -3,316 +3,246 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Book Tour | Let's Discover Egypt</title>
-  <link rel="icon" href="favicon.png" type="image/png">
+  <title>Book Private Pyramids Tour | Let's Discover Egypt</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
-      font-family: 'Poppins', sans-serif;
-      background: #fff;
-      color: #333;
-      padding-top: 70px;
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: #f9f9f9;
     }
-
-    /* HEADER & SIDEBAR */
     header {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%;
-      background: white;
+      background: #222;
+      color: #fff;
       padding: 15px 20px;
       display: flex;
       align-items: center;
-      justify-content: flex-start;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-      z-index: 100;
+      justify-content: space-between;
     }
-    .menu-icon {
-      font-size: 24px;
+    header .logo {
+      font-size: 20px;
+      font-weight: bold;
+    }
+    header .menu-toggle {
+      font-size: 22px;
       cursor: pointer;
     }
-    header h2 {
-      position: absolute;
-      left: 50%;
-      transform: translateX(-50%);
-      font-size: 20px;
-      font-weight: 600;
-    }
-    header h2 a {
-      text-decoration: none;
-      color: #333;
-    }
-    .sidebar {
+    #sidebar {
       position: fixed;
-      top: 0; left: -250px;
+      top: 0;
+      left: -250px;
       width: 250px;
       height: 100%;
       background: #333;
-      color: white;
-      padding: 60px 20px;
-      transition: 0.3s ease;
-      z-index: 101;
+      padding-top: 60px;
+      transition: 0.3s;
     }
-    .sidebar.active { left: 0; }
-    .sidebar a {
+    #sidebar.active {
+      left: 0;
+    }
+    #sidebar a {
       display: block;
-      color: white;
+      padding: 15px 20px;
+      color: #fff;
       text-decoration: none;
-      padding: 15px 0;
-      border-bottom: 1px solid #444;
     }
-    .sidebar a:hover { background: #444; padding-left: 10px; }
-    .overlay {
-      display: none;
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: rgba(0,0,0,0.3);
-      z-index: 100;
+    main {
+      padding: 20px;
+      margin-left: 0;
+      transition: margin-left 0.3s;
     }
-    .overlay.active { display: block; }
-
-    /* PAGE CONTENT */
-    h1 {
-      text-align: center;
-      margin: 30px 0;
-      font-size: 24px;
+    @media (min-width: 768px) {
+      main {
+        margin-left: 250px;
+      }
+      #sidebar {
+        left: 0;
+      }
+      header .menu-toggle {
+        display: none;
+      }
+    }
+    h2 {
+      color: #333;
     }
     table {
       width: 100%;
       border-collapse: collapse;
-      margin-bottom: 30px;
-      border: 1px solid #ddd;
-      border-radius: 8px;
-      overflow: hidden;
-    }
-    th, td {
-      padding: 10px;
-      border-bottom: 1px solid #eee;
-      font-size: 14px;
-      text-align: center;
-    }
-    th {
-      background: #f9f9f9;
-      font-weight: 600;
-    }
-    form {
-      background: #fafafa;
-      padding: 20px;
-      border: 1px solid #ddd;
-      border-radius: 10px;
-      max-width: 600px;
-      margin: auto;
-    }
-    form label {
-      display: block;
-      margin-bottom: 5px;
-      font-size: 13px;
-      font-weight: 500;
-    }
-    form input, form select {
-      width: 100%;
-      padding: 8px;
-      font-size: 14px;
-      border: 1px solid #ccc;
-      border-radius: 6px;
-      margin-bottom: 15px;
-    }
-    .time-options {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
       margin-bottom: 20px;
     }
-    .time-btn {
-      padding: 10px;
-      background: #f4f4f4;
+    th, td {
+      padding: 12px;
       border: 1px solid #ccc;
-      border-radius: 8px;
-      text-align: left;
-      font-size: 14px;
-      cursor: pointer;
-      transition: 0.2s;
+      text-align: center;
     }
-    .time-btn:hover {
-      background: #eee;
+    input[type="number"], input[type="text"], input[type="email"], input[type="date"], select {
+      width: 100%;
+      padding: 8px;
+      margin: 6px 0;
     }
-    .time-btn.selected {
-      background-color: #333;
-      color: #fff;
-      border-color: #333;
+    .form-section {
+      background: #fff;
+      padding: 20px;
+      box-shadow: 0 2px 10px #ccc;
+      margin-bottom: 20px;
     }
-    .time-btn small {
-      display: block;
-      font-size: 12px;
-      color: #666;
-    }
-    button[type="submit"] {
-      background: #25D366;
-      color: #fff;
-      padding: 12px 20px;
+    .btn {
+      background: #007b5e;
+      color: white;
       border: none;
-      border-radius: 6px;
-      font-size: 15px;
+      padding: 12px 20px;
+      font-size: 16px;
       cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
     }
-    button[type="submit"] i {
-      margin-right: 8px;
-    }
-    @media (max-width: 600px) {
-      .time-options {
-        flex-wrap: wrap;
-        flex-direction: row;
-        justify-content: space-between;
-      }
-      .time-btn {
-        flex: 0 48%;
-        font-size: 13px;
-      }
+    .btn:hover {
+      background: #005f47;
     }
   </style>
 </head>
 <body>
+  <header>
+    <div class="logo">Let's Discover Egypt</div>
+    <div class="menu-toggle" onclick="toggleSidebar()">
+      <i class="fas fa-bars"></i>
+    </div>
+  </header>
 
-<!-- Overlay & Sidebar -->
-<div class="overlay" id="overlay" onclick="closeMenu()"></div>
-<div class="sidebar" id="sidebar">
-  <a href="index.html"><i class="fas fa-home"></i> Home</a>
-  <a href="about.html"><i class="fas fa-info-circle"></i> About Us</a>
-  <a href="tours.html"><i class="fas fa-map-marked-alt"></i> Tours</a>
-  <a href="contact.html"><i class="fas fa-phone"></i> Contact</a>
-</div>
-
-<!-- Header -->
-<header>
-  <div class="menu-icon" onclick="toggleMenu()">☰</div>
-  <h2><a href="index.html"><i class="fas fa-globe-africa"></i> Let's Discover Egypt</a></h2>
-</header>
-
-<!-- Page Content -->
-<h1>ALL INCLUSIVE PRIVATE HALF-DAY TRIP TO GIZA PYRAMIDS WITH CAMEL RIDE</h1>
-
-<!-- Prices Table -->
-<table>
-  <thead>
-    <tr><th>Category</th><th>Price</th></tr>
-  </thead>
-  <tbody>
-    <tr><td>1 Person</td><td>USD 65</td></tr>
-    <tr><td>2–4 Persons</td><td>USD 55</td></tr>
-    <tr><td>5–8 Persons</td><td>USD 45</td></tr>
-    <tr><td>9–15 Persons</td><td>USD 30</td></tr>
-    <tr><td>Child</td><td>USD 25</td></tr>
-    <tr><td>Infant</td><td>FREE</td></tr>
-  </tbody>
-</table>
-
-<!-- Booking Form -->
-<form id="bookingForm">
-  <label>First Name</label>
-  <input type="text" id="firstName" required>
-  <label>Last Name</label>
-  <input type="text" id="lastName" required>
-  <label>Nationality</label>
-  <input type="text" id="nationality" required>
-  <label>Gender</label>
-  <select id="gender" required>
-    <option value="">Select</option>
-    <option>Male</option>
-    <option>Female</option>
-  </select>
-  <label>Email</label>
-  <input type="email" id="email" required>
-  <label>Pick-up Location</label>
-  <input type="text" id="pickup" required>
-  <label>Tour Date</label>
-  <input type="date" id="date" required>
-
-  <label>Choose Tour Time</label>
-  <div class="time-options">
-    <div class="time-btn" onclick="selectTime(this)">7:00 AM<br><small>Places remaining</small></div>
-    <div class="time-btn" onclick="selectTime(this)">8:00 AM<br><small>Places remaining</small></div>
-    <div class="time-btn" onclick="selectTime(this)">9:00 AM<br><small>Places remaining</small></div>
-    <div class="time-btn" onclick="selectTime(this)">10:00 AM<br><small>Places remaining</small></div>
-    <div class="time-btn" onclick="selectTime(this)">11:00 AM<br><small>Places remaining</small></div>
-    <div class="time-btn" onclick="selectTime(this)">12:00 PM<br><small>Places remaining</small></div>
-    <div class="time-btn" onclick="selectTime(this)">1:00 PM<br><small>Places remaining</small></div>
-    <div class="time-btn" onclick="selectTime(this)">2:00 PM<br><small>Places remaining</small></div>
-  </div>
-  <input type="hidden" name="tour-time" id="tour-time" required>
-
-  <label>WhatsApp Number</label>
-  <div style="display: flex; gap: 10px; align-items: center;">
-    <select id="countryCode" required style="flex: 1; padding: 8px; border-radius: 6px; border: 1px solid #ccc;">
-      <option value="+20">🇪🇬 Egypt +20</option>
-      <option value="+1">🇺🇸 USA +1</option>
-      <option value="+44">🇬🇧 UK +44</option>
-      <option value="+971">🇦🇪 UAE +971</option>
-    </select>
-    <input type="tel" id="whatsappNumber" placeholder="123456789" required style="flex: 2; padding: 8px; border-radius: 6px; border: 1px solid #ccc;">
+  <div id="sidebar">
+    <a href="#">🏠 Home</a>
+    <a href="#">📸 Tours</a>
+    <a href="#">📞 Contact</a>
+    <a href="#">🧾 Bookings</a>
   </div>
 
-  <button type="submit"><i class="fab fa-whatsapp"></i>Confirm via WhatsApp</button>
-</form>
+  <main>
+    <h2>Private Giza Pyramids Tour with Camel Ride</h2>
 
-<!-- Scripts -->
-<script>
-  function toggleMenu() {
-    document.getElementById("sidebar").classList.toggle("active");
-    document.getElementById("overlay").classList.toggle("active");
-    document.body.style.overflow = document.getElementById("sidebar").classList.contains("active") ? "hidden" : "auto";
-  }
-  function closeMenu() {
-    document.getElementById("sidebar").classList.remove("active");
-    document.getElementById("overlay").classList.remove("active");
-    document.body.style.overflow = "auto";
-  }
+    <div class="form-section">
+      <h3>🧮 Pricing</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Category</th>
+            <th>Price per person</th>
+            <th>Quantity</th>
+            <th>Subtotal</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Adult</td>
+            <td>$60</td>
+            <td><input type="number" id="adults" min="0" value="0" onchange="calculateTotal()"></td>
+            <td id="adultTotal">$0</td>
+          </tr>
+          <tr>
+            <td>Child (6-11 yrs)</td>
+            <td>$40</td>
+            <td><input type="number" id="children" min="0" value="0" onchange="calculateTotal()"></td>
+            <td id="childTotal">$0</td>
+          </tr>
+          <tr>
+            <td>Infant (0-5 yrs)</td>
+            <td>$0</td>
+            <td><input type="number" id="infants" min="0" value="0" onchange="calculateTotal()"></td>
+            <td id="infantTotal">$0</td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr>
+            <th colspan="3">Total</th>
+            <th id="grandTotal">$0</th>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
 
-  document.getElementById("date").setAttribute("min", new Date().toISOString().split("T")[0]);
+    <div class="form-section">
+      <h3>📋 Booking Form</h3>
+      <form id="bookingForm">
+        <input type="text" placeholder="First Name" id="firstName" required />
+        <input type="text" placeholder="Last Name" id="lastName" required />
+        <input type="text" placeholder="Nationality" id="nationality" required />
+        <select id="gender" required>
+          <option value="">Select Gender</option>
+          <option>Male</option>
+          <option>Female</option>
+        </select>
+        <input type="email" placeholder="Email Address" id="email" required />
+        <input type="text" placeholder="Pickup Location" id="pickup" required />
+        <input type="date" id="date" required />
+        <select id="timeSlot" required>
+          <option value="">Select Time</option>
+          <option>8:00 AM</option>
+          <option>10:00 AM</option>
+          <option>12:00 PM</option>
+          <option>2:00 PM</option>
+        </select>
+        <input type="text" placeholder="WhatsApp Number (with country code)" id="whatsapp" required />
+        <button type="button" class="btn" onclick="sendWhatsApp()">Book via WhatsApp</button>
+      </form>
+    </div>
+  </main>
 
-  function selectTime(btn) {
-    document.querySelectorAll('.time-btn').forEach(b => b.classList.remove('selected'));
-    btn.classList.add('selected');
-    document.getElementById('tour-time').value = btn.innerText.split('\n')[0];
-  }
-
-  document.getElementById("bookingForm").addEventListener("submit", function(e) {
-    e.preventDefault();
-    const code = document.getElementById("countryCode").value;
-    const number = document.getElementById("whatsappNumber").value.trim();
-    const fullNumber = code + number;
-    const time = document.getElementById("tour-time").value;
-
-    if (!time) {
-      alert("⚠️ Please select a tour time before confirming.");
-      return;
+  <script>
+    function toggleSidebar() {
+      document.getElementById("sidebar").classList.toggle("active");
     }
-    if (!/^\d{6,15}$/.test(number)) {
-      alert("⚠️ Please enter a valid WhatsApp number.");
-      return;
+
+    function calculateTotal() {
+      const adultPrice = 60;
+      const childPrice = 40;
+      const infantPrice = 0;
+
+      const adults = parseInt(document.getElementById("adults").value) || 0;
+      const children = parseInt(document.getElementById("children").value) || 0;
+      const infants = parseInt(document.getElementById("infants").value) || 0;
+
+      const adultTotal = adults * adultPrice;
+      const childTotal = children * childPrice;
+      const infantTotal = infants * infantPrice;
+      const grandTotal = adultTotal + childTotal + infantTotal;
+
+      document.getElementById("adultTotal").innerText = `$${adultTotal}`;
+      document.getElementById("childTotal").innerText = `$${childTotal}`;
+      document.getElementById("infantTotal").innerText = `$${infantTotal}`;
+      document.getElementById("grandTotal").innerText = `$${grandTotal}`;
     }
 
-    const message = 
-      `📌 NEW BOOKING REQUEST:\n` +
-      `Name: ${document.getElementById("firstName").value} ${document.getElementById("lastName").value}\n` +
-      `Nationality: ${document.getElementById("nationality").value}\n` +
-      `Gender: ${document.getElementById("gender").value}\n` +
-      `Email: ${document.getElementById("email").value}\n` +
-      `Pick-up Location: ${document.getElementById("pickup").value}\n` +
-      `Tour Date: ${document.getElementById("date").value}\n` +
-      `Tour Time: ${time}\n` +
-      `WhatsApp: ${fullNumber}`;
+    function sendWhatsApp() {
+      const name = `${document.getElementById("firstName").value} ${document.getElementById("lastName").value}`;
+      const nationality = document.getElementById("nationality").value;
+      const gender = document.getElementById("gender").value;
+      const email = document.getElementById("email").value;
+      const pickup = document.getElementById("pickup").value;
+      const date = document.getElementById("date").value;
+      const time = document.getElementById("timeSlot").value;
+      const whatsapp = document.getElementById("whatsapp").value;
 
-    const encodedMessage = encodeURIComponent(message);
-    const waNumber = code.replace("+", "") + number;
-    window.open(`https://wa.me/${waNumber}?text=${encodedMessage}`, '_blank');
-  });
-</script>
+      const adults = document.getElementById("adults").value || 0;
+      const children = document.getElementById("children").value || 0;
+      const infants = document.getElementById("infants").value || 0;
+      const total = document.getElementById("grandTotal").innerText;
 
+      const message = `Hello, I want to book the Private Giza Pyramids Tour:
+Name: ${name}
+Nationality: ${nationality}
+Gender: ${gender}
+Email: ${email}
+Pickup: ${pickup}
+Date: ${date}
+Time: ${time}
+Adults: ${adults}, Children: ${children}, Infants: ${infants}
+Total Price: ${total}
+WhatsApp: ${whatsapp}`;
+
+      const encoded = encodeURIComponent(message);
+      const phone = "201234567890"; // Replace with your WhatsApp number
+      window.open(`https://wa.me/${phone}?text=${encoded}`, "_blank");
+    }
+
+    // Initialize totals
+    calculateTotal();
+  </script>
 </body>
-      </html>
+          </html>
