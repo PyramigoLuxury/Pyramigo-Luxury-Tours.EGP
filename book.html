@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Book Tour | Let's Discover Egypt</title>
+  <meta name="description" content="Book your private Giza Pyramids tour with camel ride. Instant WhatsApp confirmation.">
   <link rel="icon" href="favicon.png" type="image/png">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
@@ -16,7 +17,6 @@
       padding-top: 70px;
     }
 
-    /* HEADER & SIDEBAR */
     header {
       position: fixed;
       top: 0; left: 0;
@@ -74,7 +74,6 @@
     }
     .overlay.active { display: block; }
 
-    /* PAGE CONTENT */
     h1 {
       text-align: center;
       margin: 30px 0;
@@ -124,7 +123,7 @@
       display: flex;
       flex-direction: column;
       gap: 10px;
-      margin-bottom: 20px;
+      margin-bottom: 10px;
     }
     .time-btn {
       padding: 10px;
@@ -148,6 +147,22 @@
       display: block;
       font-size: 12px;
       color: #666;
+    }
+    #selectedTimeDisplay {
+      text-align: center;
+      margin-bottom: 20px;
+      font-weight: 600;
+      color: #007f5f;
+    }
+    #errorBox {
+      display: none;
+      background: #ffe5e5;
+      color: #b30000;
+      padding: 10px;
+      border: 1px solid #ffcccc;
+      border-radius: 6px;
+      margin-top: 15px;
+      text-align: center;
     }
     button[type="submit"] {
       background: #25D366;
@@ -179,7 +194,6 @@
 </head>
 <body>
 
-<!-- Overlay & Sidebar -->
 <div class="overlay" id="overlay" onclick="closeMenu()"></div>
 <div class="sidebar" id="sidebar">
   <a href="index.html"><i class="fas fa-home"></i> Home</a>
@@ -188,16 +202,13 @@
   <a href="contact.html"><i class="fas fa-phone"></i> Contact</a>
 </div>
 
-<!-- Header -->
 <header>
   <div class="menu-icon" onclick="toggleMenu()">☰</div>
   <h2><a href="index.html"><i class="fas fa-globe-africa"></i> Let's Discover Egypt</a></h2>
 </header>
 
-<!-- Page Content -->
 <h1>ALL INCLUSIVE PRIVATE HALF-DAY TRIP TO GIZA PYRAMIDS WITH CAMEL RIDE</h1>
 
-<!-- Prices Table -->
 <table>
   <thead>
     <tr><th>Category</th><th>Price</th></tr>
@@ -212,7 +223,6 @@
   </tbody>
 </table>
 
-<!-- Booking Form -->
 <form id="bookingForm">
   <label>First Name</label>
   <input type="text" id="firstName" required>
@@ -244,6 +254,7 @@
     <div class="time-btn" onclick="selectTime(this)">1:00 PM<br><small>Places remaining</small></div>
     <div class="time-btn" onclick="selectTime(this)">2:00 PM<br><small>Places remaining</small></div>
   </div>
+  <div id="selectedTimeDisplay"></div>
   <input type="hidden" name="tour-time" id="tour-time" required>
 
   <label>WhatsApp Number</label>
@@ -258,9 +269,9 @@
   </div>
 
   <button type="submit"><i class="fab fa-whatsapp"></i>Confirm via WhatsApp</button>
+  <div id="errorBox"></div>
 </form>
 
-<!-- Scripts -->
 <script>
   function toggleMenu() {
     document.getElementById("sidebar").classList.toggle("active");
@@ -278,22 +289,31 @@
   function selectTime(btn) {
     document.querySelectorAll('.time-btn').forEach(b => b.classList.remove('selected'));
     btn.classList.add('selected');
-    document.getElementById('tour-time').value = btn.innerText.split('\n')[0];
+    const time = btn.innerText.split('\n')[0];
+    document.getElementById('tour-time').value = time;
+    document.getElementById('selectedTimeDisplay').innerText = `✅ Selected Time: ${time}`;
+  }
+
+  function showError(message) {
+    const errorBox = document.getElementById("errorBox");
+    errorBox.innerText = "⚠️ " + message;
+    errorBox.style.display = "block";
+    setTimeout(() => { errorBox.style.display = "none"; }, 4000);
   }
 
   document.getElementById("bookingForm").addEventListener("submit", function(e) {
     e.preventDefault();
     const code = document.getElementById("countryCode").value;
-    const number = document.getElementById("whatsappNumber").value.trim();
+    let number = document.getElementById("whatsappNumber").value.trim().replace(/[^\d]/g, '');
     const fullNumber = code + number;
     const time = document.getElementById("tour-time").value;
 
     if (!time) {
-      alert("⚠️ Please select a tour time before confirming.");
+      showError("Please select a tour time.");
       return;
     }
     if (!/^\d{6,15}$/.test(number)) {
-      alert("⚠️ Please enter a valid WhatsApp number.");
+      showError("Please enter a valid WhatsApp number.");
       return;
     }
 
