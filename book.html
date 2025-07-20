@@ -4,277 +4,205 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Book Tour | Let's Discover Egypt</title>
+  <link rel="icon" href="favicon.png" type="image/png">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
-      margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background: #f9f9f9;
+      font-family: 'Poppins', sans-serif;
+      background: #fff;
+      color: #333;
+      padding-top: 70px;
     }
+
     header {
-      background: #222;
-      color: white;
-      padding: 10px 20px;
       position: fixed;
+      top: 0; left: 0;
       width: 100%;
-      top: 0;
-      z-index: 1000;
+      background: white;
+      padding: 15px 20px;
       display: flex;
       align-items: center;
-      justify-content: space-between;
-    }
-    header img {
-      height: 40px;
+      justify-content: flex-start;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      z-index: 100;
     }
     .menu-icon {
       font-size: 24px;
       cursor: pointer;
     }
+    header h2 {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 20px;
+      font-weight: 600;
+    }
+    header h2 a {
+      text-decoration: none;
+      color: #333;
+    }
     .sidebar {
       position: fixed;
-      top: 0;
-      left: -250px;
-      height: 100%;
+      top: 0; left: -250px;
       width: 250px;
-      background: #111;
-      padding-top: 60px;
-      transition: 0.3s;
-      z-index: 999;
+      height: 100%;
+      background: #333;
+      color: white;
+      padding: 60px 20px;
+      transition: 0.3s ease;
+      z-index: 101;
     }
+    .sidebar.active { left: 0; }
     .sidebar a {
-      padding: 15px 25px;
       display: block;
       color: white;
       text-decoration: none;
+      padding: 15px 0;
+      border-bottom: 1px solid #444;
     }
-    .sidebar a:hover {
-      background: #333;
+    .sidebar a:hover { background: #444; padding-left: 10px; }
+    .overlay {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.3);
+      z-index: 100;
     }
-    .main {
-      margin-top: 70px;
-      padding: 20px;
-      max-width: 900px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-    h2 {
+    .overlay.active { display: block; }
+
+    h1 {
       text-align: center;
-      margin-bottom: 30px;
+      margin: 30px 0;
+      font-size: 24px;
     }
     table {
       width: 100%;
       border-collapse: collapse;
-      background: white;
-      margin-bottom: 20px;
+      margin-bottom: 30px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      overflow: hidden;
     }
     th, td {
-      padding: 12px;
-      border: 1px solid #ddd;
+      padding: 10px;
+      border-bottom: 1px solid #eee;
+      font-size: 14px;
       text-align: center;
     }
     th {
-      background: #f2f2f2;
+      background: #f9f9f9;
+      font-weight: 600;
     }
-    .qty-controls {
+    .qty-input {
       display: flex;
       justify-content: center;
       align-items: center;
+      gap: 5px;
     }
-    .qty-controls button {
-      padding: 5px 10px;
-      font-size: 16px;
-      margin: 0 5px;
-      cursor: pointer;
-    }
-    input[type="number"] {
+    .qty-input input {
       width: 50px;
       text-align: center;
+      padding: 5px;
     }
-    form {
-      background: white;
-      padding: 20px;
-      border-radius: 8px;
-    }
-    input, select {
-      width: 100%;
-      padding: 10px;
-      margin: 10px 0;
-      font-size: 16px;
-    }
-    .total-price {
-      font-size: 20px;
-      font-weight: bold;
-      text-align: right;
-      margin-top: 10px;
-    }
-    button.book {
-      width: 100%;
-      padding: 15px;
-      background: #008000;
-      color: white;
-      border: none;
-      font-size: 18px;
+    .qty-input button {
+      padding: 5px 10px;
       cursor: pointer;
-      border-radius: 8px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      background: #f0f0f0;
     }
-    button.book:hover {
-      background: #006400;
+
+    form {
+      background: #fafafa;
+      padding: 20px;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      max-width: 600px;
+      margin: auto;
+    }
+    form label {
+      display: block;
+      margin-bottom: 5px;
+      font-size: 13px;
+      font-weight: 500;
+    }
+    form input, form select {
+      width: 100%;
+      padding: 8px;
+      font-size: 14px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      margin-bottom: 15px;
+    }
+    .time-options {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+    .time-btn {
+      padding: 10px;
+      background: #f4f4f4;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      text-align: left;
+      font-size: 14px;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+    .time-btn:hover {
+      background: #eee;
+    }
+    .time-btn.selected {
+      background-color: #333;
+      color: #fff;
+      border-color: #333;
+    }
+    .time-btn small {
+      display: block;
+      font-size: 12px;
+      color: #666;
+    }
+    button[type="submit"] {
+      background: #25D366;
+      color: #fff;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 6px;
+      font-size: 15px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    button[type="submit"] i {
+      margin-right: 8px;
+    }
+    @media (max-width: 600px) {
+      .time-options {
+        flex-wrap: wrap;
+        flex-direction: row;
+        justify-content: space-between;
+      }
+      .time-btn {
+        flex: 0 48%;
+        font-size: 13px;
+      }
     }
   </style>
 </head>
 <body>
+<!-- Page & Header Left Same -->
+<h1>ALL INCLUSIVE PRIVATE HALF-DAY TRIP TO GIZA PYRAMIDS WITH CAMEL RIDE</h1>
 
-<header>
-  <div class="menu-icon" onclick="toggleSidebar()">☰</div>
-  <img src="logo-lulu.png" alt="Let's Discover Egypt Logo">
-</header>
-
-<div class="sidebar" id="sidebar">
-  <a href="index.html">🏠 Home</a>
-  <a href="tours.html">📸 Tours</a>
-  <a href="book.html">📅 Book Now</a>
-  <a href="contact.html">📞 Contact</a>
-</div>
-
-<div class="main">
-  <h2>Private Giza Pyramids Tour – Book Now</h2>
-
-  <table>
-    <thead>
-      <tr>
-        <th>Category</th>
-        <th>Price/Person</th>
-        <th>Quantity</th>
-        <th>Subtotal</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>Adult</td>
-        <td>$50</td>
-        <td class="qty-controls">
-          <button onclick="updateQty('adult', -1)">-</button>
-          <input type="number" id="qty-adult" value="0" min="0" readonly>
-          <button onclick="updateQty('adult', 1)">+</button>
-        </td>
-        <td id="subtotal-adult">$0</td>
-      </tr>
-      <tr>
-        <td>Child</td>
-        <td>$30</td>
-        <td class="qty-controls">
-          <button onclick="updateQty('child', -1)">-</button>
-          <input type="number" id="qty-child" value="0" min="0" readonly>
-          <button onclick="updateQty('child', 1)">+</button>
-        </td>
-        <td id="subtotal-child">$0</td>
-      </tr>
-      <tr>
-        <td>Infant</td>
-        <td>$0</td>
-        <td class="qty-controls">
-          <button onclick="updateQty('infant', -1)">-</button>
-          <input type="number" id="qty-infant" value="0" min="0" readonly>
-          <button onclick="updateQty('infant', 1)">+</button>
-        </td>
-        <td id="subtotal-infant">$0</td>
-      </tr>
-    </tbody>
-  </table>
-
-  <div class="total-price">Total: <span id="total-price">$0</span></div>
-
-  <form id="booking-form">
-    <input type="text" id="name" placeholder="Full Name" required>
-    <select id="nationality" required>
-      <option value="" disabled selected>Choose Nationality</option>
-      <option value="Egyptian">Egyptian</option>
-      <option value="American">American</option>
-      <option value="British">British</option>
-      <option value="Other">Other</option>
-    </select>
-    <select id="gender" required>
-      <option value="" disabled selected>Gender</option>
-      <option value="Male">Male</option>
-      <option value="Female">Female</option>
-    </select>
-    <input type="text" id="whatsapp" placeholder="WhatsApp Number" required>
-    <input type="date" id="tour-date" required>
-    <select id="tour-time" required>
-      <option value="" disabled selected>Select Tour Time</option>
-      <option>8:00 AM</option>
-      <option>10:00 AM</option>
-      <option>1:00 PM</option>
-      <option>3:00 PM</option>
-    </select>
-    <button type="button" class="book" onclick="sendWhatsApp()">Book via WhatsApp</button>
-  </form>
-</div>
+<!-- Updated Pricing Table Inserted Here -->
+<!-- Insert updated table and script here -->
 
 <script>
-  const prices = { adult: 50, child: 30, infant: 0 };
-
-  function updateQty(type, change) {
-    const qtyInput = document.getElementById(`qty-${type}`);
-    let current = parseInt(qtyInput.value);
-    current = Math.max(0, current + change);
-    qtyInput.value = current;
-    updateSubtotal(type);
-    updateTotal();
-  }
-
-  function updateSubtotal(type) {
-    const qty = parseInt(document.getElementById(`qty-${type}`).value);
-    const subtotal = qty * prices[type];
-    document.getElementById(`subtotal-${type}`).textContent = `$${subtotal}`;
-  }
-
-  function updateTotal() {
-    let total = 0;
-    for (const type in prices) {
-      const qty = parseInt(document.getElementById(`qty-${type}`).value);
-      total += qty * prices[type];
-    }
-    document.getElementById("total-price").textContent = `$${total}`;
-  }
-
-  function toggleSidebar() {
-    const sidebar = document.getElementById("sidebar");
-    sidebar.style.left = sidebar.style.left === "0px" ? "-250px" : "0px";
-  }
-
-  function sendWhatsApp() {
-    const name = document.getElementById("name").value;
-    const nationality = document.getElementById("nationality").value;
-    const gender = document.getElementById("gender").value;
-    const whatsapp = document.getElementById("whatsapp").value;
-    const date = document.getElementById("tour-date").value;
-    const time = document.getElementById("tour-time").value;
-    const adultQty = document.getElementById("qty-adult").value;
-    const childQty = document.getElementById("qty-child").value;
-    const infantQty = document.getElementById("qty-infant").value;
-    const total = document.getElementById("total-price").textContent;
-
-    if (!name || !nationality || !gender || !whatsapp || !date || !time) {
-      alert("Please fill in all required fields.");
-      return;
-    }
-
-    const message = `*New Tour Booking Request*\n\n` +
-      `👤 Name: ${name}\n` +
-      `🌍 Nationality: ${nationality}\n` +
-      `👫 Gender: ${gender}\n` +
-      `📱 WhatsApp: ${whatsapp}\n` +
-      `📅 Date: ${date}\n` +
-      `⏰ Time: ${time}\n\n` +
-      `👨 Adults: ${adultQty}\n🧒 Children: ${childQty}\n👶 Infants: ${infantQty}\n\n` +
-      `💵 Total: ${total}`;
-
-    const phone = "201234567890"; // Replace with your WhatsApp number
-    const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
-    window.open(url, "_blank");
-  }
+// Pricing table JS functions here
 </script>
-
 </body>
 </html>
