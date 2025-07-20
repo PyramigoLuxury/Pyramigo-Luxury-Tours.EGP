@@ -16,6 +16,7 @@
       padding-top: 70px;
     }
 
+    /* HEADER & SIDEBAR */
     header {
       position: fixed;
       top: 0; left: 0;
@@ -73,6 +74,7 @@
     }
     .overlay.active { display: block; }
 
+    /* PAGE CONTENT */
     h1 {
       text-align: center;
       margin: 30px 0;
@@ -96,25 +98,6 @@
       background: #f9f9f9;
       font-weight: 600;
     }
-    .qty-input {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 5px;
-    }
-    .qty-input input {
-      width: 50px;
-      text-align: center;
-      padding: 5px;
-    }
-    .qty-input button {
-      padding: 5px 10px;
-      cursor: pointer;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-      background: #f0f0f0;
-    }
-
     form {
       background: #fafafa;
       padding: 20px;
@@ -195,14 +178,141 @@
   </style>
 </head>
 <body>
-<!-- Page & Header Left Same -->
+
+<!-- Overlay & Sidebar -->
+<div class="overlay" id="overlay" onclick="closeMenu()"></div>
+<div class="sidebar" id="sidebar">
+  <a href="index.html"><i class="fas fa-home"></i> Home</a>
+  <a href="about.html"><i class="fas fa-info-circle"></i> About Us</a>
+  <a href="tours.html"><i class="fas fa-map-marked-alt"></i> Tours</a>
+  <a href="contact.html"><i class="fas fa-phone"></i> Contact</a>
+</div>
+
+<!-- Header -->
+<header>
+  <div class="menu-icon" onclick="toggleMenu()">☰</div>
+  <h2><a href="index.html"><i class="fas fa-globe-africa"></i> Let's Discover Egypt</a></h2>
+</header>
+
+<!-- Page Content -->
 <h1>ALL INCLUSIVE PRIVATE HALF-DAY TRIP TO GIZA PYRAMIDS WITH CAMEL RIDE</h1>
 
-<!-- Updated Pricing Table Inserted Here -->
-<!-- Insert updated table and script here -->
+<!-- Prices Table -->
+<table>
+  <thead>
+    <tr><th>Category</th><th>Price</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>1 Person</td><td>USD 65</td></tr>
+    <tr><td>2–4 Persons</td><td>USD 55</td></tr>
+    <tr><td>5–8 Persons</td><td>USD 45</td></tr>
+    <tr><td>9–15 Persons</td><td>USD 30</td></tr>
+    <tr><td>Child</td><td>USD 25</td></tr>
+    <tr><td>Infant</td><td>FREE</td></tr>
+  </tbody>
+</table>
 
+<!-- Booking Form -->
+<form id="bookingForm">
+  <label>First Name</label>
+  <input type="text" id="firstName" required>
+  <label>Last Name</label>
+  <input type="text" id="lastName" required>
+  <label>Nationality</label>
+  <input type="text" id="nationality" required>
+  <label>Gender</label>
+  <select id="gender" required>
+    <option value="">Select</option>
+    <option>Male</option>
+    <option>Female</option>
+  </select>
+  <label>Email</label>
+  <input type="email" id="email" required>
+  <label>Pick-up Location</label>
+  <input type="text" id="pickup" required>
+  <label>Tour Date</label>
+  <input type="date" id="date" required>
+
+  <label>Choose Tour Time</label>
+  <div class="time-options">
+    <div class="time-btn" onclick="selectTime(this)">7:00 AM<br><small>Places remaining</small></div>
+    <div class="time-btn" onclick="selectTime(this)">8:00 AM<br><small>Places remaining</small></div>
+    <div class="time-btn" onclick="selectTime(this)">9:00 AM<br><small>Places remaining</small></div>
+    <div class="time-btn" onclick="selectTime(this)">10:00 AM<br><small>Places remaining</small></div>
+    <div class="time-btn" onclick="selectTime(this)">11:00 AM<br><small>Places remaining</small></div>
+    <div class="time-btn" onclick="selectTime(this)">12:00 PM<br><small>Places remaining</small></div>
+    <div class="time-btn" onclick="selectTime(this)">1:00 PM<br><small>Places remaining</small></div>
+    <div class="time-btn" onclick="selectTime(this)">2:00 PM<br><small>Places remaining</small></div>
+  </div>
+  <input type="hidden" name="tour-time" id="tour-time" required>
+
+  <label>WhatsApp Number</label>
+  <div style="display: flex; gap: 10px; align-items: center;">
+    <select id="countryCode" required style="flex: 1; padding: 8px; border-radius: 6px; border: 1px solid #ccc;">
+      <option value="+20">🇪🇬 Egypt +20</option>
+      <option value="+1">🇺🇸 USA +1</option>
+      <option value="+44">🇬🇧 UK +44</option>
+      <option value="+971">🇦🇪 UAE +971</option>
+    </select>
+    <input type="tel" id="whatsappNumber" placeholder="123456789" required style="flex: 2; padding: 8px; border-radius: 6px; border: 1px solid #ccc;">
+  </div>
+
+  <button type="submit"><i class="fab fa-whatsapp"></i>Confirm via WhatsApp</button>
+</form>
+
+<!-- Scripts -->
 <script>
-// Pricing table JS functions here
+  function toggleMenu() {
+    document.getElementById("sidebar").classList.toggle("active");
+    document.getElementById("overlay").classList.toggle("active");
+    document.body.style.overflow = document.getElementById("sidebar").classList.contains("active") ? "hidden" : "auto";
+  }
+  function closeMenu() {
+    document.getElementById("sidebar").classList.remove("active");
+    document.getElementById("overlay").classList.remove("active");
+    document.body.style.overflow = "auto";
+  }
+
+  document.getElementById("date").setAttribute("min", new Date().toISOString().split("T")[0]);
+
+  function selectTime(btn) {
+    document.querySelectorAll('.time-btn').forEach(b => b.classList.remove('selected'));
+    btn.classList.add('selected');
+    document.getElementById('tour-time').value = btn.innerText.split('\n')[0];
+  }
+
+  document.getElementById("bookingForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+    const code = document.getElementById("countryCode").value;
+    const number = document.getElementById("whatsappNumber").value.trim();
+    const fullNumber = code + number;
+    const time = document.getElementById("tour-time").value;
+
+    if (!time) {
+      alert("⚠️ Please select a tour time before confirming.");
+      return;
+    }
+    if (!/^\d{6,15}$/.test(number)) {
+      alert("⚠️ Please enter a valid WhatsApp number.");
+      return;
+    }
+
+    const message = 
+      `📌 NEW BOOKING REQUEST:\n` +
+      `Name: ${document.getElementById("firstName").value} ${document.getElementById("lastName").value}\n` +
+      `Nationality: ${document.getElementById("nationality").value}\n` +
+      `Gender: ${document.getElementById("gender").value}\n` +
+      `Email: ${document.getElementById("email").value}\n` +
+      `Pick-up Location: ${document.getElementById("pickup").value}\n` +
+      `Tour Date: ${document.getElementById("date").value}\n` +
+      `Tour Time: ${time}\n` +
+      `WhatsApp: ${fullNumber}`;
+
+    const encodedMessage = encodeURIComponent(message);
+    const waNumber = code.replace("+", "") + number;
+    window.open(`https://wa.me/${waNumber}?text=${encodedMessage}`, '_blank');
+  });
 </script>
+
 </body>
-</html>
+      </html>
