@@ -8,156 +8,169 @@
   <style>
     body {
       font-family: Arial, sans-serif;
-      margin: 20px;
-      background-color: #f9f9f9;
+      background: #f4f4f4;
+      padding: 20px;
     }
     h2 {
       text-align: center;
       margin-bottom: 20px;
     }
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      background: #fff;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    }
-    th, td {
-      padding: 12px;
-      text-align: center;
-      border-bottom: 1px solid #ccc;
-    }
-    th {
-      background-color: #222;
-      color: #fff;
-    }
-    input[type="number"] {
-      width: 60px;
-      padding: 6px;
-      text-align: center;
-    }
-    .total {
-      font-weight: bold;
-      background-color: #f0f0f0;
-    }
     form {
-      margin-top: 30px;
-      background: #fff;
+      background: white;
       padding: 20px;
-      box-shadow: 0 0 8px rgba(0,0,0,0.1);
+      border-radius: 10px;
+      max-width: 700px;
+      margin: auto;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
     }
     label {
       display: block;
-      margin: 10px 0 5px;
+      margin-top: 10px;
     }
-    input[type="text"], input[type="date"] {
+    input, select {
       width: 100%;
       padding: 8px;
-      margin-bottom: 15px;
+      margin-top: 5px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+    table {
+      width: 100%;
+      margin-top: 20px;
+      border-collapse: collapse;
+    }
+    th, td {
+      text-align: center;
+      padding: 10px;
+      border: 1px solid #ccc;
+    }
+    .total-row {
+      font-weight: bold;
+      background: #f0f0f0;
     }
     .submit-btn {
-      display: block;
-      width: 100%;
-      padding: 10px;
-      background: #e91e63;
-      color: #fff;
+      background: #28a745;
+      color: white;
       border: none;
-      cursor: pointer;
-      font-size: 16px;
+      padding: 10px 20px;
       margin-top: 20px;
+      font-size: 16px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .submit-btn:hover {
+      background: #218838;
     }
   </style>
 </head>
 <body>
 
-  <h2>VIP Giza Pyramids Tour Booking</h2>
-
-  <!-- Prices Table -->
-  <table id="priceTable">
-    <thead>
-      <tr>
-        <th>Category</th>
-        <th>Price</th>
-        <th>Quantity</th>
-        <th>Subtotal</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>1 Person</td>
-        <td>60</td>
-        <td><input type="number" value="0" min="0" onchange="calculateTotal()"></td>
-        <td class="subtotal">0</td>
-      </tr>
-      <tr>
-        <td>2–4 Persons</td>
-        <td>50</td>
-        <td><input type="number" value="0" min="0" onchange="calculateTotal()"></td>
-        <td class="subtotal">0</td>
-      </tr>
-      <tr>
-        <td>5–8 Persons</td>
-        <td>40</td>
-        <td><input type="number" value="0" min="0" onchange="calculateTotal()"></td>
-        <td class="subtotal">0</td>
-      </tr>
-      <tr>
-        <td>9–15 Persons</td>
-        <td>30</td>
-        <td><input type="number" value="0" min="0" onchange="calculateTotal()"></td>
-        <td class="subtotal">0</td>
-      </tr>
-      <tr>
-        <td>Child</td>
-        <td>25</td>
-        <td><input type="number" value="0" min="0" onchange="calculateTotal()"></td>
-        <td class="subtotal">0</td>
-      </tr>
-      <tr>
-        <td>Infant</td>
-        <td>0</td>
-        <td><input type="number" value="0" min="0" onchange="calculateTotal()"></td>
-        <td class="subtotal">0</td>
-      </tr>
-      <tr class="total">
-        <td colspan="3">Total</td>
-        <td id="totalPrice">0</td>
-      </tr>
-    </tbody>
-  </table>
-
-  <!-- Booking Form -->
-  <form>
+  <h2>Book Your Tour</h2>
+  <form id="bookingForm">
     <label for="name">Full Name</label>
-    <input type="text" id="name" placeholder="Enter your full name" required>
+    <input type="text" id="name" required>
 
     <label for="nationality">Nationality</label>
-    <input type="text" id="nationality" placeholder="e.g. Egyptian, American" required>
+    <input type="text" id="nationality" required>
 
-    <label for="date">Tour Date</label>
+    <label for="whatsapp">WhatsApp Number</label>
+    <input type="tel" id="whatsapp" required>
+
+    <label for="date">Select Date</label>
     <input type="date" id="date" required>
 
-    <label for="phone">WhatsApp Number</label>
-    <input type="text" id="phone" placeholder="+20..." required>
+    <label for="time">Select Time</label>
+    <select id="time" required>
+      <option value="">-- Select Time --</option>
+      <option value="8:00 AM">8:00 AM</option>
+      <option value="10:00 AM">10:00 AM</option>
+      <option value="12:00 PM">12:00 PM</option>
+    </select>
+
+    <!-- جدول الأسعار -->
+    <table id="priceTable">
+      <thead>
+        <tr>
+          <th>Category</th>
+          <th>Price</th>
+          <th>Quantity</th>
+          <th>Subtotal</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1 Person</td>
+          <td>60</td>
+          <td><input type="number" min="0" value="0" class="qty" data-price="60"></td>
+          <td class="subtotal">0</td>
+        </tr>
+        <tr>
+          <td>2–4 Persons</td>
+          <td>50</td>
+          <td><input type="number" min="0" value="0" class="qty" data-price="50"></td>
+          <td class="subtotal">0</td>
+        </tr>
+        <tr>
+          <td>5–8 Persons</td>
+          <td>40</td>
+          <td><input type="number" min="0" value="0" class="qty" data-price="40"></td>
+          <td class="subtotal">0</td>
+        </tr>
+        <tr>
+          <td>9–15 Persons</td>
+          <td>30</td>
+          <td><input type="number" min="0" value="0" class="qty" data-price="30"></td>
+          <td class="subtotal">0</td>
+        </tr>
+        <tr>
+          <td>Child</td>
+          <td>25</td>
+          <td><input type="number" min="0" value="0" class="qty" data-price="25"></td>
+          <td class="subtotal">0</td>
+        </tr>
+        <tr>
+          <td>Infant</td>
+          <td>FREE</td>
+          <td><input type="number" min="0" value="0" class="qty" data-price="0"></td>
+          <td class="subtotal">0</td>
+        </tr>
+        <tr class="total-row">
+          <td colspan="3">Total</td>
+          <td id="totalPrice">0</td>
+        </tr>
+      </tbody>
+    </table>
 
     <button type="submit" class="submit-btn">Submit Booking</button>
   </form>
 
   <script>
-    function calculateTotal() {
-      const rows = document.querySelectorAll("#priceTable tbody tr");
+    const qtyInputs = document.querySelectorAll('.qty');
+    const totalPriceEl = document.getElementById('totalPrice');
+
+    function updateTotals() {
       let total = 0;
-      rows.forEach(row => {
-        const priceCell = row.cells[1];
-        const qtyInput = row.cells[2].querySelector("input");
-        const subtotalCell = row.cells[3];
-        const price = parseFloat(priceCell.textContent);
-        const qty = parseInt(qtyInput.value);
+      qtyInputs.forEach(input => {
+        const price = parseFloat(input.getAttribute('data-price'));
+        const qty = parseInt(input.value) || 0;
         const subtotal = price * qty;
-        subtotalCell.textContent = subtotal;
-        if (!isNaN(subtotal)) total += subtotal;
+        input.parentElement.nextElementSibling.textContent = subtotal;
+        total += subtotal;
       });
-      document.getElementById("totalPrice").textContent = total;
+      totalPriceEl.textContent = total;
     }
+
+    qtyInputs.forEach(input => {
+      input.addEventListener('input', updateTotals);
+    });
+
+    document.getElementById('bookingForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      alert('Your booking request has been submitted!');
+    });
+
+    // Initialize total on load
+    updateTotals();
   </script>
 
 </body>
