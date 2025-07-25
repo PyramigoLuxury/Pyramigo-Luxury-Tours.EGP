@@ -7,48 +7,79 @@
   <style>
     body {
       font-family: Arial, sans-serif;
-      margin: 20px;
-      background: #f8f8f8;
-    }
-    h1 {
+      padding: 20px;
+      background-color: #f4f4f4;
       color: #333;
     }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
     table {
       width: 100%;
       border-collapse: collapse;
-      margin-bottom: 20px;
-      background: #fff;
+      margin-bottom: 30px;
     }
-    th, td {
+
+    table, th, td {
       border: 1px solid #ccc;
-      padding: 12px;
+    }
+
+    th, td {
+      padding: 10px;
       text-align: center;
     }
+
     th {
       background-color: #eee;
     }
-    tfoot td {
-      font-weight: bold;
-      background-color: #f2f2f2;
+
+    input[type="number"] {
+      width: 60px;
     }
-    form {
-      background: #fff;
-      padding: 20px;
-      border: 1px solid #ccc;
+
+    .form-group {
+      margin-bottom: 15px;
     }
-    input, select, button {
-      padding: 10px;
-      margin: 10px 0;
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    input, select {
+      padding: 8px;
       width: 100%;
-      max-width: 400px;
+      max-width: 300px;
     }
+
+    .total {
+      text-align: right;
+      font-weight: bold;
+      font-size: 18px;
+      margin-top: 10px;
+    }
+
+    .whatsapp-btn {
+      display: inline-block;
+      padding: 10px 20px;
+      background-color: #25d366;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 5px;
+      font-size: 16px;
+    }
+
   </style>
 </head>
 <body>
 
-  <h1>Book Your Private Giza Pyramids Tour</h1>
+  <h1>Book Your Private Tour</h1>
 
-  <table id="priceTable">
+  <!-- Prices Table -->
+  <table id="price-table">
     <thead>
       <tr>
         <th>Category</th>
@@ -61,88 +92,116 @@
       <tr>
         <td>1 Person</td>
         <td>60</td>
-        <td><input type="number" min="0" value="0" onchange="calculateTotal()"></td>
-        <td>$<span>0</span></td>
+        <td><input type="number" value="0" min="0" class="qty" data-price="60"></td>
+        <td class="subtotal">0</td>
       </tr>
       <tr>
         <td>2–4 Persons</td>
         <td>50</td>
-        <td><input type="number" min="0" value="0" onchange="calculateTotal()"></td>
-        <td>$<span>0</span></td>
+        <td><input type="number" value="0" min="0" class="qty" data-price="50"></td>
+        <td class="subtotal">0</td>
       </tr>
       <tr>
         <td>5–8 Persons</td>
         <td>40</td>
-        <td><input type="number" min="0" value="0" onchange="calculateTotal()"></td>
-        <td>$<span>0</span></td>
+        <td><input type="number" value="0" min="0" class="qty" data-price="40"></td>
+        <td class="subtotal">0</td>
       </tr>
       <tr>
         <td>9–15 Persons</td>
         <td>30</td>
-        <td><input type="number" min="0" value="0" onchange="calculateTotal()"></td>
-        <td>$<span>0</span></td>
+        <td><input type="number" value="0" min="0" class="qty" data-price="30"></td>
+        <td class="subtotal">0</td>
       </tr>
       <tr>
         <td>Child</td>
         <td>25</td>
-        <td><input type="number" min="0" value="0" onchange="calculateTotal()"></td>
-        <td>$<span>0</span></td>
+        <td><input type="number" value="0" min="0" class="qty" data-price="25"></td>
+        <td class="subtotal">0</td>
       </tr>
       <tr>
         <td>Infant</td>
         <td>0</td>
-        <td><input type="number" min="0" value="0" onchange="calculateTotal()"></td>
-        <td>$<span>0</span></td>
+        <td><input type="number" value="0" min="0" class="qty" data-price="0"></td>
+        <td class="subtotal">0</td>
       </tr>
     </tbody>
-    <tfoot>
-      <tr>
-        <td colspan="3">Total</td>
-        <td>$<span id="totalPrice">0</span></td>
-      </tr>
-    </tfoot>
   </table>
 
-  <form>
-    <label>Full Name</label><br>
-    <input type="text" name="name" required><br>
+  <div class="total">Total: USD <span id="total-price">0</span></div>
 
-    <label>Nationality</label><br>
-    <input type="text" name="nationality" required><br>
+  <!-- Booking Form -->
+  <form id="booking-form">
+    <div class="form-group">
+      <label for="fullname">Full Name</label>
+      <input type="text" id="fullname" name="fullname" required />
+    </div>
 
-    <label>Phone Number (WhatsApp)</label><br>
-    <input type="tel" name="phone" required><br>
+    <div class="form-group">
+      <label for="nationality">Nationality</label>
+      <input type="text" id="nationality" name="nationality" required />
+    </div>
 
-    <label>Tour Date</label><br>
-    <input type="date" name="date" required><br>
+    <div class="form-group">
+      <label for="phone">WhatsApp Number</label>
+      <input type="text" id="phone" name="phone" required />
+    </div>
 
-    <label>Preferred Time</label><br>
-    <select name="time" required>
-      <option value="">Select Time</option>
-      <option value="8:00 AM">8:00 AM</option>
-      <option value="10:00 AM">10:00 AM</option>
-      <option value="12:00 PM">12:00 PM</option>
-    </select><br>
+    <div class="form-group">
+      <label for="date">Tour Date</label>
+      <input type="date" id="date" name="date" required />
+    </div>
 
-    <button type="submit">Confirm Booking via WhatsApp</button>
+    <div class="form-group">
+      <label for="time">Tour Time</label>
+      <select id="time" name="time" required>
+        <option value="">Select a time</option>
+        <option value="08:00 AM">08:00 AM</option>
+        <option value="10:00 AM">10:00 AM</option>
+        <option value="12:00 PM">12:00 PM</option>
+        <option value="02:00 PM">02:00 PM</option>
+      </select>
+    </div>
+
+    <a class="whatsapp-btn" id="send-whatsapp" target="_blank">Send via WhatsApp</a>
   </form>
 
   <script>
-    function calculateTotal() {
-      let table = document.getElementById('priceTable');
-      let rows = table.querySelectorAll('tbody tr');
-      let total = 0;
+    const qtyInputs = document.querySelectorAll('.qty');
+    const totalPriceEl = document.getElementById('total-price');
+    const subtotals = document.querySelectorAll('.subtotal');
 
-      rows.forEach(row => {
-        let price = parseInt(row.cells[1].innerText);
-        let qty = parseInt(row.cells[2].querySelector('input').value);
-        let subtotal = price * qty;
-        row.cells[3].querySelector('span').innerText = subtotal;
+    function calculateTotal() {
+      let total = 0;
+      qtyInputs.forEach((input, index) => {
+        const price = parseInt(input.dataset.price);
+        const qty = parseInt(input.value);
+        const subtotal = price * qty;
+        subtotals[index].innerText = subtotal;
         total += subtotal;
       });
-
-      document.getElementById('totalPrice').innerText = total;
+      totalPriceEl.innerText = total;
+      return total;
     }
+
+    qtyInputs.forEach(input => {
+      input.addEventListener('input', calculateTotal);
+    });
+
+    // WhatsApp Link
+    document.getElementById('send-whatsapp').addEventListener('click', function(e) {
+      e.preventDefault();
+      const name = document.getElementById('fullname').value;
+      const nat = document.getElementById('nationality').value;
+      const phone = document.getElementById('phone').value;
+      const date = document.getElementById('date').value;
+      const time = document.getElementById('time').value;
+      const total = calculateTotal();
+
+      const msg = `Booking Request:%0AName: ${name}%0ANationality: ${nat}%0AWhatsApp: ${phone}%0ADate: ${date}%0ATime: ${time}%0ATotal Price: USD ${total}`;
+      const link = `https://wa.me/201234567890?text=${msg}`;
+      window.open(link, '_blank');
+    });
   </script>
 
 </body>
