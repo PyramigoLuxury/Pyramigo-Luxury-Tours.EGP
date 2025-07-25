@@ -4,205 +4,353 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Book Tour | Let's Discover Egypt</title>
+  <link rel="icon" href="favicon.png" type="image/png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
-      font-family: Arial, sans-serif;
-      padding: 20px;
-      background-color: #f4f4f4;
+      font-family: 'Poppins', sans-serif;
+      background: #fff;
+      color: #333;
+      padding-top: 70px;
+    }
+    header {
+      position: fixed; top: 0; left: 0;
+      width: 100%;
+      background: white;
+      padding: 15px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      z-index: 100;
+    }
+    .menu-icon {
+      font-size: 24px;
+      cursor: pointer;
+    }
+    header h2 {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 20px;
+      font-weight: 600;
+    }
+    header h2 a {
+      text-decoration: none;
       color: #333;
     }
+    .sidebar {
+      position: fixed;
+      top: 0; left: -250px;
+      width: 250px;
+      height: 100%;
+      background: #333;
+      color: white;
+      padding: 60px 20px;
+      transition: 0.3s ease;
+      z-index: 101;
+    }
+    .sidebar.active { left: 0; }
+    .sidebar a {
+      display: block;
+      color: white;
+      text-decoration: none;
+      padding: 15px 0;
+      border-bottom: 1px solid #444;
+    }
+    .sidebar a:hover { background: #444; padding-left: 10px; }
+    .overlay {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.3);
+      z-index: 100;
+    }
+    .overlay.active { display: block; }
 
     h1 {
       text-align: center;
-      margin-bottom: 20px;
+      margin: 30px 0;
+      font-size: 24px;
     }
-
     table {
       width: 100%;
       border-collapse: collapse;
       margin-bottom: 30px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      overflow: hidden;
     }
-
-    table, th, td {
-      border: 1px solid #ccc;
-    }
-
     th, td {
       padding: 10px;
+      border-bottom: 1px solid #eee;
+      font-size: 14px;
       text-align: center;
     }
-
     th {
-      background-color: #eee;
+      background: #f9f9f9;
+      font-weight: 600;
     }
-
-    input[type="number"] {
-      width: 60px;
+    form {
+      background: #fafafa;
+      padding: 20px;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      max-width: 700px;
+      margin: auto;
     }
-
-    .form-group {
-      margin-bottom: 15px;
-    }
-
-    label {
+    form label {
       display: block;
       margin-bottom: 5px;
+      font-size: 13px;
+      font-weight: 500;
     }
-
-    input, select {
-      padding: 8px;
+    form input, form select {
       width: 100%;
-      max-width: 300px;
+      padding: 8px;
+      font-size: 14px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      margin-bottom: 15px;
     }
-
-    .total {
-      text-align: right;
-      font-weight: bold;
-      font-size: 18px;
-      margin-top: 10px;
+    .time-options {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 20px;
     }
-
-    .whatsapp-btn {
-      display: inline-block;
-      padding: 10px 20px;
-      background-color: #25d366;
+    .time-btn {
+      padding: 10px;
+      background: #f4f4f4;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      text-align: left;
+      font-size: 14px;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+    .time-btn:hover {
+      background: #eee;
+    }
+    .time-btn.selected {
+      background-color: #333;
       color: #fff;
-      text-decoration: none;
-      border-radius: 5px;
-      font-size: 16px;
+      border-color: #333;
     }
-
+    .time-btn small {
+      display: block;
+      font-size: 12px;
+      color: #666;
+    }
+    button[type="submit"] {
+      background: #25D366;
+      color: #fff;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 6px;
+      font-size: 15px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    button[type="submit"] i {
+      margin-right: 8px;
+    }
+    @media (max-width: 600px) {
+      .time-options {
+        flex-wrap: wrap;
+        flex-direction: row;
+        justify-content: space-between;
+      }
+      .time-btn {
+        flex: 0 48%;
+        font-size: 13px;
+      }
+    }
   </style>
 </head>
 <body>
 
-  <h1>Book Your Private Tour</h1>
+<!-- Overlay & Sidebar -->
+<div class="overlay" id="overlay" onclick="closeMenu()"></div>
+<div class="sidebar" id="sidebar">
+  <a href="index.html"><i class="fas fa-home"></i> Home</a>
+  <a href="about.html"><i class="fas fa-info-circle"></i> About Us</a>
+  <a href="tours.html"><i class="fas fa-map-marked-alt"></i> Tours</a>
+  <a href="contact.html"><i class="fas fa-phone"></i> Contact</a>
+</div>
 
-  <!-- Prices Table -->
-  <table id="price-table">
+<!-- Header -->
+<header>
+  <div class="menu-icon" onclick="toggleMenu()">☰</div>
+  <h2><a href="index.html"><i class="fas fa-globe-africa"></i> Let's Discover Egypt</a></h2>
+</header>
+
+<h1>ALL INCLUSIVE PRIVATE HALF-DAY TRIP TO GIZA PYRAMIDS WITH CAMEL RIDE</h1>
+
+<form id="bookingForm">
+  <!-- Dynamic Pricing Table -->
+  <h3 style="margin-bottom: 15px;">Select Number of People</h3>
+  <table>
     <thead>
-      <tr>
-        <th>Category</th>
-        <th>Price</th>
-        <th>People</th>
-        <th>Subtotal</th>
-      </tr>
+      <tr><th>Category</th><th>Price (USD)</th><th>Quantity</th><th>Subtotal</th></tr>
     </thead>
-    <tbody>
-      <tr>
-        <td>1 Person</td>
-        <td>60</td>
-        <td><input type="number" value="0" min="0" class="qty" data-price="60"></td>
+    <tbody id="pricingTable">
+      <tr><td>1 Person</td><td>65</td>
+        <td><select onchange="calculateTotal()" data-price="65">
+          <option value="0">0</option><option value="1">1</option>
+        </select></td>
         <td class="subtotal">0</td>
       </tr>
-      <tr>
-        <td>2–4 Persons</td>
-        <td>50</td>
-        <td><input type="number" value="0" min="0" class="qty" data-price="50"></td>
+      <tr><td>2–4 Persons</td><td>55</td>
+        <td><select onchange="calculateTotal()" data-price="55">
+          <option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option>
+        </select></td>
         <td class="subtotal">0</td>
       </tr>
-      <tr>
-        <td>5–8 Persons</td>
-        <td>40</td>
-        <td><input type="number" value="0" min="0" class="qty" data-price="40"></td>
+      <tr><td>5–8 Persons</td><td>45</td>
+        <td><select onchange="calculateTotal()" data-price="45">
+          <option value="0">0</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option>
+        </select></td>
         <td class="subtotal">0</td>
       </tr>
-      <tr>
-        <td>9–15 Persons</td>
-        <td>30</td>
-        <td><input type="number" value="0" min="0" class="qty" data-price="30"></td>
+      <tr><td>9–15 Persons</td><td>30</td>
+        <td><select onchange="calculateTotal()" data-price="30">
+          <option value="0">0</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option>
+        </select></td>
         <td class="subtotal">0</td>
       </tr>
-      <tr>
-        <td>Child</td>
-        <td>25</td>
-        <td><input type="number" value="0" min="0" class="qty" data-price="25"></td>
+      <tr><td>Child</td><td>25</td>
+        <td><select onchange="calculateTotal()" data-price="25">
+          <option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option>
+        </select></td>
         <td class="subtotal">0</td>
       </tr>
-      <tr>
-        <td>Infant</td>
-        <td>0</td>
-        <td><input type="number" value="0" min="0" class="qty" data-price="0"></td>
+      <tr><td>Infant</td><td>FREE</td>
+        <td><select onchange="calculateTotal()" data-price="0">
+          <option value="0">0</option><option value="1">1</option><option value="2">2</option>
+        </select></td>
         <td class="subtotal">0</td>
       </tr>
     </tbody>
   </table>
+  <div style="text-align:right; font-weight:bold; margin-bottom: 20px;">
+    Total Price: USD <span id="totalPrice">0</span>
+  </div>
 
-  <div class="total">Total: USD <span id="total-price">0</span></div>
+  <!-- Rest of the form -->
+  <label>First Name</label>
+  <input type="text" id="firstName" required>
+  <label>Last Name</label>
+  <input type="text" id="lastName" required>
+  <label>Nationality</label>
+  <input type="text" id="nationality" required>
+  <label>Gender</label>
+  <select id="gender" required>
+    <option value="">Select</option>
+    <option>Male</option>
+    <option>Female</option>
+  </select>
+  <label>Email</label>
+  <input type="email" id="email" required>
+  <label>Pick-up Location</label>
+  <input type="text" id="pickup" required>
+  <label>Tour Date</label>
+  <input type="date" id="date" required>
 
-  <!-- Booking Form -->
-  <form id="booking-form">
-    <div class="form-group">
-      <label for="fullname">Full Name</label>
-      <input type="text" id="fullname" name="fullname" required />
-    </div>
+  <label>Choose Tour Time</label>
+  <div class="time-options">
+    <div class="time-btn" onclick="selectTime(this)">7:00 AM<br><small>Places remaining</small></div>
+    <div class="time-btn" onclick="selectTime(this)">8:00 AM<br><small>Places remaining</small></div>
+    <div class="time-btn" onclick="selectTime(this)">9:00 AM<br><small>Places remaining</small></div>
+    <div class="time-btn" onclick="selectTime(this)">10:00 AM<br><small>Places remaining</small></div>
+  </div>
+  <input type="hidden" name="tour-time" id="tour-time" required>
 
-    <div class="form-group">
-      <label for="nationality">Nationality</label>
-      <input type="text" id="nationality" name="nationality" required />
-    </div>
+  <label>WhatsApp Number</label>
+  <div style="display: flex; gap: 10px; align-items: center;">
+    <select id="countryCode" required style="flex: 1;">
+      <option value="+20">🇪🇬 Egypt +20</option>
+      <option value="+1">🇺🇸 USA +1</option>
+      <option value="+44">🇬🇧 UK +44</option>
+      <option value="+971">🇦🇪 UAE +971</option>
+    </select>
+    <input type="tel" id="whatsappNumber" placeholder="123456789" required style="flex: 2;">
+  </div>
 
-    <div class="form-group">
-      <label for="phone">WhatsApp Number</label>
-      <input type="text" id="phone" name="phone" required />
-    </div>
+  <button type="submit"><i class="fab fa-whatsapp"></i>Confirm via WhatsApp</button>
+</form>
 
-    <div class="form-group">
-      <label for="date">Tour Date</label>
-      <input type="date" id="date" name="date" required />
-    </div>
+<script>
+  function toggleMenu() {
+    document.getElementById("sidebar").classList.toggle("active");
+    document.getElementById("overlay").classList.toggle("active");
+    document.body.style.overflow = document.getElementById("sidebar").classList.contains("active") ? "hidden" : "auto";
+  }
+  function closeMenu() {
+    document.getElementById("sidebar").classList.remove("active");
+    document.getElementById("overlay").classList.remove("active");
+    document.body.style.overflow = "auto";
+  }
+  document.getElementById("date").setAttribute("min", new Date().toISOString().split("T")[0]);
 
-    <div class="form-group">
-      <label for="time">Tour Time</label>
-      <select id="time" name="time" required>
-        <option value="">Select a time</option>
-        <option value="08:00 AM">08:00 AM</option>
-        <option value="10:00 AM">10:00 AM</option>
-        <option value="12:00 PM">12:00 PM</option>
-        <option value="02:00 PM">02:00 PM</option>
-      </select>
-    </div>
+  function selectTime(btn) {
+    document.querySelectorAll('.time-btn').forEach(b => b.classList.remove('selected'));
+    btn.classList.add('selected');
+    document.getElementById('tour-time').value = btn.innerText.split('\n')[0];
+  }
 
-    <a class="whatsapp-btn" id="send-whatsapp" target="_blank">Send via WhatsApp</a>
-  </form>
+  function calculateTotal() {
+    let total = 0;
+    const rows = document.querySelectorAll("#pricingTable tr");
+    rows.forEach(row => {
+      const select = row.querySelector("select");
+      const quantity = parseInt(select.value);
+      const price = parseFloat(select.getAttribute("data-price"));
+      const subtotal = quantity * price;
+      row.querySelector(".subtotal").innerText = subtotal;
+      total += subtotal;
+    });
+    document.getElementById("totalPrice").innerText = total;
+  }
 
-  <script>
-    const qtyInputs = document.querySelectorAll('.qty');
-    const totalPriceEl = document.getElementById('total-price');
-    const subtotals = document.querySelectorAll('.subtotal');
+  document.getElementById("bookingForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+    const code = document.getElementById("countryCode").value;
+    const number = document.getElementById("whatsappNumber").value.trim();
+    const fullNumber = code + number;
+    const time = document.getElementById("tour-time").value;
 
-    function calculateTotal() {
-      let total = 0;
-      qtyInputs.forEach((input, index) => {
-        const price = parseInt(input.dataset.price);
-        const qty = parseInt(input.value);
-        const subtotal = price * qty;
-        subtotals[index].innerText = subtotal;
-        total += subtotal;
-      });
-      totalPriceEl.innerText = total;
-      return total;
+    if (!time) {
+      alert("⚠️ Please select a tour time before confirming.");
+      return;
+    }
+    if (!/^\d{6,15}$/.test(number)) {
+      alert("⚠️ Please enter a valid WhatsApp number.");
+      return;
     }
 
-    qtyInputs.forEach(input => {
-      input.addEventListener('input', calculateTotal);
-    });
+    const message = 
+      `📌 NEW BOOKING REQUEST:\n` +
+      `Name: ${document.getElementById("firstName").value} ${document.getElementById("lastName").value}\n` +
+      `Nationality: ${document.getElementById("nationality").value}\n` +
+      `Gender: ${document.getElementById("gender").value}\n` +
+      `Email: ${document.getElementById("email").value}\n` +
+      `Pick-up Location: ${document.getElementById("pickup").value}\n` +
+      `Tour Date: ${document.getElementById("date").value}\n` +
+      `Tour Time: ${time}\n` +
+      `Total Price: USD ${document.getElementById("totalPrice").innerText}\n` +
+      `WhatsApp: ${fullNumber}`;
 
-    // WhatsApp Link
-    document.getElementById('send-whatsapp').addEventListener('click', function(e) {
-      e.preventDefault();
-      const name = document.getElementById('fullname').value;
-      const nat = document.getElementById('nationality').value;
-      const phone = document.getElementById('phone').value;
-      const date = document.getElementById('date').value;
-      const time = document.getElementById('time').value;
-      const total = calculateTotal();
-
-      const msg = `Booking Request:%0AName: ${name}%0ANationality: ${nat}%0AWhatsApp: ${phone}%0ADate: ${date}%0ATime: ${time}%0ATotal Price: USD ${total}`;
-      const link = `https://wa.me/201234567890?text=${msg}`;
-      window.open(link, '_blank');
-    });
-  </script>
+    const encodedMessage = encodeURIComponent(message);
+    const waNumber = code.replace("+", "") + number;
+    window.open(`https://wa.me/${waNumber}?text=${encodedMessage}`, '_blank');
+  });
+</script>
 
 </body>
-</html>
+                             </html>
