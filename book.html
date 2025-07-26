@@ -238,8 +238,24 @@
     <div class="time-btn" onclick="selectTime(this)">2:00 PM<br><small>Places remaining</small></div>
   </div>
   <input type="hidden" name="tour-time" id="tour-time" required>
+
   <label>Your WhatsApp Number</label>
-  <input type="tel" id="whatsappNumber" placeholder="Enter your number (without +20)" required>
+  <div style="display: flex; gap: 10px; margin-bottom: 15px;">
+    <select id="countryCode" required style="flex: 1;">
+      <option value="">Select</option>
+      <option value="20">🇪🇬 Egypt (+20)</option>
+      <option value="966">🇸🇦 Saudi Arabia (+966)</option>
+      <option value="971">🇦🇪 UAE (+971)</option>
+      <option value="1">🇺🇸 USA (+1)</option>
+      <option value="44">🇬🇧 UK (+44)</option>
+      <option value="49">🇩🇪 Germany (+49)</option>
+      <option value="33">🇫🇷 France (+33)</option>
+      <option value="39">🇮🇹 Italy (+39)</option>
+      <option value="34">🇪🇸 Spain (+34)</option>
+      <!-- Add more if needed -->
+    </select>
+    <input type="tel" id="whatsappNumber" placeholder="Enter number" required style="flex: 2;">
+  </div>
 
   <button type="submit"><i class="fab fa-whatsapp"></i>Confirm via WhatsApp</button>
 </form>
@@ -285,11 +301,14 @@
     const pickup = document.getElementById("pickup").value;
     const date = document.getElementById("date").value;
     const time = document.getElementById("tour-time").value;
-    const userPhone = document.getElementById("whatsappNumber").value.trim();
+    const code = document.getElementById("countryCode").value;
+    const number = document.getElementById("whatsappNumber").value.trim();
+    if (!code) return alert("⚠️ Please select your country.");
+    if (!/^\d{6,15}$/.test(number)) return alert("⚠️ Invalid phone number.");
+    const userPhone = code + number;
     const total = document.getElementById("totalPrice").textContent;
 
     if (!time) return alert("⚠️ Please select a tour time.");
-    if (!/^\d{6,15}$/.test(userPhone)) return alert("⚠️ Invalid phone number.");
 
     const qty = document.querySelectorAll("select.qty");
     const totalQty = [...qty].reduce((acc, el) => acc + parseInt(el.value), 0);
@@ -320,4 +339,4 @@ Total Price: ${total}`;
 </script>
 
 </body>
-  </html>
+</html>
