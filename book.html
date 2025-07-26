@@ -5,224 +5,230 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Book Tour | Let's Discover Egypt</title>
   <link rel="icon" href="favicon.png" type="image/png">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <link rel="stylesheet" href="style.css" />
   <style>
     body {
-      font-family: 'Poppins', sans-serif;
       margin: 0;
-      padding: 0;
-      background: #f0f0f0;
+      font-family: Arial, sans-serif;
     }
-    .container {
-      max-width: 900px;
-      margin: 40px auto;
-      background: #fff;
-      padding: 30px;
-      border-radius: 10px;
-      box-shadow: 0 0 20px rgba(0,0,0,0.1);
-    }
-    h1 {
-      color: #25D366;
+    header {
+      background: #222;
+      color: #fff;
+      padding: 1rem;
       text-align: center;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 1000;
+    }
+    main {
+      padding: 6rem 1rem 2rem;
+      max-width: 800px;
+      margin: auto;
+    }
+    .form-group {
+      margin-bottom: 1rem;
     }
     label {
       display: block;
-      margin: 15px 0 5px;
-      font-weight: bold;
+      margin-bottom: 0.5rem;
     }
     input, select {
       width: 100%;
-      padding: 10px;
-      margin-bottom: 15px;
-      border-radius: 5px;
-      border: 1px solid #ccc;
-      font-family: 'Poppins', sans-serif;
+      padding: 0.5rem;
+      font-size: 1rem;
     }
     table {
       width: 100%;
       border-collapse: collapse;
-      margin-bottom: 30px;
+      margin-top: 1.5rem;
+    }
+    table, th, td {
+      border: 1px solid #ccc;
     }
     th, td {
-      padding: 10px;
-      border-bottom: 1px solid #eee;
-      text-align: center;
+      padding: 0.75rem;
+      text-align: left;
     }
-    .btn {
-      background: #25D366;
+    .submit-btn {
+      background-color: #28a745;
       color: white;
-      padding: 12px 24px;
+      padding: 1rem;
       border: none;
-      border-radius: 6px;
+      width: 100%;
+      font-size: 1.1rem;
       cursor: pointer;
-      font-weight: bold;
-      font-size: 16px;
     }
-    .btn:hover {
-      background: #20b358;
+    .submit-btn:hover {
+      background-color: #218838;
     }
-    #confirmationBox {
-      display: none;
-      margin-top: 40px;
-      padding: 30px;
-      background: #fff;
-      border-radius: 10px;
-      box-shadow: 0 0 15px rgba(0,0,0,0.1);
-    }
-    ul {
-      margin: 0;
-      padding-left: 20px;
+    .quantity {
+      text-align: center;
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <h1>Book Your Top VIP Giza Pyramids Tour</h1>
 
-    <form id="bookingForm">
-      <label for="fullName">Lead Traveler Name:</label>
-      <input type="text" id="fullName" required>
+<header>
+  <h1>Book Now - Let's Discover Egypt</h1>
+</header>
 
-      <label for="phone">Phone Number (with country code):</label>
-      <input type="text" id="phone" placeholder="+20..." required>
+<main>
+  <h2 id="tourName">ALL INCLUSIVE PRIVATE HALF-DAY TRIP TO GIZA PYRAMIDS WITH CAMEL RIDE</h2>
 
-      <table>
-        <thead>
-          <tr>
-            <th>Category</th>
-            <th>Price</th>
-            <th>Quantity</th>
-            <th>Subtotal</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Adult</td>
-            <td>$50</td>
-            <td><input type="number" id="adults" value="0" min="0"></td>
-            <td class="subtotal" id="adultSubtotal">USD 0</td>
-          </tr>
-          <tr>
-            <td>Child</td>
-            <td>$25</td>
-            <td><input type="number" id="children" value="0" min="0"></td>
-            <td class="subtotal" id="childSubtotal">USD 0</td>
-          </tr>
-          <tr>
-            <td>Infant</td>
-            <td>Free</td>
-            <td><input type="number" id="infants" value="0" min="0"></td>
-            <td class="subtotal" id="infantSubtotal">USD 0</td>
-          </tr>
-        </tbody>
-      </table>
-
-      <p><strong>Total Price:</strong> <span id="totalPrice">USD 0</span></p>
-
-      <button type="submit" class="btn">Confirm via WhatsApp</button>
-    </form>
-
-    <!-- Confirmation Message -->
-    <div id="confirmationBox">
-      <h2 style="color:#25D366;">✅ Booking Confirmed!</h2>
-      <p><strong>Booking Ref:</strong> <span id="refNumber">BR-XXXXXX</span><br>
-         <strong>Status:</strong> <span style="color:green;">Instant Confirmation</span></p>
-
-      <h3>🔝 Top VIP Private Tour</h3>
-      <p>Giza Pyramids, Sphinx, Inside Pyramid – <strong>All Inclusive</strong></p>
-
-      <h3>👤 Traveler Info</h3>
-      <ul>
-        <li><strong>Lead Traveler:</strong> <span id="leadName">[Name]</span></li>
-        <li><strong>Phone Number:</strong> <span id="leadPhone">[Phone]</span></li>
-        <li><strong>Travelers:</strong>
-          <ul>
-            <li>🧔 Adult(s): <span id="adultsCount">0</span></li>
-            <li>🧒 Child(ren): <span id="childrenCount">0</span></li>
-            <li>👶 Infant(s): <span id="infantsCount">0</span></li>
-          </ul>
-        </li>
-        <li><strong>Language:</strong> English</li>
-      </ul>
-
-      <h3>✅ Inclusions</h3>
-      <ul>
-        <li>🎓 Egyptologist Guide</li>
-        <li>🚗 Hotel pickup/drop-off (Private car)</li>
-        <li>🥘 Lunch included</li>
-        <li>🐫 Camel ride around Giza pyramids</li>
-        <li>🏛️ Entry to all pyramids and sphinx</li>
-      </ul>
-
-      <h3>📍 Pickup Point</h3>
-      <p><strong>To be confirmed with our team.</strong></p>
+  <form id="bookingForm">
+    <div class="form-group">
+      <label for="name">Lead Traveler Name</label>
+      <input type="text" id="name" required />
     </div>
-  </div>
 
-  <script>
-    const bookingForm = document.getElementById("bookingForm");
-    const totalPrice = document.getElementById("totalPrice");
-    const inputs = ["adults", "children", "infants"];
+    <div class="form-group">
+      <label for="gender">Gender</label>
+      <select id="gender" required>
+        <option value="">Select...</option>
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+        <option value="Prefer Not to Say">Prefer Not to Say</option>
+      </select>
+    </div>
 
-    function updateTotals() {
-      const adults = +document.getElementById("adults").value || 0;
-      const children = +document.getElementById("children").value || 0;
-      const infants = +document.getElementById("infants").value || 0;
+    <div class="form-group">
+      <label for="nationality">Nationality</label>
+      <input type="text" id="nationality" required />
+    </div>
 
-      const adultPrice = adults * 50;
-      const childPrice = children * 25;
+    <div class="form-group">
+      <label for="phoneCode">Phone Country Code</label>
+      <input type="text" id="phoneCode" placeholder="+20" required />
+    </div>
 
-      document.getElementById("adultSubtotal").textContent = "USD " + adultPrice;
-      document.getElementById("childSubtotal").textContent = "USD " + childPrice;
-      document.getElementById("infantSubtotal").textContent = "USD 0";
+    <div class="form-group">
+      <label for="phoneNumber">WhatsApp Number</label>
+      <input type="tel" id="phoneNumber" placeholder="123456789" required />
+    </div>
 
-      const total = adultPrice + childPrice;
-      totalPrice.textContent = "USD " + total;
-    }
+    <div class="form-group">
+      <label for="date">Tour Date</label>
+      <input type="date" id="date" required />
+    </div>
 
-    inputs.forEach(id => {
-      document.getElementById(id).addEventListener("input", updateTotals);
-    });
+    <div class="form-group">
+      <label for="time">Tour Time</label>
+      <select id="time" required>
+        <option value="">Select...</option>
+        <option value="7:00 AM">7:00 AM</option>
+        <option value="8:00 AM">8:00 AM</option>
+        <option value="9:00 AM">9:00 AM</option>
+        <option value="10:00 AM">10:00 AM</option>
+        <option value="11:00 AM">11:00 AM</option>
+        <option value="12:00 PM">12:00 PM</option>
+        <option value="1:00 PM">1:00 PM</option>
+        <option value="2:00 PM">2:00 PM</option>
+      </select>
+    </div>
 
-    bookingForm.addEventListener("submit", function(e) {
-      e.preventDefault();
+    <div class="form-group">
+      <label for="adults">Adults</label>
+      <input type="number" id="adults" value="1" min="0" />
+    </div>
 
-      const fullName = document.getElementById("fullName").value;
-      const phone = document.getElementById("phone").value;
-      const adultsQty = +document.getElementById("adults").value || 0;
-      const childrenQty = +document.getElementById("children").value || 0;
-      const infantsQty = +document.getElementById("infants").value || 0;
+    <div class="form-group">
+      <label for="children">Children</label>
+      <input type="number" id="children" value="0" min="0" />
+    </div>
 
-      const totalAmount = (adultsQty * 50) + (childrenQty * 25);
+    <div class="form-group">
+      <label for="infants">Infants</label>
+      <input type="number" id="infants" value="0" min="0" />
+    </div>
 
-      const message = 
-`Booking Request - VIP Giza Pyramids Tour:
-Lead Traveler: ${fullName}
-Phone: ${phone}
-Adults: ${adultsQty}
-Children: ${childrenQty}
-Infants: ${infantsQty}
-Total Price: USD ${totalAmount}
-Language: English`;
+    <table id="priceTable">
+      <thead>
+        <tr>
+          <th>Category</th>
+          <th>Price (USD)</th>
+          <th>Quantity</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Adult</td>
+          <td class="price">50</td>
+          <td class="quantity">1</td>
+        </tr>
+        <tr>
+          <td>Child</td>
+          <td class="price">30</td>
+          <td class="quantity">0</td>
+        </tr>
+        <tr>
+          <td>Infant</td>
+          <td class="price">0</td>
+          <td class="quantity">0</td>
+        </tr>
+      </tbody>
+    </table>
 
-      const encodedMessage = encodeURIComponent(message);
-      const waNumber = phone.replace(/\s+/g, '').replace('+', '');
+    <button type="submit" class="submit-btn">Send via WhatsApp</button>
+  </form>
+</main>
 
-      window.open(`https://wa.me/${waNumber}?text=${encodedMessage}`, '_blank');
+<script>
+document.getElementById("bookingForm").addEventListener("submit", function (e) {
+  e.preventDefault();
 
-      // Show confirmation
-      document.getElementById("confirmationBox").style.display = "block";
-      document.getElementById("refNumber").textContent = "BR-" + Date.now().toString().slice(-10);
-      document.getElementById("leadName").textContent = fullName;
-      document.getElementById("leadPhone").textContent = "+" + waNumber;
-      document.getElementById("adultsCount").textContent = adultsQty;
-      document.getElementById("childrenCount").textContent = childrenQty;
-      document.getElementById("infantsCount").textContent = infantsQty;
+  const tourName = document.getElementById("tourName").innerText;
+  const adults = parseInt(document.getElementById("adults").value) || 0;
+  const children = parseInt(document.getElementById("children").value) || 0;
+  const infants = parseInt(document.getElementById("infants").value) || 0;
+  const nationality = document.getElementById("nationality").value;
+  const gender = document.getElementById("gender").value;
+  const date = document.getElementById("date").value;
+  const time = document.getElementById("time").value;
+  const phoneCode = document.getElementById("phoneCode").value;
+  const phone = document.getElementById("phoneNumber").value;
+  const name = document.getElementById("name").value;
+  const ref = "BR-" + Math.floor(Math.random() * 10000000000);
 
-      bookingForm.reset();
-      totalPrice.textContent = "USD 0";
-      document.querySelectorAll(".subtotal").forEach(el => el.textContent = "USD 0");
-    });
-  </script>
+  let total = 0;
+  const rows = document.querySelectorAll("#priceTable tbody tr");
+  rows.forEach((row) => {
+    const price = parseFloat(row.querySelector(".price").innerText);
+    const quantity = parseInt(row.querySelector(".quantity").innerText) || 0;
+    total += price * quantity;
+  });
+
+  let message =
+    `🕌 ${tourName}\n` +
+    `👤 Lead Traveler: ${name}\n` +
+    `👫 Gender: ${gender}\n` +
+    `🌍 Nationality: ${nationality}\n` +
+    `📞 WhatsApp: ${phoneCode} ${phone}\n` +
+    `🗓️ Date: ${date} | 🕘 Time: ${time}\n\n` +
+    `👨 Adults: ${adults} | 🧒 Children: ${children} | 👶 Infants: ${infants}\n` +
+    `💰 Total Price: $${total.toFixed(2)}\n\n` +
+    "🎁 Inclusions\n" +
+    "```\n" +
+    "✔️ Private Egyptologist Guide\n" +
+    "✔️ Hotel Pickup & Drop-off\n" +
+    "✔️ Entry Fees (All inclusive)\n" +
+    "✔️ Entry to Menkaure Pyramid\n" +
+    "✔️ Entry to Great Sphinx\n" +
+    "✔️ Entry to Giza Pyramids\n" +
+    "✔️ Panoramic View Access\n" +
+    "✔️ 30min Camel Ride 🐪\n" +
+    "✔️ Lunch at Restaurant 🍽️\n" +
+    "✔️ Private Air-Conditioned Car\n" +
+    "```\n\n" +
+    `🔁 Booking Reference: ${ref}\n` +
+    `✅ INSTANT CONFIRMATION`;
+
+  const encodedMessage = encodeURIComponent(message);
+  const whatsappUrl = `https://wa.me/201012345678?text=${encodedMessage}`;
+  window.open(whatsappUrl, "_blank");
+});
+</script>
+
 </body>
 </html>
