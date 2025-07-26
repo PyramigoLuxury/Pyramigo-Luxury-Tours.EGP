@@ -199,48 +199,15 @@
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <td>1 Person</td>
-      <td data-price="65">USD 65</td>
-      <td><select onchange="updateSubtotal()" class="qty"><option value="0">0</option><option value="1">1</option></select></td>
-      <td class="subtotal">USD 0</td>
-    </tr>
-    <tr>
-      <td>2–4 Persons</td>
-      <td data-price="55">USD 55</td>
-      <td><select onchange="updateSubtotal()" class="qty"><option value="0">0</option><option value="2">2</option><option value="3">3</option><option value="4">4</option></select></td>
-      <td class="subtotal">USD 0</td>
-    </tr>
-    <tr>
-      <td>5–8 Persons</td>
-      <td data-price="45">USD 45</td>
-      <td><select onchange="updateSubtotal()" class="qty"><option value="0">0</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option></select></td>
-      <td class="subtotal">USD 0</td>
-    </tr>
-    <tr>
-      <td>9–15 Persons</td>
-      <td data-price="30">USD 30</td>
-      <td><select onchange="updateSubtotal()" class="qty"><option value="0">0</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option></select></td>
-      <td class="subtotal">USD 0</td>
-    </tr>
-    <tr>
-      <td>Child</td>
-      <td data-price="25">USD 25</td>
-      <td><select onchange="updateSubtotal()" class="qty"><option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option></select></td>
-      <td class="subtotal">USD 0</td>
-    </tr>
-    <tr>
-      <td>Infant</td>
-      <td data-price="0">FREE</td>
-      <td><select onchange="updateSubtotal()" class="qty"><option value="0">0</option><option value="1">1</option><option value="2">2</option></select></td>
-      <td class="subtotal">USD 0</td>
-    </tr>
+    <tr><td>1 Person</td><td data-price="65">USD 65</td><td><select class="qty" onchange="updateSubtotal()"><option>0</option><option>1</option></select></td><td class="subtotal">USD 0</td></tr>
+    <tr><td>2–4 Persons</td><td data-price="55">USD 55</td><td><select class="qty" onchange="updateSubtotal()"><option>0</option><option>2</option><option>3</option><option>4</option></select></td><td class="subtotal">USD 0</td></tr>
+    <tr><td>5–8 Persons</td><td data-price="45">USD 45</td><td><select class="qty" onchange="updateSubtotal()"><option>0</option><option>5</option><option>6</option><option>7</option><option>8</option></select></td><td class="subtotal">USD 0</td></tr>
+    <tr><td>9–15 Persons</td><td data-price="30">USD 30</td><td><select class="qty" onchange="updateSubtotal()"><option>0</option><option>9</option><option>10</option><option>11</option><option>12</option><option>13</option><option>14</option><option>15</option></select></td><td class="subtotal">USD 0</td></tr>
+    <tr><td>Child</td><td data-price="25">USD 25</td><td><select class="qty" onchange="updateSubtotal()"><option>0</option><option>1</option><option>2</option><option>3</option></select></td><td class="subtotal">USD 0</td></tr>
+    <tr><td>Infant</td><td data-price="0">FREE</td><td><select class="qty" onchange="updateSubtotal()"><option>0</option><option>1</option><option>2</option></select></td><td class="subtotal">USD 0</td></tr>
   </tbody>
   <tfoot>
-    <tr>
-      <td colspan="3" style="text-align:right; font-weight:bold;">Total:</td>
-      <td id="totalPrice" style="font-weight:bold;">USD 0</td>
-    </tr>
+    <tr><td colspan="3" style="text-align:right; font-weight:bold;">Total:</td><td id="totalPrice" style="font-weight:bold;">USD 0</td></tr>
   </tfoot>
 </table>
 
@@ -252,11 +219,7 @@
   <label>Nationality</label>
   <input type="text" id="nationality" required>
   <label>Gender</label>
-  <select id="gender" required>
-    <option value="">Select</option>
-    <option>Male</option>
-    <option>Female</option>
-  </select>
+  <select id="gender" required><option value="">Select</option><option>Male</option><option>Female</option></select>
   <label>Email</label>
   <input type="email" id="email" required>
   <label>Pick-up Location</label>
@@ -275,16 +238,9 @@
     <div class="time-btn" onclick="selectTime(this)">2:00 PM<br><small>Places remaining</small></div>
   </div>
   <input type="hidden" name="tour-time" id="tour-time" required>
-  <label>WhatsApp Number</label>
-  <div style="display: flex; gap: 10px; align-items: center;">
-    <select id="countryCode" required style="flex: 1;">
-      <option value="+20">🇪🇬 Egypt +20</option>
-      <option value="+1">🇺🇸 USA +1</option>
-      <option value="+44">🇬🇧 UK +44</option>
-      <option value="+971">🇦🇪 UAE +971</option>
-    </select>
-    <input type="tel" id="whatsappNumber" placeholder="123456789" required style="flex: 2;">
-  </div>
+  <label>Your WhatsApp Number</label>
+  <input type="tel" id="whatsappNumber" placeholder="Enter your number (without +20)" required>
+
   <button type="submit"><i class="fab fa-whatsapp"></i>Confirm via WhatsApp</button>
 </form>
 
@@ -325,74 +281,43 @@
   document.getElementById("bookingForm").addEventListener("submit", function(e) {
     e.preventDefault();
 
-    const firstName = document.getElementById("firstName");
-    const lastName = document.getElementById("lastName");
-    const pickup = document.getElementById("pickup");
-    const date = document.getElementById("date");
-
-    const code = document.getElementById("countryCode").value;
-    const number = document.getElementById("whatsappNumber").value.trim();
-    const fullNumber = code + number;
+    const name = document.getElementById("firstName").value + " " + document.getElementById("lastName").value;
+    const pickup = document.getElementById("pickup").value;
+    const date = document.getElementById("date").value;
     const time = document.getElementById("tour-time").value;
-    if (!time) return alert("⚠️ Please select a tour time.");
-    if (!/^\d{6,15}$/.test(number)) return alert("⚠️ Invalid WhatsApp number.");
-
+    const userPhone = document.getElementById("whatsappNumber").value.trim();
     const total = document.getElementById("totalPrice").textContent;
-    const qtyInputs = document.querySelectorAll('select.qty');
 
-    const childQty = parseInt(qtyInputs[4].value);
-    const infantQty = parseInt(qtyInputs[5].value);
-    const totalQty = [...qtyInputs].reduce((sum, el) => sum + parseInt(el.value), 0);
+    if (!time) return alert("⚠️ Please select a tour time.");
+    if (!/^\d{6,15}$/.test(userPhone)) return alert("⚠️ Invalid phone number.");
+
+    const qty = document.querySelectorAll("select.qty");
+    const totalQty = [...qty].reduce((acc, el) => acc + parseInt(el.value), 0);
     if (totalQty === 0) return alert("⚠️ Please select at least one traveler.");
 
     let travelerDetails = '';
-    if (qtyInputs[0].value > 0) travelerDetails += `${qtyInputs[0].value} Adult\n`;
-    if (qtyInputs[1].value > 0) travelerDetails += `${qtyInputs[1].value} Adult\n`;
-    if (childQty > 0) travelerDetails += `${childQty} Child\n`;
-    if (infantQty > 0) travelerDetails += `${infantQty} Infant\n`;
+    if (qty[0].value > 0) travelerDetails += `${qty[0].value} Adult\n`;
+    if (qty[1].value > 0) travelerDetails += `${qty[1].value} Adult\n`;
+    if (qty[4].value > 0) travelerDetails += `${qty[4].value} Child\n`;
+    if (qty[5].value > 0) travelerDetails += `${qty[5].value} Infant\n`;
 
     const message = 
 `Top ViP Private Tour Giza Pyramids, Sphinx, Inside Pyramid
 Top ViP All inclusive 
-1 NEW MESSAGE
-Lead Traveler: ${firstName.value} ${lastName.value}
+Lead Traveler: ${name}
 ${travelerDetails}
-BR-${Math.floor(1000000000 + Math.random() * 9000000000)}
-Submitted 
-Hide details 
-INSTANT CONFIRMATION
-
-Customer phone number: ${fullNumber}
-
-Tour language: English
-Inclusions:
-✓ Qualified Egyptologist guide
-✓ Hotel pickup and drop-off By Private cars
-✓ Lunch in Restaurant ( All inclusive Option )
-✓ 30 Minutes camel Ride around Giza pyramids ( All inclusive Option )
-✓ Private Tour
-✓ Entrance fees to Giza Pyramids and Sphinx ( All inclusive Option )
-✓ Entry fee to the third pyramid of Giza ( All inclusive Option )
-✓ Entry/Admission - Panoramic View of the Pyramids
-✓ Entry/Admission - Menkaure Pyramid
-✓ Entry/Admission - Great Sphinx
-✓ Entry/Admission - Pyramids of Giza
-
-Pickup point: ${pickup.value}
-Tour Date: ${date.value}
+BR-${Math.floor(Math.random() * 1e10)}
+Pickup point: ${pickup}
+Tour Date: ${date}
 Tour Time: ${time}
+Phone: ${userPhone}
 Total Price: ${total}`;
 
-    const encodedMessage = encodeURIComponent(message);
-    const waNumber = code.replace("+", "") + number;
-    window.open(`https://wa.me/${waNumber}?text=${encodedMessage}`, '_blank');
-
-    const successMsg = document.createElement("div");
-    successMsg.textContent = "✅ WhatsApp message window opened. Please confirm your booking there.";
-    successMsg.style.cssText = "margin-top:20px;text-align:center;background:#d4edda;color:#155724;padding:10px;border-radius:6px;border:1px solid #c3e6cb;";
-    document.getElementById("bookingForm").appendChild(successMsg);
+    const encoded = encodeURIComponent(message);
+    const fixedNumber = "201283915289";
+    window.open(`https://wa.me/${fixedNumber}?text=${encoded}`, '_blank');
   });
 </script>
 
 </body>
-                                                                                                 </html>
+</html>
