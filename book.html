@@ -5,567 +5,224 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Book Tour | Let's Discover Egypt</title>
   <link rel="icon" href="favicon.png" type="image/png">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
       font-family: 'Poppins', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f0f0f0;
+    }
+    .container {
+      max-width: 900px;
+      margin: 40px auto;
       background: #fff;
-      color: #333;
-      padding-top: 70px;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.1);
     }
-    header {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%;
-      background: white;
-      padding: 15px 20px;
-      display: flex;
-      align-items: center;
-      justify-content: flex-start;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-      z-index: 100;
-    }
-    .menu-icon {
-      font-size: 24px;
-      cursor: pointer;
-    }
-    header h2 {
-      position: absolute;
-      left: 50%;
-      transform: translateX(-50%);
-      font-size: 20px;
-      font-weight: 600;
-    }
-    header h2 a {
-      text-decoration: none;
-      color: #333;
-    }
-    .sidebar {
-      position: fixed;
-      top: 0; left: -250px;
-      width: 250px;
-      height: 100%;
-      background: #333;
-      color: white;
-      padding: 60px 20px;
-      transition: 0.3s ease;
-      z-index: 101;
-    }
-    .sidebar.active { left: 0; }
-    .sidebar a {
-      display: block;
-      color: white;
-      text-decoration: none;
-      padding: 15px 0;
-      border-bottom: 1px solid #444;
-    }
-    .sidebar a:hover { background: #444; padding-left: 10px; }
-    .overlay {
-      display: none;
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: rgba(0,0,0,0.3);
-      z-index: 100;
-    }
-    .overlay.active { display: block; }
-
     h1 {
+      color: #25D366;
       text-align: center;
-      margin: 30px 0;
-      font-size: 24px;
+    }
+    label {
+      display: block;
+      margin: 15px 0 5px;
+      font-weight: bold;
+    }
+    input, select {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      font-family: 'Poppins', sans-serif;
     }
     table {
       width: 100%;
       border-collapse: collapse;
       margin-bottom: 30px;
-      border: 1px solid #ddd;
-      border-radius: 8px;
-      overflow: hidden;
     }
     th, td {
       padding: 10px;
       border-bottom: 1px solid #eee;
-      font-size: 14px;
       text-align: center;
     }
-    th {
-      background: #f9f9f9;
-      font-weight: 600;
-    }
-    form {
-      background: #fafafa;
-      padding: 20px;
-      border: 1px solid #ddd;
-      border-radius: 10px;
-      max-width: 600px;
-      margin: auto;
-    }
-    form label {
-      display: block;
-      margin-bottom: 5px;
-      font-size: 13px;
-      font-weight: 500;
-    }
-    form input, form select {
-      width: 100%;
-      padding: 8px;
-      font-size: 14px;
-      border: 1px solid #ccc;
-      border-radius: 6px;
-      margin-bottom: 15px;
-    }
-    .time-options {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      margin-bottom: 20px;
-    }
-    .time-btn {
-      padding: 10px;
-      background: #f4f4f4;
-      border: 1px solid #ccc;
-      border-radius: 8px;
-      text-align: left;
-      font-size: 14px;
-      cursor: pointer;
-      transition: 0.2s;
-    }
-    .time-btn:hover { background: #eee; }
-    .time-btn.selected {
-      background-color: #333;
-      color: #fff;
-      border-color: #333;
-    }
-    .time-btn small {
-      display: block;
-      font-size: 12px;
-      color: #666;
-    }
-    button[type="submit"] {
+    .btn {
       background: #25D366;
-      color: #fff;
-      padding: 12px 20px;
+      color: white;
+      padding: 12px 24px;
       border: none;
       border-radius: 6px;
-      font-size: 15px;
       cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      font-weight: bold;
+      font-size: 16px;
     }
-    button[type="submit"] i {
-      margin-right: 8px;
+    .btn:hover {
+      background: #20b358;
     }
-    @media (max-width: 600px) {
-      .time-options {
-        flex-wrap: wrap;
-        flex-direction: row;
-        justify-content: space-between;
-      }
-      .time-btn {
-        flex: 0 48%;
-        font-size: 13px;
-      }
+    #confirmationBox {
+      display: none;
+      margin-top: 40px;
+      padding: 30px;
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    }
+    ul {
+      margin: 0;
+      padding-left: 20px;
     }
   </style>
 </head>
 <body>
+  <div class="container">
+    <h1>Book Your Top VIP Giza Pyramids Tour</h1>
 
-<!-- Overlay & Sidebar -->
-<div class="overlay" id="overlay" onclick="closeMenu()"></div>
-<div class="sidebar" id="sidebar">
-  <a href="index.html"><i class="fas fa-home"></i> Home</a>
-  <a href="about.html"><i class="fas fa-info-circle"></i> About Us</a>
-  <a href="tours.html"><i class="fas fa-map-marked-alt"></i> Tours</a>
-  <a href="contact.html"><i class="fas fa-phone"></i> Contact</a>
-</div>
+    <form id="bookingForm">
+      <label for="fullName">Lead Traveler Name:</label>
+      <input type="text" id="fullName" required>
 
-<!-- Header -->
-<header>
-  <div class="menu-icon" onclick="toggleMenu()">☰</div>
-  <h2><a href="index.html"><i class="fas fa-globe-africa"></i> Let's Discover Egypt</a></h2>
-</header>
+      <label for="phone">Phone Number (with country code):</label>
+      <input type="text" id="phone" placeholder="+20..." required>
 
-<!-- Page Content -->
-<h1>ALL INCLUSIVE PRIVATE HALF-DAY TRIP TO GIZA PYRAMIDS WITH CAMEL RIDE</h1>
+      <table>
+        <thead>
+          <tr>
+            <th>Category</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Subtotal</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Adult</td>
+            <td>$50</td>
+            <td><input type="number" id="adults" value="0" min="0"></td>
+            <td class="subtotal" id="adultSubtotal">USD 0</td>
+          </tr>
+          <tr>
+            <td>Child</td>
+            <td>$25</td>
+            <td><input type="number" id="children" value="0" min="0"></td>
+            <td class="subtotal" id="childSubtotal">USD 0</td>
+          </tr>
+          <tr>
+            <td>Infant</td>
+            <td>Free</td>
+            <td><input type="number" id="infants" value="0" min="0"></td>
+            <td class="subtotal" id="infantSubtotal">USD 0</td>
+          </tr>
+        </tbody>
+      </table>
 
-<!-- Dynamic Price Table -->
-<table id="priceTable">
-  <thead>
-    <tr>
-      <th>Category</th>
-      <th>Price per Person</th>
-      <th>Quantity</th>
-      <th>Subtotal</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>1 Person</td>
-      <td data-price="60">USD 60</td>
-      <td><select onchange="updateSubtotal()" class="qty"><option value="0" selected>0</option><option value="1">1</option></select></td>
-      <td class="subtotal">USD 0</td>
-    </tr>
-    <tr>
-      <td>2–4 Persons</td>
-      <td data-price="50">USD 50</td>
-      <td><select onchange="updateSubtotal()" class="qty"><option value="0" selected>0</option><option value="2">2</option><option value="3">3</option><option value="4">4</option></select></td>
-      <td class="subtotal">USD 0</td>
-    </tr>
-    <tr>
-      <td>5–8 Persons</td>
-      <td data-price="40">USD 40</td>
-      <td><select onchange="updateSubtotal()" class="qty"><option value="0" selected>0</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option></select></td>
-      <td class="subtotal">USD 0</td>
-    </tr>
-    <tr>
-      <td>9–15 Persons</td>
-      <td data-price="30">USD 30</td>
-      <td><select onchange="updateSubtotal()" class="qty"><option value="0" selected>0</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option></select></td>
-      <td class="subtotal">USD 0</td>
-    </tr>
-    <tr>
-      <td>Child</td>
-      <td data-price="25">USD 25</td>
-      <td><select onchange="updateSubtotal()" class="qty"><option value="0" selected>0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option></select></td>
-      <td class="subtotal">USD 0</td>
-    </tr>
-    <tr>
-      <td>Infant</td>
-      <td data-price="0">FREE</td>
-      <td><select onchange="updateSubtotal()" class="qty"><option value="0" selected>0</option><option value="1">1</option><option value="2">2</option></select></td>
-      <td class="subtotal">USD 0</td>
-    </tr>
-  </tbody>
-  <tfoot>
-    <tr>
-      <td colspan="3" style="text-align:right; font-weight:bold;">Total:</td>
-      <td id="totalPrice" style="font-weight:bold;">USD 0</td>
-    </tr>
-  </tfoot>
-</table>
+      <p><strong>Total Price:</strong> <span id="totalPrice">USD 0</span></p>
 
-<!-- Booking Form -->
-<form id="bookingForm">
-  <label>First Name</label>
-  <input type="text" id="firstName" required>
-  <label>Last Name</label>
-  <input type="text" id="lastName" required>
-  <label>Nationality</label>
-  <input type="text" id="nationality" required>
-  <label>Gender</label>
-  <select id="gender" required>
-    <option value="">Select</option>
-    <option>Male</option>
-    <option>Female</option>
-  </select>
-  <label>Email</label>
-  <input type="email" id="email" required>
-  <label>Pick-up Location</label>
-  <input type="text" id="pickup" required>
-  <label>Tour Date</label>
-  <input type="date" id="date" required>
-  <label>Choose Tour Time</label>
-  <div class="time-options">
-    <div class="time-btn" onclick="selectTime(this)">7:00 AM<br><small>Places remaining</small></div>
-    <div class="time-btn" onclick="selectTime(this)">8:00 AM<br><small>Places remaining</small></div>
-    <div class="time-btn" onclick="selectTime(this)">9:00 AM<br><small>Places remaining</small></div>
-    <div class="time-btn" onclick="selectTime(this)">10:00 AM<br><small>Places remaining</small></div>
-    <div class="time-btn" onclick="selectTime(this)">11:00 AM<br><small>Places remaining</small></div>
-    <div class="time-btn" onclick="selectTime(this)">12:00 PM<br><small>Places remaining</small></div>
-    <div class="time-btn" onclick="selectTime(this)">1:00 PM<br><small>Places remaining</small></div>
-    <div class="time-btn" onclick="selectTime(this)">2:00 PM<br><small>Places remaining</small></div>
+      <button type="submit" class="btn">Confirm via WhatsApp</button>
+    </form>
+
+    <!-- Confirmation Message -->
+    <div id="confirmationBox">
+      <h2 style="color:#25D366;">✅ Booking Confirmed!</h2>
+      <p><strong>Booking Ref:</strong> <span id="refNumber">BR-XXXXXX</span><br>
+         <strong>Status:</strong> <span style="color:green;">Instant Confirmation</span></p>
+
+      <h3>🔝 Top VIP Private Tour</h3>
+      <p>Giza Pyramids, Sphinx, Inside Pyramid – <strong>All Inclusive</strong></p>
+
+      <h3>👤 Traveler Info</h3>
+      <ul>
+        <li><strong>Lead Traveler:</strong> <span id="leadName">[Name]</span></li>
+        <li><strong>Phone Number:</strong> <span id="leadPhone">[Phone]</span></li>
+        <li><strong>Travelers:</strong>
+          <ul>
+            <li>🧔 Adult(s): <span id="adultsCount">0</span></li>
+            <li>🧒 Child(ren): <span id="childrenCount">0</span></li>
+            <li>👶 Infant(s): <span id="infantsCount">0</span></li>
+          </ul>
+        </li>
+        <li><strong>Language:</strong> English</li>
+      </ul>
+
+      <h3>✅ Inclusions</h3>
+      <ul>
+        <li>🎓 Egyptologist Guide</li>
+        <li>🚗 Hotel pickup/drop-off (Private car)</li>
+        <li>🥘 Lunch included</li>
+        <li>🐫 Camel ride around Giza pyramids</li>
+        <li>🏛️ Entry to all pyramids and sphinx</li>
+      </ul>
+
+      <h3>📍 Pickup Point</h3>
+      <p><strong>To be confirmed with our team.</strong></p>
+    </div>
   </div>
-  <input type="hidden" name="tour-time" id="tour-time" required>
-      <label>WhatsApp Number</label>
-<div style="display: flex; gap: 10px; align-items: center;">
-  <select id="countryCode" required style="flex: 1;">
-  <option value="+1">🇺🇸 United States +1</option>
-  <option value="+44">🇬🇧 United Kingdom +44</option>
-  <option value="+93">🇦🇫 Afghanistan +93</option>
-  <option value="+355">🇦🇱 Albania +355</option>
-  <option value="+213">🇩🇿 Algeria +213</option>
-  <option value="+376">🇦🇩 Andorra +376</option>
-  <option value="+244">🇦🇴 Angola +244</option>
-  <option value="+1">🇦🇮 Anguilla +1</option>
-  <option value="+1">🇦🇬 Antigua and Barbuda +1</option>
-  <option value="+54">🇦🇷 Argentina +54</option>
-  <option value="+374">🇦🇲 Armenia +374</option>
-  <option value="+297">🇦🇼 Aruba +297</option>
-  <option value="+61">🇦🇺 Australia +61</option>
-  <option value="+43">🇦🇹 Austria +43</option>
-  <option value="+994">🇦🇿 Azerbaijan +994</option>
-  <option value="+973">🇧🇭 Bahrain +973</option>
-  <option value="+880">🇧🇩 Bangladesh +880</option>
-  <option value="+375">🇧🇾 Belarus +375</option>
-  <option value="+32">🇧🇪 Belgium +32</option>
-  <option value="+501">🇧🇿 Belize +501</option>
-  <option value="+229">🇧🇯 Benin +229</option>
-  <option value="+975">🇧🇹 Bhutan +975</option>
-  <option value="+591">🇧🇴 Bolivia +591</option>
-  <option value="+387">🇧🇦 Bosnia and Herzegovina +387</option>
-  <option value="+267">🇧🇼 Botswana +267</option>
-  <option value="+55">🇧🇷 Brazil +55</option>
-  <option value="+359">🇧🇬 Bulgaria +359</option>
-  <option value="+226">🇧🇫 Burkina Faso +226</option>
-  <option value="+257">🇧🇮 Burundi +257</option>
-  <option value="+855">🇰🇭 Cambodia +855</option>
-  <option value="+237">🇨🇲 Cameroon +237</option>
-  <option value="+1">🇨🇦 Canada +1</option>
-  <option value="+236">🇨🇫 Central African Republic +236</option>
-  <option value="+235">🇹🇩 Chad +235</option>
-  <option value="+56">🇨🇱 Chile +56</option>
-  <option value="+86">🇨🇳 China +86</option>
-  <option value="+57">🇨🇴 Colombia +57</option>
-  <option value="+269">🇰🇲 Comoros +269</option>
-  <option value="+243">🇨🇩 Congo (DRC) +243</option>
-  <option value="+242">🇨🇬 Congo (Republic) +242</option>
-  <option value="+682">🇨🇰 Cook Islands +682</option>
-  <option value="+506">🇨🇷 Costa Rica +506</option>
-  <option value="+225">🇨🇮 Côte d’Ivoire +225</option>
-  <option value="+385">🇭🇷 Croatia +385</option>
-  <option value="+53">🇨🇺 Cuba +53</option>
-  <option value="+357">🇨🇾 Cyprus +357</option>
-  <option value="+420">🇨🇿 Czech Republic +420</option><option value="+45">🇩🇰 Denmark +45</option>
-  <option value="+253">🇩🇯 Djibouti +253</option>
-  <option value="+1">🇩🇲 Dominica +1</option>
-  <option value="+1">🇩🇴 Dominican Republic +1</option>
-  <option value="+593">🇪🇨 Ecuador +593</option>
-  <option value="+20">🇪🇬 Egypt +20</option>
-  <option value="+503">🇸🇻 El Salvador +503</option>
-  <option value="+240">🇬🇶 Equatorial Guinea +240</option>
-  <option value="+291">🇪🇷 Eritrea +291</option>
-  <option value="+372">🇪🇪 Estonia +372</option>
-  <option value="+251">🇪🇹 Ethiopia +251</option>
-  <option value="+500">🇫🇰 Falkland Islands +500</option>
-  <option value="+298">🇫🇴 Faroe Islands +298</option>
-  <option value="+679">🇫🇯 Fiji +679</option>
-  <option value="+358">🇫🇮 Finland +358</option>
-  <option value="+33">🇫🇷 France +33</option>
-  <option value="+594">🇬🇫 French Guiana +594</option>
-  <option value="+689">🇵🇫 French Polynesia +689</option>
-  <option value="+241">🇬🇦 Gabon +241</option>
-  <option value="+220">🇬🇲 Gambia +220</option>
-  <option value="+995">🇬🇪 Georgia +995</option>
-  <option value="+49">🇩🇪 Germany +49</option>
-  <option value="+233">🇬🇭 Ghana +233</option>
-  <option value="+350">🇬🇮 Gibraltar +350</option>
-  <option value="+30">🇬🇷 Greece +30</option>
-  <option value="+299">🇬🇱 Greenland +299</option>
-  <option value="+1">🇬🇩 Grenada +1</option>
-  <option value="+590">🇬🇵 Guadeloupe +590</option>
-  <option value="+1">🇬🇺 Guam +1</option>
-  <option value="+502">🇬🇹 Guatemala +502</option>
-  <option value="+224">🇬🇳 Guinea +224</option>
-  <option value="+245">🇬🇼 Guinea-Bissau +245</option>
-  <option value="+592">🇬🇾 Guyana +592</option>
-  <option value="+509">🇭🇹 Haiti +509</option>
-  <option value="+504">🇭🇳 Honduras +504</option>
-  <option value="+852">🇭🇰 Hong Kong +852</option>
-  <option value="+36">🇭🇺 Hungary +36</option>
-  <option value="+354">🇮🇸 Iceland +354</option>
-  <option value="+91">🇮🇳 India +91</option>
-  <option value="+62">🇮🇩 Indonesia +62</option>
-  <option value="+98">🇮🇷 Iran +98</option>
-  <option value="+964">🇮🇶 Iraq +964</option>
-  <option value="+353">🇮🇪 Ireland +353</option>
-  <option value="+39">🇮🇹 Italy +39</option>
-  <option value="+1">🇯🇲 Jamaica +1</option>
-  <option value="+81">🇯🇵 Japan +81</option>
-  <option value="+962">🇯🇴 Jordan +962</option>
-  <option value="+7">🇰🇿 Kazakhstan +7</option>
-  <option value="+254">🇰🇪 Kenya +254</option>
-  <option value="+686">🇰🇮 Kiribati +686</option>
-  <option value="+850">🇰🇵 North Korea +850</option>
-  <option value="+82">🇰🇷 South Korea +82</option>
-  <option value="+965">🇰🇼 Kuwait +965</option>
-  <option value="+996">🇰🇬 Kyrgyzstan +996</option>
-  <option value="+856">🇱🇦 Laos +856</option>
-  <option value="+371">🇱🇻 Latvia +371</option>
-  <option value="+961">🇱🇧 Lebanon +961</option>
-  <option value="+266">🇱🇸 Lesotho +266</option>
-  <option value="+231">🇱🇷 Liberia +231</option>
-  <option value="+218">🇱🇾 Libya +218</option>
-  <option value="+423">🇱🇮 Liechtenstein +423</option>
-  <option value="+370">🇱🇹 Lithuania +370</option>
-  <option value="+352">🇱🇺 Luxembourg +352</option><option value="+853">🇲🇴 Macau +853</option>
-  <option value="+389">🇲🇰 Macedonia +389</option>
-  <option value="+261">🇲🇬 Madagascar +261</option>
-  <option value="+265">🇲🇼 Malawi +265</option>
-  <option value="+60">🇲🇾 Malaysia +60</option>
-  <option value="+960">🇲🇻 Maldives +960</option>
-  <option value="+223">🇲🇱 Mali +223</option>
-  <option value="+356">🇲🇹 Malta +356</option>
-  <option value="+692">🇲🇭 Marshall Islands +692</option>
-  <option value="+596">🇲🇶 Martinique +596</option>
-  <option value="+222">🇲🇷 Mauritania +222</option>
-  <option value="+230">🇲🇺 Mauritius +230</option>
-  <option value="+262">🇾🇹 Mayotte +262</option>
-  <option value="+52">🇲🇽 Mexico +52</option>
-  <option value="+691">🇫🇲 Micronesia +691</option>
-  <option value="+373">🇲🇩 Moldova +373</option>
-  <option value="+377">🇲🇨 Monaco +377</option>
-  <option value="+976">🇲🇳 Mongolia +976</option>
-  <option value="+382">🇲🇪 Montenegro +382</option>
-  <option value="+212">🇲🇦 Morocco +212</option>
-  <option value="+258">🇲🇿 Mozambique +258</option>
-  <option value="+95">🇲🇲 Myanmar +95</option>
-  <option value="+264">🇳🇦 Namibia +264</option>
-  <option value="+674">🇳🇷 Nauru +674</option>
-  <option value="+977">🇳🇵 Nepal +977</option>
-  <option value="+31">🇳🇱 Netherlands +31</option>
-  <option value="+687">🇳🇨 New Caledonia +687</option>
-  <option value="+64">🇳🇿 New Zealand +64</option>
-  <option value="+505">🇳🇮 Nicaragua +505</option>
-  <option value="+227">🇳🇪 Niger +227</option>
-  <option value="+234">🇳🇬 Nigeria +234</option>
-  <option value="+683">🇳🇺 Niue +683</option>
-  <option value="+672">🇳🇫 Norfolk Island +672</option>
-  <option value="+850">🇰🇵 North Korea +850</option>
-  <option value="+1">🇲🇵 Northern Mariana Islands +1</option>
-  <option value="+47">🇳🇴 Norway +47</option>
-  <option value="+968">🇴🇲 Oman +968</option>
-  <option value="+92">🇵🇰 Pakistan +92</option>
-  <option value="+680">🇵🇼 Palau +680</option>
-  <option value="+970">🇵🇸 Palestine +970</option>
-  <option value="+507">🇵🇦 Panama +507</option>
-  <option value="+675">🇵🇬 Papua New Guinea +675</option>
-  <option value="+595">🇵🇾 Paraguay +595</option>
-  <option value="+51">🇵🇪 Peru +51</option>
-  <option value="+63">🇵🇭 Philippines +63</option>
-  <option value="+48">🇵🇱 Poland +48</option>
-  <option value="+351">🇵🇹 Portugal +351</option>
-  <option value="+1">🇵🇷 Puerto Rico +1</option>
-  <option value="+974">🇶🇦 Qatar +974</option>
-  <option value="+262">🇷🇪 Réunion +262</option>
-  <option value="+40">🇷🇴 Romania +40</option>
-  <option value="+7">🇷🇺 Russia +7</option>
-  <option value="+250">🇷🇼 Rwanda +250</option>
-  <option value="+290">🇸🇭 Saint Helena +290</option>
-  <option value="+1">🇰🇳 Saint Kitts and Nevis +1</option>
-  <option value="+1">🇱🇨 Saint Lucia +1</option>
-  <option value="+508">🇵🇲 Saint Pierre and Miquelon +508</option>
-  <option value="+1">🇻🇨 Saint Vincent and the Grenadines +1</option>
-  <option value="+685">🇼🇸 Samoa +685</option>
-  <option value="+378">🇸🇲 San Marino +378</option>
-  <option value="+239">🇸🇹 São Tomé and Príncipe +239</option>
-  <option value="+966">🇸🇦 Saudi Arabia +966</option>
-  <option value="+221">🇸🇳 Senegal +221</option>
-  <option value="+381">🇷🇸 Serbia +381</option>
-  <option value="+248">🇸🇨 Seychelles +248</option>
-  <option value="+232">🇸🇱 Sierra Leone +232</option>
-  <option value="+65">🇸🇬 Singapore +65</option>
-  <option value="+421">🇸🇰 Slovakia +421</option>
-  <option value="+386">🇸🇮 Slovenia +386</option><option value="+677">🇸🇧 Solomon Islands +677</option>
-  <option value="+252">🇸🇴 Somalia +252</option>
-  <option value="+27">🇿🇦 South Africa +27</option>
-  <option value="+211">🇸🇸 South Sudan +211</option>
-  <option value="+34">🇪🇸 Spain +34</option>
-  <option value="+94">🇱🇰 Sri Lanka +94</option>
-  <option value="+249">🇸🇩 Sudan +249</option>
-  <option value="+597">🇸🇷 Suriname +597</option>
-  <option value="+268">🇸🇿 Swaziland +268</option>
-  <option value="+46">🇸🇪 Sweden +46</option>
-  <option value="+41">🇨🇭 Switzerland +41</option>
-  <option value="+963">🇸🇾 Syria +963</option>
-  <option value="+886">🇹🇼 Taiwan +886</option>
-  <option value="+992">🇹🇯 Tajikistan +992</option>
-  <option value="+255">🇹🇿 Tanzania +255</option>
-  <option value="+66">🇹🇭 Thailand +66</option>
-  <option value="+670">🇹🇱 Timor-Leste +670</option>
-  <option value="+228">🇹🇬 Togo +228</option>
-  <option value="+676">🇹🇴 Tonga +676</option>
-  <option value="+1">🇹🇹 Trinidad and Tobago +1</option>
-  <option value="+216">🇹🇳 Tunisia +216</option>
-  <option value="+90">🇹🇷 Turkey +90</option>
-  <option value="+993">🇹🇲 Turkmenistan +993</option>
-  <option value="+1">🇹🇨 Turks and Caicos Islands +1</option>
-  <option value="+688">🇹🇻 Tuvalu +688</option>
-  <option value="+256">🇺🇬 Uganda +256</option>
-  <option value="+380">🇺🇦 Ukraine +380</option>
-  <option value="+971">🇦🇪 United Arab Emirates +971</option>
-  <option value="+598">🇺🇾 Uruguay +598</option>
-  <option value="+998">🇺🇿 Uzbekistan +998</option>
-  <option value="+678">🇻🇺 Vanuatu +678</option>
-  <option value="+39">🇻🇦 Vatican City +39</option>
-  <option value="+58">🇻🇪 Venezuela +58</option>
-  <option value="+84">🇻🇳 Vietnam +84</option>
-  <option value="+681">🇼🇫 Wallis and Futuna +681</option>
-  <option value="+212">🇪🇭 Western Sahara +212</option>
-  <option value="+967">🇾🇪 Yemen +967</option>
-  <option value="+260">🇿🇲 Zambia +260</option>
-  <option value="+263">🇿🇼 Zimbabwe +263</option>
-  <option value="+358">🇦🇽 Åland Islands +358</option>
-  </select>
-    </select>
-      <span style="font-size: 18px; font-weight: bold; user-select:none;">+</span>
-  <input type="tel" id="whatsappNumber" placeholder="123456789" required style="flex: 2;">
-</div>
-  <button type="submit"><i class="fab fa-whatsapp"></i>Confirm via WhatsApp</button>
-</form>
 
-<script>
-  function toggleMenu() {
-    document.getElementById("sidebar").classList.toggle("active");
-    document.getElementById("overlay").classList.toggle("active");
-    document.body.style.overflow = document.getElementById("sidebar").classList.contains("active") ? "hidden" : "auto";
-  }
-  function closeMenu() {
-    document.getElementById("sidebar").classList.remove("active");
-    document.getElementById("overlay").classList.remove("active");
-    document.body.style.overflow = "auto";
-  }
+  <script>
+    const bookingForm = document.getElementById("bookingForm");
+    const totalPrice = document.getElementById("totalPrice");
+    const inputs = ["adults", "children", "infants"];
 
-  document.getElementById("date").setAttribute("min", new Date().toISOString().split("T")[0]);
+    function updateTotals() {
+      const adults = +document.getElementById("adults").value || 0;
+      const children = +document.getElementById("children").value || 0;
+      const infants = +document.getElementById("infants").value || 0;
 
-  function selectTime(btn) {
-    document.querySelectorAll('.time-btn').forEach(b => b.classList.remove('selected'));
-    btn.classList.add('selected');
-    document.getElementById('tour-time').value = btn.innerText.split('\n')[0];
-  }
+      const adultPrice = adults * 50;
+      const childPrice = children * 25;
 
-  function updateSubtotal() {
-    let rows = document.querySelectorAll("#priceTable tbody tr");
-    let total = 0;
-    rows.forEach(row => {
-      const price = parseFloat(row.querySelector("td[data-price]").getAttribute("data-price"));
-      const qty = parseInt(row.querySelector(".qty").value);
-      const subtotal = price * qty;
-      row.querySelector(".subtotal").textContent = "USD " + subtotal;
-      total += subtotal;
+      document.getElementById("adultSubtotal").textContent = "USD " + adultPrice;
+      document.getElementById("childSubtotal").textContent = "USD " + childPrice;
+      document.getElementById("infantSubtotal").textContent = "USD 0";
+
+      const total = adultPrice + childPrice;
+      totalPrice.textContent = "USD " + total;
+    }
+
+    inputs.forEach(id => {
+      document.getElementById(id).addEventListener("input", updateTotals);
     });
-    document.getElementById("totalPrice").textContent = "USD " + total;
-  }
 
-  document.getElementById("bookingForm").addEventListener("submit", function(e) {
-    e.preventDefault();
-    const code = document.getElementById("countryCode").value;
-    const number = document.getElementById("whatsappNumber").value.trim();
-    const fullNumber = code + number;
-    const time = document.getElementById("tour-time").value;
-    if (!time) return alert("⚠️ Please select a tour time.");
-    if (!/^\d{6,15}$/.test(number)) return alert("⚠️ Invalid WhatsApp number.");
+    bookingForm.addEventListener("submit", function(e) {
+      e.preventDefault();
 
-    const total = document.getElementById("totalPrice").textContent;
-    const message = `📌 NEW BOOKING REQUEST:\n` +
-      `Name: ${firstName.value} ${lastName.value}\n` +
-      `Nationality: ${nationality.value}\n` +
-      `Gender: ${gender.value}\n` +
-      `Email: ${email.value}\n` +
-      `Pick-up Location: ${pickup.value}\n` +
-      `Tour Date: ${date.value}\n` +
-      `Tour Time: ${time}\n` +
-      `Total Price: ${total}\n` +
-      `WhatsApp: ${fullNumber}`;
-    
-    const encodedMessage = encodeURIComponent(message);
-    const waNumber = code.replace("+", "") + number;
-    window.open(`https://wa.me/${waNumber}?text=${encodedMessage}`, '_blank');
-  });
-</script>
+      const fullName = document.getElementById("fullName").value;
+      const phone = document.getElementById("phone").value;
+      const adultsQty = +document.getElementById("adults").value || 0;
+      const childrenQty = +document.getElementById("children").value || 0;
+      const infantsQty = +document.getElementById("infants").value || 0;
 
+      const totalAmount = (adultsQty * 50) + (childrenQty * 25);
+
+      const message = 
+`Booking Request - VIP Giza Pyramids Tour:
+Lead Traveler: ${fullName}
+Phone: ${phone}
+Adults: ${adultsQty}
+Children: ${childrenQty}
+Infants: ${infantsQty}
+Total Price: USD ${totalAmount}
+Language: English`;
+
+      const encodedMessage = encodeURIComponent(message);
+      const waNumber = phone.replace(/\s+/g, '').replace('+', '');
+
+      window.open(`https://wa.me/${waNumber}?text=${encodedMessage}`, '_blank');
+
+      // Show confirmation
+      document.getElementById("confirmationBox").style.display = "block";
+      document.getElementById("refNumber").textContent = "BR-" + Date.now().toString().slice(-10);
+      document.getElementById("leadName").textContent = fullName;
+      document.getElementById("leadPhone").textContent = "+" + waNumber;
+      document.getElementById("adultsCount").textContent = adultsQty;
+      document.getElementById("childrenCount").textContent = childrenQty;
+      document.getElementById("infantsCount").textContent = infantsQty;
+
+      bookingForm.reset();
+      totalPrice.textContent = "USD 0";
+      document.querySelectorAll(".subtotal").forEach(el => el.textContent = "USD 0");
+    });
+  </script>
 </body>
-    </html>
+</html>
