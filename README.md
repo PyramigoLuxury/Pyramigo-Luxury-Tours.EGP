@@ -1,1 +1,1 @@
-https://www.pyramigoluxury.com
+Pyramigo-Luxury.Tours 
