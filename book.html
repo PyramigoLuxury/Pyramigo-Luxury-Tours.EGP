@@ -5,76 +5,93 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Pyramigo Luxury Tours</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;800&display=swap" rel="stylesheet">
   <style>
     body {
       margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background-color: #111;
+      font-family: 'Cinzel', serif;
+      background: #0d0d0d;
       color: #fff;
     }
 
     header {
-      padding: 30px 20px;
-      text-align: center;
-      background: linear-gradient(135deg, #1e1e1e, #2d2d2d);
-      box-shadow: 0 0 20px rgba(0,0,0,0.6);
       position: relative;
+      padding: 70px 20px 50px;
+      text-align: center;
+      background: linear-gradient(135deg, #1a1a1a, #2a2a2a);
       overflow: hidden;
     }
 
-    header::after {
+    /* خلفية متحركة خفيفة */
+    header::before {
       content: "";
       position: absolute;
+      top: 0; left: 0;
       width: 200%;
       height: 100%;
-      top: 0;
-      left: -100%;
-      background: linear-gradient(120deg, transparent, rgba(255,255,255,0.4), transparent);
-      animation: shine 3s infinite;
+      background: linear-gradient(120deg, rgba(212,175,55,0.1), transparent, rgba(212,175,55,0.1));
+      animation: backgroundShimmer 8s linear infinite;
+      z-index: 0;
     }
 
-    @keyframes shine {
-      0% { left: -100%; }
-      50% { left: 100%; }
-      100% { left: 100%; }
+    @keyframes backgroundShimmer {
+      0% { transform: translateX(-100%); }
+      100% { transform: translateX(100%); }
     }
 
     .brand-name {
-      display: inline-flex;
+      position: relative;
+      z-index: 1;
+      display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 5px;
+      gap: 10px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
     }
 
     .brand-main {
-      font-size: 44px;
-      font-weight: bold;
-      background: linear-gradient(45deg, #d4af37, #fff8dc);
+      font-size: 60px;
+      font-weight: 800;
+      background: linear-gradient(45deg, #fff8dc, #d4af37);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      text-transform: uppercase;
-      letter-spacing: 2px;
       display: flex;
       align-items: center;
-      gap: 15px;
+      gap: 18px;
+      text-shadow: 0 0 12px rgba(255, 215, 0, 0.3);
+      animation: glowText 4s ease-in-out infinite;
+    }
+
+    @keyframes glowText {
+      0%, 100% { text-shadow: 0 0 12px rgba(255, 215, 0, 0.3); }
+      50% { text-shadow: 0 0 20px rgba(255, 215, 0, 0.7); }
     }
 
     .brand-main i {
-      font-size: 48px;
+      font-size: 60px;
       color: #d4af37;
-      animation: crownPulse 2s infinite alternate;
+      animation: crownFloat 3s ease-in-out infinite;
+    }
+
+    @keyframes crownFloat {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
     }
 
     .brand-sub {
-      font-size: 18px;
-      letter-spacing: 1px;
+      font-size: 22px;
       color: #eee;
-      opacity: 0.8;
+      opacity: 0.9;
+      background: linear-gradient(90deg, #fff8dc, #d4af37, #fff8dc);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: shineText 6s infinite linear;
     }
 
-    @keyframes crownPulse {
-      from { transform: scale(1); }
-      to { transform: scale(1.15); }
+    @keyframes shineText {
+      0% { background-position: -100%; }
+      100% { background-position: 200%; }
     }
 
     main {
@@ -83,26 +100,28 @@
     }
 
     main h2 {
-      font-size: 28px;
+      font-size: 30px;
       margin-bottom: 15px;
+      color: #f8f8f8;
     }
 
     main p {
       font-size: 18px;
       max-width: 700px;
       margin: 0 auto;
-      color: #ddd;
+      color: #ccc;
+      line-height: 1.6;
     }
 
     @media (max-width: 600px) {
       .brand-main {
-        font-size: 26px;
+        font-size: 36px;
       }
       .brand-main i {
-        font-size: 32px;
+        font-size: 40px;
       }
       .brand-sub {
-        font-size: 14px;
+        font-size: 16px;
       }
     }
   </style>
@@ -121,7 +140,7 @@
   <main>
     <h2>Experience Egypt Like Never Before</h2>
     <p>
-      Dive into a luxurious journey through the land of pharaohs with customized, high-end tours crafted by Pyramigo.
+      Dive into a luxurious journey through the land of pharaohs with customized, high-end tours crafted by Pyramigo. From the timeless pyramids to Nile cruises in elegance — we redefine what travel means.
     </p>
   </main>
 
