@@ -6,335 +6,107 @@
   <title>Pyramigo Luxury Tours</title>
   <link rel="icon" href="favicon.png" type="image/png">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
-      font-family: 'Poppins', sans-serif;
-      background: #fff;
-      color: #333;
-      padding-top: 70px;
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f7f7f7;
     }
+
     header {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%;
-      background: white;
-      padding: 15px 20px;
+      background: linear-gradient(to right, #f5e7c0, #f0d28c);
+      color: #4b3c20;
+      padding: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 28px;
+      font-weight: 700;
+      text-shadow: 1px 1px 1px #fff;
       display: flex;
       align-items: center;
-      justify-content: flex-start;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-      z-index: 100;
+      gap: 10px;
     }
-    .menu-icon {
-      font-size: 24px;
-      cursor: pointer;
-    }
-    header h2 {
-      position: absolute;
-      left: 50%;
-      transform: translateX(-50%);
-      font-size: 20px;
-      font-weight: 600;
-    }
-    header h2 a {
-      text-decoration: none;
-      color: #333;
-    }
-    .sidebar {
-      position: fixed;
-      top: 0; left: -250px;
-      width: 250px;
-      height: 100%;
-      background: #333;
-      color: white;
-      padding: 60px 20px;
-      transition: 0.3s ease;
-      z-index: 101;
-    }
-    .sidebar.active { left: 0; }
-    .sidebar a {
-      display: block;
-      color: white;
-      text-decoration: none;
-      padding: 15px 0;
-      border-bottom: 1px solid #444;
-    }
-    .sidebar a:hover { background: #444; padding-left: 10px; }
-    .overlay {
-      display: none;
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: rgba(0,0,0,0.3);
-      z-index: 100;
-    }
-    .overlay.active { display: block; }
 
-    h1 {
-      text-align: center;
-      margin: 30px 0;
-      font-size: 24px;
+    header h1 i {
+      color: #d4af37; /* ذهبي أنيق */
+      font-size: 30px;
     }
+
+    .content {
+      padding: 20px;
+    }
+
     table {
       width: 100%;
       border-collapse: collapse;
-      margin-bottom: 30px;
-      border: 1px solid #ddd;
-      border-radius: 8px;
-      overflow: hidden;
+      background: white;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
     }
+
     th, td {
-      padding: 10px;
-      border-bottom: 1px solid #eee;
-      font-size: 14px;
+      padding: 12px;
+      border: 1px solid #ddd;
       text-align: center;
     }
+
     th {
-      background: #f9f9f9;
-      font-weight: 600;
-    }
-    form {
-      background: #fafafa;
-      padding: 20px;
-      border: 1px solid #ddd;
-      border-radius: 10px;
-      max-width: 600px;
-      margin: auto;
-    }
-    form label {
-      display: block;
-      margin-bottom: 5px;
-      font-size: 13px;
-      font-weight: 500;
-    }
-    form input, form select {
-      width: 100%;
-      padding: 8px;
-      font-size: 14px;
-      border: 1px solid #ccc;
-      border-radius: 6px;
-      margin-bottom: 15px;
-    }
-    .time-options {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      margin-bottom: 20px;
-    }
-    .time-btn {
-      padding: 10px;
-      background: #f4f4f4;
-      border: 1px solid #ccc;
-      border-radius: 8px;
-      text-align: left;
-      font-size: 14px;
-      cursor: pointer;
-      transition: 0.2s;
-    }
-    .time-btn:hover { background: #eee; }
-    .time-btn.selected {
-      background-color: #333;
-      color: #fff;
-      border-color: #333;
-    }
-    .time-btn small {
-      display: block;
-      font-size: 12px;
-      color: #666;
-    }
-    button[type="submit"] {
-      background: #25D366;
-      color: #fff;
-      padding: 12px 20px;
-      border: none;
-      border-radius: 6px;
-      font-size: 15px;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    button[type="submit"] i {
-      margin-right: 8px;
-    }
-    @media (max-width: 600px) {
-      .time-options {
-        flex-wrap: wrap;
-        flex-direction: row;
-        justify-content: space-between;
-      }
-      .time-btn {
-        flex: 0 48%;
-        font-size: 13px;
-      }
+      background-color: #f9f9f9;
+      font-weight: bold;
     }
   </style>
 </head>
 <body>
 
-<div class="overlay" id="overlay" onclick="closeMenu()"></div>
-<div class="sidebar" id="sidebar">
-  <a href="index.html"><i class="fas fa-home"></i> Home</a>
-  <a href="about.html"><i class="fas fa-info-circle"></i> About Us</a>
-  <a href="tours.html"><i class="fas fa-map-marked-alt"></i> Tours</a>
-  <a href="contact.html"><i class="fas fa-phone"></i> Contact</a>
-</div>
+  <header>
+    <h1><i class="fas fa-crown"></i> Pyramigo Luxury Tours</h1>
+  </header>
 
-<header>
-  <div class="menu-icon" onclick="toggleMenu()">☰</div>
-  <h2><a href="index.html"><i class="fas fa-crown"></i> Pyramigo Luxury Tours</a></h2>
-</header>
-
-<h1>ALL INCLUSIVE PRIVATE HALF-DAY TRIP TO GIZA PYRAMIDS WITH CAMEL RIDE</h1>
-
-<table id="priceTable">
-  <thead>
-    <tr>
-      <th>Category</th>
-      <th>Price per Person</th>
-      <th>Quantity</th>
-      <th>Subtotal</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr><td>1 Person</td><td data-price="65">USD 65</td><td><select class="qty" onchange="updateSubtotal()"><option>0</option><option>1</option></select></td><td class="subtotal">USD 0</td></tr>
-    <tr><td>2–4 Persons</td><td data-price="55">USD 55</td><td><select class="qty" onchange="updateSubtotal()"><option>0</option><option>2</option><option>3</option><option>4</option></select></td><td class="subtotal">USD 0</td></tr>
-    <tr><td>5–8 Persons</td><td data-price="45">USD 45</td><td><select class="qty" onchange="updateSubtotal()"><option>0</option><option>5</option><option>6</option><option>7</option><option>8</option></select></td><td class="subtotal">USD 0</td></tr>
-    <tr><td>9–15 Persons</td><td data-price="30">USD 30</td><td><select class="qty" onchange="updateSubtotal()"><option>0</option><option>9</option><option>10</option><option>11</option><option>12</option><option>13</option><option>14</option><option>15</option></select></td><td class="subtotal">USD 0</td></tr>
-    <tr><td>Child</td><td data-price="25">USD 25</td><td><select class="qty" onchange="updateSubtotal()"><option>0</option><option>1</option><option>2</option><option>3</option></select></td><td class="subtotal">USD 0</td></tr>
-    <tr><td>Infant</td><td data-price="0">FREE</td><td><select class="qty" onchange="updateSubtotal()"><option>0</option><option>1</option><option>2</option></select></td><td class="subtotal">USD 0</td></tr>
-  </tbody>
-  <tfoot>
-    <tr><td colspan="3" style="text-align:right; font-weight:bold;">Total:</td><td id="totalPrice" style="font-weight:bold;">USD 0</td></tr>
-  </tfoot>
-</table>
-
-<form id="bookingForm">
-  <label>First Name</label>
-  <input type="text" id="firstName" required>
-  <label>Last Name</label>
-  <input type="text" id="lastName" required>
-  <label>Nationality</label>
-  <input type="text" id="nationality" required>
-  <label>Gender</label>
-  <select id="gender" required><option value="">Select</option><option>Male</option><option>Female</option></select>
-  <label>Email</label>
-  <input type="email" id="email" required>
-  <label>Pick-up Location</label>
-  <input type="text" id="pickup" required>
-  <label>Tour Date</label>
-  <input type="date" id="date" required>
-  <label>Choose Tour Time</label>
-  <div class="time-options">
-    <div class="time-btn" onclick="selectTime(this)">7:00 AM<br><small>Places remaining</small></div>
-    <div class="time-btn" onclick="selectTime(this)">8:00 AM<br><small>Places remaining</small></div>
-    <div class="time-btn" onclick="selectTime(this)">9:00 AM<br><small>Places remaining</small></div>
-    <div class="time-btn" onclick="selectTime(this)">10:00 AM<br><small>Places remaining</small></div>
-    <div class="time-btn" onclick="selectTime(this)">11:00 AM<br><small>Places remaining</small></div>
-    <div class="time-btn" onclick="selectTime(this)">12:00 PM<br><small>Places remaining</small></div>
-    <div class="time-btn" onclick="selectTime(this)">1:00 PM<br><small>Places remaining</small></div>
-    <div class="time-btn" onclick="selectTime(this)">2:00 PM<br><small>Places remaining</small></div>
+  <div class="content">
+    <h3>Booking Table</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Category</th>
+          <th>Price per Person</th>
+          <th>Number of People</th>
+          <th>Subtotal</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Adults</td>
+          <td>$80</td>
+          <td>2</td>
+          <td>$160</td>
+        </tr>
+        <tr>
+          <td>Children</td>
+          <td>$40</td>
+          <td>1</td>
+          <td>$40</td>
+        </tr>
+        <tr>
+          <td>Infants</td>
+          <td>Free</td>
+          <td>1</td>
+          <td>$0</td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <th colspan="3">Total</th>
+          <th>$200</th>
+        </tr>
+      </tfoot>
+    </table>
   </div>
-  <input type="hidden" name="tour-time" id="tour-time" required>
-
-  <label>Your WhatsApp Number</label>
-  <div style="display: flex; gap: 10px; margin-bottom: 15px;">
-    <select id="countryCode" required style="flex: 1;">
-      <option value="">Select</option>
-      <option value="20">🇪🇬 Egypt (+20)</option>
-      <option value="966">🇸🇦 Saudi Arabia (+966)</option>
-      <option value="971">🇦🇪 UAE (+971)</option>
-      <option value="1">🇺🇸 USA (+1)</option>
-      <option value="44">🇬🇧 UK (+44)</option>
-      <option value="49">🇩🇪 Germany (+49)</option>
-      <option value="33">🇫🇷 France (+33)</option>
-      <option value="39">🇮🇹 Italy (+39)</option>
-      <option value="34">🇪🇸 Spain (+34)</option>
-    </select>
-    <input type="tel" id="whatsappNumber" placeholder="Enter number" required style="flex: 2;">
-  </div>
-
-  <button type="submit"><i class="fab fa-whatsapp"></i>Confirm via WhatsApp</button>
-</form>
-
-<script>
-  function toggleMenu() {
-    document.getElementById("sidebar").classList.toggle("active");
-    document.getElementById("overlay").classList.toggle("active");
-    document.body.style.overflow = document.getElementById("sidebar").classList.contains("active") ? "hidden" : "auto";
-  }
-
-  function closeMenu() {
-    document.getElementById("sidebar").classList.remove("active");
-    document.getElementById("overlay").classList.remove("active");
-    document.body.style.overflow = "auto";
-  }
-
-  document.getElementById("date").setAttribute("min", new Date().toISOString().split("T")[0]);
-
-  function selectTime(btn) {
-    document.querySelectorAll('.time-btn').forEach(b => b.classList.remove('selected'));
-    btn.classList.add('selected');
-    document.getElementById('tour-time').value = btn.innerText.split('\n')[0];
-  }
-
-  function updateSubtotal() {
-    let rows = document.querySelectorAll("#priceTable tbody tr");
-    let total = 0;
-    rows.forEach(row => {
-      const price = parseFloat(row.querySelector("td[data-price]").getAttribute("data-price"));
-      const qty = parseInt(row.querySelector(".qty").value);
-      const subtotal = price * qty;
-      row.querySelector(".subtotal").textContent = "USD " + subtotal;
-      total += subtotal;
-    });
-    document.getElementById("totalPrice").textContent = "USD " + total;
-  }
-
-  document.getElementById("bookingForm").addEventListener("submit", function(e) {
-    e.preventDefault();
-
-    const name = document.getElementById("firstName").value + " " + document.getElementById("lastName").value;
-    const pickup = document.getElementById("pickup").value;
-    const date = document.getElementById("date").value;
-    const time = document.getElementById("tour-time").value;
-    const code = document.getElementById("countryCode").value;
-    const number = document.getElementById("whatsappNumber").value.trim();
-    if (!code) return alert("⚠️ Please select your country.");
-    if (!/^\d{6,15}$/.test(number)) return alert("⚠️ Invalid phone number.");
-    const userPhone = code + number;
-    const total = document.getElementById("totalPrice").textContent;
-
-    if (!time) return alert("⚠️ Please select a tour time.");
-
-    const qty = document.querySelectorAll("select.qty");
-    const totalQty = [...qty].reduce((acc, el) => acc + parseInt(el.value), 0);
-    if (totalQty === 0) return alert("⚠️ Please select at least one traveler.");
-
-    let travelerDetails = '';
-    if (qty[0].value > 0) travelerDetails += `${qty[0].value} Adult\n`;
-    if (qty[1].value > 0) travelerDetails += `${qty[1].value} Adult\n`;
-    if (qty[4].value > 0) travelerDetails += `${qty[4].value} Child\n`;
-    if (qty[5].value > 0) travelerDetails += `${qty[5].value} Infant\n`;
-
-    const message = 
-`Pyramigo Luxury Tours – Private Giza Pyramids Tour
-Lead Traveler: ${name}
-${travelerDetails}
-Booking Ref: BR-${Math.floor(Math.random() * 1e10)}
-Pickup: ${pickup}
-Date: ${date}
-Time: ${time}
-Phone: ${userPhone}
-Total: ${total}`;
-
-    const encoded = encodeURIComponent(message);
-    const fixedNumber = "201283915289";
-    window.open(`https://wa.me/${fixedNumber}?text=${encoded}`, '_blank');
-  });
-</script>
 
 </body>
 </html>
