@@ -40,22 +40,36 @@
     }
 
     .brand-name {
-      font-size: 42px;
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .brand-main {
+      font-size: 44px;
       font-weight: bold;
       background: linear-gradient(45deg, #d4af37, #fff8dc);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      display: inline-flex;
-      align-items: center;
-      gap: 15px;
       text-transform: uppercase;
       letter-spacing: 2px;
+      display: flex;
+      align-items: center;
+      gap: 15px;
     }
 
-    .brand-name i {
+    .brand-main i {
       font-size: 48px;
       color: #d4af37;
       animation: crownPulse 2s infinite alternate;
+    }
+
+    .brand-sub {
+      font-size: 18px;
+      letter-spacing: 1px;
+      color: #eee;
+      opacity: 0.8;
     }
 
     @keyframes crownPulse {
@@ -81,11 +95,14 @@
     }
 
     @media (max-width: 600px) {
-      .brand-name {
+      .brand-main {
         font-size: 26px;
       }
-      .brand-name i {
+      .brand-main i {
         font-size: 32px;
+      }
+      .brand-sub {
+        font-size: 14px;
       }
     }
   </style>
@@ -94,7 +111,10 @@
 
   <header>
     <div class="brand-name">
-      <i class="fas fa-crown"></i> Pyramigo Luxury Tours
+      <div class="brand-main">
+        <i class="fas fa-crown"></i> Pyramigo
+      </div>
+      <div class="brand-sub">Luxury Tours</div>
     </div>
   </header>
 
