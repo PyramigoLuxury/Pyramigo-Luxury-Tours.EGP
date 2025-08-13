@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Pyramigo Luxury Tours</title>
+  <title>Book Tour | Let's Discover Egypt</title>
   <link rel="icon" href="favicon.png" type="image/png">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
@@ -174,6 +174,7 @@
 </head>
 <body>
 
+<!-- Overlay & Sidebar -->
 <div class="overlay" id="overlay" onclick="closeMenu()"></div>
 <div class="sidebar" id="sidebar">
   <a href="index.html"><i class="fas fa-home"></i> Home</a>
@@ -182,13 +183,16 @@
   <a href="contact.html"><i class="fas fa-phone"></i> Contact</a>
 </div>
 
+<!-- Header -->
 <header>
   <div class="menu-icon" onclick="toggleMenu()">☰</div>
-  <h2><a href="index.html"><i class="fas fa-crown"></i> Pyramigo Luxury Tours</a></h2>
+  <h2><a href="index.html"><i class="fas fa-globe-africa"></i> Let's Discover Egypt</a></h2>
 </header>
 
+<!-- Page Content -->
 <h1>ALL INCLUSIVE PRIVATE HALF-DAY TRIP TO GIZA PYRAMIDS WITH CAMEL RIDE</h1>
 
+<!-- Dynamic Price Table -->
 <table id="priceTable">
   <thead>
     <tr>
@@ -199,18 +203,52 @@
     </tr>
   </thead>
   <tbody>
-    <tr><td>1 Person</td><td data-price="65">USD 65</td><td><select class="qty" onchange="updateSubtotal()"><option>0</option><option>1</option></select></td><td class="subtotal">USD 0</td></tr>
-    <tr><td>2–4 Persons</td><td data-price="55">USD 55</td><td><select class="qty" onchange="updateSubtotal()"><option>0</option><option>2</option><option>3</option><option>4</option></select></td><td class="subtotal">USD 0</td></tr>
-    <tr><td>5–8 Persons</td><td data-price="45">USD 45</td><td><select class="qty" onchange="updateSubtotal()"><option>0</option><option>5</option><option>6</option><option>7</option><option>8</option></select></td><td class="subtotal">USD 0</td></tr>
-    <tr><td>9–15 Persons</td><td data-price="30">USD 30</td><td><select class="qty" onchange="updateSubtotal()"><option>0</option><option>9</option><option>10</option><option>11</option><option>12</option><option>13</option><option>14</option><option>15</option></select></td><td class="subtotal">USD 0</td></tr>
-    <tr><td>Child</td><td data-price="25">USD 25</td><td><select class="qty" onchange="updateSubtotal()"><option>0</option><option>1</option><option>2</option><option>3</option></select></td><td class="subtotal">USD 0</td></tr>
-    <tr><td>Infant</td><td data-price="0">FREE</td><td><select class="qty" onchange="updateSubtotal()"><option>0</option><option>1</option><option>2</option></select></td><td class="subtotal">USD 0</td></tr>
+    <tr>
+      <td>1 Person</td>
+      <td data-price="65">USD 65</td>
+      <td><select onchange="updateSubtotal()" class="qty"><option value="0" selected>0</option><option value="1">1</option></select></td>
+      <td class="subtotal">USD 0</td>
+    </tr>
+    <tr>
+      <td>2–4 Persons</td>
+      <td data-price="55">USD 55</td>
+      <td><select onchange="updateSubtotal()" class="qty"><option value="0" selected>0</option><option value="2">2</option><option value="3">3</option><option value="4">4</option></select></td>
+      <td class="subtotal">USD 0</td>
+    </tr>
+    <tr>
+      <td>5–8 Persons</td>
+      <td data-price="45">USD 45</td>
+      <td><select onchange="updateSubtotal()" class="qty"><option value="0" selected>0</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option></select></td>
+      <td class="subtotal">USD 0</td>
+    </tr>
+    <tr>
+      <td>9–15 Persons</td>
+      <td data-price="30">USD 30</td>
+      <td><select onchange="updateSubtotal()" class="qty"><option value="0" selected>0</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option></select></td>
+      <td class="subtotal">USD 0</td>
+    </tr>
+    <tr>
+      <td>Child</td>
+      <td data-price="25">USD 25</td>
+      <td><select onchange="updateSubtotal()" class="qty"><option value="0" selected>0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option></select></td>
+      <td class="subtotal">USD 0</td>
+    </tr>
+    <tr>
+      <td>Infant</td>
+      <td data-price="0">FREE</td>
+      <td><select onchange="updateSubtotal()" class="qty"><option value="0" selected>0</option><option value="1">1</option><option value="2">2</option></select></td>
+      <td class="subtotal">USD 0</td>
+    </tr>
   </tbody>
   <tfoot>
-    <tr><td colspan="3" style="text-align:right; font-weight:bold;">Total:</td><td id="totalPrice" style="font-weight:bold;">USD 0</td></tr>
+    <tr>
+      <td colspan="3" style="text-align:right; font-weight:bold;">Total:</td>
+      <td id="totalPrice" style="font-weight:bold;">USD 0</td>
+    </tr>
   </tfoot>
 </table>
 
+<!-- Booking Form -->
 <form id="bookingForm">
   <label>First Name</label>
   <input type="text" id="firstName" required>
@@ -219,7 +257,11 @@
   <label>Nationality</label>
   <input type="text" id="nationality" required>
   <label>Gender</label>
-  <select id="gender" required><option value="">Select</option><option>Male</option><option>Female</option></select>
+  <select id="gender" required>
+    <option value="">Select</option>
+    <option>Male</option>
+    <option>Female</option>
+  </select>
   <label>Email</label>
   <input type="email" id="email" required>
   <label>Pick-up Location</label>
@@ -232,30 +274,18 @@
     <div class="time-btn" onclick="selectTime(this)">8:00 AM<br><small>Places remaining</small></div>
     <div class="time-btn" onclick="selectTime(this)">9:00 AM<br><small>Places remaining</small></div>
     <div class="time-btn" onclick="selectTime(this)">10:00 AM<br><small>Places remaining</small></div>
-    <div class="time-btn" onclick="selectTime(this)">11:00 AM<br><small>Places remaining</small></div>
-    <div class="time-btn" onclick="selectTime(this)">12:00 PM<br><small>Places remaining</small></div>
-    <div class="time-btn" onclick="selectTime(this)">1:00 PM<br><small>Places remaining</small></div>
-    <div class="time-btn" onclick="selectTime(this)">2:00 PM<br><small>Places remaining</small></div>
   </div>
   <input type="hidden" name="tour-time" id="tour-time" required>
-
-  <label>Your WhatsApp Number</label>
-  <div style="display: flex; gap: 10px; margin-bottom: 15px;">
+  <label>WhatsApp Number</label>
+  <div style="display: flex; gap: 10px; align-items: center;">
     <select id="countryCode" required style="flex: 1;">
-      <option value="">Select</option>
-      <option value="20">🇪🇬 Egypt (+20)</option>
-      <option value="966">🇸🇦 Saudi Arabia (+966)</option>
-      <option value="971">🇦🇪 UAE (+971)</option>
-      <option value="1">🇺🇸 USA (+1)</option>
-      <option value="44">🇬🇧 UK (+44)</option>
-      <option value="49">🇩🇪 Germany (+49)</option>
-      <option value="33">🇫🇷 France (+33)</option>
-      <option value="39">🇮🇹 Italy (+39)</option>
-      <option value="34">🇪🇸 Spain (+34)</option>
+      <option value="+20">🇪🇬 Egypt +20</option>
+      <option value="+1">🇺🇸 USA +1</option>
+      <option value="+44">🇬🇧 UK +44</option>
+      <option value="+971">🇦🇪 UAE +971</option>
     </select>
-    <input type="tel" id="whatsappNumber" placeholder="Enter number" required style="flex: 2;">
+    <input type="tel" id="whatsappNumber" placeholder="123456789" required style="flex: 2;">
   </div>
-
   <button type="submit"><i class="fab fa-whatsapp"></i>Confirm via WhatsApp</button>
 </form>
 
@@ -265,7 +295,6 @@
     document.getElementById("overlay").classList.toggle("active");
     document.body.style.overflow = document.getElementById("sidebar").classList.contains("active") ? "hidden" : "auto";
   }
-
   function closeMenu() {
     document.getElementById("sidebar").classList.remove("active");
     document.getElementById("overlay").classList.remove("active");
@@ -295,46 +324,30 @@
 
   document.getElementById("bookingForm").addEventListener("submit", function(e) {
     e.preventDefault();
-
-    const name = document.getElementById("firstName").value + " " + document.getElementById("lastName").value;
-    const pickup = document.getElementById("pickup").value;
-    const date = document.getElementById("date").value;
-    const time = document.getElementById("tour-time").value;
     const code = document.getElementById("countryCode").value;
     const number = document.getElementById("whatsappNumber").value.trim();
-    if (!code) return alert("⚠️ Please select your country.");
-    if (!/^\d{6,15}$/.test(number)) return alert("⚠️ Invalid phone number.");
-    const userPhone = code + number;
-    const total = document.getElementById("totalPrice").textContent;
-
+    const fullNumber = code + number;
+    const time = document.getElementById("tour-time").value;
     if (!time) return alert("⚠️ Please select a tour time.");
+    if (!/^\d{6,15}$/.test(number)) return alert("⚠️ Invalid WhatsApp number.");
 
-    const qty = document.querySelectorAll("select.qty");
-    const totalQty = [...qty].reduce((acc, el) => acc + parseInt(el.value), 0);
-    if (totalQty === 0) return alert("⚠️ Please select at least one traveler.");
-
-    let travelerDetails = '';
-    if (qty[0].value > 0) travelerDetails += `${qty[0].value} Adult\n`;
-    if (qty[1].value > 0) travelerDetails += `${qty[1].value} Adult\n`;
-    if (qty[4].value > 0) travelerDetails += `${qty[4].value} Child\n`;
-    if (qty[5].value > 0) travelerDetails += `${qty[5].value} Infant\n`;
-
-    const message = 
-`Pyramigo Luxury Tours – Private Giza Pyramids Tour
-Lead Traveler: ${name}
-${travelerDetails}
-Booking Ref: BR-${Math.floor(Math.random() * 1e10)}
-Pickup: ${pickup}
-Date: ${date}
-Time: ${time}
-Phone: ${userPhone}
-Total: ${total}`;
-
-    const encoded = encodeURIComponent(message);
-    const fixedNumber = "201283915289";
-    window.open(`https://wa.me/${fixedNumber}?text=${encoded}`, '_blank');
+    const total = document.getElementById("totalPrice").textContent;
+    const message = `📌 NEW BOOKING REQUEST:\n` +
+      `Name: ${firstName.value} ${lastName.value}\n` +
+      `Nationality: ${nationality.value}\n` +
+      `Gender: ${gender.value}\n` +
+      `Email: ${email.value}\n` +
+      `Pick-up Location: ${pickup.value}\n` +
+      `Tour Date: ${date.value}\n` +
+      `Tour Time: ${time}\n` +
+      `Total Price: ${total}\n` +
+      `WhatsApp: ${fullNumber}`;
+    
+    const encodedMessage = encodeURIComponent(message);
+    const waNumber = code.replace("+", "") + number;
+    window.open(`https://wa.me/${waNumber}?text=${encodedMessage}`, '_blank');
   });
 </script>
 
 </body>
-    </html>
+  </html>
