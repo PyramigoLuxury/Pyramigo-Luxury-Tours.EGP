@@ -274,6 +274,10 @@
     <div class="time-btn" onclick="selectTime(this)">8:00 AM<br><small>Places remaining</small></div>
     <div class="time-btn" onclick="selectTime(this)">9:00 AM<br><small>Places remaining</small></div>
     <div class="time-btn" onclick="selectTime(this)">10:00 AM<br><small>Places remaining</small></div>
+    <div class="time-btn" onclick="selectTime(this)">11:00 AM<br><small>Places remaining</small></div>
+    <div class="time-btn" onclick="selectTime(this)">12:00 PM<br><small>Places remaining</small></div>
+    <div class="time-btn" onclick="selectTime(this)">1:00 PM<br><small>Places remaining</small></div>
+    <div class="time-btn" onclick="selectTime(this)">2:00 AM<br><small>Places remaining</small></div>
   </div>
   <input type="hidden" name="tour-time" id="tour-time" required>
   <label>WhatsApp Number</label>
@@ -295,6 +299,7 @@
     document.getElementById("overlay").classList.toggle("active");
     document.body.style.overflow = document.getElementById("sidebar").classList.contains("active") ? "hidden" : "auto";
   }
+
   function closeMenu() {
     document.getElementById("sidebar").classList.remove("active");
     document.getElementById("overlay").classList.remove("active");
@@ -332,17 +337,48 @@
     if (!/^\d{6,15}$/.test(number)) return alert("⚠️ Invalid WhatsApp number.");
 
     const total = document.getElementById("totalPrice").textContent;
-    const message = `📌 NEW BOOKING REQUEST:\n` +
-      `Name: ${firstName.value} ${lastName.value}\n` +
-      `Nationality: ${nationality.value}\n` +
-      `Gender: ${gender.value}\n` +
-      `Email: ${email.value}\n` +
-      `Pick-up Location: ${pickup.value}\n` +
-      `Tour Date: ${date.value}\n` +
-      `Tour Time: ${time}\n` +
-      `Total Price: ${total}\n` +
-      `WhatsApp: ${fullNumber}`;
-    
+    const qtyInputs = document.querySelectorAll('select.qty');
+
+    const childQty = parseInt(qtyInputs[4].value);
+    const infantQty = parseInt(qtyInputs[5].value);
+
+    const message = 
+`Top ViP Private Tour Giza Pyramids, Sphinx, Inside Pyramid
+Top ViP All inclusive 
+1 NEW MESSAGE
+Lead Traveler: ${firstName.value} ${lastName.value}
+${infantQty > 0 ? 'infant, ' : ''}${childQty > 0 ? 'child, ' : ''}adults
+BR-${Math.floor(1000000000 + Math.random() * 9000000000)}
+Submitted 
+Hide details 
+INSTANT CONFIRMATION
+
+Customer phone number: ${fullNumber}
+Traveler names:
+${qtyInputs[0].value > 0 ? ' (Adult)' : ''}
+${qtyInputs[1].value > 0 ? ' (Adult)' : ''}
+${childQty > 0 ? ' (Child)' : ''}
+${infantQty > 0 ? ' (Infant)' : ''}
+
+Tour language: English
+Inclusions:
+✓ Qualified Egyptologist guide
+✓ Hotel pickup and drop-off By Private cars
+✓ Lunch in Restaurant ( All inclusive Option )
+✓ 30 Minutes camel Ride around Giza pyramids ( All inclusive Option )
+✓ Private Tour
+✓ Entrance fees to Giza Pyramids and Sphinx ( All inclusive Option )
+✓ Entry fee to the third pyramid of Giza ( All inclusive Option )
+✓ Entry/Admission - Panoramic View of the Pyramids
+✓ Entry/Admission - Menkaure Pyramid
+✓ Entry/Admission - Great Sphinx
+✓ Entry/Admission - Pyramids of Giza
+
+Pickup point: ${pickup.value}
+Tour Date: ${date.value}
+Tour Time: ${time}
+Total Price: ${total}`;
+
     const encodedMessage = encodeURIComponent(message);
     const waNumber = code.replace("+", "") + number;
     window.open(`https://wa.me/${waNumber}?text=${encodedMessage}`, '_blank');
@@ -350,4 +386,4 @@
 </script>
 
 </body>
-  </html>
+</html>
