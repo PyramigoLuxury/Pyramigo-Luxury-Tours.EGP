@@ -1,388 +1,161 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Book Tour | Let's Discover Egypt</title>
-  <link rel="icon" href="favicon.png" type="image/png">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tour Booking</title>
   <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      font-family: 'Poppins', sans-serif;
-      background: #fff;
-      color: #333;
-      padding-top: 70px;
-    }
-    header {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%;
-      background: white;
-      padding: 15px 20px;
-      display: flex;
-      align-items: center;
-      justify-content: flex-start;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-      z-index: 100;
-    }
-    .menu-icon {
-      font-size: 24px;
-      cursor: pointer;
-    }
-    header h2 {
-      position: absolute;
-      left: 50%;
-      transform: translateX(-50%);
-      font-size: 20px;
-      font-weight: 600;
-    }
-    header h2 a {
-      text-decoration: none;
-      color: #333;
-    }
-    .sidebar {
-      position: fixed;
-      top: 0; left: -250px;
-      width: 250px;
-      height: 100%;
-      background: #333;
-      color: white;
-      padding: 60px 20px;
-      transition: 0.3s ease;
-      z-index: 101;
-    }
-    .sidebar.active { left: 0; }
-    .sidebar a {
-      display: block;
-      color: white;
-      text-decoration: none;
-      padding: 15px 0;
-      border-bottom: 1px solid #444;
-    }
-    .sidebar a:hover { background: #444; padding-left: 10px; }
-    .overlay {
-      display: none;
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: rgba(0,0,0,0.3);
-      z-index: 100;
-    }
-    .overlay.active { display: block; }
-
-    h1 {
-      text-align: center;
-      margin: 30px 0;
-      font-size: 24px;
-    }
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-bottom: 30px;
-      border: 1px solid #ddd;
-      border-radius: 8px;
-      overflow: hidden;
-    }
-    th, td {
-      padding: 10px;
-      border-bottom: 1px solid #eee;
-      font-size: 14px;
-      text-align: center;
-    }
-    th {
-      background: #f9f9f9;
-      font-weight: 600;
-    }
-    form {
-      background: #fafafa;
-      padding: 20px;
-      border: 1px solid #ddd;
-      border-radius: 10px;
-      max-width: 600px;
-      margin: auto;
-    }
-    form label {
-      display: block;
-      margin-bottom: 5px;
-      font-size: 13px;
-      font-weight: 500;
-    }
-    form input, form select {
-      width: 100%;
-      padding: 8px;
-      font-size: 14px;
-      border: 1px solid #ccc;
-      border-radius: 6px;
-      margin-bottom: 15px;
-    }
-    .time-options {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      margin-bottom: 20px;
-    }
-    .time-btn {
-      padding: 10px;
-      background: #f4f4f4;
-      border: 1px solid #ccc;
-      border-radius: 8px;
-      text-align: left;
-      font-size: 14px;
-      cursor: pointer;
-      transition: 0.2s;
-    }
-    .time-btn:hover { background: #eee; }
-    .time-btn.selected {
-      background-color: #333;
-      color: #fff;
-      border-color: #333;
-    }
-    .time-btn small {
-      display: block;
-      font-size: 12px;
-      color: #666;
-    }
-    button[type="submit"] {
-      background: #25D366;
-      color: #fff;
-      padding: 12px 20px;
-      border: none;
-      border-radius: 6px;
-      font-size: 15px;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    button[type="submit"] i {
-      margin-right: 8px;
-    }
-    @media (max-width: 600px) {
-      .time-options {
-        flex-wrap: wrap;
-        flex-direction: row;
-        justify-content: space-between;
-      }
-      .time-btn {
-        flex: 0 48%;
-        font-size: 13px;
-      }
-    }
+    body { font-family: Arial, sans-serif; margin: 0; padding: 0; }
+    .container { max-width: 900px; margin: auto; padding: 20px; }
+    h1, h2 { text-align: center; }
+    table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+    th, td { border: 1px solid #ccc; padding: 8px; text-align: center; }
+    .time-btn { padding: 8px 12px; margin: 5px; border: 1px solid #999; border-radius: 4px; cursor: pointer; }
+    .time-btn.selected { background: green; color: white; }
+    button { padding: 10px 15px; background: green; color: white; border: none; border-radius: 4px; cursor: pointer; }
+    .booking-table td { height: 40px; }
+    .booked { background-color: #f88; }
+    .available { background-color: #8f8; cursor: pointer; }
   </style>
 </head>
 <body>
 
-<!-- Overlay & Sidebar -->
-<div class="overlay" id="overlay" onclick="closeMenu()"></div>
-<div class="sidebar" id="sidebar">
-  <a href="index.html"><i class="fas fa-home"></i> Home</a>
-  <a href="about.html"><i class="fas fa-info-circle"></i> About Us</a>
-  <a href="tours.html"><i class="fas fa-map-marked-alt"></i> Tours</a>
-  <a href="contact.html"><i class="fas fa-phone"></i> Contact</a>
+<div class="container">
+  <h1>Tour Booking</h1>
+
+  <h2>Price Table</h2>
+  <table id="priceTable">
+    <thead>
+      <tr>
+        <th>Category</th>
+        <th>Price</th>
+        <th>Quantity</th>
+        <th>Subtotal</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Adult</td>
+        <td data-price="50">50</td>
+        <td>
+          <select class="qty" onchange="updateSubtotal()">
+            <option>0</option>
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+          </select>
+        </td>
+        <td class="subtotal">USD 0</td>
+      </tr>
+      <tr>
+        <td>Child</td>
+        <td data-price="25">25</td>
+        <td>
+          <select class="qty" onchange="updateSubtotal()">
+            <option>0</option>
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+          </select>
+        </td>
+        <td class="subtotal">USD 0</td>
+      </tr>
+    </tbody>
+  </table>
+  <p><strong>Total: </strong><span id="totalPrice">USD 0</span></p>
+
+  <h2>Select Time</h2>
+  <div>
+    <span class="time-btn" onclick="selectTime(this)">8:00 AM</span>
+    <span class="time-btn" onclick="selectTime(this)">10:00 AM</span>
+    <span class="time-btn" onclick="selectTime(this)">2:00 PM</span>
+  </div>
+  <input type="hidden" id="tour-time">
+
+  <h2>Booking Slots</h2>
+  <table class="booking-table">
+    <tr>
+      <th>Time</th>
+      <th>Status</th>
+    </tr>
+    <tr>
+      <td>8:00 AM</td>
+      <td class="available" onclick="selectTimeSlot('8:00 AM')">Available</td>
+    </tr>
+    <tr>
+      <td>10:00 AM</td>
+      <td class="booked">Booked</td>
+    </tr>
+    <tr>
+      <td>2:00 PM</td>
+      <td class="available" onclick="selectTimeSlot('2:00 PM')">Available</td>
+    </tr>
+  </table>
+
+  <h2>Booking Form</h2>
+  <form id="bookingForm">
+    <label>First Name: <input type="text" id="firstName" required></label><br><br>
+    <label>Last Name: <input type="text" id="lastName" required></label><br><br>
+    <label>Pickup Location: <input type="text" id="pickup" required></label><br><br>
+    <label>Tour Date: <input type="date" id="date" required></label><br><br>
+    <label>Your WhatsApp Number: <input type="text" id="whatsappNumber" required></label><br><br>
+    <button type="submit">Confirm via WhatsApp</button>
+  </form>
 </div>
 
-<!-- Header -->
-<header>
-  <div class="menu-icon" onclick="toggleMenu()">☰</div>
-  <h2><a href="index.html"><i class="fas fa-globe-africa"></i> Let's Discover Egypt</a></h2>
-</header>
-
-<!-- Page Content -->
-<h1>ALL INCLUSIVE PRIVATE HALF-DAY TRIP TO GIZA PYRAMIDS WITH CAMEL RIDE</h1>
-
-<!-- Dynamic Price Table -->
-<table id="priceTable">
-  <thead>
-    <tr>
-      <th>Category</th>
-      <th>Price per Person</th>
-      <th>Quantity</th>
-      <th>Subtotal</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>1 Person</td>
-      <td data-price="65">USD 65</td>
-      <td><select onchange="updateSubtotal()" class="qty"><option value="0" selected>0</option><option value="1">1</option></select></td>
-      <td class="subtotal">USD 0</td>
-    </tr>
-    <tr>
-      <td>2–4 Persons</td>
-      <td data-price="55">USD 55</td>
-      <td><select onchange="updateSubtotal()" class="qty"><option value="0" selected>0</option><option value="2">2</option><option value="3">3</option><option value="4">4</option></select></td>
-      <td class="subtotal">USD 0</td>
-    </tr>
-    <tr>
-      <td>5–8 Persons</td>
-      <td data-price="45">USD 45</td>
-      <td><select onchange="updateSubtotal()" class="qty"><option value="0" selected>0</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option></select></td>
-      <td class="subtotal">USD 0</td>
-    </tr>
-    <tr>
-      <td>9–15 Persons</td>
-      <td data-price="30">USD 30</td>
-      <td><select onchange="updateSubtotal()" class="qty"><option value="0" selected>0</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option></select></td>
-      <td class="subtotal">USD 0</td>
-    </tr>
-    <tr>
-      <td>Child</td>
-      <td data-price="25">USD 25</td>
-      <td><select onchange="updateSubtotal()" class="qty"><option value="0" selected>0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option></select></td>
-      <td class="subtotal">USD 0</td>
-    </tr>
-    <tr>
-      <td>Infant</td>
-      <td data-price="0">FREE</td>
-      <td><select onchange="updateSubtotal()" class="qty"><option value="0" selected>0</option><option value="1">1</option><option value="2">2</option></select></td>
-      <td class="subtotal">USD 0</td>
-    </tr>
-  </tbody>
-  <tfoot>
-    <tr>
-      <td colspan="3" style="text-align:right; font-weight:bold;">Total:</td>
-      <td id="totalPrice" style="font-weight:bold;">USD 0</td>
-    </tr>
-  </tfoot>
-</table>
-
-<!-- Booking Form -->
-<form id="bookingForm">
-  <label>First Name</label>
-  <input type="text" id="firstName" required>
-  <label>Last Name</label>
-  <input type="text" id="lastName" required>
-  <label>Nationality</label>
-  <input type="text" id="nationality" required>
-  <label>Gender</label>
-  <select id="gender" required>
-    <option value="">Select</option>
-    <option>Male</option>
-    <option>Female</option>
-  </select>
-  <label>Email</label>
-  <input type="email" id="email" required>
-  <label>Pick-up Location</label>
-  <input type="text" id="pickup" required>
-  <label>Tour Date</label>
-  <input type="date" id="date" required>
-  <label>Choose Tour Time</label>
-  <div class="time-options">
-    <div class="time-btn" onclick="selectTime(this)">7:00 AM<br><small>Places remaining</small></div>
-    <div class="time-btn" onclick="selectTime(this)">8:00 AM<br><small>Places remaining</small></div>
-    <div class="time-btn" onclick="selectTime(this)">9:00 AM<br><small>Places remaining</small></div>
-    <div class="time-btn" onclick="selectTime(this)">10:00 AM<br><small>Places remaining</small></div>
-    <div class="time-btn" onclick="selectTime(this)">11:00 AM<br><small>Places remaining</small></div>
-    <div class="time-btn" onclick="selectTime(this)">12:00 PM<br><small>Places remaining</small></div>
-    <div class="time-btn" onclick="selectTime(this)">1:00 PM<br><small>Places remaining</small></div>
-    <div class="time-btn" onclick="selectTime(this)">2:00 AM<br><small>Places remaining</small></div>
-  </div>
-  <input type="hidden" name="tour-time" id="tour-time" required>
-  <label>WhatsApp Number</label>
-  <div style="display: flex; gap: 10px; align-items: center;">
-    <select id="countryCode" required style="flex: 1;">
-      <option value="+20">🇪🇬 Egypt +20</option>
-      <option value="+1">🇺🇸 USA +1</option>
-      <option value="+44">🇬🇧 UK +44</option>
-      <option value="+971">🇦🇪 UAE +971</option>
-    </select>
-    <input type="tel" id="whatsappNumber" placeholder="123456789" required style="flex: 2;">
-  </div>
-  <button type="submit"><i class="fab fa-whatsapp"></i>Confirm via WhatsApp</button>
-</form>
-
 <script>
-  function toggleMenu() {
-    document.getElementById("sidebar").classList.toggle("active");
-    document.getElementById("overlay").classList.toggle("active");
-    document.body.style.overflow = document.getElementById("sidebar").classList.contains("active") ? "hidden" : "auto";
-  }
+document.getElementById("date").setAttribute("min", new Date().toISOString().split("T")[0]);
 
-  function closeMenu() {
-    document.getElementById("sidebar").classList.remove("active");
-    document.getElementById("overlay").classList.remove("active");
-    document.body.style.overflow = "auto";
-  }
+function selectTime(btn) {
+  document.querySelectorAll('.time-btn').forEach(b => b.classList.remove('selected'));
+  btn.classList.add('selected');
+  document.getElementById('tour-time').value = btn.innerText;
+}
 
-  document.getElementById("date").setAttribute("min", new Date().toISOString().split("T")[0]);
+function selectTimeSlot(time) {
+  document.getElementById('tour-time').value = time;
+  alert("Time selected: " + time);
+}
 
-  function selectTime(btn) {
-    document.querySelectorAll('.time-btn').forEach(b => b.classList.remove('selected'));
-    btn.classList.add('selected');
-    document.getElementById('tour-time').value = btn.innerText.split('\n')[0];
-  }
+function updateSubtotal() {
+  let rows = document.querySelectorAll("#priceTable tbody tr");
+  let total = 0;
+  rows.forEach(row => {
+    const price = parseFloat(row.querySelector("td[data-price]").getAttribute("data-price"));
+    const qty = parseInt(row.querySelector(".qty").value);
+    const subtotal = price * qty;
+    row.querySelector(".subtotal").textContent = "USD " + subtotal;
+    total += subtotal;
+  });
+  document.getElementById("totalPrice").textContent = "USD " + total;
+}
 
-  function updateSubtotal() {
-    let rows = document.querySelectorAll("#priceTable tbody tr");
-    let total = 0;
-    rows.forEach(row => {
-      const price = parseFloat(row.querySelector("td[data-price]").getAttribute("data-price"));
-      const qty = parseInt(row.querySelector(".qty").value);
-      const subtotal = price * qty;
-      row.querySelector(".subtotal").textContent = "USD " + subtotal;
-      total += subtotal;
-    });
-    document.getElementById("totalPrice").textContent = "USD " + total;
-  }
+document.getElementById("bookingForm").addEventListener("submit", function(e) {
+  e.preventDefault();
 
-  document.getElementById("bookingForm").addEventListener("submit", function(e) {
-    e.preventDefault();
-    const code = document.getElementById("countryCode").value;
-    const number = document.getElementById("whatsappNumber").value.trim();
-    const fullNumber = code + number;
-    const time = document.getElementById("tour-time").value;
-    if (!time) return alert("⚠️ Please select a tour time.");
-    if (!/^\d{6,15}$/.test(number)) return alert("⚠️ Invalid WhatsApp number.");
+  const firstName = document.getElementById("firstName").value.trim();
+  const lastName = document.getElementById("lastName").value.trim();
+  const pickup = document.getElementById("pickup").value.trim();
+  const date = document.getElementById("date").value;
+  const customerNumber = document.getElementById("whatsappNumber").value.trim();
+  const time = document.getElementById("tour-time").value;
+  const total = document.getElementById("totalPrice").textContent;
 
-    const total = document.getElementById("totalPrice").textContent;
-    const qtyInputs = document.querySelectorAll('select.qty');
+  if (!time) return alert("⚠️ Please select a tour time.");
+  if (!/^\d{6,15}$/.test(customerNumber)) return alert("⚠️ Invalid WhatsApp number.");
 
-    const childQty = parseInt(qtyInputs[4].value);
-    const infantQty = parseInt(qtyInputs[5].value);
-
-    const message = 
-`Top ViP Private Tour Giza Pyramids, Sphinx, Inside Pyramid
-Top ViP All inclusive 
-1 NEW MESSAGE
-Lead Traveler: ${firstName.value} ${lastName.value}
-${infantQty > 0 ? 'infant, ' : ''}${childQty > 0 ? 'child, ' : ''}adults
-BR-${Math.floor(1000000000 + Math.random() * 9000000000)}
-Submitted 
-Hide details 
-INSTANT CONFIRMATION
-
-Customer phone number: ${fullNumber}
-Traveler names:
-${qtyInputs[0].value > 0 ? ' (Adult)' : ''}
-${qtyInputs[1].value > 0 ? ' (Adult)' : ''}
-${childQty > 0 ? ' (Child)' : ''}
-${infantQty > 0 ? ' (Infant)' : ''}
-
-Tour language: English
-Inclusions:
-✓ Qualified Egyptologist guide
-✓ Hotel pickup and drop-off By Private cars
-✓ Lunch in Restaurant ( All inclusive Option )
-✓ 30 Minutes camel Ride around Giza pyramids ( All inclusive Option )
-✓ Private Tour
-✓ Entrance fees to Giza Pyramids and Sphinx ( All inclusive Option )
-✓ Entry fee to the third pyramid of Giza ( All inclusive Option )
-✓ Entry/Admission - Panoramic View of the Pyramids
-✓ Entry/Admission - Menkaure Pyramid
-✓ Entry/Admission - Great Sphinx
-✓ Entry/Admission - Pyramids of Giza
-
-Pickup point: ${pickup.value}
-Tour Date: ${date.value}
-Tour Time: ${time}
+  const message = 
+`Tour Booking:
+Name: ${firstName} ${lastName}
+Pickup: ${pickup}
+Date: ${date}
+Time: ${time}
+Customer WhatsApp: ${customerNumber}
 Total Price: ${total}`;
 
-    const encodedMessage = encodeURIComponent(message);
-    const waNumber = code.replace("+", "") + number;
-    window.open(`https://wa.me/${waNumber}?text=${encodedMessage}`, '_blank');
-  });
+  const encodedMessage = encodeURIComponent(message);
+  window.open(`https://wa.me/201283915289?text=${encodedMessage}`, '_blank');
+});
 </script>
 
 </body>
