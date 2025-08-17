@@ -362,6 +362,80 @@ ${infantQty > 0 ? ' (Infant)' : ''}
 
 Tour language: English
 Inclusions:
+✓ Quali
+<script>
+  function toggleMenu() {
+    document.getElementById("sidebar").classList.toggle("active");
+    document.getElementById("overlay").classList.toggle("active");
+    document.body.style.overflow = document.getElementById("sidebar").classList.contains("active") ? "hidden" : "auto";
+  }
+
+  function closeMenu() {
+    document.getElementById("sidebar").classList.remove("active");
+    document.getElementById("overlay").classList.remove("active");
+    document.body.style.overflow = "auto";
+  }
+
+  document.getElementById("date").setAttribute("min", new Date().toISOString().split("T")[0]);
+
+  function selectTime(btn) {
+    document.querySelectorAll('.time-btn').forEach(b => b.classList.remove('selected'));
+    btn.classList.add('selected');
+    document.getElementById('tour-time').value = btn.innerText.split('\n')[0];
+  }
+
+  function updateSubtotal() {
+    let rows = document.querySelectorAll("#priceTable tbody tr");
+    let total = 0;
+    rows.forEach(row => {
+      const price = parseFloat(row.querySelector("td[data-price]").getAttribute("data-price"));
+      const qty = parseInt(row.querySelector(".qty").value);
+      const subtotal = price * qty;
+      row.querySelector(".subtotal").textContent = "USD " + subtotal;
+      total += subtotal;
+    });
+    document.getElementById("totalPrice").textContent = "USD " + total;
+  }
+
+  document.getElementById("bookingForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+    
+    const time = document.getElementById("tour-time").value;
+    if (!time) return alert("⚠️ Please select a tour time.");
+
+    const total = document.getElementById("totalPrice").textContent;
+    const qtyInputs = document.querySelectorAll('select.qty');
+
+    const firstName = document.getElementById("firstName").value;
+    const lastName = document.getElementById("lastName").value;
+    const nationality = document.getElementById("nationality").value;
+    const gender = document.getElementById("gender").value;
+    const email = document.getElementById("email").value;
+    const pickup = document.getElementById("pickup").value;
+    const date = document.getElementById("date").value;
+
+    const childQty = parseInt(qtyInputs[4].value);
+    const infantQty = parseInt(qtyInputs[5].value);
+
+    const message = 
+`Top ViP Private Tour Giza Pyramids, Sphinx, Inside Pyramid
+Top ViP All inclusive 
+1 NEW MESSAGE
+Lead Traveler: ${firstName} ${lastName}
+${infantQty > 0 ? 'infant, ' : ''}${childQty > 0 ? 'child, ' : ''}adults
+BR-${Math.floor(1000000000 + Math.random() * 9000000000)}
+Submitted 
+Hide details 
+INSTANT CONFIRMATION
+
+Traveler details:
+Name: ${firstName} ${lastName}
+Nationality: ${nationality}
+Gender: ${gender}
+Email: ${email}
+
+Tour language: English
+Inclusions:
 ✓ Qualified Egyptologist guide
 ✓ Hotel pickup and drop-off By Private cars
 ✓ Lunch in Restaurant ( All inclusive Option )
@@ -374,16 +448,16 @@ Inclusions:
 ✓ Entry/Admission - Great Sphinx
 ✓ Entry/Admission - Pyramids of Giza
 
-Pickup point: ${pickup.value}
-Tour Date: ${date.value}
+Pickup point: ${pickup}
+Tour Date: ${date}
 Tour Time: ${time}
 Total Price: ${total}`;
 
     const encodedMessage = encodeURIComponent(message);
-    const waNumber = code.replace("+", "") + number;
-    window.open(`https://wa.me/${waNumber}?text=${encodedMessage}`, '_blank');
+
+    // رقم الواتساب الثابت بتاعك (مثال: 201283915289 للرقم 01283915289)
+    window.open(`https://wa.me/201283915289?text=${encodedMessage}`, '_blank');
   });
 </script>
-
 </body>
 </html>
