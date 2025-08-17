@@ -100,7 +100,7 @@
       padding: 20px;
       border: 1px solid #ddd;
       border-radius: 10px;
-      max-width: 600px;
+      max-width: 700px;
       margin: auto;
     }
     form label {
@@ -192,61 +192,68 @@
 <!-- Page Content -->
 <h1>ALL INCLUSIVE PRIVATE HALF-DAY TRIP TO GIZA PYRAMIDS WITH CAMEL RIDE</h1>
 
-<!-- Dynamic Price Table -->
-<table id="priceTable">
-  <thead>
-    <tr>
-      <th>Category</th>
-      <th>Price per Person</th>
-      <th>Quantity</th>
-      <th>Subtotal</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>1 Person</td>
-      <td data-price="65">USD 65</td>
-      <td><select onchange="updateSubtotal()" class="qty"><option value="0" selected>0</option><option value="1">1</option></select></td>
-      <td class="subtotal">USD 0</td>
-    </tr>
-    <tr>
-      <td>2–4 Persons</td>
-      <td data-price="55">USD 55</td>
-      <td><select onchange="updateSubtotal()" class="qty"><option value="0" selected>0</option><option value="2">2</option><option value="3">3</option><option value="4">4</option></select></td>
-      <td class="subtotal">USD 0</td>
-    </tr>
-    <tr>
-      <td>5–8 Persons</td>
-      <td data-price="45">USD 45</td>
-      <td><select onchange="updateSubtotal()" class="qty"><option value="0" selected>0</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option></select></td>
-      <td class="subtotal">USD 0</td>
-    </tr>
-    <tr>
-      <td>9–15 Persons</td>
-      <td data-price="30">USD 30</td>
-      <td><select onchange="updateSubtotal()" class="qty"><option value="0" selected>0</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option></select></td>
-      <td class="subtotal">USD 0</td>
-    </tr>
-    <tr>
-      <td>Child</td>
-      <td data-price="25">USD 25</td>
-      <td><select onchange="updateSubtotal()" class="qty"><option value="0" selected>0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option></select></td>
-      <td class="subtotal">USD 0</td>
-    </tr>
-    <tr>
-      <td>Infant</td>
-      <td data-price="0">FREE</td>
-      <td><select onchange="updateSubtotal()" class="qty"><option value="0" selected>0</option><option value="1">1</option><option value="2">2</option></select></td>
-      <td class="subtotal">USD 0</td>
-    </tr>
-  </tbody>
-  <tfoot>
-    <tr>
-      <td colspan="3" style="text-align:right; font-weight:bold;">Total:</td>
-      <td id="totalPrice" style="font-weight:bold;">USD 0</td>
-    </tr>
-  </tfoot>
-</table>
+<form onsubmit="return confirmBooking(event)">
+  <!-- Dynamic Price Table -->
+  <table id="priceTable">
+    <thead>
+      <tr>
+        <th>Category</th>
+        <th>Price per Person</th>
+        <th>Quantity</th>
+        <th>Subtotal</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>1 Person</td>
+        <td data-price="65">USD 65</td>
+        <td><select onchange="updateSubtotal()" class="qty"><option value="0" selected>0</option><option value="1">1</option></select></td>
+        <td class="subtotal">USD 0</td>
+      </tr>
+      <tr>
+        <td>2–4 Persons</td>
+        <td data-price="55">USD 55</td>
+        <td><select onchange="updateSubtotal()" class="qty"><option value="0" selected>0</option><option value="2">2</option><option value="3">3</option><option value="4">4</option></select></td>
+        <td class="subtotal">USD 0</td>
+      </tr>
+      <tr>
+        <td>5–8 Persons</td>
+        <td data-price="45">USD 45</td>
+        <td><select onchange="updateSubtotal()" class="qty"><option value="0" selected>0</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option></select></td>
+        <td class="subtotal">USD 0</td>
+      </tr>
+      <tr>
+        <td>9–15 Persons</td>
+        <td data-price="30">USD 30</td>
+        <td><select onchange="updateSubtotal()" class="qty"><option value="0" selected>0</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option></select></td>
+        <td class="subtotal">USD 0</td>
+      </tr>
+      <tr>
+        <td>Child</td>
+        <td data-price="25">USD 25</td>
+        <td><select onchange="updateSubtotal()" class="qty"><option value="0" selected>0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option></select></td>
+        <td class="subtotal">USD 0</td>
+      </tr>
+      <tr>
+        <td>Infant</td>
+        <td data-price="0">FREE</td>
+        <td><select onchange="updateSubtotal()" class="qty"><option value="0" selected>0</option><option value="1">1</option><option value="2">2</option></select></td>
+        <td class="subtotal">USD 0</td>
+      </tr>
+    </tbody>
+    <tfoot>
+      <tr>
+        <td colspan="3" style="text-align:right; font-weight:bold;">Total:</td>
+        <td id="totalPrice" style="font-weight:bold;">USD 0</td>
+      </tr>
+    </tfoot>
+  </table>
+
+  <!-- Date Picker -->
+  <label for="date">Select Tour Date</label>
+  <input type="date" id="date" name="date" required>
+
+  <!-- Time Options -->
   <label>Choose Tour Time</label>
   <div class="time-options">
     <div class="time-btn" onclick="selectTime(this)">7:00 AM<br><small>Places remaining</small></div>
@@ -256,8 +263,14 @@
     <div class="time-btn" onclick="selectTime(this)">11:00 AM<br><small>Places remaining</small></div>
     <div class="time-btn" onclick="selectTime(this)">12:00 PM<br><small>Places remaining</small></div>
     <div class="time-btn" onclick="selectTime(this)">1:00 PM<br><small>Places remaining</small></div>
-    <div class="time-btn" onclick="selectTime(this)">2:00 AM<br><small>Places remaining</small></div>
+    <div class="time-btn" onclick="selectTime(this)">2:00 PM<br><small>Places remaining</small></div>
   </div>
+  <input type="hidden" id="tour-time" name="tour_time">
+
+  <!-- Submit Button -->
+  <button type="submit"><i class="fab fa-whatsapp"></i> Book via WhatsApp</button>
+</form>
+
 <script>
   function toggleMenu() {
     document.getElementById("sidebar").classList.toggle("active");
@@ -271,6 +284,7 @@
     document.body.style.overflow = "auto";
   }
 
+  // منع اختيار تاريخ قديم
   document.getElementById("date").setAttribute("min", new Date().toISOString().split("T")[0]);
 
   function selectTime(btn) {
@@ -289,5 +303,21 @@
       row.querySelector(".subtotal").textContent = "USD " + subtotal;
       total += subtotal;
     });
+    document.getElementById("totalPrice").textContent = "USD " + total;
+  }
+
+  function confirmBooking(e) {
+    e.preventDefault();
+    let date = document.getElementById("date").value;
+    let time = document.getElementById("tour-time").value;
+    let total = document.getElementById("totalPrice").textContent;
+    if (!date || !time) {
+      alert("Please select date and time.");
+      return false;
+    }
+    alert("Booking confirmed for " + date + " at " + time + "\nTotal: " + total);
+    return true;
+  }
+</script>
 </body>
-</html>
+      </html>
