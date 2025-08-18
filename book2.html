@@ -5,203 +5,101 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Book Tour | Let's Discover Egypt</title>
   <link rel="icon" href="favicon.png" type="image/png">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
   <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      font-family: 'Poppins', sans-serif;
-      background: #fff;
-      color: #333;
-      padding-top: 70px;
-    }
-    header {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%;
-      background: white;
-      padding: 15px 20px;
-      display: flex;
-      align-items: center;
-      justify-content: flex-start;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-      z-index: 100;
-    }
-    .menu-icon {
-      font-size: 24px;
-      cursor: pointer;
-    }
-    header h2 {
-      position: absolute;
-      left: 50%;
-      transform: translateX(-50%);
-      font-size: 20px;
-      font-weight: 600;
-    }
-    header h2 a {
-      text-decoration: none;
-      color: #333;
-    }
-    .sidebar {
-      position: fixed;
-      top: 0; left: -250px;
-      width: 250px;
-      height: 100%;
-      background: #333;
-      color: white;
-      padding: 60px 20px;
-      transition: 0.3s ease;
-      z-index: 101;
-    }
-    .sidebar.active { left: 0; }
-    .sidebar a {
-      display: block;
-      color: white;
-      text-decoration: none;
-      padding: 15px 0;
-      border-bottom: 1px solid #444;
-    }
-    .sidebar a:hover { background: #444; padding-left: 10px; }
-    .overlay {
-      display: none;
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: rgba(0,0,0,0.3);
-      z-index: 100;
-    }
-    .overlay.active { display: block; }
-
-    h1 {
-      text-align: center;
-      margin: 30px 0;
-      font-size: 24px;
-    }
-    form {
-      background: #fafafa;
-      padding: 20px;
-      border: 1px solid #ddd;
-      border-radius: 10px;
-      max-width: 600px;
-      margin: auto;
-    }
-    form label {
-      display: block;
-      margin-bottom: 5px;
-      font-size: 13px;
-      font-weight: 500;
-    }
-    form input, form select {
-      width: 100%;
-      padding: 8px;
-      font-size: 14px;
-      border: 1px solid #ccc;
-      border-radius: 6px;
-      margin-bottom: 15px;
-    }
-    button[type="submit"] {
-      background: #25D366;
-      color: #fff;
-      padding: 12px 20px;
-      border: none;
-      border-radius: 6px;
-      font-size: 15px;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    button[type="submit"] i {
-      margin-right: 8px;
-    }
+    body { font-family: Arial, sans-serif; background:#f5f5f5; margin:0; padding:0; }
+    .header { background:#222; color:#fff; padding:15px; text-align:center; position:fixed; width:100%; top:0; z-index:1000; }
+    .container { margin-top:80px; max-width:600px; margin-left:auto; margin-right:auto; background:#fff; padding:20px; border-radius:10px; box-shadow:0 0 10px rgba(0,0,0,0.1); }
+    label { display:block; margin-top:15px; font-weight:bold; }
+    input, select { width:100%; padding:10px; margin-top:5px; border-radius:5px; border:1px solid #ccc; }
+    button { margin-top:20px; padding:15px; width:100%; background:#28a745; color:#fff; font-size:16px; border:none; border-radius:5px; cursor:pointer; }
+    button:hover { background:#218838; }
   </style>
 </head>
 <body>
 
-<!-- Overlay & Sidebar -->
-<div class="overlay" id="overlay" onclick="closeMenu()"></div>
-<div class="sidebar" id="sidebar">
-  <a href="index.html"><i class="fas fa-home"></i> Home</a>
-  <a href="about.html"><i class="fas fa-info-circle"></i> About Us</a>
-  <a href="tours.html"><i class="fas fa-map-marked-alt"></i> Tours</a>
-  <a href="contact.html"><i class="fas fa-phone"></i> Contact</a>
-</div>
-
-<!-- Header -->
-<header>
-  <div class="menu-icon" onclick="toggleMenu()">☰</div>
-  <h2><a href="index.html"><i class="fas fa-globe-africa"></i> Let's Discover Egypt</a></h2>
-</header>
-
-<!-- Page Content -->
-<h1>ALL INCLUSIVE PRIVATE HALF-DAY TRIP TO GIZA PYRAMIDS WITH CAMEL RIDE</h1>
-
-<!-- Booking Form -->
-<form id="bookingForm">
-  <label>First Name</label>
-  <input type="text" id="firstName" required>
-  <label>Last Name</label>
-  <input type="text" id="lastName" required>
-  <label>Nationality</label>
-  <input type="text" id="nationality" required>
-  <label>Gender</label>
-  <select id="gender" required>
-    <option value="">Select</option>
-    <option>Male</option>
-    <option>Female</option>
-  </select>
-  <label>Email</label>
-  <input type="email" id="email" required>
-  <label>Pick-up Location</label>
-  <input type="text" id="pickup" required>
-  <label>WhatsApp Number</label>
-  <div style="display: flex; gap: 10px; align-items: center;">
-    <select id="countryCode" required style="flex: 1;">
-      <option value="+20">🇪🇬 Egypt +20</option>
-      <option value="+1">🇺🇸 USA +1</option>
-      <option value="+44">🇬🇧 UK +44</option>
-      <option value="+971">🇦🇪 UAE +971</option>
-    </select>
-    <input type="tel" id="whatsappNumber" placeholder="123456789" required style="flex: 2;">
+  <div class="header">
+    Let's Discover Egypt - Book Your VIP Tour
   </div>
-  <button type="submit"><i class="fab fa-whatsapp"></i>Confirm via WhatsApp</button>
-</form>
+
+  <div class="container">
+    <form id="vipForm">
+      <label for="tour">Tour Name:</label>
+      <select id="tour" required>
+        <option value="Top ViP Private Tour Giza Pyramids, Sphinx, Inside Pyramid">Top ViP Private Tour Giza Pyramids, Sphinx, Inside Pyramid</option>
+      </select>
+
+      <label for="package">Package & Time:</label>
+      <select id="package" required>
+        <option value="Top ViP All inclusive 10:00">Top ViP All inclusive 10:00</option>
+      </select>
+
+      <label for="leadName">Lead Traveler Name:</label>
+      <input type="text" id="leadName" placeholder="Enter lead traveler name" required>
+
+      <label for="infant">Number of Infants:</label>
+      <input type="number" id="infant" value="0" min="0" required>
+
+      <label for="child">Number of Children:</label>
+      <input type="number" id="child" value="0" min="0" required>
+
+      <label for="adult">Number of Adults:</label>
+      <input type="number" id="adult" value="1" min="1" required>
+
+      <label for="whatsapp">Customer WhatsApp Number:</label>
+      <input type="tel" id="whatsapp" placeholder="e.g. 0123456789" required>
+
+      <label for="pickup">Pickup Point:</label>
+      <input type="text" id="pickup" placeholder="Enter pickup point" required>
+
+      <button type="submit">Book Now</button>
+    </form>
+  </div>
 
 <script>
-  function toggleMenu() {
-    document.getElementById("sidebar").classList.toggle("active");
-    document.getElementById("overlay").classList.toggle("active");
-    document.body.style.overflow = document.getElementById("sidebar").classList.contains("active") ? "hidden" : "auto";
-  }
-
-  function closeMenu() {
-    document.getElementById("sidebar").classList.remove("active");
-    document.getElementById("overlay").classList.remove("active");
-    document.body.style.overflow = "auto";
-  }
-
-  document.getElementById("bookingForm").addEventListener("submit", function(e) {
+  document.getElementById('vipForm').addEventListener('submit', function(e) {
     e.preventDefault();
-    const code = document.getElementById("countryCode").value;
-    const number = document.getElementById("whatsappNumber").value.trim();
-    const fullNumber = code + number;
+    
+    let tour = document.getElementById('tour').value;
+    let packageTime = document.getElementById('package').value;
+    let leadName = document.getElementById('leadName').value;
+    let infant = document.getElementById('infant').value;
+    let child = document.getElementById('child').value;
+    let adult = document.getElementById('adult').value;
+    let whatsapp = document.getElementById('whatsapp').value;
+    let pickup = document.getElementById('pickup').value;
+    
+    let message = `Top ViP Private Tour Giza Pyramids, Sphinx, Inside Pyramid\n` +
+                  `${packageTime}\n` +
+                  `1 NEW MESSAGE\n` +
+                  `Lead Traveler: ${leadName}\n` +
+                  `${infant} infant, ${child} child, ${adult} adults\n` +
+                  `BR-${Math.floor(Math.random()*1000000000)}\n` +
+                  `Submitted\n` +
+                  `Hide details\n` +
+                  `INSTANT CONFIRMATION\n\n` +
+                  `Customer phone number: ${whatsapp}\n` +
+                  `Traveler names:\n` +
+                  `${leadName} (Lead)\n` +
+                  `Tour language: Italian\n` +
+                  `Inclusions:\n` +
+                  `✓ Qualified Egyptologist guide\n` +
+                  `✓ Hotel pickup and drop-off By Private cars\n` +
+                  `✓ Lunch in Restaurant ( All inclusive Option )\n` +
+                  `✓ 30 Minutes camel Ride around Giza pyramids ( All inclusive Option )\n` +
+                  `✓ Private Tour\n` +
+                  `✓ Entrance fees to Giza Pyramids and Sphinx ( All inclusive Option )\n` +
+                  `✓ Entry fee to the third pyramid of Giza ( All inclusive Option )\n` +
+                  `✓ Entry/Admission - Panoramic View of the Pyramids\n` +
+                  `✓ Entry/Admission - Menkaure Pyramid\n` +
+                  `✓ Entry/Admission - Great Sphinx\n` +
+                  `✓ Entry/Admission - Pyramids of Giza\n` +
+                  `Pickup point: ${pickup}`;
 
-    if (!/^\d{6,15}$/.test(number)) return alert("⚠️ Invalid WhatsApp number.");
-
-    const message = 
-`📌 New Booking Request
-----------------------
-👤 Name: ${firstName.value} ${lastName.value}
-🌍 Nationality: ${nationality.value}
-🚻 Gender: ${gender.value}
-📧 Email: ${email.value}
-📍 Pickup Location: ${pickup.value}
-📱 WhatsApp: ${fullNumber}
-`;
-
-    const encodedMessage = encodeURIComponent(message);
-    const waNumber = "201283915289"; // رقمك أنت
-    window.open(`https://wa.me/${waNumber}?text=${encodedMessage}`, '_blank');
+    // Replace '+' with '%2B' to encode the WhatsApp URL
+    let phone = "01283915289"; // رقمك الخاص
+    let url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+    window.open(url, '_blank');
   });
 </script>
 
