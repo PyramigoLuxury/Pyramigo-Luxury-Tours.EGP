@@ -5,187 +5,142 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Book Tour | Let's Discover Egypt</title>
   <link rel="icon" href="favicon.png" type="image/png">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-  <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      font-family: 'Poppins', sans-serif;
-      background: #fff;
-      color: #333;
-      padding-top: 70px;
-    }
-    header {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%;
-      background: white;
-      padding: 15px 20px;
-      display: flex;
-      align-items: center;
-      justify-content: flex-start;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-      z-index: 100;
-    }
-    .menu-icon {
-      font-size: 24px;
-      cursor: pointer;
-    }
-    header h2 {
-      position: absolute;
-      left: 50%;
-      transform: translateX(-50%);
-      font-size: 20px;
-      font-weight: 600;
-    }
-    header h2 a {
-      text-decoration: none;
-      color: #333;
-    }
-    .sidebar {
-      position: fixed;
-      top: 0; left: -250px;
-      width: 250px;
-      height: 100%;
-      background: #333;
-      color: white;
-      padding: 60px 20px;
-      transition: 0.3s ease;
-      z-index: 101;
-    }
-    .sidebar.active { left: 0; }
-    .sidebar a {
-      display: block;
-      color: white;
-      text-decoration: none;
-      padding: 15px 0;
-      border-bottom: 1px solid #444;
-    }
-    .sidebar a:hover { background: #444; padding-left: 10px; }
-    .overlay {
-      display: none;
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: rgba(0,0,0,0.3);
-      z-index: 100;
-    }
-    .overlay.active { display: block; }
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 
-    h1 {
-      text-align: center;
-      margin: 30px 0;
-      font-size: 24px;
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f5f5f5;
     }
+
+    /* جدول الحجز */
     table {
-      width: 100%;
+      width: 90%;
+      margin: 50px auto;
       border-collapse: collapse;
-      margin-bottom: 30px;
-      border: 1px solid #ddd;
-      border-radius: 8px;
-      overflow: hidden;
+      background-color: #fff;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
     }
+
     th, td {
-      padding: 10px;
-      border-bottom: 1px solid #eee;
-      font-size: 14px;
+      padding: 12px 15px;
       text-align: center;
+      border-bottom: 1px solid #ddd;
     }
+
     th {
-      background: #f9f9f9;
-      font-weight: 600;
+      background-color: #4CAF50;
+      color: white;
     }
-    form {
-      background: #fafafa;
-      padding: 20px;
-      border: 1px solid #ddd;
-      border-radius: 10px;
-      max-width: 700px;
-      margin: auto;
+
+    /* الصف الأخير للـ Total */
+    tfoot td {
+      font-weight: bold;
+      font-size: 18px;
     }
-    form label {
-      display: block;
-      margin-bottom: 5px;
-      font-size: 13px;
-      font-weight: 500;
-    }
-    form input, form select {
-      width: 100%;
-      padding: 8px;
-      font-size: 14px;
-      border: 1px solid #ccc;
-      border-radius: 6px;
-      margin-bottom: 15px;
-    }
-    .time-options {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      margin-bottom: 20px;
-    }
-    .time-btn {
-      padding: 10px;
-      background: #f4f4f4;
-      border: 1px solid #ccc;
+
+    /* زرار NEXT */
+    .next-btn {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      padding: 12px 25px;
+      background-color: #25D366; /* أخضر */
+      color: white;
+      font-size: 16px;
+      font-weight: bold;
       border-radius: 8px;
-      text-align: left;
-      font-size: 14px;
-      cursor: pointer;
-      transition: 0.2s;
+      text-decoration: none;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      transition: 0.3s;
+      z-index: 1000;
     }
-    .time-btn:hover { background: #eee; }
-    .time-btn.selected {
-      background-color: #333;
-      color: #fff;
-      border-color: #333;
+
+    .next-btn:hover {
+      background-color: #1ebe5d; /* أخضر أغمق عند hover */
     }
-    .time-btn small {
-      display: block;
-      font-size: 12px;
-      color: #666;
+
+    input[type=number] {
+      width: 60px;
+      padding: 5px;
+      font-size: 16px;
     }
-    button[type="submit"] {
-      background: #25D366;
-      color: #fff;
-      padding: 12px 20px;
-      border: none;
-      border-radius: 6px;
-      font-size: 15px;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    button[type="submit"] i {
-      margin-right: 8px;
-    }
-    @media (max-width: 600px) {
-      .time-options {
-        flex-wrap: wrap;
-        flex-direction: row;
-        justify-content: space-between;
-      }
-      .time-btn {
-        flex: 0 48%;
-        font-size: 13px;
-      }
+
+    input[type=checkbox] {
+      transform: scale(1.3);
     }
   </style>
 </head>
 <body>
 
-<!-- Overlay & Sidebar -->
-<div class="overlay" id="overlay" onclick="closeMenu()"></div>
-<div class="sidebar" id="sidebar">
-  <a href="index.html"><i class="fas fa-home"></i> Home</a>
-  <a href="about.html"><i class="fas fa-info-circle"></i> About Us</a>
-  <a href="tours.html"><i class="fas fa-map-marked-alt"></i> Tours</a>
-  <a href="contact.html"><i class="fas fa-phone"></i> Contact</a>
-</div>
+  <!-- جدول الحجز -->
+  <table>
+    <thead>
+      <tr>
+        <th>Select</th>
+        <th>Category</th>
+        <th>Price</th>
+        <th>Quantity</th>
+        <th>Subtotal</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><input type="checkbox" class="select-row" /></td>
+        <td>Adult</td>
+        <td class="price">100</td>
+        <td><input type="number" min="0" value="0" class="qty" /></td>
+        <td class="subtotal">0</td>
+      </tr>
+      <tr>
+        <td><input type="checkbox" class="select-row" /></td>
+        <td>Child</td>
+        <td class="price">50</td>
+        <td><input type="number" min="0" value="0" class="qty" /></td>
+        <td class="subtotal">0</td>
+      </tr>
+    </tbody>
+    <tfoot>
+      <tr>
+        <td colspan="4">Total</td>
+        <td id="total">0</td>
+      </tr>
+    </tfoot>
+  </table>
 
-<!-- Header -->
-<header>
-  <div class="menu-icon" onclick="toggleMenu()">☰</div>
-  <h2><a href="index.html"><i class="fas fa-globe-africa"></i> Let's Discover Egypt</a></h2>
-</header>
+  <!-- زرار NEXT -->
+  <a href="book2.html" class="next-btn">NEXT</a>
 
+  <script>
+    const rows = document.querySelectorAll('tbody tr');
+    const totalEl = document.getElementById('total');
+
+    function updateTotals() {
+      let total = 0;
+      rows.forEach(row => {
+        const checkbox = row.querySelector('.select-row');
+        const price = parseFloat(row.querySelector('.price').textContent);
+        const qty = parseInt(row.querySelector('.qty').value) || 0;
+        const subtotalEl = row.querySelector('.subtotal');
+
+        if (checkbox.checked) {
+          const subtotal = price * qty;
+          subtotalEl.textContent = subtotal;
+          total += subtotal;
+        } else {
+          subtotalEl.textContent = 0;
+        }
+      });
+      totalEl.textContent = total;
+    }
+
+    rows.forEach(row => {
+      row.querySelector('.select-row').addEventListener('change', updateTotals);
+      row.querySelector('.qty').addEventListener('input', updateTotals);
+    });
+  </script>
+
+</body>
+</html>
