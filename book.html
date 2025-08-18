@@ -145,7 +145,7 @@
       color: #666;
     }
     button[type="submit"] {
-      background: #25D366;
+      background: #333;
       color: #fff;
       padding: 12px 20px;
       border: none;
@@ -268,7 +268,7 @@
   <input type="hidden" id="tour-time" name="tour_time">
 
   <!-- Submit Button -->
-  <button type="submit"><i class="fab fa-whatsapp"></i> Book via WhatsApp</button>
+  <button type="submit"><i class="fas fa-arrow-right"></i> Next</button>
 </form>
 
 <script>
@@ -311,13 +311,18 @@
     let date = document.getElementById("date").value;
     let time = document.getElementById("tour-time").value;
     let total = document.getElementById("totalPrice").textContent;
+
     if (!date || !time) {
       alert("Please select date and time.");
       return false;
     }
-    alert("Booking confirmed for " + date + " at " + time + "\nTotal: " + total);
+
+    // التحويل للخطوة التانية مع البارامترات
+    let nextPage = `book-step2.html?date=${encodeURIComponent(date)}&time=${encodeURIComponent(time)}&total=${encodeURIComponent(total)}`;
+    window.location.href = nextPage;
+
     return true;
   }
 </script>
 </body>
-      </html>
+  </html>
