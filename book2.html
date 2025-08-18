@@ -7,101 +7,112 @@
   <link rel="icon" href="favicon.png" type="image/png">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
   <style>
-    body { font-family: Arial, sans-serif; background:#f5f5f5; margin:0; padding:0; }
-    .header { background:#222; color:#fff; padding:15px; text-align:center; position:fixed; width:100%; top:0; z-index:1000; }
-    .container { margin-top:80px; max-width:600px; margin-left:auto; margin-right:auto; background:#fff; padding:20px; border-radius:10px; box-shadow:0 0 10px rgba(0,0,0,0.1); }
-    label { display:block; margin-top:15px; font-weight:bold; }
-    input, select { width:100%; padding:10px; margin-top:5px; border-radius:5px; border:1px solid #ccc; }
-    button { margin-top:20px; padding:15px; width:100%; background:#28a745; color:#fff; font-size:16px; border:none; border-radius:5px; cursor:pointer; }
-    button:hover { background:#218838; }
+    body {font-family: Arial, sans-serif; background:#f5f5f5; margin:0; padding:0;}
+    .header {background:#111; color:#fff; padding:15px; text-align:center; position:fixed; width:100%; top:0; z-index:100;}
+    .container {max-width:600px; margin:100px auto 50px; background:#fff; padding:30px; border-radius:10px; box-shadow:0 0 15px rgba(0,0,0,0.2);}
+    .container h2 {text-align:center; margin-bottom:20px;}
+    .form-group {margin-bottom:15px;}
+    .form-group label {display:block; margin-bottom:5px;}
+    .form-group input, .form-group select, .form-group textarea {width:100%; padding:10px; border:1px solid #ccc; border-radius:5px;}
+    .btn {background:#28a745; color:#fff; padding:12px 20px; border:none; border-radius:5px; cursor:pointer; font-size:16px; width:100%;}
+    .btn:hover {background:#218838;}
   </style>
 </head>
 <body>
-
-  <div class="header">
-    Let's Discover Egypt - Book Your VIP Tour
-  </div>
-
+  <div class="header">Let's Discover Egypt - Book Tour</div>
   <div class="container">
-    <form id="vipForm">
-      <label for="tour">Tour Name:</label>
-      <select id="tour" required>
-        <option value="Top ViP Private Tour Giza Pyramids, Sphinx, Inside Pyramid">Top ViP Private Tour Giza Pyramids, Sphinx, Inside Pyramid</option>
-      </select>
-
-      <label for="package">Package & Time:</label>
-      <select id="package" required>
-        <option value="Top ViP All inclusive 10:00">Top ViP All inclusive 10:00</option>
-      </select>
-
-      <label for="leadName">Lead Traveler Name:</label>
-      <input type="text" id="leadName" placeholder="Enter lead traveler name" required>
-
-      <label for="infant">Number of Infants:</label>
-      <input type="number" id="infant" value="0" min="0" required>
-
-      <label for="child">Number of Children:</label>
-      <input type="number" id="child" value="0" min="0" required>
-
-      <label for="adult">Number of Adults:</label>
-      <input type="number" id="adult" value="1" min="1" required>
-
-      <label for="whatsapp">Customer WhatsApp Number:</label>
-      <input type="tel" id="whatsapp" placeholder="e.g. 0123456789" required>
-
-      <label for="pickup">Pickup Point:</label>
-      <input type="text" id="pickup" placeholder="Enter pickup point" required>
-
-      <button type="submit">Book Now</button>
+    <h2>Booking Form</h2>
+    <form id="bookingForm">
+      <div class="form-group">
+        <label for="leadName">Lead Traveler Name</label>
+        <input type="text" id="leadName" name="leadName" placeholder="Enter full name" required>
+      </div>
+      <div class="form-group">
+        <label for="infants">Number of Infants</label>
+        <input type="number" id="infants" name="infants" min="0" value="0" required>
+      </div>
+      <div class="form-group">
+        <label for="children">Number of Children</label>
+        <input type="number" id="children" name="children" min="0" value="0" required>
+      </div>
+      <div class="form-group">
+        <label for="adults">Number of Adults</label>
+        <input type="number" id="adults" name="adults" min="1" value="1" required>
+      </div>
+      <div class="form-group">
+        <label for="phone">Your WhatsApp Number</label>
+        <input type="text" id="phone" name="phone" placeholder="e.g., 0123456789" required>
+      </div>
+      <div class="form-group">
+        <label for="tourPackage">Tour Package</label>
+        <select id="tourPackage" name="tourPackage" required>
+          <option value="Top ViP Private Tour Giza Pyramids, Sphinx, Inside Pyramid">Top ViP Private Tour Giza Pyramids, Sphinx, Inside Pyramid</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="tourTime">Tour Time</label>
+        <select id="tourTime" name="tourTime" required>
+          <option value="Top ViP All inclusive 10:00">Top ViP All inclusive 10:00</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="pickup">Pickup Point</label>
+        <input type="text" id="pickup" name="pickup" placeholder="Enter hotel or location" required>
+      </div>
+      <button type="submit" class="btn">Book Now</button>
     </form>
   </div>
 
-<script>
-  document.getElementById('vipForm').addEventListener('submit', function(e) {
-    e.preventDefault();
-    
-    let tour = document.getElementById('tour').value;
-    let packageTime = document.getElementById('package').value;
-    let leadName = document.getElementById('leadName').value;
-    let infant = document.getElementById('infant').value;
-    let child = document.getElementById('child').value;
-    let adult = document.getElementById('adult').value;
-    let whatsapp = document.getElementById('whatsapp').value;
-    let pickup = document.getElementById('pickup').value;
-    
-    let message = `Top ViP Private Tour Giza Pyramids, Sphinx, Inside Pyramid\n` +
-                  `${packageTime}\n` +
-                  `1 NEW MESSAGE\n` +
-                  `Lead Traveler: ${leadName}\n` +
-                  `${infant} infant, ${child} child, ${adult} adults\n` +
-                  `BR-${Math.floor(Math.random()*1000000000)}\n` +
-                  `Submitted\n` +
-                  `Hide details\n` +
-                  `INSTANT CONFIRMATION\n\n` +
-                  `Customer phone number: ${whatsapp}\n` +
-                  `Traveler names:\n` +
-                  `${leadName} (Lead)\n` +
-                  `Tour language: Italian\n` +
-                  `Inclusions:\n` +
-                  `✓ Qualified Egyptologist guide\n` +
-                  `✓ Hotel pickup and drop-off By Private cars\n` +
-                  `✓ Lunch in Restaurant ( All inclusive Option )\n` +
-                  `✓ 30 Minutes camel Ride around Giza pyramids ( All inclusive Option )\n` +
-                  `✓ Private Tour\n` +
-                  `✓ Entrance fees to Giza Pyramids and Sphinx ( All inclusive Option )\n` +
-                  `✓ Entry fee to the third pyramid of Giza ( All inclusive Option )\n` +
-                  `✓ Entry/Admission - Panoramic View of the Pyramids\n` +
-                  `✓ Entry/Admission - Menkaure Pyramid\n` +
-                  `✓ Entry/Admission - Great Sphinx\n` +
-                  `✓ Entry/Admission - Pyramids of Giza\n` +
-                  `Pickup point: ${pickup}`;
+  <script>
+    document.getElementById('bookingForm').addEventListener('submit', function(e){
+      e.preventDefault();
 
-    // Replace '+' with '%2B' to encode the WhatsApp URL
-    let phone = "01283915289"; // رقمك الخاص
-    let url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
-    window.open(url, '_blank');
-  });
-</script>
+      // جمع البيانات
+      const leadName = document.getElementById('leadName').value;
+      const infants = document.getElementById('infants').value || 0;
+      const children = document.getElementById('children').value || 0;
+      const adults = document.getElementById('adults').value || 0;
+      const phone = document.getElementById('phone').value;
+      const tourPackage = document.getElementById('tourPackage').value;
+      const tourTime = document.getElementById('tourTime').value;
+      const pickup = document.getElementById('pickup').value;
 
+      const brNumber = 'BR-' + Math.floor(Math.random()*9000000000 + 1000000000);
+
+      // تنسيق رسالة VIP
+      const message = 
+`Top ViP Private Tour Giza Pyramids, Sphinx, Inside Pyramid
+${tourTime}
+1 NEW MESSAGE
+Lead Traveler: ${leadName}
+${infants} infant, ${children} child, ${adults} adults
+${brNumber}
+Hide details
+INSTANT CONFIRMATION
+
+Customer phone number: ${phone}
+Traveler names:
+${leadName} (Adult)
+Tour language: Italian
+Inclusions:
+✓ Qualified Egyptologist guide
+✓ Hotel pickup and drop-off By Private cars
+✓ Lunch in Restaurant ( All inclusive Option )
+✓ 30 Minutes camel Ride around Giza pyramids ( All inclusive Option )
+✓ Private Tour
+✓ Entrance fees to Giza Pyramids and Sphinx ( All inclusive Option )
+✓ Entry fee to the third pyramid of Giza ( All inclusive Option )
+✓ Entry/Admission - Panoramic View of the Pyramids
+✓ Entry/Admission - Menkaure Pyramid
+✓ Entry/Admission - Great Sphinx
+✓ Entry/Admission - Pyramids of Giza
+Pickup point: ${pickup}`;
+
+      // فتح واتساب
+      const whatsappNumber = '01283915289'; // رقمك انت اللي هيستقبل
+      const url = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+      window.open(url, '_blank');
+    });
+  </script>
 </body>
 </html>
