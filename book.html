@@ -27,7 +27,10 @@
       box-shadow: 0 2px 5px rgba(0,0,0,0.1);
       z-index: 100;
     }
-    .menu-icon { font-size: 24px; cursor: pointer; }
+    .menu-icon {
+      font-size: 24px;
+      cursor: pointer;
+    }
     header h2 {
       position: absolute;
       left: 50%;
@@ -35,72 +38,137 @@
       font-size: 20px;
       font-weight: 600;
     }
-    header h2 a { text-decoration: none; color: #333; }
+    header h2 a {
+      text-decoration: none;
+      color: #333;
+    }
     .sidebar {
       position: fixed;
       top: 0; left: -250px;
-      width: 250px; height: 100%;
-      background: #333; color: white;
+      width: 250px;
+      height: 100%;
+      background: #333;
+      color: white;
       padding: 60px 20px;
       transition: 0.3s ease;
       z-index: 101;
     }
     .sidebar.active { left: 0; }
     .sidebar a {
-      display: block; color: white; text-decoration: none;
-      padding: 15px 0; border-bottom: 1px solid #444;
+      display: block;
+      color: white;
+      text-decoration: none;
+      padding: 15px 0;
+      border-bottom: 1px solid #444;
     }
     .sidebar a:hover { background: #444; padding-left: 10px; }
     .overlay {
-      display: none; position: fixed; top: 0; left: 0;
-      width: 100%; height: 100%; background: rgba(0,0,0,0.3); z-index: 100;
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.3);
+      z-index: 100;
     }
     .overlay.active { display: block; }
+
     h1 {
-      text-align: center; margin: 30px 0; font-size: 24px;
+      text-align: center;
+      margin: 30px 0;
+      font-size: 24px;
     }
     table {
-      width: 100%; border-collapse: collapse; margin-bottom: 30px;
-      border: 1px solid #ddd; border-radius: 8px; overflow: hidden;
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 30px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      overflow: hidden;
     }
     th, td {
-      padding: 10px; border-bottom: 1px solid #eee;
-      font-size: 14px; text-align: center;
+      padding: 10px;
+      border-bottom: 1px solid #eee;
+      font-size: 14px;
+      text-align: center;
     }
-    th { background: #f9f9f9; font-weight: 600; }
+    th {
+      background: #f9f9f9;
+      font-weight: 600;
+    }
     form {
-      background: #fafafa; padding: 20px; border: 1px solid #ddd;
-      border-radius: 10px; max-width: 700px; margin: auto;
+      background: #fafafa;
+      padding: 20px;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      max-width: 700px;
+      margin: auto;
     }
     form label {
-      display: block; margin-bottom: 5px; font-size: 13px; font-weight: 500;
+      display: block;
+      margin-bottom: 5px;
+      font-size: 13px;
+      font-weight: 500;
     }
     form input, form select {
-      width: 100%; padding: 8px; font-size: 14px;
-      border: 1px solid #ccc; border-radius: 6px; margin-bottom: 15px;
+      width: 100%;
+      padding: 8px;
+      font-size: 14px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      margin-bottom: 15px;
     }
     .time-options {
-      display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 20px;
     }
     .time-btn {
-      padding: 10px; background: #f4f4f4; border: 1px solid #ccc;
-      border-radius: 8px; text-align: left; font-size: 14px;
-      cursor: pointer; transition: 0.2s;
+      padding: 10px;
+      background: #f4f4f4;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      text-align: left;
+      font-size: 14px;
+      cursor: pointer;
+      transition: 0.2s;
     }
     .time-btn:hover { background: #eee; }
     .time-btn.selected {
-      background-color: #333; color: #fff; border-color: #333;
+      background-color: #333;
+      color: #fff;
+      border-color: #333;
     }
-    .time-btn small { display: block; font-size: 12px; color: #666; }
-    .btn-next {
-      display: inline-block; background: #25D366; color: #fff;
-      padding: 12px 20px; border-radius: 6px; font-size: 15px;
-      text-decoration: none; text-align: center; margin-top: 20px;
+    .time-btn small {
+      display: block;
+      font-size: 12px;
+      color: #666;
     }
-    .btn-next:hover { background: #1ebe57; }
+    button[type="submit"] {
+      background: #25D366;
+      color: #fff;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 6px;
+      font-size: 15px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    button[type="submit"] i {
+      margin-right: 8px;
+    }
     @media (max-width: 600px) {
-      .time-options { flex-wrap: wrap; flex-direction: row; justify-content: space-between; }
-      .time-btn { flex: 0 48%; font-size: 13px; }
+      .time-options {
+        flex-wrap: wrap;
+        flex-direction: row;
+        justify-content: space-between;
+      }
+      .time-btn {
+        flex: 0 48%;
+        font-size: 13px;
+      }
     }
   </style>
 </head>
@@ -121,52 +189,3 @@
   <h2><a href="index.html"><i class="fas fa-globe-africa"></i> Let's Discover Egypt</a></h2>
 </header>
 
-<!-- Content -->
-<main>
-  <h1>Step 1: Select Tour Details</h1>
-  <form onsubmit="return false;">
-    <label for="people">Number of People</label>
-    <input type="number" id="people" placeholder="Enter number of people" required>
-
-    <label for="date">Select Date</label>
-    <input type="date" id="date" required min="<?= date('Y-m-d') ?>">
-
-    <label>Select Time</label>
-    <div class="time-options">
-      <div class="time-btn" onclick="selectTime(this)">9:00 AM <small>Morning Tour</small></div>
-      <div class="time-btn" onclick="selectTime(this)">1:00 PM <small>Afternoon Tour</small></div>
-      <div class="time-btn" onclick="selectTime(this)">5:00 PM <small>Sunset Tour</small></div>
-    </div>
-
-    <!-- زر الانتقال -->
-    <a href="book2.html" class="btn-next" onclick="saveBookingData()">Next →</a>
-  </form>
-</main>
-
-<script>
-function toggleMenu(){ 
-  document.getElementById("sidebar").classList.toggle("active");
-  document.getElementById("overlay").classList.toggle("active");
-}
-function closeMenu(){
-  document.getElementById("sidebar").classList.remove("active");
-  document.getElementById("overlay").classList.remove("active");
-}
-
-function selectTime(el) {
-  document.querySelectorAll('.time-btn').forEach(btn => btn.classList.remove('selected'));
-  el.classList.add('selected');
-}
-
-function saveBookingData() {
-  const people = document.getElementById("people")?.value || "";
-  const date = document.getElementById("date")?.value || "";
-  const time = document.querySelector(".time-btn.selected")?.innerText || "";
-
-  const booking = { people, date, time };
-  sessionStorage.setItem("bookingData", JSON.stringify(booking));
-}
-</script>
-
-</body>
-</html>
