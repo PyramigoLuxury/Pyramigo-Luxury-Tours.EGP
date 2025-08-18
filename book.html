@@ -144,7 +144,7 @@
       font-size: 12px;
       color: #666;
     }
-    button[type="submit"], .next-btn {
+    .next-btn {
       background: #25D366;
       color: #fff;
       padding: 12px 20px;
@@ -157,7 +157,7 @@
       justify-content: center;
       margin-top: 15px;
     }
-    button[type="submit"] i, .next-btn i {
+    .next-btn i {
       margin-left: 8px;
     }
     @media (max-width: 600px) {
@@ -193,7 +193,7 @@
 <!-- Page Content -->
 <h1>ALL INCLUSIVE PRIVATE HALF-DAY TRIP TO GIZA PYRAMIDS WITH CAMEL RIDE</h1>
 
-<form onsubmit="return confirmBooking(event)">
+<form>
   <!-- Dynamic Price Table -->
   <table id="priceTable">
     <thead>
@@ -268,9 +268,6 @@
   </div>
   <input type="hidden" id="tour-time" name="tour_time">
 
-  <!-- Submit Button -->
-  <button type="submit"><i class="fab fa-whatsapp"></i> Book via WhatsApp</button>
-
   <!-- Next Button -->
   <button type="button" class="next-btn" onclick="goNextPage()">
     Next <i class="fas fa-arrow-right"></i>
@@ -312,22 +309,9 @@
     document.getElementById("totalPrice").textContent = "USD " + total;
   }
 
-  function confirmBooking(e) {
-    e.preventDefault();
-    let date = document.getElementById("date").value;
-    let time = document.getElementById("tour-time").value;
-    let total = document.getElementById("totalPrice").textContent;
-    if (!date || !time) {
-      alert("Please select date and time.");
-      return false;
-    }
-    alert("Booking confirmed for " + date + " at " + time + "\nTotal: " + total);
-    return true;
-  }
-
   function goNextPage() {
     window.location.href = "book2.html"; // الصفحة التالية
   }
 </script>
 </body>
-</html>
+  </html>
