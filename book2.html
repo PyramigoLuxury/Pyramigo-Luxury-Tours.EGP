@@ -232,34 +232,6 @@
     document.getElementById("sidebar").classList.toggle("active");
     document.getElementById("overlay").classList.toggle("active");
     document.body.style.overflow = document.getElementById("sidebar").classList.contains("active") ? "hidden" : "auto";
-  }
-
-  function closeMenu() {
-    document.getElementById("sidebar").classList.remove("active");
-    document.getElementById("overlay").classList.remove("active");
-    document.body.style.overflow = "auto";
-  }
-
-  document.getElementById("date").setAttribute("min", new Date().toISOString().split("T")[0]);
-
-  function selectTime(btn) {
-    document.querySelectorAll('.time-btn').forEach(b => b.classList.remove('selected'));
-    btn.classList.add('selected');
-    document.getElementById('tour-time').value = btn.innerText.split('\n')[0];
-  }
-
-  function updateSubtotal() {
-    let rows = document.querySelectorAll("#priceTable tbody tr");
-    let total = 0;
-    rows.forEach(row => {
-      const price = parseFloat(row.querySelector("td[data-price]").getAttribute("data-price"));
-      const qty = parseInt(row.querySelector(".qty").value);
-      const subtotal = price * qty;
-      row.querySelector(".subtotal").textContent = "USD " + subtotal;
-      total += subtotal;
-    });
-    document.getElementById("totalPrice").textContent = "USD " + total;
-  }
 
   document.getElementById("bookingForm").addEventListener("submit", function(e) {
     e.preventDefault();
