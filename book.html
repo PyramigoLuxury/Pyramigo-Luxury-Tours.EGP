@@ -144,8 +144,8 @@
       font-size: 12px;
       color: #666;
     }
-    button[type="submit"] {
-      background: #333;
+    button[type="submit"], .next-btn {
+      background: #25D366;
       color: #fff;
       padding: 12px 20px;
       border: none;
@@ -155,9 +155,10 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      margin-top: 15px;
     }
-    button[type="submit"] i {
-      margin-right: 8px;
+    button[type="submit"] i, .next-btn i {
+      margin-left: 8px;
     }
     @media (max-width: 600px) {
       .time-options {
@@ -268,7 +269,12 @@
   <input type="hidden" id="tour-time" name="tour_time">
 
   <!-- Submit Button -->
-  <button type="submit"><i class="fas fa-arrow-right"></i> Next</button>
+  <button type="submit"><i class="fab fa-whatsapp"></i> Book via WhatsApp</button>
+
+  <!-- Next Button -->
+  <button type="button" class="next-btn" onclick="goNextPage()">
+    Next <i class="fas fa-arrow-right"></i>
+  </button>
 </form>
 
 <script>
@@ -311,18 +317,17 @@
     let date = document.getElementById("date").value;
     let time = document.getElementById("tour-time").value;
     let total = document.getElementById("totalPrice").textContent;
-
     if (!date || !time) {
       alert("Please select date and time.");
       return false;
     }
-
-    // التحويل للخطوة التانية مع البارامترات
-    let nextPage = `book-step2.html?date=${encodeURIComponent(date)}&time=${encodeURIComponent(time)}&total=${encodeURIComponent(total)}`;
-    window.location.href = nextPage;
-
+    alert("Booking confirmed for " + date + " at " + time + "\nTotal: " + total);
     return true;
+  }
+
+  function goNextPage() {
+    window.location.href = "book2.html"; // الصفحة التالية
   }
 </script>
 </body>
-  </html>
+</html>
