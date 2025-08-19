@@ -5,114 +5,205 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Book Tour | Let's Discover Egypt</title>
   <link rel="icon" href="favicon.png" type="image/png">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <style>
-    body {font-family: Arial, sans-serif; background:#f5f5f5; margin:0; padding:0;}
-    .header {background:#111; color:#fff; padding:15px; text-align:center; position:fixed; width:100%; top:0; z-index:100;}
-    .container {max-width:600px; margin:100px auto 50px; background:#fff; padding:30px; border-radius:10px; box-shadow:0 0 15px rgba(0,0,0,0.2);}
-    .container h2 {text-align:center; margin-bottom:20px;}
-    .form-group {margin-bottom:15px;}
-    .form-group label {display:block; margin-bottom:5px;}
-    .form-group input, .form-group select, .form-group textarea {width:100%; padding:10px; border:1px solid #ccc; border-radius:5px;}
-    .btn {background:#28a745; color:#fff; padding:12px 20px; border:none; border-radius:5px; cursor:pointer; font-size:16px; width:100%;}
-    .btn:hover {background:#218838;}
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #fff;
+      color: #333;
+      padding-top: 70px;
+    }
+    header {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%;
+      background: white;
+      padding: 15px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      z-index: 100;
+    }
+    .menu-icon {
+      font-size: 24px;
+      cursor: pointer;
+    }
+    header h2 {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 20px;
+      font-weight: 600;
+    }
+    header h2 a {
+      text-decoration: none;
+      color: #333;
+    }
+    .sidebar {
+      position: fixed;
+      top: 0; left: -250px;
+      width: 250px;
+      height: 100%;
+      background: #333;
+      color: white;
+      padding: 60px 20px;
+      transition: 0.3s ease;
+      z-index: 101;
+    }
+    .sidebar.active { left: 0; }
+    .sidebar a {
+      display: block;
+      color: white;
+      text-decoration: none;
+      padding: 15px 0;
+      border-bottom: 1px solid #444;
+    }
+    .sidebar a:hover { background: #444; padding-left: 10px; }
+    .overlay {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.3);
+      z-index: 100;
+    }
+    .overlay.active { display: block; }
+
+    h1 {
+      text-align: center;
+      margin: 30px 0;
+      font-size: 24px;
+    }
+    form {
+      background: #fafafa;
+      padding: 20px;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      max-width: 600px;
+      margin: auto;
+    }
+    form label {
+      display: block;
+      margin-bottom: 5px;
+      font-size: 13px;
+      font-weight: 500;
+    }
+    form input, form select {
+      width: 100%;
+      padding: 8px;
+      font-size: 14px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      margin-bottom: 15px;
+    }
+    button[type="submit"] {
+      background: #25D366;
+      color: #fff;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 6px;
+      font-size: 15px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    button[type="submit"] i {
+      margin-right: 8px;
+    }
   </style>
 </head>
 <body>
-  <div class="header">Let's Discover Egypt - Book Tour</div>
-  <div class="container">
-    <h2>Booking Form</h2>
-    <form id="bookingForm">
-      <div class="form-group">
-        <label for="leadName">Lead Traveler Name</label>
-        <input type="text" id="leadName" name="leadName" placeholder="Enter full name" required>
-      </div>
-      <div class="form-group">
-        <label for="infants">Number of Infants</label>
-        <input type="number" id="infants" name="infants" min="0" value="0" required>
-      </div>
-      <div class="form-group">
-        <label for="children">Number of Children</label>
-        <input type="number" id="children" name="children" min="0" value="0" required>
-      </div>
-      <div class="form-group">
-        <label for="adults">Number of Adults</label>
-        <input type="number" id="adults" name="adults" min="1" value="1" required>
-      </div>
-      <div class="form-group">
-        <label for="phone">Your WhatsApp Number</label>
-        <input type="text" id="phone" name="phone" placeholder="e.g., 0123456789" required>
-      </div>
-      <div class="form-group">
-        <label for="tourPackage">Tour Package</label>
-        <select id="tourPackage" name="tourPackage" required>
-          <option value="Top ViP Private Tour Giza Pyramids, Sphinx, Inside Pyramid">Top ViP Private Tour Giza Pyramids, Sphinx, Inside Pyramid</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label for="tourTime">Tour Time</label>
-        <select id="tourTime" name="tourTime" required>
-          <option value="Top ViP All inclusive 10:00">Top ViP All inclusive 10:00</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label for="pickup">Pickup Point</label>
-        <input type="text" id="pickup" name="pickup" placeholder="Enter hotel or location" required>
-      </div>
-      <button type="submit" class="btn">Book Now</button>
-    </form>
+
+<!-- Overlay & Sidebar -->
+<div class="overlay" id="overlay" onclick="closeMenu()"></div>
+<div class="sidebar" id="sidebar">
+  <a href="index.html"><i class="fas fa-home"></i> Home</a>
+  <a href="about.html"><i class="fas fa-info-circle"></i> About Us</a>
+  <a href="tours.html"><i class="fas fa-map-marked-alt"></i> Tours</a>
+  <a href="contact.html"><i class="fas fa-phone"></i> Contact</a>
+</div>
+
+<!-- Header -->
+<header>
+  <div class="menu-icon" onclick="toggleMenu()">☰</div>
+  <h2><a href="index.html"><i class="fas fa-globe-africa"></i> Let's Discover Egypt</a></h2>
+</header>
+
+<!-- Page Content -->
+<h1>ALL INCLUSIVE PRIVATE HALF-DAY TRIP TO GIZA PYRAMIDS WITH CAMEL RIDE</h1>
+
+<!-- Booking Form -->
+<form id="bookingForm">
+  <label>First Name</label>
+  <input type="text" id="firstName" required>
+  <label>Last Name</label>
+  <input type="text" id="lastName" required>
+  <label>Nationality</label>
+  <input type="text" id="nationality" required>
+  <label>Gender</label>
+  <select id="gender" required>
+    <option value="">Select</option>
+    <option>Male</option>
+    <option>Female</option>
+  </select>
+  <label>Email</label>
+  <input type="email" id="email" required>
+  <label>Pick-up Location</label>
+  <input type="text" id="pickup" required>
+  <label>WhatsApp Number</label>
+  <div style="display: flex; gap: 10px; align-items: center;">
+    <select id="countryCode" required style="flex: 1;">
+      <option value="+20">🇪🇬 Egypt +20</option>
+      <option value="+1">🇺🇸 USA +1</option>
+      <option value="+44">🇬🇧 UK +44</option>
+      <option value="+971">🇦🇪 UAE +971</option>
+    </select>
+    <input type="tel" id="whatsappNumber" placeholder="123456789" required style="flex: 2;">
   </div>
+  <button type="submit"><i class="fab fa-whatsapp"></i>Confirm via WhatsApp</button>
+</form>
 
-  <script>
-    document.getElementById('bookingForm').addEventListener('submit', function(e){
-      e.preventDefault();
+<script>
+  function toggleMenu() {
+    document.getElementById("sidebar").classList.toggle("active");
+    document.getElementById("overlay").classList.toggle("active");
+    document.body.style.overflow = document.getElementById("sidebar").classList.contains("active") ? "hidden" : "auto";
+  }
 
-      // جمع البيانات
-      const leadName = document.getElementById('leadName').value;
-      const infants = document.getElementById('infants').value || 0;
-      const children = document.getElementById('children').value || 0;
-      const adults = document.getElementById('adults').value || 0;
-      const phone = document.getElementById('phone').value;
-      const tourPackage = document.getElementById('tourPackage').value;
-      const tourTime = document.getElementById('tourTime').value;
-      const pickup = document.getElementById('pickup').value;
+  function closeMenu() {
+    document.getElementById("sidebar").classList.remove("active");
+    document.getElementById("overlay").classList.remove("active");
+    document.body.style.overflow = "auto";
+  }
 
-      const brNumber = 'BR-' + Math.floor(Math.random()*9000000000 + 1000000000);
+  document.getElementById("bookingForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+    const code = document.getElementById("countryCode").value;
+    const number = document.getElementById("whatsappNumber").value.trim();
+    const fullNumber = code + number;
 
-      // تنسيق رسالة VIP
-      const message = 
-`Top ViP Private Tour Giza Pyramids, Sphinx, Inside Pyramid
-${tourTime}
-1 NEW MESSAGE
-Lead Traveler: ${leadName}
-${infants} infant, ${children} child, ${adults} adults
-${brNumber}
-Hide details
-INSTANT CONFIRMATION
+    if (!/^\d{6,15}$/.test(number)) return alert("⚠️ Invalid WhatsApp number.");
 
-Customer phone number: ${phone}
-Traveler names:
-${leadName} (Adult)
-Tour language: Italian
-Inclusions:
-✓ Qualified Egyptologist guide
-✓ Hotel pickup and drop-off By Private cars
-✓ Lunch in Restaurant ( All inclusive Option )
-✓ 30 Minutes camel Ride around Giza pyramids ( All inclusive Option )
-✓ Private Tour
-✓ Entrance fees to Giza Pyramids and Sphinx ( All inclusive Option )
-✓ Entry fee to the third pyramid of Giza ( All inclusive Option )
-✓ Entry/Admission - Panoramic View of the Pyramids
-✓ Entry/Admission - Menkaure Pyramid
-✓ Entry/Admission - Great Sphinx
-✓ Entry/Admission - Pyramids of Giza
-Pickup point: ${pickup}`;
+    const message = 
+`📌 New Booking Request
+----------------------
+👤 Name: ${firstName.value} ${lastName.value}
+🌍 Nationality: ${nationality.value}
+🚻 Gender: ${gender.value}
+📧 Email: ${email.value}
+📍 Pickup Location: ${pickup.value}
+📱 WhatsApp: ${fullNumber}
+`;
 
-      // فتح واتساب
-      const whatsappNumber = '01283915289'; // رقمك انت اللي هيستقبل
-      const url = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
-      window.open(url, '_blank');
-    });
-  </script>
+    const encodedMessage = encodeURIComponent(message);
+    const waNumber = "201283915289"; // رقمك أنت
+    window.open(`https://wa.me/${waNumber}?text=${encodedMessage}`, '_blank');
+  });
+</script>
+
 </body>
 </html>
