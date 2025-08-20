@@ -332,21 +332,21 @@
 
     // التحقق من البالغين
     if (adults === 0) {
-      alert("⚠️ يجب اختيار شخص بالغ واحد على الأقل!");
+      alert("⚠️At least one adult must be chosen.!");
       return;
     }
 
     // التحقق من التاريخ
     const date = document.getElementById("date").value;
     if (!date) {
-      alert("⚠️ يرجى اختيار تاريخ الرحلة!");
+      alert("⚠️ Please select your travel date.!");
       return;
     }
 
     // التحقق من الوقت
     const time = document.getElementById("tour-time").value;
     if (!time) {
-      alert("⚠️ يرجى اختيار وقت الرحلة!");
+      alert("⚠️ Please select tour time!");
       return;
     }
 
