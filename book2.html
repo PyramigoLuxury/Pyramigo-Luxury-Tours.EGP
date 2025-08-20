@@ -7,61 +7,136 @@
   <link rel="icon" href="favicon.png" type="image/png">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
-    body {margin:0;font-family:Arial, sans-serif;background:#f9f9f9;color:#333;}
-    header {position:fixed;top:0;left:0;width:100%;background:#222;color:#fff;padding:15px;text-align:center;z-index:1000;}
-    .container {max-width:800px;margin:100px auto 40px;background:#fff;padding:30px;border-radius:10px;box-shadow:0 4px 10px rgba(0,0,0,0.1);}
-    h2 {margin-top:0;text-align:center;color:#222;}
-    label {display:block;margin-top:15px;font-weight:bold;}
-    input, select {width:100%;padding:10px;margin-top:5px;border:1px solid #ccc;border-radius:6px;}
-    button {margin-top:20px;width:100%;padding:12px;border:none;background:#28a745;color:#fff;font-size:16px;border-radius:6px;cursor:pointer;}
-    button:hover {background:#218838;}
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f9f9f9;
+    }
+    header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      background: #333;
+      color: #fff;
+      padding: 15px;
+      text-align: center;
+      z-index: 1000;
+    }
+    .container {
+      max-width: 700px;
+      margin: 100px auto;
+      background: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    }
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #333;
+    }
+    label {
+      display: block;
+      margin: 10px 0 5px;
+      font-weight: bold;
+    }
+    input, select {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      font-size: 14px;
+    }
+    button {
+      background: #25D366;
+      color: #fff;
+      padding: 12px;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+      width: 100%;
+    }
+    button:hover {
+      background: #1ebe5c;
+    }
+    .row {
+      display: flex;
+      gap: 10px;
+    }
+    .row select {
+      flex: 2;
+    }
+    .row input {
+      flex: 3;
+    }
   </style>
 </head>
 <body>
 
-<header>
-  <h1>Book Your Tour</h1>
-</header>
+  <header>
+    <h1>Let's Discover Egypt - Book Now</h1>
+  </header>
 
-<div class="container">
-  <h2>Tour Booking Form</h2>
-  <form id="bookingForm">
-    <label for="name">Full Name</label>
-    <input type="text" id="name" required>
+  <div class="container">
+    <h2>Booking Form</h2>
+    <form id="bookingForm">
+      <label for="name">Full Name</label>
+      <input type="text" id="name" placeholder="Enter your name" required>
 
-    <label for="countryCode">Country Code</label>
-    <select id="countryCode" required>
-      <option value="+20">🇪🇬 Egypt (+20)</option>
-      <option value="+1">🇺🇸 USA (+1)</option>
-      <option value="+44">🇬🇧 UK (+44)</option>
-      <option value="+971">🇦🇪 UAE (+971)</option>
-      <option value="+966">🇸🇦 Saudi Arabia (+966)</option>
-      <option value="+49">🇩🇪 Germany (+49)</option>
-      <option value="+33">🇫🇷 France (+33)</option>
-      <!-- تقدر تضيف باقي الدول هنا -->
-    </select>
+      <label for="tour">Select Tour</label>
+      <select id="tour" required>
+        <option value="Giza Pyramids Tour">Giza Pyramids Tour</option>
+        <option value="Nile Cruise">Nile Cruise</option>
+      </select>
 
-    <label for="whatsapp">WhatsApp Number</label>
-    <input type="tel" id="whatsapp" placeholder="123456789" required>
+      <label for="date">Date</label>
+      <input type="date" id="date" required>
 
-    <button type="submit">Book Now</button>
-  </form>
-</div>
+      <label for="time">Time</label>
+      <input type="time" id="time" required>
 
-<script>
-document.getElementById("bookingForm").addEventListener("submit", function(e){
-  e.preventDefault();
-  
-  const name = document.getElementById("name").value;
-  const countryCode = document.getElementById("countryCode").value;
-  const whatsapp = document.getElementById("whatsapp").value;
+      <label for="phone">WhatsApp Number</label>
+      <div class="row">
+        <select id="countryCode" required>
+          <option value="+20">🇪🇬 Egypt (+20)</option>
+          <option value="+1">🇺🇸 USA (+1)</option>
+          <option value="+44">🇬🇧 UK (+44)</option>
+          <option value="+971">🇦🇪 UAE (+971)</option>
+          <option value="+966">🇸🇦 Saudi Arabia (+966)</option>
+        </select>
+        <input type="tel" id="phone" placeholder="Enter number" required>
+      </div>
 
-  const myNumber = "201283915289"; // رقمك انت يا برنس (بدون صفر)
-  const message = `New Booking Request:%0AName: ${name}%0AClient WhatsApp: ${countryCode}${whatsapp}`;
+      <button type="submit">Book via WhatsApp</button>
+    </form>
+  </div>
 
-  window.open(`https://wa.me/${myNumber}?text=${message}`, "_blank");
-});
-</script>
+  <script>
+    document.getElementById("bookingForm").addEventListener("submit", function(e){
+      e.preventDefault();
+
+      const name = document.getElementById("name").value;
+      const tour = document.getElementById("tour").value;
+      const date = document.getElementById("date").value;
+      const time = document.getElementById("time").value;
+      const code = document.getElementById("countryCode").value;
+      const phone = document.getElementById("phone").value;
+
+      // رقمك انت اللي هيوصلك عليه
+      const myNumber = "201283915289";
+
+      const message = `New Booking Request:%0A
+Name: ${name}%0A
+Tour: ${tour}%0A
+Date: ${date}%0A
+Time: ${time}%0A
+Client WhatsApp: ${code}${phone}`;
+
+      window.open(`https://wa.me/${myNumber}?text=${message}`, "_blank");
+    });
+  </script>
 
 </body>
 </html>
