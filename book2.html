@@ -99,32 +99,15 @@
       border-radius: 6px;
       margin-bottom: 15px;
     }
-    .time-options {
+    .whatsapp-field {
       display: flex;
-      flex-direction: column;
       gap: 10px;
-      margin-bottom: 20px;
     }
-    .time-btn {
-      padding: 10px;
-      background: #f4f4f4;
-      border: 1px solid #ccc;
-      border-radius: 8px;
-      text-align: left;
-      font-size: 14px;
-      cursor: pointer;
-      transition: 0.2s;
+    .whatsapp-field select {
+      flex: 0.4;
     }
-    .time-btn:hover { background: #eee; }
-    .time-btn.selected {
-      background-color: #333;
-      color: #fff;
-      border-color: #333;
-    }
-    .time-btn small {
-      display: block;
-      font-size: 12px;
-      color: #666;
+    .whatsapp-field input {
+      flex: 1;
     }
     button[type="submit"] {
       background: #25D366;
@@ -140,17 +123,6 @@
     }
     button[type="submit"] i {
       margin-right: 8px;
-    }
-    @media (max-width: 600px) {
-      .time-options {
-        flex-wrap: wrap;
-        flex-direction: row;
-        justify-content: space-between;
-      }
-      .time-btn {
-        flex: 0 48%;
-        font-size: 13px;
-      }
     }
   </style>
 </head>
@@ -192,7 +164,19 @@
   <input type="email" id="email" required>
   <label>Pick-up Location</label>
   <input type="text" id="pickup" required>
-  <input type="hidden" name="tour-time" id="tour-time" required>
+
+  <label>WhatsApp Number</label>
+  <div class="whatsapp-field">
+    <select id="countryCode" required>
+      <option value="+20">🇪🇬 +20</option>
+      <option value="+1">🇺🇸 +1</option>
+      <option value="+44">🇬🇧 +44</option>
+      <option value="+49">🇩🇪 +49</option>
+      <option value="+33">🇫🇷 +33</option>
+    </select>
+    <input type="tel" id="whatsapp" placeholder="WhatsApp Number" required>
+  </div>
+
   <button type="submit"><i class="fab fa-whatsapp"></i>Confirm via WhatsApp</button>
 </form>
 
@@ -209,16 +193,8 @@
     document.body.style.overflow = "auto";
   }
 
-  function selectTime(btn) {
-    document.querySelectorAll('.time-btn').forEach(b => b.classList.remove('selected'));
-    btn.classList.add('selected');
-    document.getElementById('tour-time').value = btn.innerText.split('\n')[0];
-  }
-
   document.getElementById("bookingForm").addEventListener("submit", function(e) {
     e.preventDefault();
-
-    const time = document.getElementById("tour-time").value || "Not selected";
 
     const message = 
 `Top ViP Private Tour Giza Pyramids, Sphinx, Inside Pyramid
@@ -236,10 +212,10 @@ Nationality: ${nationality.value}
 Gender: ${gender.value}
 Email: ${email.value}
 Pickup Location: ${pickup.value}
-Tour Time: ${time}`;
+WhatsApp: ${countryCode.value}${whatsapp.value}`;
 
     const encodedMessage = encodeURIComponent(message);
-    // رقمك إنت ثابت
+    // رقمك انت ثابت
     const waNumber = "201283915289";
     window.open(`https://wa.me/${waNumber}?text=${encodedMessage}`, '_blank');
   });
