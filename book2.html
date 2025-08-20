@@ -9,133 +9,213 @@
   <style>
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
-      background: #f7f7f7;
+      font-family: 'Arial', sans-serif;
+      background: #f4f4f4;
     }
     header {
-      background: #222;
-      color: #fff;
-      padding: 15px 20px;
       position: fixed;
       top: 0;
-      width: 100%;
-      z-index: 1000;
+      left: 0;
+      right: 0;
+      height: 60px;
+      background: #222;
+      color: #fff;
       display: flex;
       align-items: center;
       justify-content: space-between;
+      padding: 0 20px;
+      z-index: 1000;
     }
-    header h1 {
+    header .logo {
       font-size: 20px;
+      font-weight: bold;
     }
-    .container {
+    header .menu-toggle {
+      font-size: 24px;
+      cursor: pointer;
+    }
+    .sidebar {
+      position: fixed;
+      top: 60px;
+      left: -250px;
+      width: 250px;
+      height: 100%;
+      background: #333;
+      color: #fff;
+      transition: 0.3s;
+      padding-top: 20px;
+    }
+    .sidebar.active {
+      left: 0;
+    }
+    .sidebar a {
+      display: block;
+      color: #fff;
+      padding: 15px 20px;
+      text-decoration: none;
+    }
+    .sidebar a:hover {
+      background: #444;
+    }
+    main {
+      margin-top: 80px;
+      padding: 20px;
       max-width: 900px;
-      margin: 100px auto 30px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 30px;
+      background: #fff;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    table th, table td {
+      padding: 15px;
+      border: 1px solid #ddd;
+      text-align: center;
+    }
+    table th {
+      background: #222;
+      color: #fff;
+    }
+    .form-container {
       background: #fff;
       padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      border-radius: 8px;
     }
-    h2 {
-      margin-top: 0;
-      color: #444;
+    .form-group {
+      margin-bottom: 15px;
     }
-    form {
-      display: grid;
-      gap: 15px;
-    }
-    label {
+    .form-group label {
+      display: block;
+      margin-bottom: 6px;
       font-weight: bold;
-      color: #333;
     }
-    input, select {
+    .form-group input, 
+    .form-group select {
+      width: 100%;
       padding: 10px;
       border: 1px solid #ccc;
       border-radius: 6px;
-      width: 100%;
     }
-    .btn-whatsapp {
-      background: #25d366;
-      color: white;
-      padding: 12px;
+    .btn {
+      display: inline-block;
+      background: #28a745;
+      color: #fff;
+      padding: 12px 20px;
       border: none;
       border-radius: 6px;
-      font-size: 16px;
       cursor: pointer;
       text-align: center;
+      font-size: 16px;
     }
-    .btn-whatsapp i {
-      margin-right: 8px;
-    }
-    .btn-whatsapp:hover {
-      background: #20b954;
+    .btn:hover {
+      background: #218838;
     }
   </style>
 </head>
 <body>
-  <header>
-    <h1>Let's Discover Egypt</h1>
-    <nav>
-      <a href="index.html" style="color:white; margin-left:15px;">Home</a>
-      <a href="tours.html" style="color:white; margin-left:15px;">Tours</a>
-      <a href="contact.html" style="color:white; margin-left:15px;">Contact</a>
-    </nav>
-  </header>
 
-  <div class="container">
-    <h2>Book Your Tour</h2>
+<header>
+  <div class="logo">Let's Discover Egypt</div>
+  <div class="menu-toggle" onclick="toggleSidebar()">☰</div>
+</header>
+
+<div class="sidebar" id="sidebar">
+  <a href="index.html"><i class="fa fa-home"></i> Home</a>
+  <a href="tours.html"><i class="fa fa-map"></i> Tours</a>
+  <a href="book.html"><i class="fa fa-ticket"></i> Book Now</a>
+  <a href="contact.html"><i class="fa fa-envelope"></i> Contact</a>
+</div>
+
+<main>
+  <h1>Book Your Tour</h1>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Category</th>
+        <th>Price per Person</th>
+        <th>Quantity</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Adults</td>
+        <td>$50</td>
+        <td><input type="number" min="0" value="1" id="adults"></td>
+      </tr>
+      <tr>
+        <td>Children</td>
+        <td>$25</td>
+        <td><input type="number" min="0" value="0" id="children"></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="form-container">
     <form id="bookingForm">
-      <div>
+      <div class="form-group">
         <label for="name">Full Name</label>
         <input type="text" id="name" required>
       </div>
-      <div>
-        <label for="nationality">Nationality</label>
-        <input type="text" id="nationality" required>
+      <div class="form-group">
+        <label for="whatsapp">WhatsApp Number</label>
+        <input type="text" id="whatsapp" placeholder="e.g. +20123456789" required>
       </div>
-      <div>
-        <label for="people">Number of People</label>
-        <input type="number" id="people" min="1" value="1" required>
-      </div>
-      <div>
+      <div class="form-group">
         <label for="date">Tour Date</label>
         <input type="date" id="date" required>
       </div>
-      <div>
+      <div class="form-group">
         <label for="time">Tour Time</label>
-        <input type="time" id="time" required>
+        <select id="time" required>
+          <option value="">Select Time</option>
+          <option>09:00 AM</option>
+          <option>12:00 PM</option>
+          <option>03:00 PM</option>
+        </select>
       </div>
-      <button type="button" class="btn-whatsapp" onclick="sendToWhatsApp()">
-        <i class="fab fa-whatsapp"></i> Book via WhatsApp
-      </button>
+      <button type="submit" class="btn">Book Now via WhatsApp</button>
     </form>
   </div>
+</main>
 
-  <script>
-    function sendToWhatsApp() {
-      const name = document.getElementById("name").value;
-      const nationality = document.getElementById("nationality").value;
-      const people = document.getElementById("people").value;
-      const date = document.getElementById("date").value;
-      const time = document.getElementById("time").value;
+<script>
+  function toggleSidebar() {
+    document.getElementById("sidebar").classList.toggle("active");
+  }
 
-      if(!name || !nationality || !people || !date || !time){
-        alert("Please fill all fields");
-        return;
-      }
+  document.getElementById("bookingForm").addEventListener("submit", function(e) {
+    e.preventDefault();
 
-      // رقمك انت
-      const phoneNumber = "201283915289"; 
+    let name = document.getElementById("name").value;
+    let whatsapp = document.getElementById("whatsapp").value;
+    let date = document.getElementById("date").value;
+    let time = document.getElementById("time").value;
+    let adults = document.getElementById("adults").value;
+    let children = document.getElementById("children").value;
 
-      const message = `New Booking Request:%0A
+    let message = `Hello, I want to book a tour.%0A
 Name: ${name}%0A
-Nationality: ${nationality}%0A
-People: ${people}%0A
+WhatsApp: ${whatsapp}%0A
 Date: ${date}%0A
-Time: ${time}`;
+Time: ${time}%0A
+Adults: ${adults}%0A
+Children: ${children}`;
 
-      const url = `https://wa.me/${phoneNumber}?text=${message}`;
-      window.open(url, '_blank');
-    }
-  </script>
+    let phoneNumber = "201283915289"; // رقمك على واتساب
+    let url = `https://wa.me/${phoneNumber}?text=${message}`;
+    window.open(url, "_blank");
+  });
+</script>
+
 </body>
 </html>
