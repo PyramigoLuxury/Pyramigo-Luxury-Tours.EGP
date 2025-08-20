@@ -57,6 +57,11 @@
       font-size: 16px;
       cursor: pointer;
       width: 100%;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
     }
     button:hover {
       background: #1ebe5c;
@@ -109,7 +114,7 @@
         <input type="tel" id="phone" placeholder="Enter number" required>
       </div>
 
-      <button type="submit">Book via WhatsApp</button>
+      <button type="submit"><i class="fa-brands fa-whatsapp"></i> Book via WhatsApp</button>
     </form>
   </div>
 
@@ -127,14 +132,15 @@
       // رقمك انت اللي هيوصلك عليه
       const myNumber = "201283915289";
 
-      const message = `New Booking Request:%0A
-Name: ${name}%0A
-Tour: ${tour}%0A
-Date: ${date}%0A
-Time: ${time}%0A
-Client WhatsApp: ${code}${phone}`;
+      const message = 
+`📩 New Booking Request:
+👤 Name: ${name}
+🏝️ Tour: ${tour}
+📅 Date: ${date}
+⏰ Time: ${time}
+📱 Client WhatsApp: ${code}${phone}`;
 
-      window.open(`https://wa.me/${myNumber}?text=${message}`, "_blank");
+      window.open(`https://wa.me/${myNumber}?text=${encodeURIComponent(message)}`, "_blank");
     });
   </script>
 
