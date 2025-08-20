@@ -109,7 +109,7 @@
       font-size: 13px;
       font-weight: 500;
     }
-    form input, form select {
+    form input {
       width: 100%;
       padding: 8px;
       font-size: 14px;
@@ -214,19 +214,22 @@
       <tr>
         <td>2–4 Persons</td>
         <td data-price="55">USD 55</td>
-        <td><select onchange="updateSubtotal()" class="qty"><option value="0" selected>0</option><option value="2">2</option><option value="3">3</option><option value="4">4</option></select></td>
+        <td><select onchange="updateSubtotal()" class="qty">
+          <option value="0" selected>0</option><option value="2">2</option><option value="3">3</option><option value="4">4</option></select></td>
         <td class="subtotal">USD 0</td>
       </tr>
       <tr>
         <td>5–8 Persons</td>
         <td data-price="45">USD 45</td>
-        <td><select onchange="updateSubtotal()" class="qty"><option value="0" selected>0</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option></select></td>
+        <td><select onchange="updateSubtotal()" class="qty">
+          <option value="0" selected>0</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option></select></td>
         <td class="subtotal">USD 0</td>
       </tr>
       <tr>
         <td>9–15 Persons</td>
         <td data-price="30">USD 30</td>
-        <td><select onchange="updateSubtotal()" class="qty"><option value="0" selected>0</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option></select></td>
+        <td><select onchange="updateSubtotal()" class="qty">
+          <option value="0" selected>0</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option></select></td>
         <td class="subtotal">USD 0</td>
       </tr>
       <tr>
@@ -310,8 +313,55 @@
   }
 
   function goNextPage() {
-    window.location.href = "book2.html"; // الصفحة التالية
+    let rows = document.querySelectorAll("#priceTable tbody tr");
+    let total = 0, adults = 0, children = 0, infants = 0;
+
+    rows.forEach(row => {
+      const category = row.querySelector("td:first-child").innerText;
+      const price = parseFloat(row.querySelector("td[data-price]").getAttribute("data-price"));
+      const qty = parseInt(row.querySelector(".qty").value);
+      const subtotal = price * qty;
+      total += subtotal;
+
+      if (category.includes("Person") && !category.includes("Child") && !category.includes("Infant")) {
+        adults += qty;
+      }
+      if (category.includes("Child")) children += qty;
+      if (category.includes("Infant")) infants += qty;
+    });
+
+    // التحقق من البالغين
+    if (adults === 0) {
+      alert("⚠️ يجب اختيار شخص بالغ واحد على الأقل!");
+      return;
+    }
+
+    // التحقق من التاريخ
+    const date = document.getElementById("date").value;
+    if (!date) {
+      alert("⚠️ يرجى اختيار تاريخ الرحلة!");
+      return;
+    }
+
+    // التحقق من الوقت
+    const time = document.getElementById("tour-time").value;
+    if (!time) {
+      alert("⚠️ يرجى اختيار وقت الرحلة!");
+      return;
+    }
+
+    // لو تمام → نروح book2.html ومعانا البيانات
+    const params = new URLSearchParams({
+      adults: adults,
+      children: children,
+      infants: infants,
+      date: date,
+      time: time,
+      total: total
+    });
+
+    window.location.href = "book2.html?" + params.toString();
   }
 </script>
 </body>
-  </html>
+            </html>
