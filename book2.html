@@ -76,12 +76,6 @@
     button:hover {
       background: #b8962d;
     }
-    .readonly-info {
-      background: #f0f0f0;
-      padding: 8px 10px;
-      border-radius: 6px;
-      border: 1px solid #ccc;
-    }
   </style>
 </head>
 <body>
@@ -149,36 +143,32 @@
         </div>
       </div>
 
-      <!-- Show time and people selected from Book 1 -->
-      <div class="form-group">
-        <label>Selected Time</label>
-        <div id="selectedTime" class="readonly-info"></div>
-      </div>
-
-      <div class="form-group">
-        <label>Number of People</label>
-        <div id="selectedPeople" class="readonly-info"></div>
-      </div>
+      <!-- دمج الوقت وعدد الأشخاص من Book 1 -->
+      <input type="hidden" id="selectedTime" name="selectedTime">
+      <input type="hidden" id="selectedPeople" name="selectedPeople">
 
       <button type="submit">Continue to Confirmation</button>
     </form>
   </div>
 
   <script>
-    // عند تحميل الصفحة، نجيب البيانات من Book 1 (localStorage)
-    document.addEventListener('DOMContentLoaded', () => {
-      const time = localStorage.getItem('selectedTime') || 'Not selected';
-      const people = localStorage.getItem('selectedPeople') || 'Not selected';
-      document.getElementById('selectedTime').textContent = time;
-      document.getElementById('selectedPeople').textContent = people;
+    // عند تحميل الصفحة، جلب الوقت وعدد الأشخاص من LocalStorage
+    document.addEventListener('DOMContentLoaded', function() {
+      const storedTime = localStorage.getItem('selectedTime');
+      const storedPeople = localStorage.getItem('selectedPeople');
+
+      if(storedTime) document.getElementById('selectedTime').value = storedTime;
+      if(storedPeople) document.getElementById('selectedPeople').value = storedPeople;
     });
 
-    // عند إرسال الفورم
+    // حفظ الوقت وعدد الأشخاص في LocalStorage عند إرسال الفورم
     document.getElementById('bookingForm').addEventListener('submit', function(e) {
-      e.preventDefault();
-      alert('Form submitted!\nTime: ' + (localStorage.getItem('selectedTime') || '') +
-            '\nPeople: ' + (localStorage.getItem('selectedPeople') || ''));
-      // هنا ممكن تضيف كود الإرسال على واتساب أو السيرفر
+      const time = document.getElementById('selectedTime').value;
+      const people = document.getElementById('selectedPeople').value;
+
+      if(time) localStorage.setItem('selectedTime', time);
+      if(people) localStorage.setItem('selectedPeople', people);
+      // الفورم يستمر في الإرسال
     });
   </script>
 </body>
