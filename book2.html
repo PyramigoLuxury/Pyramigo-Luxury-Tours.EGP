@@ -1,130 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Book Tour | Let's Discover Egypt</title>
-  <link rel="icon" href="favicon.png" type="image/png">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-  <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      font-family: 'Poppins', sans-serif;
-      background: #fff;
-      color: #333;
-      padding-top: 70px;
-    }
-    header {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%;
-      background: white;
-      padding: 15px 20px;
-      display: flex;
-      align-items: center;
-      justify-content: flex-start;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-      z-index: 100;
-    }
-    .menu-icon {
-      font-size: 24px;
-      cursor: pointer;
-    }
-    header h2 {
-      position: absolute;
-      left: 50%;
-      transform: translateX(-50%);
-      font-size: 20px;
-      font-weight: 600;
-    }
-    header h2 a {
-      text-decoration: none;
-      color: #333;
-    }
-    .sidebar {
-      position: fixed;
-      top: 0; left: -250px;
-      width: 250px;
-      height: 100%;
-      background: #333;
-      color: white;
-      padding: 60px 20px;
-      transition: 0.3s ease;
-      z-index: 101;
-    }
-    .sidebar.active { left: 0; }
-    .sidebar a {
-      display: block;
-      color: white;
-      text-decoration: none;
-      padding: 15px 0;
-      border-bottom: 1px solid #444;
-    }
-    .sidebar a:hover { background: #444; padding-left: 10px; }
-    .overlay {
-      display: none;
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: rgba(0,0,0,0.3);
-      z-index: 100;
-    }
-    .overlay.active { display: block; }
-
-    h1 {
-      text-align: center;
-      margin: 30px 0;
-      font-size: 24px;
-    }
-    form {
-      background: #fafafa;
-      padding: 20px;
-      border: 1px solid #ddd;
-      border-radius: 10px;
-      max-width: 600px;
-      margin: auto;
-    }
-    form label {
-      display: block;
-      margin-bottom: 5px;
-      font-size: 13px;
-      font-weight: 500;
-    }
-    form input, form select {
-      width: 100%;
-      padding: 8px;
-      font-size: 14px;
-      border: 1px solid #ccc;
-      border-radius: 6px;
-      margin-bottom: 15px;
-    }
-    .whatsapp-field {
-      display: flex;
-      gap: 10px;
-    }
-    .whatsapp-field select {
-      flex: 0.4;
-    }
-    .whatsapp-field input {
-      flex: 1;
-    }
-    button[type="submit"] {
-      background: #25D366;
-      color: #fff;
-      padding: 12px 20px;
-      border: none;
-      border-radius: 6px;
-      font-size: 15px;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    button[type="submit"] i {
-      margin-right: 8px;
-    }
-  </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Book Tour | Let's Discover Egypt</title>
+<link rel="icon" href="favicon.png" type="image/png">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Poppins', sans-serif; background: #fff; color: #333; padding-top: 70px; }
+  header { position: fixed; top: 0; left: 0; width: 100%; background: white; padding: 15px 20px; display: flex; align-items: center; justify-content: flex-start; box-shadow: 0 2px 5px rgba(0,0,0,0.1); z-index: 100; }
+  .menu-icon { font-size: 24px; cursor: pointer; }
+  header h2 { position: absolute; left: 50%; transform: translateX(-50%); font-size: 20px; font-weight: 600; }
+  header h2 a { text-decoration: none; color: #333; }
+  .sidebar { position: fixed; top: 0; left: -250px; width: 250px; height: 100%; background: #333; color: white; padding: 60px 20px; transition: 0.3s ease; z-index: 101; }
+  .sidebar.active { left: 0; }
+  .sidebar a { display: block; color: white; text-decoration: none; padding: 15px 0; border-bottom: 1px solid #444; }
+  .sidebar a:hover { background: #444; padding-left: 10px; }
+  .overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.3); z-index: 100; }
+  .overlay.active { display: block; }
+  h1 { text-align: center; margin: 30px 0; font-size: 24px; }
+  form { background: #fafafa; padding: 20px; border: 1px solid #ddd; border-radius: 10px; max-width: 600px; margin: auto; }
+  form label { display: block; margin-bottom: 5px; font-size: 13px; font-weight: 500; }
+  form input, form select { width: 100%; padding: 8px; font-size: 14px; border: 1px solid #ccc; border-radius: 6px; margin-bottom: 15px; }
+  .whatsapp-field { display: flex; gap: 10px; }
+  .whatsapp-field select { flex: 0.4; }
+  .whatsapp-field input { flex: 1; }
+  button[type="submit"] { background: #25D366; color: #fff; padding: 12px 20px; border: none; border-radius: 6px; font-size: 15px; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+  button[type="submit"] i { margin-right: 8px; }
+  .summary { background: #f4f4f4; padding: 15px; border-radius: 8px; margin-bottom: 20px; }
+</style>
 </head>
 <body>
 
@@ -143,8 +49,13 @@
   <h2><a href="index.html"><i class="fas fa-globe-africa"></i> Let's Discover Egypt</a></h2>
 </header>
 
-<!-- Page Content -->
 <h1>ALL INCLUSIVE PRIVATE HALF-DAY TRIP TO GIZA PYRAMIDS WITH CAMEL RIDE</h1>
+
+<!-- Summary from Book 1 -->
+<div class="summary" id="summary">
+  <h3>Your Selection:</h3>
+  <p id="summaryText">Loading...</p>
+</div>
 
 <!-- Booking Form -->
 <form id="bookingForm">
@@ -193,6 +104,19 @@
     document.body.style.overflow = "auto";
   }
 
+  // قراءة البيانات من URL
+  const urlParams = new URLSearchParams(window.location.search);
+  const adults = urlParams.get("adults") || 0;
+  const children = urlParams.get("children") || 0;
+  const infants = urlParams.get("infants") || 0;
+  const date = urlParams.get("date") || "N/A";
+  const time = urlParams.get("time") || "N/A";
+  const total = urlParams.get("total") || 0;
+
+  document.getElementById("summaryText").innerText = 
+    `Adults: ${adults}, Children: ${children}, Infants: ${infants}\nDate: ${date}\nTime: ${time}\nTotal Price: USD ${total}`;
+
+  // إرسال على واتساب
   document.getElementById("bookingForm").addEventListener("submit", function(e) {
     e.preventDefault();
 
@@ -212,14 +136,19 @@ Nationality: ${nationality.value}
 Gender: ${gender.value}
 Email: ${email.value}
 Pickup Location: ${pickup.value}
-WhatsApp: ${countryCode.value}${whatsapp.value}`;
+WhatsApp: ${countryCode.value}${whatsapp.value}
+
+Tour Details:
+Adults: ${adults}, Children: ${children}, Infants: ${infants}
+Date: ${date}
+Time: ${time}
+Total Price: USD ${total}`;
 
     const encodedMessage = encodeURIComponent(message);
-    // رقمك انت ثابت
-    const waNumber = "201283915289";
+    const waNumber = "201283915289"; // رقم ثابت لاستقبال الرسائل
     window.open(`https://wa.me/${waNumber}?text=${encodedMessage}`, '_blank');
   });
 </script>
 
 </body>
-</html>
+    </html>
