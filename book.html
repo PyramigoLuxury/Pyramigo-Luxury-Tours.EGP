@@ -3,44 +3,177 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Book Tour | Pyramigo Luxury Tours</title>
+  <title>Book Tour | Let's Discover Egypt</title>
   <link rel="icon" href="favicon.png" type="image/png">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: 'Poppins', sans-serif; background: #fff; color: #333; padding-top: 70px; }
-    header { position: fixed; top: 0; left: 0; width: 100%; background: white; padding: 15px 20px; display: flex; align-items: center; justify-content: flex-start; box-shadow: 0 2px 5px rgba(0,0,0,0.1); z-index: 100; }
-    .menu-icon { font-size: 24px; cursor: pointer; }
-    header h2 { position: absolute; left: 50%; transform: translateX(-50%); font-size: 20px; font-weight: 600; }
-    header h2 a { text-decoration: none; color: #333; }
-    .sidebar { position: fixed; top: 0; left: -250px; width: 250px; height: 100%; background: #333; color: white; padding: 60px 20px; transition: 0.3s ease; z-index: 101; }
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #fff;
+      color: #333;
+      padding-top: 70px;
+    }
+    header {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%;
+      background: white;
+      padding: 15px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      z-index: 100;
+    }
+    .menu-icon {
+      font-size: 24px;
+      cursor: pointer;
+    }
+    header h2 {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 20px;
+      font-weight: 600;
+    }
+    header h2 a {
+      text-decoration: none;
+      color: #333;
+    }
+    .sidebar {
+      position: fixed;
+      top: 0; left: -250px;
+      width: 250px;
+      height: 100%;
+      background: #333;
+      color: white;
+      padding: 60px 20px;
+      transition: 0.3s ease;
+      z-index: 101;
+    }
     .sidebar.active { left: 0; }
-    .sidebar a { display: block; color: white; text-decoration: none; padding: 15px 0; border-bottom: 1px solid #444; }
+    .sidebar a {
+      display: block;
+      color: white;
+      text-decoration: none;
+      padding: 15px 0;
+      border-bottom: 1px solid #444;
+    }
     .sidebar a:hover { background: #444; padding-left: 10px; }
-    .overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.3); z-index: 100; }
+    .overlay {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.3);
+      z-index: 100;
+    }
     .overlay.active { display: block; }
-    h1 { text-align: center; margin: 30px 0; font-size: 24px; }
-    table { width: 100%; border-collapse: collapse; margin-bottom: 30px; border: 1px solid #ddd; border-radius: 8px; overflow: hidden; }
-    th, td { padding: 10px; border-bottom: 1px solid #eee; font-size: 14px; text-align: center; }
-    th { background: #f9f9f9; font-weight: 600; }
-    form { background: #fafafa; padding: 20px; border: 1px solid #ddd; border-radius: 10px; max-width: 700px; margin: auto; }
-    form label { display: block; margin-bottom: 5px; font-size: 13px; font-weight: 500; }
-    form input { width: 100%; padding: 8px; font-size: 14px; border: 1px solid #ccc; border-radius: 6px; margin-bottom: 15px; }
-    .time-options { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; }
-    .time-btn { padding: 10px; background: #f4f4f4; border: 1px solid #ccc; border-radius: 8px; text-align: left; font-size: 14px; cursor: pointer; transition: 0.2s; }
+
+    h1 {
+      text-align: center;
+      margin: 30px 0;
+      font-size: 24px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 30px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    th, td {
+      padding: 10px;
+      border-bottom: 1px solid #eee;
+      font-size: 14px;
+      text-align: center;
+    }
+    th {
+      background: #f9f9f9;
+      font-weight: 600;
+    }
+    form {
+      background: #fafafa;
+      padding: 20px;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      max-width: 700px;
+      margin: auto;
+    }
+    form label {
+      display: block;
+      margin-bottom: 5px;
+      font-size: 13px;
+      font-weight: 500;
+    }
+    form input {
+      width: 100%;
+      padding: 8px;
+      font-size: 14px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      margin-bottom: 15px;
+    }
+    .time-options {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+    .time-btn {
+      padding: 10px;
+      background: #f4f4f4;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      text-align: left;
+      font-size: 14px;
+      cursor: pointer;
+      transition: 0.2s;
+    }
     .time-btn:hover { background: #eee; }
-    .time-btn.selected { background-color: #333; color: #fff; border-color: #333; }
-    .time-btn small { display: block; font-size: 12px; color: #666; }
-    .next-btn { background: #25D366; color: #fff; padding: 12px 20px; border: none; border-radius: 6px; font-size: 15px; cursor: pointer; display: flex; align-items: center; justify-content: center; margin-top: 15px; }
-    .next-btn i { margin-left: 8px; }
+    .time-btn.selected {
+      background-color: #333;
+      color: #fff;
+      border-color: #333;
+    }
+    .time-btn small {
+      display: block;
+      font-size: 12px;
+      color: #666;
+    }
+    .next-btn {
+      background: #25D366;
+      color: #fff;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 6px;
+      font-size: 15px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 15px;
+    }
+    .next-btn i {
+      margin-left: 8px;
+    }
     @media (max-width: 600px) {
-      .time-options { flex-wrap: wrap; flex-direction: row; justify-content: space-between; }
-      .time-btn { flex: 0 48%; font-size: 13px; }
+      .time-options {
+        flex-wrap: wrap;
+        flex-direction: row;
+        justify-content: space-between;
+      }
+      .time-btn {
+        flex: 0 48%;
+        font-size: 13px;
+      }
     }
   </style>
 </head>
-<body data-tour="giza-pyramids">
+<body>
 
 <!-- Overlay & Sidebar -->
 <div class="overlay" id="overlay" onclick="closeMenu()"></div>
@@ -54,11 +187,11 @@
 <!-- Header -->
 <header>
   <div class="menu-icon" onclick="toggleMenu()">☰</div>
-  <h2><a href="index.html"><i class="fas fa-globe-africa"></i> Pyramigo Luxury Tours</a></h2>
+  <h2><a href="index.html"><i class="fas fa-globe-africa"></i> Let's Discover Egypt</a></h2>
 </header>
 
 <!-- Page Content -->
-<h1 id="tourTitle"></h1>
+<h1>ALL INCLUSIVE PRIVATE HALF-DAY TRIP TO GIZA PYRAMIDS WITH CAMEL RIDE</h1>
 
 <form>
   <!-- Dynamic Price Table -->
@@ -71,7 +204,47 @@
         <th>Subtotal</th>
       </tr>
     </thead>
-    <tbody></tbody>
+    <tbody>
+      <tr>
+        <td>1 Person</td>
+        <td data-price="65">USD 65</td>
+        <td><select onchange="updateSubtotal()" class="qty"><option value="0" selected>0</option><option value="1">1</option></select></td>
+        <td class="subtotal">USD 0</td>
+      </tr>
+      <tr>
+        <td>2–4 Persons</td>
+        <td data-price="55">USD 55</td>
+        <td><select onchange="updateSubtotal()" class="qty">
+          <option value="0" selected>0</option><option value="2">2</option><option value="3">3</option><option value="4">4</option></select></td>
+        <td class="subtotal">USD 0</td>
+      </tr>
+      <tr>
+        <td>5–8 Persons</td>
+        <td data-price="45">USD 45</td>
+        <td><select onchange="updateSubtotal()" class="qty">
+          <option value="0" selected>0</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option></select></td>
+        <td class="subtotal">USD 0</td>
+      </tr>
+      <tr>
+        <td>9–15 Persons</td>
+        <td data-price="30">USD 30</td>
+        <td><select onchange="updateSubtotal()" class="qty">
+          <option value="0" selected>0</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option></select></td>
+        <td class="subtotal">USD 0</td>
+      </tr>
+      <tr>
+        <td>Child</td>
+        <td data-price="25">USD 25</td>
+        <td><select onchange="updateSubtotal()" class="qty"><option value="0" selected>0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option></select></td>
+        <td class="subtotal">USD 0</td>
+      </tr>
+      <tr>
+        <td>Infant</td>
+        <td data-price="0">FREE</td>
+        <td><select onchange="updateSubtotal()" class="qty"><option value="0" selected>0</option><option value="1">1</option><option value="2">2</option></select></td>
+        <td class="subtotal">USD 0</td>
+      </tr>
+    </tbody>
     <tfoot>
       <tr>
         <td colspan="3" style="text-align:right; font-weight:bold;">Total:</td>
@@ -86,7 +259,16 @@
 
   <!-- Time Options -->
   <label>Choose Tour Time</label>
-  <div class="time-options" id="timeOptions"></div>
+  <div class="time-options">
+    <div class="time-btn" onclick="selectTime(this)">7:00 AM<br><small>Places remaining</small></div>
+    <div class="time-btn" onclick="selectTime(this)">8:00 AM<br><small>Places remaining</small></div>
+    <div class="time-btn" onclick="selectTime(this)">9:00 AM<br><small>Places remaining</small></div>
+    <div class="time-btn" onclick="selectTime(this)">10:00 AM<br><small>Places remaining</small></div>
+    <div class="time-btn" onclick="selectTime(this)">11:00 AM<br><small>Places remaining</small></div>
+    <div class="time-btn" onclick="selectTime(this)">12:00 PM<br><small>Places remaining</small></div>
+    <div class="time-btn" onclick="selectTime(this)">1:00 PM<br><small>Places remaining</small></div>
+    <div class="time-btn" onclick="selectTime(this)">2:00 PM<br><small>Places remaining</small></div>
+  </div>
   <input type="hidden" id="tour-time" name="tour_time">
 
   <!-- Next Button -->
@@ -96,141 +278,90 @@
 </form>
 
 <script>
-const tours = {
-  "giza-pyramids": {
-    name: "ALL INCLUSIVE PRIVATE HALF-DAY TRIP TO GIZA PYRAMIDS WITH CAMEL RIDE",
-    categories: [
-      { label: "1 Person", price: 65, qtyOptions: [0,1] },
-      { label: "2–4 Persons", price: 55, qtyOptions: [0,2,3,4] },
-      { label: "5–8 Persons", price: 45, qtyOptions: [0,5,6,7,8] },
-      { label: "9–15 Persons", price: 30, qtyOptions: [0,9,10,11,12,13,14,15] },
-      { label: "Child", price: 25, qtyOptions: [0,1,2,3] },
-      { label: "Infant", price: 0, qtyOptions: [0,1,2] }
-    ],
-    times: ["7:00 AM","8:00 AM","9:00 AM","10:00 AM","11:00 AM","12:00 PM","1:00 PM","2:00 PM"]
-  },
-  "nile-cruise": {
-    name: "EVENING NILE DINNER CRUISE WITH MUSIC AND DANCE",
-    categories: [
-      { label: "1 Person", price: 45, qtyOptions: [0,1] },
-      { label: "2–4 Persons", price: 35, qtyOptions: [0,2,3,4] },
-      { label: "5–8 Persons", price: 30, qtyOptions: [0,5,6,7,8] },
-      { label: "9–15 Persons", price: 30, qtyOptions: [0,9,10,11,12,13,14,15] },
-      { label: "Child", price: 20, qtyOptions: [0,1,2,3] },
-      { label: "Infant", price: 0, qtyOptions: [0,1,2] }
-    ],
-    times: ["6:00 PM","7:00 PM","8:00 PM","9:00 PM"]
+  function toggleMenu() {
+    document.getElementById("sidebar").classList.toggle("active");
+    document.getElementById("overlay").classList.toggle("active");
+    document.body.style.overflow = document.getElementById("sidebar").classList.contains("active") ? "hidden" : "auto";
   }
-};
 
-// Menu toggle functions
-function toggleMenu() {
-  document.getElementById("sidebar").classList.toggle("active");
-  document.getElementById("overlay").classList.toggle("active");
-  document.body.style.overflow = document.getElementById("sidebar").classList.contains("active") ? "hidden" : "auto";
-}
-function closeMenu() {
-  document.getElementById("sidebar").classList.remove("active");
-  document.getElementById("overlay").classList.remove("active");
-  document.body.style.overflow = "auto";
-}
+  function closeMenu() {
+    document.getElementById("sidebar").classList.remove("active");
+    document.getElementById("overlay").classList.remove("active");
+    document.body.style.overflow = "auto";
+  }
 
-// Prevent past dates
-document.getElementById("date").setAttribute("min", new Date().toISOString().split("T")[0]);
+  // منع اختيار تاريخ قديم
+  document.getElementById("date").setAttribute("min", new Date().toISOString().split("T")[0]);
 
-// Generate dynamic table and times
-function initPage() {
-  const tourId = document.body.dataset.tour;
-  const tourData = tours[tourId];
-  if(!tourData) return;
+  function selectTime(btn) {
+    document.querySelectorAll('.time-btn').forEach(b => b.classList.remove('selected'));
+    btn.classList.add('selected');
+    document.getElementById('tour-time').value = btn.innerText.split('\n')[0];
+  }
 
-  // Set title
-  document.getElementById("tourTitle").innerText = tourData.name;
+  function updateSubtotal() {
+    let rows = document.querySelectorAll("#priceTable tbody tr");
+    let total = 0;
+    rows.forEach(row => {
+      const price = parseFloat(row.querySelector("td[data-price]").getAttribute("data-price"));
+      const qty = parseInt(row.querySelector(".qty").value);
+      const subtotal = price * qty;
+      row.querySelector(".subtotal").textContent = "USD " + subtotal;
+      total += subtotal;
+    });
+    document.getElementById("totalPrice").textContent = "USD " + total;
+  }
 
-  // Generate table rows
-  const tbody = document.querySelector("#priceTable tbody");
-  tbody.innerHTML = "";
-  tourData.categories.forEach(cat => {
-    const row = document.createElement("tr");
-    const qtyOptions = cat.qtyOptions.map(q => `<option value="${q}" ${q===0?'selected':''}>${q}</option>`).join("");
-    row.innerHTML = `
-      <td>${cat.label}</td>
-      <td data-price="${cat.price}">${cat.price>0?`USD ${cat.price}`:"FREE"}</td>
-      <td><select onchange="updateSubtotal()" class="qty">${qtyOptions}</select></td>
-      <td class="subtotal">USD 0</td>
-    `;
-    tbody.appendChild(row);
-  });
+  function goNextPage() {
+    let rows = document.querySelectorAll("#priceTable tbody tr");
+    let total = 0, adults = 0, children = 0, infants = 0;
 
-  // Generate time buttons
-  const timeContainer = document.getElementById("timeOptions");
-  timeContainer.innerHTML = "";
-  tourData.times.forEach(t => {
-    const btn = document.createElement("div");
-    btn.className = "time-btn";
-    btn.innerHTML = `${t}<br><small>Places remaining</small>`;
-    btn.onclick = () => selectTime(btn);
-    timeContainer.appendChild(btn);
-  });
-}
+    rows.forEach(row => {
+      const category = row.querySelector("td:first-child").innerText;
+      const price = parseFloat(row.querySelector("td[data-price]").getAttribute("data-price"));
+      const qty = parseInt(row.querySelector(".qty").value);
+      const subtotal = price * qty;
+      total += subtotal;
 
-// Update subtotal & total
-function updateSubtotal() {
-  let rows = document.querySelectorAll("#priceTable tbody tr");
-  let total = 0;
-  rows.forEach(row => {
-    const price = parseFloat(row.querySelector("td[data-price]").getAttribute("data-price"));
-    const qty = parseInt(row.querySelector(".qty").value);
-    const subtotal = price * qty;
-    row.querySelector(".subtotal").textContent = "USD " + subtotal;
-    total += subtotal;
-  });
-  document.getElementById("totalPrice").textContent = "USD " + total;
-}
+      if (category.includes("Person") && !category.includes("Child") && !category.includes("Infant")) {
+        adults += qty;
+      }
+      if (category.includes("Child")) children += qty;
+      if (category.includes("Infant")) infants += qty;
+    });
 
-// Select time
-function selectTime(btn) {
-  document.querySelectorAll('.time-btn').forEach(b => b.classList.remove('selected'));
-  btn.classList.add('selected');
-  document.getElementById('tour-time').value = btn.innerText.split('\n')[0];
-}
+    // التحقق من البالغين
+    if (adults === 0) {
+      alert("⚠️At least one adult must be chosen.!");
+      return;
+    }
 
-// Go next page
-function goNextPage() {
-  let rows = document.querySelectorAll("#priceTable tbody tr");
-  let total = 0, adults = 0, children = 0, infants = 0;
-  rows.forEach(row => {
-    const category = row.querySelector("td:first-child").innerText;
-    const price = parseFloat(row.querySelector("td[data-price]").getAttribute("data-price"));
-    const qty = parseInt(row.querySelector(".qty").value);
-    const subtotal = price * qty;
-    total += subtotal;
+    // التحقق من التاريخ
+    const date = document.getElementById("date").value;
+    if (!date) {
+      alert("⚠️ Please select your tour day.!");
+      return;
+    }
 
-    if (category.includes("Person") && !category.includes("Child") && !category.includes("Infant")) adults += qty;
-    if (category.includes("Child")) children += qty;
-    if (category.includes("Infant")) infants += qty;
-  });
+    // التحقق من الوقت
+    const time = document.getElementById("tour-time").value;
+    if (!time) {
+      alert("⚠️ Please select tour time!");
+      return;
+    }
 
-  if (adults === 0) { alert("⚠️At least one adult must be chosen.!"); return; }
+    // لو تمام → نروح book2.html ومعانا البيانات
+    const params = new URLSearchParams({
+      adults: adults,
+      children: children,
+      infants: infants,
+      date: date,
+      time: time,
+      total: total
+    });
 
-  const date = document.getElementById("date").value;
-  if (!date) { alert("⚠️ Please select your tour day.!"); return; }
-
-  const time = document.getElementById("tour-time").value;
-  if (!time) { alert("⚠️ Please select tour time!"); return; }
-
-  const params = new URLSearchParams({
-    adults: adults,
-    children: children,
-    infants: infants,
-    date: date,
-    time: time,
-    total: total
-  });
-  window.location.href = "book2.html?" + params.toString();
-}
-
-window.onload = initPage;
+    window.location.href = "book2.html?" + params.toString();
+  }
 </script>
 </body>
-  </html>
+            </html>
