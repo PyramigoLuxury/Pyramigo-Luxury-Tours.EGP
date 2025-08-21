@@ -76,12 +76,6 @@
     button:hover {
       background: #b8962d;
     }
-    .summary {
-      background: #f0f0f0;
-      padding: 15px;
-      border-radius: 6px;
-      margin-bottom: 20px;
-    }
   </style>
 </head>
 <body>
@@ -91,15 +85,8 @@
 
   <div class="container">
     <h2>Guest Information</h2>
-
-    <!-- Display selected time and number of people -->
-    <div class="summary">
-      <h3>Selected Tour Details</h3>
-      <p><strong>Time:</strong> <span id="selectedTime">Loading...</span></p>
-      <p><strong>Number of Guests:</strong> <span id="selectedGuests">Loading...</span></p>
-    </div>
-
     <form id="bookingForm">
+      
       <div class="form-group">
         <label for="firstName">First Name</label>
         <input type="text" id="firstName" name="firstName" required>
@@ -156,45 +143,10 @@
         </div>
       </div>
 
+      <!-- Removed Select Time section -->
+
       <button type="submit">Continue to Confirmation</button>
     </form>
   </div>
-
-  <script>
-    // Load time and guests from localStorage
-    const selectedTimeEl = document.getElementById('selectedTime');
-    const selectedGuestsEl = document.getElementById('selectedGuests');
-
-    const storedTime = localStorage.getItem('tourTime');
-    const storedGuests = localStorage.getItem('tourGuests');
-
-    selectedTimeEl.textContent = storedTime || 'Not selected';
-    selectedGuestsEl.textContent = storedGuests || 'Not selected';
-
-    // Optionally, store time & guests to localStorage again on submit
-    document.getElementById('bookingForm').addEventListener('submit', function(e) {
-      e.preventDefault();
-
-      // Collect form data
-      const formData = {
-        firstName: document.getElementById('firstName').value,
-        lastName: document.getElementById('lastName').value,
-        email: document.getElementById('email').value,
-        pickup: document.getElementById('pickup').value,
-        nationality: document.getElementById('nationality').value,
-        gender: document.getElementById('gender').value,
-        phone: document.getElementById('phone').value,
-        countryCode: document.getElementById('countryCode').value,
-        tourTime: storedTime,
-        tourGuests: storedGuests
-      };
-
-      // Store form data in localStorage for next step
-      localStorage.setItem('bookingStep2', JSON.stringify(formData));
-
-      // Redirect to confirmation page
-      window.location.href = 'confirmation.html';
-    });
-  </script>
 </body>
 </html>
