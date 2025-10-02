@@ -15,12 +15,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
   <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
+    * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
       font-family: 'Poppins', sans-serif;
       background: #ffffff;
@@ -55,10 +50,7 @@
       font-weight: 600;
     }
 
-    header h2 a {
-      text-decoration: none;
-      color: #333;
-    }
+    header h2 a { text-decoration: none; color: #333; }
 
     .sidebar {
       position: fixed;
@@ -70,7 +62,6 @@
       transition: left 0.3s ease;
       z-index: 11;
     }
-
     .sidebar.active { left: 0; }
 
     .sidebar a {
@@ -82,15 +73,7 @@
       font-size: 16px;
     }
 
-    .sidebar a i {
-      margin-right: 8px;
-    }
-
-    .sidebar a:hover {
-      background: #444;
-      padding-left: 10px;
-      transition: all 0.3s ease;
-    }
+    .sidebar a i { margin-right: 8px; }
 
     .overlay {
       display: none;
@@ -100,10 +83,7 @@
       background: rgba(0,0,0,0.3);
       z-index: 10;
     }
-
-    .overlay.active {
-      display: block;
-    }
+    .overlay.active { display: block; }
 
     .hero {
       background: #f2f2f2;
@@ -118,12 +98,6 @@
     .hero-text h1 {
       font-size: 36px;
       font-weight: bold;
-      margin-bottom: 10px;
-    }
-
-    .hero-text p {
-      font-size: 18px;
-      font-weight: 300;
       margin-bottom: 10px;
     }
 
@@ -148,9 +122,28 @@
       transition: background 0.3s ease;
     }
 
-    .btn:hover {
-      background: #14b150;
+    .btn:hover { background: #14b150; }
+
+    .tour-section {
+      margin-top: 40px;
+      text-align: left;
     }
+
+    .tour-section img {
+      width: 100%;
+      max-width: 600px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    .tour-section h3 {
+      font-size: 20px;
+      margin-top: 15px;
+      color: #111;
+    }
+
+    .tour-section a { color: #111; text-decoration: underline; }
+    .tour-section a:hover { color: #1cd760; }
 
     footer {
       text-align: center;
@@ -161,45 +154,14 @@
       margin-top: 40px;
       box-shadow: 0 -1px 3px rgba(0, 0, 0, 0.05);
     }
-
-    footer a {
-      color: #555;
-      text-decoration: none;
-      margin: 0 5px;
-    }
-
-    footer a:hover {
-      text-decoration: underline;
-    }
-
-    @media (max-width: 480px) {
-      header h2 {
-        font-size: 16px;
-      }
-
-      .hero-text h1 {
-        font-size: 26px;
-      }
-
-      .hero-text p {
-        font-size: 14px;
-      }
-
-      .btn {
-        font-size: 14px;
-        padding: 10px 20px;
-      }
-    }
   </style>
 </head>
 
 <body>
 
   <div class="overlay" id="overlay" onclick="closeMenu()"></div>
-
   <div class="sidebar" id="sidebar">
     <a href="index.html"><i class="fas fa-home"></i> Home</a>
-    <a href="about.html"><i class="fas fa-info-circle"></i> About Us</a>
     <a href="tours.html"><i class="fas fa-map-marked-alt"></i> Tours</a>
     <a href="contact.html"><i class="fas fa-phone"></i> Contact</a>
   </div>
@@ -213,64 +175,45 @@
     <div class="hero-text">
       <h1>LET'S DISCOVER EGYPT</h1>
       <p>Uncover the Magic</p>
-      <p>Enjoy a one-of-a-kind journey led by experts in Egyptology.</p>
-      <p>Our mission is to make you feel royal — with a luxurious visit through ancient history.</p>
+      <p>The first team in Egypt to offer a true VIP experience to the Pyramids.</p>
     </div>
   </div>
 
   <div class="main">
-    <p>Unveil the secrets of the Pharaohs in unmatched style — a VIP experience beyond imagination.</p>
+    <!-- Pyramids Tour -->
+    <div class="tour-section">
+      <img src="pyramids-sunset.jpg" alt="Pyramids Tour">
+      <h3><a href="pyramids.html">ALL INCLUSIVE PRIVATE HALF-DAY TRIP TO GIZA PYRAMIDS WITH CAMEL RIDE</a></h3>
+      <p style="color:#1cd760;font-weight:bold;">From 65 USD</p>
+      <a href="pyramids.html" class="btn">More Details</a>
+    </div>
 
-    <div style="margin-top: 30px;">
-      <img 
-        src="pyramids-sunset.jpg" 
-        alt="Private Camel Ride Tour at the Pyramids of Giza" 
-        loading="lazy"
-        style="width: 100%; max-width: 600px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);"
-      >
-
-      <div style="margin-top: 20px; text-align: left;">
-        <h3 style="font-size: 20px; color: #111;">
-          <a href="pyramids.html" style="color: #111; text-decoration: underline;">
-            ALL INCLUSIVE PRIVATE HALF-DAY TRIP TO GIZA PYRAMIDS WITH CAMEL RIDE
-          </a>
-        </h3>
-
-        <div style="margin-top: 10px; display: flex; align-items: center; gap: 15px; flex-wrap: wrap;">
-          <p style="font-size: 16px; color: #1cd760; font-weight: bold; margin: 0;">
-            From 65 USD
-          </p>
-          <a href="tours.html" class="btn" style="margin: 0;">See More</a>
-        </div>
-      </div>
+    <!-- Nile Cruise Tour (placed directly under Pyramids) -->
+    <div class="tour-section">
+      <img src="nile-cover.jpeg" alt="Nile Cruise">
+      <h3><a href="nile-cruise.html">EVENING DINNER NILE CRUISE IN CAIRO</a></h3>
+      <p style="color:#1cd760;font-weight:bold;">From 55 USD</p>
+      <a href="nile-cruise.html" class="btn">More Details</a>
     </div>
   </div>
 
   <footer>
     <p>&copy; 2025 Let's Discover Egypt. All rights reserved.</p>
-    <p>
-      <a href="privacy.html">Privacy Policy</a> |
-      <a href="terms.html">Terms</a>
-    </p>
   </footer>
 
   <script>
     function toggleMenu() {
-      const body = document.body;
       const sidebar = document.getElementById("sidebar");
       const overlay = document.getElementById("overlay");
-
       sidebar.classList.toggle("active");
       overlay.classList.toggle("active");
-      body.style.overflow = sidebar.classList.contains("active") ? "hidden" : "auto";
+      document.body.style.overflow = sidebar.classList.contains("active") ? "hidden" : "auto";
     }
-
     function closeMenu() {
       document.getElementById("sidebar").classList.remove("active");
       document.getElementById("overlay").classList.remove("active");
       document.body.style.overflow = "auto";
     }
   </script>
-
 </body>
 </html>
