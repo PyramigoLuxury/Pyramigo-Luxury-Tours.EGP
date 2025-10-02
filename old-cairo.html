@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Old Cairo Tour - Let's Discover Egypt</title>
-  <meta name="description" content="Visit Old Cairo: Citadel of Saladin, Mosque of Muhammad Ali, Coptic Churches, and Khan El Khalili Bazaar.">
+  <meta name="description" content="All-inclusive private full-day trip to Old Cairo: Citadel of Saladin, Mosque of Muhammad Ali, Coptic Churches, and Khan El Khalili Bazaar.">
   <link rel="icon" href="favicon.png" type="image/png">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
@@ -45,7 +45,7 @@
     }
     .overlay.active { display: block; }
 
-    /* غلاف الصورة */
+    /* Hero Cover */
     .cover {
       position: relative;
       min-height: 70vh;
@@ -61,14 +61,29 @@
       z-index: -1;
     }
     .cover h1 {
-      background: rgba(255,255,255,0.85);
-      padding: 20px 30px; border-radius: 12px;
-      font-size: 32px; font-weight: 600; color: #111; text-align: center;
+      background: rgba(255,255,255,0.8);
+      padding: 25px 40px;
+      border-radius: 15px;
+      font-size: 36px;
+      font-weight: 700;
+      text-align: center;
+      line-height: 1.3;
+      color: #111;
     }
 
     .tour-content { max-width: 900px; margin: 40px auto; padding: 20px; line-height: 1.7; }
     .tour-content h2 { font-size: 24px; margin-bottom: 15px; color: #111; }
     .tour-content p { font-size: 16px; margin-bottom: 15px; color: #555; }
+
+    .tour-image {
+      width: 100%;
+      max-width: 800px;
+      margin: 25px auto;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    .tour-image img { width: 100%; display: block; }
 
     .highlights {
       margin: 25px 0;
@@ -112,10 +127,10 @@
     <h2><a href="index.html"><i class="fas fa-globe-africa"></i> Let's Discover Egypt</a></h2>
   </header>
 
-  <!-- القسم الغلاف -->
+  <!-- Hero Cover -->
   <section class="cover">
     <img src="old-cairo-cover.jpg" alt="Old Cairo Cover">
-    <h1>Old Cairo Tour</h1>
+    <h1>ALL INCLUSIVE PRIVATE FULL-DAY TRIP<br>TO OLD CAIRO</h1>
   </section>
 
   <section class="tour-content">
@@ -123,6 +138,11 @@
     <p>
       Discover the heart of Cairo’s history with our exclusive Old Cairo Tour. Visit the <b>Citadel of Saladin</b> and the stunning <b>Mosque of Muhammad Ali</b>, explore the ancient <b>Coptic Churches</b> including the Hanging Church, and wander through the colorful alleys of <b>Khan El Khalili Bazaar</b>.
     </p>
+
+    <!-- صورة جانبية احترافية -->
+    <div class="tour-image">
+      <img src="coptic-church.jpg" alt="Coptic Church">
+    </div>
 
     <div class="highlights">
       <div class="highlight">
@@ -172,4 +192,4 @@
     }
   </script>
 </body>
-</html>
+  </html>
