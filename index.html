@@ -61,6 +61,7 @@
       padding: 60px 20px;
       transition: left 0.3s ease;
       z-index: 11;
+      overflow-y: auto;
     }
     .sidebar.active { left: 0; }
 
@@ -74,6 +75,14 @@
     }
 
     .sidebar a i { margin-right: 8px; }
+
+    .sidebar h3 {
+      color: #1cd760;
+      font-size: 14px;
+      margin: 20px 0 10px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
 
     .overlay {
       display: none;
@@ -160,9 +169,16 @@
 <body>
 
   <div class="overlay" id="overlay" onclick="closeMenu()"></div>
+
   <div class="sidebar" id="sidebar">
     <a href="index.html"><i class="fas fa-home"></i> Home</a>
     <a href="tours.html"><i class="fas fa-map-marked-alt"></i> Tours</a>
+
+    <h3>Our Tours</h3>
+    <a href="pyramids.html"><i class="fas fa-landmark"></i> Pyramids Tour</a>
+    <a href="nile-cruise.html"><i class="fas fa-ship"></i> Nile Cruise</a>
+    <a href="old-cairo.html"><i class="fas fa-church"></i> Old Cairo Tour</a>
+
     <a href="contact.html"><i class="fas fa-phone"></i> Contact</a>
   </div>
 
@@ -188,12 +204,20 @@
       <a href="pyramids.html" class="btn">More Details</a>
     </div>
 
-    <!-- Nile Cruise Tour (placed directly under Pyramids) -->
+    <!-- Nile Cruise Tour -->
     <div class="tour-section">
       <img src="nile-cover.jpeg" alt="Nile Cruise">
       <h3><a href="nile-cruise.html">EVENING DINNER NILE CRUISE IN CAIRO</a></h3>
       <p style="color:#1cd760;font-weight:bold;">From 55 USD</p>
       <a href="nile-cruise.html" class="btn">More Details</a>
+    </div>
+
+    <!-- Old Cairo Tour -->
+    <div class="tour-section">
+      <img src="old-cairo-cover.jpeg" alt="Old Cairo Tour">
+      <h3><a href="old-cairo.html">FULL DAY OLD CAIRO TOUR: CITADEL, CHURCHES & KHAN EL KHALILI</a></h3>
+      <p style="color:#1cd760;font-weight:bold;">From 60 USD</p>
+      <a href="old-cairo.html" class="btn">More Details</a>
     </div>
   </div>
 
