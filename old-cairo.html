@@ -1,207 +1,79 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Old Cairo Tour - Let's Discover Egypt</title>
-  <meta name="description" content="Visit Old Cairo: Citadel of Saladin, Mosque of Muhammad Ali, Coptic Churches, and Khan El Khalili.">
-  <link rel="icon" href="favicon.png" type="image/png">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body {
-      font-family: 'Poppins', sans-serif;
-      background: #fff;
-      color: #333;
-    }
-
-    header {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%;
-      background: white;
-      padding: 15px 20px;
-      display: flex;
-      align-items: center;
-      justify-content: flex-start;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-      z-index: 10;
-    }
-
-    .menu-icon {
-      font-size: 24px;
-      cursor: pointer;
-      z-index: 12;
-    }
-
-    header h2 {
-      position: absolute;
-      left: 50%;
-      transform: translateX(-50%);
-      font-size: 20px;
-      font-weight: 600;
-    }
-
-    header h2 a {
-      text-decoration: none;
-      color: #333;
-    }
-
-    .sidebar {
-      position: fixed;
-      top: 0; left: -250px;
-      width: 250px; height: 100%;
-      background: #333;
-      color: white;
-      padding: 60px 20px;
-      transition: left 0.3s ease;
-      z-index: 11;
-    }
-
-    .sidebar.active { left: 0; }
-
-    .sidebar a {
-      display: block;
-      color: white;
-      text-decoration: none;
-      padding: 15px 0;
-      border-bottom: 1px solid #444;
-      font-size: 16px;
-    }
-
-    .sidebar a i { margin-right: 8px; }
-
-    .sidebar a:hover {
-      background: #444;
-      padding-left: 10px;
-      transition: all 0.3s ease;
-    }
-
-    .overlay {
-      display: none;
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: rgba(0,0,0,0.3);
-      z-index: 10;
-    }
-
-    .overlay.active { display: block; }
-
-    .cover {
-      background: url('old-cairo-cover.jpeg') center center/cover no-repeat;
-      min-height: 70vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 80px 20px 40px;
-    }
-
-    .cover h1 {
-      background: rgba(255,255,255,0.85);
-      padding: 20px 30px;
-      border-radius: 12px;
-      font-size: 32px;
-      font-weight: 600;
-      color: #111;
-      text-align: center;
-    }
-
-    .tour-details {
-      max-width: 900px;
-      margin: 40px auto;
-      padding: 20px;
-      line-height: 1.7;
-    }
-
-    .tour-details h2 {
-      font-size: 24px;
-      margin-bottom: 15px;
-      color: #111;
-    }
-
-    .tour-details p {
-      font-size: 16px;
-      color: #555;
-      margin-bottom: 20px;
-    }
-
-    .btn {
-      display: inline-block;
-      padding: 12px 25px;
-      background: #1cd760;
-      color: white;
-      border-radius: 30px;
-      text-decoration: none;
-      font-weight: bold;
-      transition: 0.3s ease;
-    }
-
-    .btn:hover { background: #14b150; }
-
-    footer {
-      text-align: center;
-      padding: 30px 20px;
-      color: #777;
-      font-size: 14px;
-      background: #fff;
-      box-shadow: 0 -1px 3px rgba(0, 0, 0, 0.05);
-    }
-  </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Old Cairo Tour | Let's Discover Egypt</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
 
-  <div class="overlay" id="overlay" onclick="closeMenu()"></div>
+  <!-- Header -->
+  <header>
+    <div class="logo">Let's Discover Egypt</div>
+    <div class="menu-icon" onclick="toggleSidebar()">☰</div>
+  </header>
 
+  <!-- Sidebar -->
   <div class="sidebar" id="sidebar">
     <a href="index.html"><i class="fas fa-home"></i> Home</a>
-    <a href="about.html"><i class="fas fa-info-circle"></i> About Us</a>
     <a href="tours.html"><i class="fas fa-map-marked-alt"></i> Tours</a>
+
+    <h3 style="color:#ccc; font-size:14px; margin:20px 0 10px;">Our Tours</h3>
+    <a href="pyramids.html"><i class="fas fa-landmark"></i> Pyramids Tour</a>
+    <a href="nile-cruise.html"><i class="fas fa-ship"></i> Nile Cruise</a>
+    <a href="old-cairo.html" class="active"><i class="fas fa-church"></i> Old Cairo Tour</a>
+
     <a href="contact.html"><i class="fas fa-phone"></i> Contact</a>
   </div>
 
-  <header>
-    <div class="menu-icon" onclick="toggleMenu()">☰</div>
-    <h2><a href="index.html"><i class="fas fa-globe-africa"></i> Let's Discover Egypt</a></h2>
-  </header>
+  <!-- Hero Section -->
+  <div class="hero" style="background-image: url('old-cairo-cover.jpeg');">
+    <div class="hero-text">
+      <h1>Old Cairo Tour</h1>
+      <p>Explore the historic churches, mosques, and markets of Old Cairo</p>
+    </div>
+  </div>
 
-  <section class="cover">
-    <h1>Old Cairo Tour</h1>
-  </section>
-
+  <!-- Tour Details -->
   <section class="tour-details">
-    <h2>Explore the Treasures of Old Cairo</h2>
-    <p>
-      Join us on an unforgettable journey through Old Cairo: visit the magnificent <b>Citadel of Saladin</b> and the iconic <b>Mosque of Muhammad Ali</b>, explore the historic <b>Coptic Churches</b> including the Hanging Church, and finish your day with shopping and local vibes at the vibrant <b>Khan El Khalili Bazaar</b>.
-    </p>
-    <p>
-      A full-day cultural and historical experience that combines Islamic, Christian, and traditional Cairo heritage.
-    </p>
+    <h2><i class="fas fa-info-circle"></i> Tour Highlights</h2>
+    <ul>
+      <li><i class="fas fa-church"></i> Visit the Hanging Church and other famous Coptic churches</li>
+      <li><i class="fas fa-mosque"></i> Discover the Amr Ibn Al-As Mosque, the first mosque in Africa</li>
+      <li><i class="fas fa-landmark"></i> Explore the Coptic Museum and Ben Ezra Synagogue</li>
+      <li><i class="fas fa-store"></i> Walk through the vibrant Khan El Khalili Bazaar</li>
+      <li><i class="fas fa-city"></i> Enjoy the Citadel of Saladin and Mohamed Ali Mosque</li>
+    </ul>
 
-    <a href="book.html" class="btn">Book Now</a>
+    <h2><i class="fas fa-clock"></i> Duration</h2>
+    <p>Approx. 6 hours</p>
+
+    <h2><i class="fas fa-bus"></i> Inclusions</h2>
+    <ul>
+      <li>Private air-conditioned vehicle</li>
+      <li>Professional tour guide</li>
+      <li>Entrance fees to mentioned sites</li>
+      <li>Bottled water</li>
+    </ul>
+
+    <h2><i class="fas fa-dollar-sign"></i> Price</h2>
+    <p>Starting from $60 per person</p>
+
+    <a href="book.html" class="book-btn"><i class="fas fa-calendar-check"></i> Book Now</a>
   </section>
 
+  <!-- Footer -->
   <footer>
     <p>&copy; 2025 Let's Discover Egypt. All rights reserved.</p>
   </footer>
 
   <script>
-    function toggleMenu() {
-      const sidebar = document.getElementById("sidebar");
-      const overlay = document.getElementById("overlay");
-      sidebar.classList.toggle("active");
-      overlay.classList.toggle("active");
-      document.body.style.overflow = sidebar.classList.contains("active") ? "hidden" : "auto";
-    }
-
-    function closeMenu() {
-      document.getElementById("sidebar").classList.remove("active");
-      document.getElementById("overlay").classList.remove("active");
-      document.body.style.overflow = "auto";
+    function toggleSidebar() {
+      document.getElementById("sidebar").classList.toggle("active");
     }
   </script>
 
 </body>
-</html>
+  </html>
