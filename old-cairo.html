@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Old Cairo Tour - Let's Discover Egypt</title>
+  <meta name="description" content="Visit Old Cairo: Citadel of Saladin, Mosque of Muhammad Ali, Coptic Churches, and Khan El Khalili Bazaar.">
+  <link rel="icon" href="favicon.png" type="image/png">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Poppins', sans-serif; color: #333; background: #fff; }
+
+    header {
+      position: fixed; top: 0; left: 0; width: 100%;
+      background: #fff; padding: 15px 20px;
+      display: flex; align-items: center;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1); z-index: 10;
+    }
+    .menu-icon { font-size: 24px; cursor: pointer; }
+    header h2 {
+      position: absolute; left: 50%; transform: translateX(-50%);
+      font-size: 20px; font-weight: 600;
+    }
+    header h2 a { text-decoration: none; color: #333; }
+
+    .sidebar {
+      position: fixed; top: 0; left: -250px; width: 250px; height: 100%;
+      background: #333; color: #fff; padding: 60px 20px;
+      transition: 0.3s; z-index: 11;
+    }
+    .sidebar.active { left: 0; }
+    .sidebar a {
+      display: block; padding: 12px 0; font-size: 16px;
+      color: #fff; text-decoration: none; border-bottom: 1px solid #444;
+    }
+    .sidebar a:hover { background: #444; padding-left: 10px; }
+    .sidebar a i { margin-right: 8px; }
+
+    .overlay {
+      display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0,0,0,0.3); z-index: 10;
+    }
+    .overlay.active { display: block; }
+
+    /* غلاف الصورة */
+    .cover {
+      position: relative;
+      min-height: 70vh;
+      display: flex; align-items: center; justify-content: center;
+      padding: 80px 20px 40px;
+      overflow: hidden;
+    }
+    .cover img {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      z-index: -1;
+    }
+    .cover h1 {
+      background: rgba(255,255,255,0.85);
+      padding: 20px 30px; border-radius: 12px;
+      font-size: 32px; font-weight: 600; color: #111; text-align: center;
+    }
+
+    .tour-content { max-width: 900px; margin: 40px auto; padding: 20px; line-height: 1.7; }
+    .tour-content h2 { font-size: 24px; margin-bottom: 15px; color: #111; }
+    .tour-content p { font-size: 16px; margin-bottom: 15px; color: #555; }
+
+    .highlights {
+      margin: 25px 0;
+      display: grid; grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
+      gap: 20px;
+    }
+    .highlight {
+      background: #f8f8f8; padding: 20px; border-radius: 12px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05); text-align: center;
+    }
+    .highlight i { font-size: 30px; color: #1cd760; margin-bottom: 10px; }
+
+    .btn {
+      display: inline-block; padding: 12px 25px; margin-top: 20px;
+      background: #1cd760; color: #fff; font-weight: bold;
+      border-radius: 30px; text-decoration: none; transition: 0.3s;
+    }
+    .btn:hover { background: #14b150; }
+
+    footer {
+      text-align: center; padding: 30px 20px;
+      color: #777; font-size: 14px; background: #fff;
+      box-shadow: 0 -1px 3px rgba(0,0,0,0.05); margin-top: 40px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="overlay" id="overlay" onclick="closeMenu()"></div>
+
+  <div class="sidebar" id="sidebar">
+    <a href="index.html"><i class="fas fa-home"></i> Home</a>
+    <a href="pyramids.html"><i class="fas fa-monument"></i> Pyramids Tour</a>
+    <a href="nile-cruise.html"><i class="fas fa-ship"></i> Nile Cruise</a>
+    <a href="old-cairo.html"><i class="fas fa-landmark"></i> Old Cairo</a>
+    <a href="contact.html"><i class="fas fa-phone"></i> Contact</a>
+  </div>
+
+  <header>
+    <div class="menu-icon" onclick="toggleMenu()">☰</div>
+    <h2><a href="index.html"><i class="fas fa-globe-africa"></i> Let's Discover Egypt</a></h2>
+  </header>
+
+  <!-- القسم الغلاف -->
+  <section class="cover">
+    <img src="old-cairo-cover.jpg" alt="Old Cairo Cover">
+    <h1>Old Cairo Tour</h1>
+  </section>
+
+  <section class="tour-content">
+    <h2>Explore the Treasures of Old Cairo</h2>
+    <p>
+      Discover the heart of Cairo’s history with our exclusive Old Cairo Tour. Visit the <b>Citadel of Saladin</b> and the stunning <b>Mosque of Muhammad Ali</b>, explore the ancient <b>Coptic Churches</b> including the Hanging Church, and wander through the colorful alleys of <b>Khan El Khalili Bazaar</b>.
+    </p>
+
+    <div class="highlights">
+      <div class="highlight">
+        <i class="fas fa-landmark"></i>
+        <h4>Citadel of Saladin</h4>
+        <p>Marvel at the medieval fortress overlooking Cairo.</p>
+      </div>
+      <div class="highlight">
+        <i class="fas fa-mosque"></i>
+        <h4>Mosque of Muhammad Ali</h4>
+        <p>A masterpiece of Ottoman architecture inside the Citadel.</p>
+      </div>
+      <div class="highlight">
+        <i class="fas fa-church"></i>
+        <h4>Coptic Cairo</h4>
+        <p>Visit the Hanging Church and historic Christian sites.</p>
+      </div>
+      <div class="highlight">
+        <i class="fas fa-store"></i>
+        <h4>Khan El Khalili</h4>
+        <p>Experience Cairo’s most famous bazaar with local vibes.</p>
+      </div>
+    </div>
+
+    <p><b>Duration:</b> Full-day tour</p>
+    <p><b>Price:</b> From 60 USD</p>
+
+    <a href="book.html" class="btn">Book Now</a>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Let's Discover Egypt. All rights reserved.</p>
+  </footer>
+
+  <script>
+    function toggleMenu() {
+      const sidebar = document.getElementById("sidebar");
+      const overlay = document.getElementById("overlay");
+      sidebar.classList.toggle("active");
+      overlay.classList.toggle("active");
+      document.body.style.overflow = sidebar.classList.contains("active") ? "hidden" : "auto";
+    }
+    function closeMenu() {
+      document.getElementById("sidebar").classList.remove("active");
+      document.getElementById("overlay").classList.remove("active");
+      document.body.style.overflow = "auto";
+    }
+  </script>
+</body>
+</html>
