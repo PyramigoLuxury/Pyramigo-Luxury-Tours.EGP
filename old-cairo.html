@@ -45,10 +45,20 @@
     }
     .overlay.active { display: block; }
 
+    /* غلاف الصورة */
     .cover {
-      background: url('old-cairo-cover.jpg') center/cover no-repeat;
-      min-height: 70vh; display: flex; align-items: center; justify-content: center;
+      position: relative;
+      min-height: 70vh;
+      display: flex; align-items: center; justify-content: center;
       padding: 80px 20px 40px;
+      overflow: hidden;
+    }
+    .cover img {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      z-index: -1;
     }
     .cover h1 {
       background: rgba(255,255,255,0.85);
@@ -102,7 +112,9 @@
     <h2><a href="index.html"><i class="fas fa-globe-africa"></i> Let's Discover Egypt</a></h2>
   </header>
 
+  <!-- القسم الغلاف -->
   <section class="cover">
+    <img src="old-cairo-cover.jpg" alt="Old Cairo Cover">
     <h1>Old Cairo Tour</h1>
   </section>
 
@@ -160,4 +172,4 @@
     }
   </script>
 </body>
-  </html>
+</html>
