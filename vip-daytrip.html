@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>VIP All Inclusive Day Trip – Giza, Sakkara, Memphis | Let's Discover Egypt</title>
+  <meta name="description" content="VIP All Inclusive Guided Day Trip: Giza Pyramids, Sakkara, Memphis, camel ride & lunch. Private guide, hotel pickup, luxury transport." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="" crossorigin="anonymous" />
+  <style>
+    :root{
+      --accent:#c49a3b;
+      --dark:#0f1724;
+      --muted:#6b7280;
+      --bg:#f8fafc;
+      --card:#ffffff;
+      font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;background:var(--bg);color:var(--dark);-webkit-font-smoothing:antialiased}
+    /* Header */
+    .header{
+      position:fixed;top:0;left:0;right:0;height:64px;background:#fff;box-shadow:0 1px 8px rgba(15,23,36,0.06);display:flex;align-items:center;justify-content:space-between;padding:0 18px;z-index:60;
+    }
+    .brand{display:flex;align-items:center;gap:12px}
+    .brand img{height:40px}
+    .brand h1{font-size:16px;margin:0;font-weight:700}
+    .nav-actions{display:flex;gap:10px;align-items:center}
+    .btn{background:var(--accent);color:#fff;padding:10px 14px;border-radius:10px;text-decoration:none;font-weight:600;display:inline-flex;gap:8px;align-items:center}
+    .icon-btn{background:transparent;border:none;font-size:18px;cursor:pointer;color:var(--dark)}
+    /* Layout */
+    .container{display:grid;grid-template-columns:260px 1fr;gap:22px;padding:88px 28px 48px;max-width:1200px;margin:0 auto}
+    /* Sidebar */
+    .sidebar{background:var(--card);padding:18px;border-radius:12px;box-shadow:0 6px 18px rgba(15,23,36,0.03);position:sticky;top:84px;height:fit-content}
+    .sidebar nav a{display:flex;gap:10px;padding:10px;border-radius:8px;color:var(--dark);text-decoration:none;margin-bottom:6px}
+    .sidebar nav a:hover{background:#f3f4f6}
+    /* Main */
+    .main-card{background:transparent}
+    .hero{
+      background-image:linear-gradient(rgba(12,17,26,0.25), rgba(12,17,26,0.25)), url('images/vip-daytrip-cover.jpg');
+      background-size:cover;background-position:center;border-radius:12px;padding:44px;color:#fff;display:flex;flex-direction:column;gap:18px;min-height:300px;box-shadow:inset 0 0 0 1000px rgba(0,0,0,0.08);
+    }
+    .hero .badge{background:rgba(255,255,255,0.12);display:inline-block;padding:6px 10px;border-radius:999px;font-weight:600}
+    .hero h2{margin:0;font-size:28px;line-height:1.05}
+    .hero p{margin:0;opacity:0.95}
+    .grid{display:grid;grid-template-columns:1fr 320px;gap:20px;margin-top:20px}
+    .card{background:var(--card);padding:18px;border-radius:12px;box-shadow:0 6px 18px rgba(15,23,36,0.03)}
+    .section-title{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+    .itinerary .item{margin-bottom:12px}
+    .itinerary .time{font-weight:700;color:var(--accent)}
+    .list{padding-left:16px;margin:8px 0}
+    table.prices{width:100%;border-collapse:collapse}
+    table.prices th, table.prices td{padding:10px;border-bottom:1px solid #eef2f7;text-align:left}
+    .price-tag{font-weight:700;color:var(--accent)}
+    footer{padding:20px;text-align:center;color:var(--muted);font-size:14px}
+    /* Responsive */
+    @media (max-width:980px){
+      .container{grid-template-columns:1fr;padding:100px 16px 30px}
+      .grid{grid-template-columns:1fr}
+      .sidebar{order:2}
+      .header .nav-actions{gap:8px}
+    }
+  </style>
+</head>
+<body>
+
+  <header class="header" role="banner">
+    <div class="brand">
+      <button id="menuToggle" class="icon-btn" aria-label="Toggle menu"><i class="fa fa-bars"></i></button>
+      <img src="images/lulu-logo.png" alt="Pyramigo / Lulu logo" />
+      <h1>Let's Discover Egypt</h1>
+    </div>
+    <div class="nav-actions">
+      <a class="btn" href="book.html?tour=VIP%20All%20Inclusive%20Guided%20Day%20Trip" id="bookNowHeader"><i class="fa fa-calendar-days"></i> Book Now</a>
+      <a class="btn" id="whatsappHeader" href="#" target="_blank"><i class="fa fa-whatsapp"></i> WhatsApp</a>
+    </div>
+  </header>
+
+  <main class="container" role="main">
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar" aria-label="Main menu">
+      <nav>
+        <a href="#overview"><i class="fa fa-info-circle"></i> Overview</a>
+        <a href="#itinerary"><i class="fa fa-route"></i> Itinerary</a>
+        <a href="#includes"><i class="fa fa-check-circle"></i> Includes</a>
+        <a href="#pricing"><i class="fa fa-tag"></i> Pricing</a>
+        <a href="#booking"><i class="fa fa-phone"></i> How to Book</a>
+        <a href="index.html"><i class="fa fa-arrow-left"></i> Back to Tours</a>
+      </nav>
+    </aside>
+
+    <!-- Main content -->
+    <section class="main-card">
+      <div class="hero" role="img" aria-label="VIP Day Trip cover">
+        <span class="badge">VIP • Private • All Inclusive</span>
+        <h2>VIP All Inclusive Guided Day Trip — Giza Pyramids, Sakkara & Memphis</h2>
+        <p>Private luxury vehicle, licensed Egyptologist guide, camel ride at Giza, and an authentic Egyptian lunch. Hotel pickup & drop-off included.</p>
+        <div style="display:flex;gap:12px;margin-top:auto;">
+          <a class="btn" href="book.html?tour=VIP%20All%20Inclusive%20Guided%20Day%20Trip"><i class="fa fa-calendar"></i> Book Now</a>
+          <a class="btn" id="whatsappHero" href="#" target="_blank"><i class="fa fa-whatsapp"></i> Book via WhatsApp</a>
+        </div>
+      </div>
+
+      <div class="grid" style="margin-top:20px">
+        <!-- Left / Details -->
+        <div>
+          <div id="overview" class="card">
+            <div class="section-title"><i class="fa fa-map-marker-alt"></i><h3 style="margin:0">Overview</h3></div>
+            <p><strong>Duration:</strong> Full day (approx. 8–10 hours) • <strong>Start time:</strong> 8:00 AM (flexible) • <strong>Pickup:</strong> Cairo hotels / Nile-side hotels / Giza area</p>
+            <p>This VIP private tour visits the highlights of Greater Giza and Old Kingdom necropoleis: the Great Pyramids & Sphinx, a camel ride near the pyramids, then on to Sakkara (Step Pyramid of Djoser), and Memphis (the ancient capital) — with an expert Egyptologist guide and a delicious lunch at a local high-quality restaurant.</p>
+          </div>
+
+          <div id="itinerary" class="card itinerary" style="margin-top:18px">
+            <div class="section-title"><i class="fa fa-list-ol"></i><h3 style="margin:0">Itinerary</h3></div>
+
+            <div class="item">
+              <div class="time">08:00 — Hotel pickup</div>
+              <p>Our driver and guide pick you up from your hotel in Cairo or Giza. Short briefing and drive to the Giza Plateau.</p>
+            </div>
+
+            <div class="item">
+              <div class="time">09:00 — Giza Pyramids & Sphinx</div>
+              <p>Private guided visit to the Great Pyramid of Khufu area, Khafre, and Menkaure. Walk around the plateau, explanation of the tombs and funerary complexes. Optional inside-pyramid entry (extra ticket).</p>
+              <ul class="list">
+                <li>Photo stops with the Pyramids</li>
+                <li>Visit the Sphinx and Valley Temple area</li>
+                <li>Optional Pyramid interior entry (not included)</li>
+              </ul>
+            </div>
+
+            <div class="item">
+              <div class="time">11:30 — Camel ride experience</div>
+              <p>Short guided camel ride near the Pyramids (approx. 20–30 minutes) with photo opportunities.</p>
+            </div>
+
+            <div class="item">
+              <div class="time">12:30 — Lunch</div>
+              <p>Enjoy a VIP-style lunch at a selected restaurant with local cuisine (vegetarian options available).</p>
+            </div>
+
+            <div class="item">
+              <div class="time">14:00 — Sakkara (Step Pyramid of Djoser)</div>
+              <p>Explore the Step Pyramid complex, learn about Old Kingdom funerary practices and see tomb reliefs and mastabas.</p>
+            </div>
+
+            <div class="item">
+              <div class="time">16:00 — Memphis</div>
+              <p>Short visit to the open-air museum of ancient Memphis: Colossal statue of Ramses II, sphinxes, and artifacts from the Old Kingdom.</p>
+            </div>
+
+            <div class="item">
+              <div class="time">17:00 — Return to hotel</div>
+              <p>Comfortable drive back to your hotel. Drop-off in Cairo or Giza.</p>
+            </div>
+          </div>
+
+          <div id="includes" class="card" style="margin-top:18px">
+            <div class="section-title"><i class="fa fa-check"></i><h3 style="margin:0">Includes</h3></div>
+            <ul class="list">
+              <li>Private licensed Egyptologist guide</li>
+              <li>Air-conditioned private vehicle with driver</li>
+              <li>Hotel pickup & drop-off (Cairo/Giza area)</li>
+              <li>Camel ride near the Pyramids</li>
+              <li>Entrance fees to Sakkara & Memphis (Giza Plateau optional tickets separate)</li>
+              <li>Lunch at a quality restaurant (vegetarian options available)</li>
+              <li>Bottled water and cold towels</li>
+              <li>All service charges & taxes</li>
+            </ul>
+
+            <div style="margin-top:12px" class="section-title"><i class="fa fa-times-circle"></i><h3 style="margin:0">Not Included</h3></div>
+            <ul class="list">
+              <li>Tips for guide & driver (recommended)</li>
+              <li>Optional inside pyramid entry tickets</li>
+              <li>Any personal purchases or souvenirs</li>
+            </ul>
+          </div>
+
+          <div id="pricing" class="card" style="margin-top:18px">
+            <div class="section-title"><i class="fa fa-money-bill-wave"></i><h3 style="margin:0">Pricing</h3></div>
+            <p><strong>Private VIP price starting from</strong></p>
+            <table class="prices" aria-describedby="pricing-desc">
+              <thead>
+                <tr><th>Option</th><th>Per Person</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>1–2 persons (Private)</td><td class="price-tag">From $200</td></tr>
+                <tr><td>3–4 persons (Private)</td><td class="price-tag">From $160</td></tr>
+                <tr><td>5–8 persons (Private Van)</td><td class="price-tag">From $120</td></tr>
+              </tbody>
+            </table>
+            <p id="pricing-desc" style="margin-top:10px;color:var(--muted)">Prices are indicative and may vary by pickup location, number of guests, and season. For exact quote use the Book Now form or WhatsApp.</p>
+          </div>
+
+          <div id="booking" class="card" style="margin-top:18px">
+            <div class="section-title"><i class="fa fa-phone"></i><h3 style="margin:0">How to Book</h3></div>
+            <p>To reserve your VIP day trip choose one of the options below:</p>
+            <ol style="padding-left:18px">
+              <li>Click <a class="btn" href="book.html?tour=VIP%20All%20Inclusive%20Guided%20Day%20Trip">Book Now</a> to open the booking form and send details (date, number of guests, pickup).</li>
+              <li>Or message us on WhatsApp using the button below — we will confirm availability and send payment instructions.</li>
+            </ol>
+            <div style="margin-top:12px">
+              <a class="btn" id="whatsappBooking" href="#" target="_blank"><i class="fa fa-whatsapp"></i> Message on WhatsApp</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right / Quick info -->
+        <aside>
+          <div class="card">
+            <div class="section-title"><i class="fa fa-clock"></i><h3 style="margin:0">Fast Facts</h3></div>
+            <p><strong>Duration:</strong> 8–10 hours<br><strong>Pickup:</strong> 08:00 (flexible)<br><strong>Pickup area:</strong> Cairo & Giza hotels</p>
+            <hr>
+            <p><strong>Group size:</strong> Private (1–8 pax)<br><strong>Languages:</strong> English (Arabic on request)</p>
+            <hr>
+            <p style="margin:0"><strong>Cancellation:</strong> Free up to 48 hours before tour start.</p>
+          </div>
+
+          <div class="card" style="margin-top:14px">
+            <div class="section-title"><i class="fa fa-envelope"></i><h3 style="margin:0">Contact</h3></div>
+            <p style="margin:6px 0">For quick questions:</p>
+            <p style="margin:6px 0;"><strong>WhatsApp:</strong> +20 1XXXXXXXXX</p>
+            <p style="margin:6px 0;"><strong>Email:</strong> info@letsdiscoveregypt.com</p>
+            <div style="margin-top:10px">
+              <a class="btn" href="mailto:info@letsdiscoveregypt.com"><i class="fa fa-paper-plane"></i> Email us</a>
+            </div>
+          </div>
+
+          <div class="card" style="margin-top:14px">
+            <div class="section-title"><i class="fa fa-question-circle"></i><h3 style="margin:0">Need Help?</h3></div>
+            <p style="margin:6px 0">If you want to customize the tour (private guide in other languages, different pickup time, private driver for multiple days) — contact us and we'll create a custom itinerary.</p>
+          </div>
+        </aside>
+      </div>
+
+      <footer style="margin-top:20px">
+        © <span id="year"></span> Let's Discover Egypt — All rights reserved.
+      </footer>
+    </section>
+  </main>
+
+  <script>
+    // Small interactive behaviours
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    const menuToggle = document.getElementById('menuToggle');
+    const sidebar = document.getElementById('sidebar');
+    let open = true;
+    function toggleSidebar(){
+      if(window.innerWidth <= 980){
+        sidebar.style.display = (sidebar.style.display === 'block') ? 'none' : 'block';
+      } else {
+        // on desktop keep visible
+        sidebar.style.display = 'block';
+      }
+    }
+    menuToggle.addEventListener('click', toggleSidebar);
+
+    // WhatsApp links — change phone number below to your number
+    const phone = '+201XXXXXXXXX'; // <- replace with your WhatsApp number in international format
+    const premsg = encodeURIComponent('Hello! I would like to book the VIP All Inclusive Day Trip (Giza, Sakkara, Memphis). Date: [DD-MM-YYYY]. Guests: [number].');
+    const waLink = 'https://wa.me/' + phone.replace(/\D/g,'') + '?text=' + premsg;
+
+    document.getElementById('whatsappHeader').href = waLink;
+    document.getElementById('whatsappHero').href = waLink;
+    document.getElementById('whatsappBooking').href = waLink;
+
+    // Smooth scroll for sidebar links
+    document.querySelectorAll('.sidebar nav a').forEach(a=>{
+      a.addEventListener('click', function(e){
+        const href = this.getAttribute('href');
+        if(href.startsWith('#')){
+          e.preventDefault();
+          const el = document.querySelector(href);
+          if(el) el.scrollIntoView({behavior:'smooth',block:'start'});
+          if(window.innerWidth <= 980) sidebar.style.display = 'none';
+        }
+      });
+    });
+  </script>
+</body>
+  </html>
