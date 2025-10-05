@@ -94,14 +94,32 @@
     }
     .overlay.active { display: block; }
 
+    /* Hero Section with Background */
     .hero {
-      background: #f2f2f2;
+      background: url('great-museum.jpg') center/cover no-repeat;
       min-height: 60vh;
       display: flex;
       align-items: center;
       justify-content: center;
       text-align: center;
       padding: 20px 20px 0;
+      color: white;
+      position: relative;
+    }
+
+    /* طبقة شفافة عشان الكلام يبان */
+    .hero::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.4);
+      z-index: 0;
+    }
+
+    .hero-text {
+      position: relative;
+      z-index: 1;
     }
 
     .hero-text h1 {
@@ -220,18 +238,15 @@
       <a href="old-cairo.html" class="btn">More Details</a>
     </div>
     
- <!-- VIP All Inclusive Day Trip -->
-<div class="tour-section">
-  <img src="vip-daytrip-cover.jpg" alt="VIP All Inclusive Guided Day Trip - Giza, Sakkara, Memphis & Camel Ride">
-  <h3>
-    <a href="vip-daytrip.html">VIP ALL INCLUSIVE GUIDED DAY TRIP GIZA PYRAMIDS, SAKKARA & MEMPHIS</a>
-  </h3>
-  <p style="color:#1cd760;font-weight:bold;">From 90 USD</p>
-  <a href="vip-daytrip.html" class="btn">More Details</a>
-</div>
-</div>
+    <!-- VIP All Inclusive Day Trip -->
+    <div class="tour-section">
+      <img src="vip-daytrip-cover.jpg" alt="VIP All Inclusive Guided Day Trip - Giza, Sakkara, Memphis & Camel Ride">
+      <h3><a href="vip-daytrip.html">VIP ALL INCLUSIVE GUIDED DAY TRIP GIZA PYRAMIDS, SAKKARA & MEMPHIS</a></h3>
+      <p style="color:#1cd760;font-weight:bold;">From 90 USD</p>
+      <a href="vip-daytrip.html" class="btn">More Details</a>
+    </div>
+  </div>
   
-</div>
   <footer>
     <p>&copy; 2025 Let's Discover Egypt. All rights reserved.</p>
   </footer>
@@ -251,4 +266,4 @@
     }
   </script>
 </body>
-  </html>
+      </html>
