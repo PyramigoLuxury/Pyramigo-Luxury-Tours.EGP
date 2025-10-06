@@ -6,14 +6,6 @@
   <title>Let's Discover Egypt</title>
   <meta name="description" content="Explore Egypt with private guided tours. Visit the Pyramids, enjoy camel rides, and discover ancient wonders. Book now!">
   <meta name="keywords" content="Egypt tours, Pyramids, Cairo travel, Giza, tourism, discover Egypt">
-  <meta name="robots" content="index, follow">
-  <!-- Open Graph -->
-  <meta property="og:title" content="Let's Discover Egypt - Private Egypt Tours">
-  <meta property="og:description" content="Book your private tours in Egypt: Pyramids, Nile Cruise, Old Cairo, and more.">
-  <meta property="og:image" content="pyramids-sunset.jpg">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://letsdiscoveregypt.com/">
-
   <link rel="icon" href="favicon.png" type="image/png">
 
   <!-- Google Fonts -->
@@ -23,14 +15,13 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
   <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+    * {box-sizing: border-box;margin: 0;padding: 0;}
     body {
       font-family: 'Poppins', sans-serif;
-      background: #ffffff;
-      overflow-x: hidden;
+      background: #fff;
       color: #333;
-      -webkit-font-smoothing:antialiased;
-      -moz-osx-font-smoothing:grayscale;
+      overflow-x: hidden;
+      scroll-behavior: smooth;
     }
 
     header {
@@ -38,7 +29,7 @@
       top: 0; left: 0;
       width: 100%;
       background: white;
-      padding: 15px 20px;
+      padding: 12px 18px;
       display: flex;
       align-items: center;
       justify-content: flex-start;
@@ -47,22 +38,25 @@
     }
 
     .menu-icon {
-      font-size: 24px;
+      font-size: 22px;
       cursor: pointer;
       z-index: 12;
-      user-select: none;
     }
 
     header h2 {
       position: absolute;
       left: 50%;
       transform: translateX(-50%);
-      font-size: 20px;
+      font-size: 18px;
       font-weight: 600;
-      margin: 0;
+      text-align: center;
     }
 
-    header h2 a { text-decoration: none; color: #333; display:flex; align-items:center; gap:8px; }
+    header h2 a {
+      text-decoration: none;
+      color: #333;
+      white-space: nowrap;
+    }
 
     .sidebar {
       position: fixed;
@@ -75,22 +69,21 @@
       z-index: 11;
       overflow-y: auto;
     }
-    .sidebar.active { left: 0; }
+    .sidebar.active {left: 0;}
 
     .sidebar a {
       display: block;
       color: white;
       text-decoration: none;
-      padding: 15px 0;
+      padding: 12px 0;
       border-bottom: 1px solid #444;
-      font-size: 16px;
+      font-size: 15px;
     }
 
-    .sidebar a i { margin-right: 8px; }
-
+    .sidebar a i {margin-right: 8px;}
     .sidebar h3 {
       color: #1cd760;
-      font-size: 14px;
+      font-size: 13px;
       margin: 20px 0 10px;
       text-transform: uppercase;
       letter-spacing: 1px;
@@ -104,9 +97,9 @@
       background: rgba(0,0,0,0.3);
       z-index: 10;
     }
-    .overlay.active { display: block; }
+    .overlay.active {display: block;}
 
-    /* Hero Section with Background */
+    /* Hero Section */
     .hero {
       background: url('great-museum.jpg') center/cover no-repeat;
       min-height: 60vh;
@@ -114,159 +107,135 @@
       align-items: center;
       justify-content: center;
       text-align: center;
-      padding: 20px 20px 0;
       color: white;
       position: relative;
-      margin-top: 70px; /* space for fixed header */
+      padding: 20px;
     }
 
-    /* طبقة شفافة عشان الكلام يبان */
     .hero::before {
       content: "";
       position: absolute;
       top: 0; left: 0;
       width: 100%; height: 100%;
-      background: rgba(0, 0, 0, 0.4);
+      background: rgba(0, 0, 0, 0.45);
       z-index: 0;
     }
 
     .hero-text {
       position: relative;
       z-index: 1;
-      padding: 30px;
+      max-width: 90%;
     }
 
     .hero-text h1 {
-      font-size: 36px;
+      font-size: 30px;
       font-weight: bold;
       margin-bottom: 10px;
-      line-height: 1.05;
     }
 
     .main {
-      padding: 40px 20px;
+      padding: 100px 15px 40px;
       text-align: center;
-      max-width: 1000px;
+      max-width: 800px;
       margin: 0 auto;
     }
 
-    .btn {
-      margin: 15px 10px 0;
-      padding: 12px 25px;
-      background: #1cd760;
-      color: white;
-      border: none;
-      border-radius: 30px;
-      font-size: 16px;
-      cursor: pointer;
-      text-decoration: none;
-      display: inline-block;
-      transition: background 0.3s ease, transform 0.15s ease;
-    }
-
-    .btn:active { transform: translateY(1px); }
-    .btn:hover { background: #14b150; }
-
     .tour-section {
-      margin-top: 40px;
-      text-align: left;
-      opacity: 0;
-      transform: translateY(24px);
-      transition: opacity 0.7s ease, transform 0.7s ease;
-    }
-    .tour-section.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    .tour-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 28px;
-      align-items: start;
-    }
-
-    .tour-card {
-      background: #fff;
-      padding: 16px;
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+      margin-top: 35px;
       text-align: left;
     }
 
     .tour-section img {
       width: 100%;
-      height: 200px;
-      object-fit: cover;
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease;
+    }
+
+    .tour-section img:hover {
+      transform: scale(1.02);
     }
 
     .tour-section h3 {
       font-size: 18px;
-      margin-top: 12px;
+      margin-top: 10px;
       color: #111;
     }
 
-    .tour-section a { color: #111; text-decoration: underline; }
-    .tour-section a:hover { color: #1cd760; }
+    .tour-section a {
+      color: #111;
+      text-decoration: underline;
+    }
+
+    .tour-section a:hover {color: #1cd760;}
+
+    .price {
+      color: #1cd760;
+      font-weight: bold;
+      margin-top: 5px;
+    }
+
+    .btn {
+      margin-top: 10px;
+      padding: 10px 20px;
+      background: #1cd760;
+      color: white;
+      border: none;
+      border-radius: 25px;
+      font-size: 15px;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      transition: background 0.3s;
+    }
+
+    .btn:hover {background: #14b150;}
 
     footer {
       text-align: center;
-      padding: 30px 20px;
+      padding: 25px 10px;
       color: #777;
-      font-size: 14px;
+      font-size: 13px;
       background: #fff;
       margin-top: 40px;
       box-shadow: 0 -1px 3px rgba(0, 0, 0, 0.05);
     }
 
-    .socials { margin-top: 12px; }
-    .socials a { color:#1cd760; margin:0 8px; font-size:18px; text-decoration:none; }
-
-    /* WhatsApp floating button */
-    .whatsapp-btn {
+    /* WhatsApp Floating Button */
+    .whatsapp-float {
       position: fixed;
-      bottom: 22px;
-      right: 22px;
-      background: #25D366;
+      bottom: 20px;
+      right: 20px;
+      background-color: #25D366;
       color: white;
-      font-size: 22px;
-      padding: 14px;
       border-radius: 50%;
-      box-shadow: 0 6px 18px rgba(37,211,102,0.24);
-      z-index: 200;
+      width: 55px;
+      height: 55px;
       display: flex;
       align-items: center;
       justify-content: center;
-      text-decoration: none;
-    }
-    .whatsapp-btn:hover { transform: translateY(-2px); transition: transform 0.15s ease; }
-
-    /* Responsive */
-    @media (max-width: 900px) {
-      .tour-grid { grid-template-columns: 1fr; }
-      .hero-text h1 { font-size: 32px; }
-      .hero { min-height: 45vh; }
+      font-size: 28px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      z-index: 100;
+      transition: transform 0.3s ease;
     }
 
-    @media (max-width: 480px) {
-      header { padding: 12px 14px; }
-      header h2 { font-size: 16px; left: 50%; transform: translateX(-50%); }
-      .menu-icon { font-size: 20px; }
-      .hero-text h1 { font-size: 24px; }
-      .hero-text p { font-size: 14px; }
-      .btn { font-size: 14px; padding: 10px 18px; }
-      .tour-section img { height: 180px; }
+    .whatsapp-float:hover {
+      transform: scale(1.1);
+    }
+
+    @media (max-width: 600px) {
+      .hero-text h1 {font-size: 24px;}
+      header h2 {font-size: 16px;}
     }
   </style>
 </head>
 
 <body>
 
-  <div class="overlay" id="overlay" onclick="closeMenu()" aria-hidden="true"></div>
+  <div class="overlay" id="overlay" onclick="closeMenu()"></div>
 
-  <nav class="sidebar" id="sidebar" aria-label="Main navigation">
+  <div class="sidebar" id="sidebar">
     <a href="index.html"><i class="fas fa-home"></i> Home</a>
     <a href="tours.html"><i class="fas fa-map-marked-alt"></i> Tours</a>
 
@@ -276,77 +245,64 @@
     <a href="old-cairo.html"><i class="fas fa-church"></i> Old Cairo Tour</a>
 
     <a href="contact.html"><i class="fas fa-phone"></i> Contact</a>
-  </nav>
+  </div>
 
-  <header role="banner">
-    <div class="menu-icon" onclick="toggleMenu()" aria-label="Toggle menu" role="button">☰</div>
+  <header>
+    <div class="menu-icon" onclick="toggleMenu()">☰</div>
     <h2><a href="index.html"><i class="fas fa-globe-africa"></i> Let's Discover Egypt</a></h2>
   </header>
 
-  <main>
-    <section class="hero" role="img" aria-label="Great Egyptian Museum">
-      <div class="hero-text">
-        <h1>LET'S DISCOVER EGYPT</h1>
-        <p>Uncover the Magic</p>
-        <p>The first team in Egypt to offer a true VIP experience to the Pyramids.</p>
-      </div>
-    </section>
-
-    <div class="main">
-      <section class="tour-section" id="tours">
-        <div class="tour-grid">
-          <!-- Pyramids Tour -->
-          <article class="tour-card" tabindex="0">
-            <img src="pyramids-sunset.jpg" alt="Pyramids Tour" loading="lazy">
-            <h3><a href="pyramids.html">ALL INCLUSIVE PRIVATE HALF-DAY TRIP TO GIZA PYRAMIDS WITH CAMEL RIDE</a></h3>
-            <p style="color:#1cd760;font-weight:bold;">From 65 USD</p>
-            <a href="pyramids.html" class="btn">More Details</a>
-          </article>
-
-          <!-- Nile Cruise Tour -->
-          <article class="tour-card" tabindex="0">
-            <img src="nile-cover.jpeg" alt="Nile Cruise" loading="lazy">
-            <h3><a href="nile-cruise.html">EVENING DINNER NILE CRUISE IN CAIRO</a></h3>
-            <p style="color:#1cd760;font-weight:bold;">From 55 USD</p>
-            <a href="nile-cruise.html" class="btn">More Details</a>
-          </article>
-
-          <!-- Old Cairo Tour -->
-          <article class="tour-card" tabindex="0">
-            <img src="old-cairo-cover.jpg" alt="Old Cairo Tour" loading="lazy">
-            <h3><a href="old-cairo.html">FULL DAY OLD CAIRO TOUR: CITADEL, CHURCHES & KHAN EL KHALILI</a></h3>
-            <p style="color:#1cd760;font-weight:bold;">From 60 USD</p>
-            <a href="old-cairo.html" class="btn">More Details</a>
-          </article>
-
-          <!-- VIP All Inclusive Day Trip -->
-          <article class="tour-card" tabindex="0">
-            <img src="vip-daytrip-cover.jpg" alt="VIP All Inclusive Guided Day Trip - Giza, Sakkara, Memphis & Camel Ride" loading="lazy">
-            <h3><a href="vip-daytrip.html">VIP ALL INCLUSIVE GUIDED DAY TRIP GIZA PYRAMIDS, SAKKARA & MEMPHIS</a></h3>
-            <p style="color:#1cd760;font-weight:bold;">From 90 USD</p>
-            <a href="vip-daytrip.html" class="btn">More Details</a>
-          </article>
-        </div>
-      </section>
+  <div class="hero">
+    <div class="hero-text">
+      <h1>LET'S DISCOVER EGYPT</h1>
+      <p>Uncover the Magic</p>
+      <p>The first team in Egypt to offer a true VIP experience to the Pyramids.</p>
     </div>
-  </main>
-  
-  <footer>
-    <p>&copy; 2025 Let's Discover Egypt. All rights reserved.</p>
-    <div class="socials" aria-hidden="false">
-      <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
-      <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-      <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-    </div>
-  </footer>
+  </div>
 
-  <!-- WhatsApp floating button (international format +201283915289) -->
-  <a class="whatsapp-btn" href="https://wa.me/201283915289" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
+  <div class="main">
+    <!-- Pyramids Tour -->
+    <div class="tour-section">
+      <img src="pyramids-sunset.jpg" alt="Pyramids Tour">
+      <h3><a href="pyramids.html">ALL INCLUSIVE PRIVATE HALF-DAY TRIP TO GIZA PYRAMIDS WITH CAMEL RIDE</a></h3>
+      <p class="price">From 65 USD</p>
+      <a href="pyramids.html" class="btn">More Details</a>
+    </div>
+
+    <!-- Nile Cruise -->
+    <div class="tour-section">
+      <img src="nile-cover.jpeg" alt="Nile Cruise">
+      <h3><a href="nile-cruise.html">EVENING DINNER NILE CRUISE IN CAIRO</a></h3>
+      <p class="price">From 55 USD</p>
+      <a href="nile-cruise.html" class="btn">More Details</a>
+    </div>
+
+    <!-- Old Cairo -->
+    <div class="tour-section">
+      <img src="old-cairo-cover.jpg" alt="Old Cairo Tour">
+      <h3><a href="old-cairo.html">FULL DAY OLD CAIRO TOUR: CITADEL, CHURCHES & KHAN EL KHALILI</a></h3>
+      <p class="price">From 60 USD</p>
+      <a href="old-cairo.html" class="btn">More Details</a>
+    </div>
+
+    <!-- VIP Daytrip -->
+    <div class="tour-section">
+      <img src="vip-daytrip-cover.jpg" alt="VIP All Inclusive Guided Day Trip">
+      <h3><a href="vip-daytrip.html">VIP ALL INCLUSIVE GUIDED DAY TRIP GIZA PYRAMIDS, SAKKARA & MEMPHIS</a></h3>
+      <p class="price">From 90 USD</p>
+      <a href="vip-daytrip.html" class="btn">More Details</a>
+    </div>
+  </div>
+
+  <a href="https://wa.me/201283915289" class="whatsapp-float" target="_blank">
     <i class="fab fa-whatsapp"></i>
   </a>
 
+  <footer>
+    <p>&copy; 2025 Let's Discover Egypt. All rights reserved.</p>
+  </footer>
+
   <script>
-    /* Menu toggle */
     function toggleMenu() {
       const sidebar = document.getElementById("sidebar");
       const overlay = document.getElementById("overlay");
@@ -354,43 +310,13 @@
       overlay.classList.toggle("active");
       document.body.style.overflow = sidebar.classList.contains("active") ? "hidden" : "auto";
     }
+
     function closeMenu() {
       document.getElementById("sidebar").classList.remove("active");
       document.getElementById("overlay").classList.remove("active");
       document.body.style.overflow = "auto";
     }
-
-    /* Simple reveal on scroll for .tour-section .tour-card */
-    function revealOnScroll() {
-      const cards = document.querySelectorAll('.tour-card');
-      const triggerBottom = window.innerHeight - 80;
-      cards.forEach(card => {
-        const rect = card.getBoundingClientRect();
-        if (rect.top < triggerBottom) {
-          card.parentElement.classList.add('visible');
-        }
-      });
-      // Also ensure each tour-card becomes visible (in case grid)
-      document.querySelectorAll('.tour-card').forEach(card => {
-        const rect = card.getBoundingClientRect();
-        if (rect.top < window.innerHeight - 80) {
-          card.classList.add('visible');
-        }
-      });
-    }
-
-    window.addEventListener('load', () => {
-      // initial reveal
-      revealOnScroll();
-    });
-    window.addEventListener('scroll', () => {
-      revealOnScroll();
-    });
-
-    // Accessibility: close menu with Escape
-    window.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') closeMenu();
-    });
   </script>
+
 </body>
-          </html>
+  </html>
