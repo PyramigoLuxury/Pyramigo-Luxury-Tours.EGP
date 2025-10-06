@@ -6,6 +6,14 @@
   <title>Let's Discover Egypt</title>
   <meta name="description" content="Explore Egypt with private guided tours. Visit the Pyramids, enjoy camel rides, and discover ancient wonders. Book now!">
   <meta name="keywords" content="Egypt tours, Pyramids, Cairo travel, Giza, tourism, discover Egypt">
+  <meta name="robots" content="index, follow">
+  <!-- Open Graph -->
+  <meta property="og:title" content="Let's Discover Egypt - Private Egypt Tours">
+  <meta property="og:description" content="Book your private tours in Egypt: Pyramids, Nile Cruise, Old Cairo, and more.">
+  <meta property="og:image" content="pyramids-sunset.jpg">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://letsdiscoveregypt.com/">
+
   <link rel="icon" href="favicon.png" type="image/png">
 
   <!-- Google Fonts -->
@@ -21,6 +29,8 @@
       background: #ffffff;
       overflow-x: hidden;
       color: #333;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
     }
 
     header {
@@ -40,6 +50,7 @@
       font-size: 24px;
       cursor: pointer;
       z-index: 12;
+      user-select: none;
     }
 
     header h2 {
@@ -48,9 +59,10 @@
       transform: translateX(-50%);
       font-size: 20px;
       font-weight: 600;
+      margin: 0;
     }
 
-    header h2 a { text-decoration: none; color: #333; }
+    header h2 a { text-decoration: none; color: #333; display:flex; align-items:center; gap:8px; }
 
     .sidebar {
       position: fixed;
@@ -105,6 +117,7 @@
       padding: 20px 20px 0;
       color: white;
       position: relative;
+      margin-top: 70px; /* space for fixed header */
     }
 
     /* طبقة شفافة عشان الكلام يبان */
@@ -120,18 +133,20 @@
     .hero-text {
       position: relative;
       z-index: 1;
+      padding: 30px;
     }
 
     .hero-text h1 {
       font-size: 36px;
       font-weight: bold;
       margin-bottom: 10px;
+      line-height: 1.05;
     }
 
     .main {
       padding: 40px 20px;
       text-align: center;
-      max-width: 800px;
+      max-width: 1000px;
       margin: 0 auto;
     }
 
@@ -146,26 +161,50 @@
       cursor: pointer;
       text-decoration: none;
       display: inline-block;
-      transition: background 0.3s ease;
+      transition: background 0.3s ease, transform 0.15s ease;
     }
 
+    .btn:active { transform: translateY(1px); }
     .btn:hover { background: #14b150; }
 
     .tour-section {
       margin-top: 40px;
       text-align: left;
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .tour-section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .tour-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 28px;
+      align-items: start;
+    }
+
+    .tour-card {
+      background: #fff;
+      padding: 16px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+      text-align: left;
     }
 
     .tour-section img {
       width: 100%;
-      max-width: 600px;
+      height: 200px;
+      object-fit: cover;
       border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
     }
 
     .tour-section h3 {
-      font-size: 20px;
-      margin-top: 15px;
+      font-size: 18px;
+      margin-top: 12px;
       color: #111;
     }
 
@@ -181,14 +220,53 @@
       margin-top: 40px;
       box-shadow: 0 -1px 3px rgba(0, 0, 0, 0.05);
     }
+
+    .socials { margin-top: 12px; }
+    .socials a { color:#1cd760; margin:0 8px; font-size:18px; text-decoration:none; }
+
+    /* WhatsApp floating button */
+    .whatsapp-btn {
+      position: fixed;
+      bottom: 22px;
+      right: 22px;
+      background: #25D366;
+      color: white;
+      font-size: 22px;
+      padding: 14px;
+      border-radius: 50%;
+      box-shadow: 0 6px 18px rgba(37,211,102,0.24);
+      z-index: 200;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+    }
+    .whatsapp-btn:hover { transform: translateY(-2px); transition: transform 0.15s ease; }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .tour-grid { grid-template-columns: 1fr; }
+      .hero-text h1 { font-size: 32px; }
+      .hero { min-height: 45vh; }
+    }
+
+    @media (max-width: 480px) {
+      header { padding: 12px 14px; }
+      header h2 { font-size: 16px; left: 50%; transform: translateX(-50%); }
+      .menu-icon { font-size: 20px; }
+      .hero-text h1 { font-size: 24px; }
+      .hero-text p { font-size: 14px; }
+      .btn { font-size: 14px; padding: 10px 18px; }
+      .tour-section img { height: 180px; }
+    }
   </style>
 </head>
 
 <body>
 
-  <div class="overlay" id="overlay" onclick="closeMenu()"></div>
+  <div class="overlay" id="overlay" onclick="closeMenu()" aria-hidden="true"></div>
 
-  <div class="sidebar" id="sidebar">
+  <nav class="sidebar" id="sidebar" aria-label="Main navigation">
     <a href="index.html"><i class="fas fa-home"></i> Home</a>
     <a href="tours.html"><i class="fas fa-map-marked-alt"></i> Tours</a>
 
@@ -198,60 +276,77 @@
     <a href="old-cairo.html"><i class="fas fa-church"></i> Old Cairo Tour</a>
 
     <a href="contact.html"><i class="fas fa-phone"></i> Contact</a>
-  </div>
+  </nav>
 
-  <header>
-    <div class="menu-icon" onclick="toggleMenu()">☰</div>
+  <header role="banner">
+    <div class="menu-icon" onclick="toggleMenu()" aria-label="Toggle menu" role="button">☰</div>
     <h2><a href="index.html"><i class="fas fa-globe-africa"></i> Let's Discover Egypt</a></h2>
   </header>
 
-  <div class="hero">
-    <div class="hero-text">
-      <h1>LET'S DISCOVER EGYPT</h1>
-      <p>Uncover the Magic</p>
-      <p>The first team in Egypt to offer a true VIP experience to the Pyramids.</p>
-    </div>
-  </div>
+  <main>
+    <section class="hero" role="img" aria-label="Great Egyptian Museum">
+      <div class="hero-text">
+        <h1>LET'S DISCOVER EGYPT</h1>
+        <p>Uncover the Magic</p>
+        <p>The first team in Egypt to offer a true VIP experience to the Pyramids.</p>
+      </div>
+    </section>
 
-  <div class="main">
-    <!-- Pyramids Tour -->
-    <div class="tour-section">
-      <img src="pyramids-sunset.jpg" alt="Pyramids Tour">
-      <h3><a href="pyramids.html">ALL INCLUSIVE PRIVATE HALF-DAY TRIP TO GIZA PYRAMIDS WITH CAMEL RIDE</a></h3>
-      <p style="color:#1cd760;font-weight:bold;">From 65 USD</p>
-      <a href="pyramids.html" class="btn">More Details</a>
-    </div>
+    <div class="main">
+      <section class="tour-section" id="tours">
+        <div class="tour-grid">
+          <!-- Pyramids Tour -->
+          <article class="tour-card" tabindex="0">
+            <img src="pyramids-sunset.jpg" alt="Pyramids Tour" loading="lazy">
+            <h3><a href="pyramids.html">ALL INCLUSIVE PRIVATE HALF-DAY TRIP TO GIZA PYRAMIDS WITH CAMEL RIDE</a></h3>
+            <p style="color:#1cd760;font-weight:bold;">From 65 USD</p>
+            <a href="pyramids.html" class="btn">More Details</a>
+          </article>
 
-    <!-- Nile Cruise Tour -->
-    <div class="tour-section">
-      <img src="nile-cover.jpeg" alt="Nile Cruise">
-      <h3><a href="nile-cruise.html">EVENING DINNER NILE CRUISE IN CAIRO</a></h3>
-      <p style="color:#1cd760;font-weight:bold;">From 55 USD</p>
-      <a href="nile-cruise.html" class="btn">More Details</a>
-    </div>
+          <!-- Nile Cruise Tour -->
+          <article class="tour-card" tabindex="0">
+            <img src="nile-cover.jpeg" alt="Nile Cruise" loading="lazy">
+            <h3><a href="nile-cruise.html">EVENING DINNER NILE CRUISE IN CAIRO</a></h3>
+            <p style="color:#1cd760;font-weight:bold;">From 55 USD</p>
+            <a href="nile-cruise.html" class="btn">More Details</a>
+          </article>
 
-    <!-- Old Cairo Tour -->
-    <div class="tour-section">
-      <img src="old-cairo-cover.jpg" alt="Old Cairo Tour">
-      <h3><a href="old-cairo.html">FULL DAY OLD CAIRO TOUR: CITADEL, CHURCHES & KHAN EL KHALILI</a></h3>
-      <p style="color:#1cd760;font-weight:bold;">From 60 USD</p>
-      <a href="old-cairo.html" class="btn">More Details</a>
+          <!-- Old Cairo Tour -->
+          <article class="tour-card" tabindex="0">
+            <img src="old-cairo-cover.jpg" alt="Old Cairo Tour" loading="lazy">
+            <h3><a href="old-cairo.html">FULL DAY OLD CAIRO TOUR: CITADEL, CHURCHES & KHAN EL KHALILI</a></h3>
+            <p style="color:#1cd760;font-weight:bold;">From 60 USD</p>
+            <a href="old-cairo.html" class="btn">More Details</a>
+          </article>
+
+          <!-- VIP All Inclusive Day Trip -->
+          <article class="tour-card" tabindex="0">
+            <img src="vip-daytrip-cover.jpg" alt="VIP All Inclusive Guided Day Trip - Giza, Sakkara, Memphis & Camel Ride" loading="lazy">
+            <h3><a href="vip-daytrip.html">VIP ALL INCLUSIVE GUIDED DAY TRIP GIZA PYRAMIDS, SAKKARA & MEMPHIS</a></h3>
+            <p style="color:#1cd760;font-weight:bold;">From 90 USD</p>
+            <a href="vip-daytrip.html" class="btn">More Details</a>
+          </article>
+        </div>
+      </section>
     </div>
-    
-    <!-- VIP All Inclusive Day Trip -->
-    <div class="tour-section">
-      <img src="vip-daytrip-cover.jpg" alt="VIP All Inclusive Guided Day Trip - Giza, Sakkara, Memphis & Camel Ride">
-      <h3><a href="vip-daytrip.html">VIP ALL INCLUSIVE GUIDED DAY TRIP GIZA PYRAMIDS, SAKKARA & MEMPHIS</a></h3>
-      <p style="color:#1cd760;font-weight:bold;">From 90 USD</p>
-      <a href="vip-daytrip.html" class="btn">More Details</a>
-    </div>
-  </div>
+  </main>
   
   <footer>
     <p>&copy; 2025 Let's Discover Egypt. All rights reserved.</p>
+    <div class="socials" aria-hidden="false">
+      <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+      <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+      <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+    </div>
   </footer>
 
+  <!-- WhatsApp floating button (international format +201283915289) -->
+  <a class="whatsapp-btn" href="https://wa.me/201283915289" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+
   <script>
+    /* Menu toggle */
     function toggleMenu() {
       const sidebar = document.getElementById("sidebar");
       const overlay = document.getElementById("overlay");
@@ -264,6 +359,38 @@
       document.getElementById("overlay").classList.remove("active");
       document.body.style.overflow = "auto";
     }
+
+    /* Simple reveal on scroll for .tour-section .tour-card */
+    function revealOnScroll() {
+      const cards = document.querySelectorAll('.tour-card');
+      const triggerBottom = window.innerHeight - 80;
+      cards.forEach(card => {
+        const rect = card.getBoundingClientRect();
+        if (rect.top < triggerBottom) {
+          card.parentElement.classList.add('visible');
+        }
+      });
+      // Also ensure each tour-card becomes visible (in case grid)
+      document.querySelectorAll('.tour-card').forEach(card => {
+        const rect = card.getBoundingClientRect();
+        if (rect.top < window.innerHeight - 80) {
+          card.classList.add('visible');
+        }
+      });
+    }
+
+    window.addEventListener('load', () => {
+      // initial reveal
+      revealOnScroll();
+    });
+    window.addEventListener('scroll', () => {
+      revealOnScroll();
+    });
+
+    // Accessibility: close menu with Escape
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeMenu();
+    });
   </script>
 </body>
-      </html>
+          </html>
